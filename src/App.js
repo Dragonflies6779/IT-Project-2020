@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import LoginForm from './LoginForm';
 import InputField from './InputField';
 import SubmitButton form './SubmitButton';
