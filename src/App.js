@@ -1,17 +1,20 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import LoginForm from './LoginForm';
 import InputField from './InputField';
-import SubmitButton form './SubmitButton';
+import SubmitButton from './SubmitButton';
 import './App.css';
 
-class App extends React.Compontent {
+class App extends React.Component {
 
   render(){
     return (
       <div className = "app">
         <div className = 'container'>
-          <LoginForm/>
+
+          //if (user is logged in){}
+          //else just load the loginForm
+
+            <LoginForm/>
         </div>
       </div>
       );

@@ -10,7 +10,7 @@ body, html, #root, .app, .container{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF
+  background-color: #0072BB
 }
 
 .loginForm {
@@ -45,7 +45,7 @@ body, html, #root, .app, .container{
   width: 100%;
   min-width: 280px;
   color: #565656;
-  padding: :12px;
+  padding: 12px;
   font-size: 14px;
   font-weight: bold;
   border: solid 2px #1189de;

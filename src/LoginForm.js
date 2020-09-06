@@ -1,8 +1,8 @@
 import React from 'react';
-import InputField from './inputField';
+import InputField from './InputField';
 import SubmitButton from './SubmitButton';
 
-class LoginForm extends React.Compontent {
+class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -69,6 +69,7 @@ class LoginForm extends React.Compontent {
           text = 'Login'
           disabled = {this.state.buttonDisabled}
           onClick = { () => this.doLogin() }
+        />
 
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SubmitButton extends React.Compontent {
+class SubmitButton extends React.Component {
 
   render(){
     return (
