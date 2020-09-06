@@ -8,9 +8,11 @@ class App extends React.Compontent {
 
   render(){
     return (
-      <div className="app">
-        asdas
+      <div className = "app">
+        <div className = 'container'>
+          <LoginForm/>
         </div>
+      </div>
       );
     }
 }
