@@ -52,6 +52,7 @@ class LoginForm extends React.Component {
         Login
 
         <InputField
+          id = 'username'
           type = 'text'
           placeholder = 'Username'
           value = {this.state.username ? this.state.username : ''}
@@ -59,6 +60,7 @@ class LoginForm extends React.Component {
         />
 
         <InputField
+          id = 'password'
           type = 'password'
           placeholder = 'Password'
           value = {this.state.password ? this.state.password : ''}
@@ -66,6 +68,7 @@ class LoginForm extends React.Component {
         />
 
         <SubmitButton
+          id = 'submitButton'
           text = 'Login'
           disabled = {this.state.buttonDisabled}
           onClick = { () => this.doLogin() }
