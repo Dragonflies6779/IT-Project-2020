@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from './InputField';
 import SubmitButton from './SubmitButton';
+import auth from './auth';
 
 class LoginForm extends React.Component {
 
@@ -44,6 +45,7 @@ class LoginForm extends React.Component {
     })
 
     //DO the API thing here
+    auth.loginWithEmailAndPassword(this.state.username, this.state.password);
   }
 
   render(){
