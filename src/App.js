@@ -11,9 +11,6 @@ class App extends React.Component {
       <div className = "app">
         <div className = 'container'>
 
-          //if (user is logged in){}
-          //else just load the loginForm
-
             <LoginForm/>
         </div>
       </div>
