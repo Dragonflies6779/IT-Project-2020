@@ -51,9 +51,7 @@
 	var Route = __webpack_require__(195).Route;
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-
 	var routes = __webpack_require__(277);
-
 	var config = {
 	   apiKey: "AIzaSyDZMeOm6-mtXsM4XLrtEbeTKNXUaUWoIEI",
 	   authDomain: "signuptest-751e1.firebaseapp.com",
@@ -29800,7 +29798,6 @@
 	var Route = __webpack_require__(195).Route;
 	var IndexRoute = __webpack_require__(195).IndexRoute;
 	var hashHistory = __webpack_require__(195).hashHistory;
-
 	var NewUser = __webpack_require__(278);
 
 	var requireAuth = __webpack_require__(279);
@@ -29928,50 +29925,54 @@
 
 			return React.createElement(
 				'div',
-				null,
-				errorAlert,
-				React.createElement('div', { className: 'col-md-4' }),
+				{ className: 'Background' },
 				React.createElement(
 					'div',
-					{ className: 'col-md-4 margin-top-30' },
+					{ className: 'WebHeader' },
+					errorAlert,
+					React.createElement('div', { className: 'col-md-4' }),
 					React.createElement(
-						'center',
-						null,
+						'div',
+						{ className: 'col-md-4 margin-top-30' },
 						React.createElement(
-							'h1',
+							'center',
 							null,
-							'Sign Up'
-						),
-						React.createElement('br', null),
-						React.createElement(
-							'div',
-							{ className: 'sign-up-form' },
-							React.createElement('input', { type: 'text', ref: 'firstName', placeholder: 'First Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
-							React.createElement('br', null),
-							React.createElement('input', { type: 'text', ref: 'lastName', placeholder: 'Last Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
-							React.createElement('br', null),
-							React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
-							React.createElement('br', null),
-							React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
-							React.createElement('br', null),
-							React.createElement('input', { type: 'password', ref: 'password_confirmation', placeholder: 'Password Confirmation', className: 'form-control', onKeyPress: this.handleKeyPress }),
-							React.createElement('br', null),
 							React.createElement(
-								'button',
-								{ onClick: this.handleSignUp, className: 'btn btn-primary margin-bottom-10' },
-								'Create Account'
+								'h1',
+								null,
+								'Sign Up'
 							),
 							React.createElement('br', null),
-							'Have an account? ',
 							React.createElement(
-								Link,
-								{ to: '/login' },
-								'Login!'
+								'div',
+								{ className: 'sign-up-form' },
+								React.createElement('input', { type: 'text', ref: 'firstName', placeholder: 'First Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement('input', { type: 'text', ref: 'lastName', placeholder: 'Last Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement('input', { type: 'password', ref: 'password_confirmation', placeholder: 'Password Confirmation', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement(
+									'button',
+									{ onClick: this.handleSignUp, className: 'btn btn-primary margin-bottom-10' },
+									'Create Account'
+								),
+								React.createElement('br', null),
+								'Have an account? ',
+								React.createElement(
+									Link,
+									{ to: '/login' },
+									'Login!'
+								)
 							)
 						)
-					)
-				),
-				React.createElement('div', { className: 'col-md-4' })
+					),
+					React.createElement('div', { className: 'col-md-4' })
+				)
 			);
 		}
 	});

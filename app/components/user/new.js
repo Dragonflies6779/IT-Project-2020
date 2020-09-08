@@ -99,12 +99,12 @@ var SignUpForm = React.createClass({
 		}
 
 		return (
-			<div>
+			<div className="Background">
+			<div className="WebHeader">
 				{errorAlert}
 
 				<div className="col-md-4">
 				</div>
-
 				<div className="col-md-4 margin-top-30">
 					<center>
 						<h1>Sign Up</h1><br />
@@ -122,6 +122,7 @@ var SignUpForm = React.createClass({
 				</div>
 				<div className="col-md-4">
 				</div>
+			</div>
 			</div>
 		);
 	}
