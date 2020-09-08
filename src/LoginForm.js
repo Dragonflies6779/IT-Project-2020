@@ -61,6 +61,12 @@ class LoginForm extends React.Component {
           onChange = { (val) => this.setInputValue('username', val)}
         />
 
+        <small
+          disabled = {this.state.usernameRequired}
+        >
+          UsernameRequired
+        </small>
+
         <InputField
           id = 'password'
           type = 'password'
