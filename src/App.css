@@ -5,16 +5,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #519e8a;
+  background-color: #9eb3c2;
   height : 100vh;
 }
 
+.Title {
+  text-align: center;
+}
+
 .WebHeader {
-  max-width: 350px;
+  /* max-width: 350px;
   border-radius: 30px;
   margin: auto;
   background-color: white;
-  box-sizing: border-box;
+  border: 1px solid;
+  border-color: black;
+  box-sizing: border-box; */
   padding: 40px;
   overflow: auto;
 }
@@ -30,10 +36,10 @@
 }
 
 input {
-  padding: 8px 0px;
+  padding: 8px 8px;
   border-radius: 5px;
   outline: none;
-  border: 1px solid black;
+  border: 1px solid white;
   width: 100%;
   margin-top: 1em;
 }
@@ -45,10 +51,11 @@ input::placeholder {
 }
 
 .createAccount button {
-  background-color: #519e8a;
+  background-color: #1c7293;
+  border-radius: 5px;
   color: #fff;
-  border: 2px solid #fff;
-  width: 100%;
+  border: 2px solid #1c7293;
+  width: 106%;
   margin-top: 1em;
   padding: 8px 0px;
   font-size: 1em;
@@ -58,13 +65,13 @@ input::placeholder {
 }
 
 .createAccount button:hover {
-  color: #519e8a;
-  background-color: #fff;
-  border: 2px solid #519e8a;
+  /* color: white;
+  border: 2px solid #519e8a; */
+  box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.1);
 }
 
 .createAccount small {
-  color: #999;
+  color: white;
 }
 
 .errorMessage {
