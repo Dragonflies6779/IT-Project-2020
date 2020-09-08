@@ -43,8 +43,7 @@ class LoginForm extends React.Component {
     this.setState({
       buttonDisabled : true
     })
-
-    //DO the API thing here
+    
     auth.loginWithEmailAndPassword(this.state.username, this.state.password);
   }
 
