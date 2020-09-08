@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
     this.setState({
       buttonDisabled : true
     })
-    
+
     auth.loginWithEmailAndPassword(this.state.username, this.state.password);
   }
 
@@ -74,6 +74,13 @@ class LoginForm extends React.Component {
           disabled = {this.state.buttonDisabled}
           onClick = { () => this.doLogin() }
         />
+
+        <div><a href="">
+          Don't have an account?
+        </a></div>
+        <div><a href="">
+          Forgot Password?
+        </a></div>
 
       </div>
     );
