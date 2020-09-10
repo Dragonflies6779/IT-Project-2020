@@ -14,7 +14,7 @@ const lNameRegex = RegExp(
 );
 
 const passRegex = RegExp(
-  /"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"/
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
 )
 
 const initialState = {
@@ -51,7 +51,7 @@ export default class Form extends React.Component {
     }
 
     if(!passRegex.test(this.state.password)){
-      passwordError = "Password should contain at least one: \r\n uppercase letter, one lowercase letter, and one number"
+      passwordError = "Password should contain at least one: uppercase letter, one lowercase letter, and one number"
     }
 
     if(!fNameRegex.test(this.state.firstname)){
@@ -73,7 +73,6 @@ export default class Form extends React.Component {
     if (!this.state.lastname) {
         lastnameError = "This field is required";
       }
-
 
     if (emailError || firstnameError || lastnameError || passwordError) {
       this.setState({ emailError, firstnameError, lastnameError, passwordError });
@@ -101,7 +100,7 @@ export default class Form extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
 
-        <div classname="firstname">
+        <div className="firstname">
           <input
             name="firstname"
             placeholder="First Name*"
