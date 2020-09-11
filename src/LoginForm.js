@@ -44,7 +44,18 @@ class LoginForm extends React.Component {
       buttonDisabled : true
     })
 
-    auth.loginWithEmailAndPassword(this.state.username, this.state.password);
+    auth.loginWithEmailAndPassword(this.state.username, this.state.password).
+    catch(function(error)){
+
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode == 'auth/user-disabled'){
+        alert('User account disabled');
+      } else {
+        alert ('Incorrect Username or Password');
+      }
+      resetForm();
+    };
   }
 
   render(){
