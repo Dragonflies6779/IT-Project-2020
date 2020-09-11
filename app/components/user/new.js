@@ -115,8 +115,8 @@ var SignUpForm = React.createClass({
 							<input type="password" ref="password" placeholder="Password" className="form-control" onKeyPress={this.handleKeyPress} /><br />
 							<input type="password" ref="password_confirmation" placeholder="Password Confirmation" className="form-control" onKeyPress={this.handleKeyPress} /><br />
 
-							<button onClick={this.handleSignUp} className="btn btn-primary margin-bottom-10">Create Account</button><br />
-							Have an account? <Link to="/login">Login!</Link>
+							<button onClick={this.handleSignUp} className="btn">Create Account</button><br />
+							<div className="loginlink">Have an account? <Link to="/login">Login!</Link></div>
 						</div>
 					</center>
 				</div>
