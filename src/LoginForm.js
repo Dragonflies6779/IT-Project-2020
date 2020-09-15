@@ -10,15 +10,17 @@ class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      buttonDisabled: false
+      buttonDisabled: false,
+      usernameRequired: true,
+      passwordRequired: true,
+      invalidInput: true
+
     }
   }
 
   setInputValue(property, val) {
     val = val.trim();
-    if (val.length > 50){
-      return;
-    }
+
     this.setState({
       [property] : val
     })
@@ -37,7 +39,7 @@ class LoginForm extends React.Component {
     if(!this.state.username){
       return;
     }
-    if(!this.state.username){
+    if(!this.state.password){
       return;
     }
     this.setState({
@@ -55,10 +57,16 @@ class LoginForm extends React.Component {
         <InputField
           id = 'username'
           type = 'text'
-          placeholder = 'Username'
+          placeholder = 'Email'
           value = {this.state.username ? this.state.username : ''}
           onChange = { (val) => this.setInputValue('username', val)}
         />
+
+        <small
+          disabled = {this.state.usernameRequired}
+        >
+          UsernameRequired
+        </small>
 
         <InputField
           id = 'password'
