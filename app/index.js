@@ -6,6 +6,7 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 var routes = require('./config/routes.js');
+//config to final hosting site
 var config = {
    apiKey: "AIzaSyBLlvZgg2_Y9RC9mKZv2_c1mXMZvgQK5Cw",
    authDomain: "my-portfolio-system.firebaseapp.com",
