@@ -1,6 +1,7 @@
-This is a part of the project that is the full login page
+This is the Login page for the the Portfolio system
 
-It contains the frontend and the backend of the login page
+It contains a Username and Passowrd Field
 
-Allows for a basic sign in function
+It contains a Login Button
 
+Contains links to Signup page and the Forogt password page
