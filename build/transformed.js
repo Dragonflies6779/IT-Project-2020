@@ -52,15 +52,16 @@
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
 	var routes = __webpack_require__(277);
+	//config to final hosting site
 	var config = {
-	   apiKey: "AIzaSyDZMeOm6-mtXsM4XLrtEbeTKNXUaUWoIEI",
-	   authDomain: "signuptest-751e1.firebaseapp.com",
-	   databaseURL: "https://signuptest-751e1.firebaseio.com",
-	   projectId: "signuptest-751e1",
-	   storageBucket: "signuptest-751e1.appspot.com",
-	   messagingSenderId: "253807790699",
-	   appId: "1:253807790699:web:dcded8f4ca3bf7f0b6bf2e",
-	   measurementId: "G-SYTS05JEZ0"
+	   apiKey: "AIzaSyBLlvZgg2_Y9RC9mKZv2_c1mXMZvgQK5Cw",
+	   authDomain: "my-portfolio-system.firebaseapp.com",
+	   databaseURL: "https://my-portfolio-system.firebaseio.com",
+	   projectId: "my-portfolio-system",
+	   storageBucket: "my-portfolio-system.appspot.com",
+	   messagingSenderId: "586112178261",
+	   appId: "1:586112178261:web:afb7cf74be000c74475cdc",
+	   measurementId: "G-QWS5FB22EG"
 	};
 
 	firebase.initializeApp(config);
@@ -29934,7 +29935,6 @@
 						email: email,
 						first: firstName,
 						last: lastName,
-						recruiter: recruiter,
 						interests: "",
 						skills: ""
 					};
