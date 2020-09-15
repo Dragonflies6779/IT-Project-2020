@@ -5,6 +5,9 @@ class Login {
         fire.auth().signInWithEmailAndPassword(email, password)
           .then((user) => {
               console.log(user);
+          })
+          .catch((error) => {
+              alert("incorrect username or password");
           });
     }
 }
