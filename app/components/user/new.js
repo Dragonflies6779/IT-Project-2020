@@ -5,7 +5,6 @@ var hashHistory = require('react-router').hashHistory;
 
 var SignUpForm = React.createClass({
 
-	//initially, no submission errors
 	getInitialState: function(){
 		return{hasError: false};
 	},
@@ -13,7 +12,6 @@ var SignUpForm = React.createClass({
 	handleSignUp: function(){
 		var that = this;
 
-		//gets the data from the form fields
 		var firstName = this.refs.firstName.value;
 		var lastName = this.refs.lastName.value;
 		var email = this.refs.email.value;
@@ -21,7 +19,7 @@ var SignUpForm = React.createClass({
 		var password_confirmation = this.refs.password_confirmation.value;
 
 		if(firstName && lastName){
-			//creates the user on firebase
+			//creates user
 			firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function(error) {
 				if(error){
 					that.setState({hasError: true});
@@ -33,21 +31,20 @@ var SignUpForm = React.createClass({
 			that.setState({errorMsg: "First or last name field cannot be empty."})
 		}
 
-		//if successfully logged in, add the user child to the database with the name and email.
+		//add to database
 		this.unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
 				var userData = {
 					email: email,
 					first: firstName,
 					last: lastName,
-					recruiter: recruiter,
                interests: "",
 					skills: ""
 				};
 
 				firebase.database().ref('users/' + firebase.auth().currentUser.uid).set(userData);
 
-				//update display name for user
+				//profile name
 				user.updateProfile({
 					displayName: firstName + " " + lastName,
 				});
@@ -64,7 +61,7 @@ var SignUpForm = React.createClass({
 		}
 	},
 
-	//if "Enter" was pressed, act as Sign Up was clicked
+	//submit with enter key
 	handleKeyPress: function(e){
 		if(e.key == 'Enter'){
 			try{
@@ -74,23 +71,21 @@ var SignUpForm = React.createClass({
 		}
 	},
 
-	//sets the recruiter state true or false depending on the radio button
 	accountChange: function(e){
 		this.setState({recruiter: e.target.value});
 	},
 
-	//creates a div alert-danger with the error message
+	//error message
 	errorMessage: function(){
 		return <div className="alert alert-danger"><strong>Error! </strong>{this.state.errorMsg}</div>;
 	},
 
-	//creates an empty div if no error message
 	noErrorMessage: function(){
 		return <div></div>;
 	},
 
 	render: function(){
-		//gets the appropriate error alert div depending on whether or not the form has an error
+		//get error message
 		var errorAlert;
 		if(this.state.hasError){
 			errorAlert = this.errorMessage();
@@ -108,7 +103,7 @@ var SignUpForm = React.createClass({
 				<div className="col-md-4 margin-top-30">
 					<center>
 						<h1>Sign Up</h1><br />
-						<div className="sign-up-form">
+						<div className="enter-form">
 							<input type="text" ref="firstName" placeholder="First Name" className="form-control" onKeyPress={this.handleKeyPress} /><br />
 							<input type="text" ref="lastName" placeholder="Last Name" className="form-control" onKeyPress={this.handleKeyPress} /><br />
 							<input type="email" ref="email" placeholder="Email Address" className="form-control" onKeyPress={this.handleKeyPress} /><br />
@@ -116,7 +111,8 @@ var SignUpForm = React.createClass({
 							<input type="password" ref="password_confirmation" placeholder="Password Confirmation" className="form-control" onKeyPress={this.handleKeyPress} /><br />
 
 							<button onClick={this.handleSignUp} className="btn">Create Account</button><br />
-							<div className="loginlink">Have an account? <Link to="/login">Login!</Link></div>
+
+							<div className="linking">Have an account? <Link to="/login">Login!</Link></div>
 						</div>
 					</center>
 				</div>

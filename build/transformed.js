@@ -29798,20 +29798,98 @@
 	var Route = __webpack_require__(195).Route;
 	var IndexRoute = __webpack_require__(195).IndexRoute;
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var NewUser = __webpack_require__(278);
+	var HomePage = __webpack_require__(278);
+	var NewUser = __webpack_require__(279);
+	var LoginUser = __webpack_require__(280);
 
-	var requireAuth = __webpack_require__(279);
+	var requireAuth = __webpack_require__(281);
 
 	var routes = React.createElement(
 		Router,
 		{ history: hashHistory },
-		React.createElement(Route, { path: '/', component: NewUser })
+		React.createElement(
+			Route,
+			{ path: '/' },
+			React.createElement(IndexRoute, { component: HomePage, onEnter: requireAuth }),
+			React.createElement(Route, { path: '/login', component: LoginUser }),
+			React.createElement(Route, { path: '/signup', component: NewUser })
+		)
 	);
 
 	module.exports = routes;
 
 /***/ }),
 /* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(40);
+	var firebase = __webpack_require__(187);
+	var Link = __webpack_require__(195).Link;
+	var hashHistory = __webpack_require__(195).hashHistory;
+	//barebones home page for navigation for sprint 1
+	var Home = React.createClass({
+	   displayName: 'Home',
+
+
+	   //sign up form placeholders
+	   render: function () {
+
+	      return React.createElement(
+	         'div',
+	         { className: 'Background' },
+	         React.createElement(
+	            'div',
+	            { className: 'WebHeader' },
+	            React.createElement('div', { className: 'col-md-4' }),
+	            React.createElement(
+	               'div',
+	               { className: 'col-md-4 margin-top-30' },
+	               React.createElement(
+	                  'center',
+	                  null,
+	                  React.createElement(
+	                     'h1',
+	                     null,
+	                     'Welcome!'
+	                  ),
+	                  React.createElement('br', null),
+	                  React.createElement(
+	                     'div',
+	                     { className: 'enter-form' },
+	                     React.createElement(
+	                        'div',
+	                        { className: 'linking' },
+	                        'Have an account? ',
+	                        React.createElement(
+	                           Link,
+	                           { to: '/login' },
+	                           'Login!'
+	                        )
+	                     ),
+	                     React.createElement(
+	                        'div',
+	                        { className: 'linking' },
+	                        'No account? ',
+	                        React.createElement(
+	                           Link,
+	                           { to: '/signup' },
+	                           'Sign Up!'
+	                        )
+	                     )
+	                  )
+	               )
+	            ),
+	            React.createElement('div', { className: 'col-md-4' })
+	         )
+	      );
+	   }
+	});
+
+	module.exports = Home;
+
+/***/ }),
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -29823,7 +29901,6 @@
 		displayName: 'SignUpForm',
 
 
-		//initially, no submission errors
 		getInitialState: function () {
 			return { hasError: false };
 		},
@@ -29831,7 +29908,6 @@
 		handleSignUp: function () {
 			var that = this;
 
-			//gets the data from the form fields
 			var firstName = this.refs.firstName.value;
 			var lastName = this.refs.lastName.value;
 			var email = this.refs.email.value;
@@ -29839,7 +29915,7 @@
 			var password_confirmation = this.refs.password_confirmation.value;
 
 			if (firstName && lastName) {
-				//creates the user on firebase
+				//creates user
 				firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function (error) {
 					if (error) {
 						that.setState({ hasError: true });
@@ -29851,7 +29927,7 @@
 				that.setState({ errorMsg: "First or last name field cannot be empty." });
 			}
 
-			//if successfully logged in, add the user child to the database with the name and email.
+			//add to database
 			this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
 					var userData = {
@@ -29865,7 +29941,7 @@
 
 					firebase.database().ref('users/' + firebase.auth().currentUser.uid).set(userData);
 
-					//update display name for user
+					//profile name
 					user.updateProfile({
 						displayName: firstName + " " + lastName
 					});
@@ -29881,7 +29957,7 @@
 			}
 		},
 
-		//if "Enter" was pressed, act as Sign Up was clicked
+		//submit with enter key
 		handleKeyPress: function (e) {
 			if (e.key == 'Enter') {
 				try {
@@ -29890,12 +29966,11 @@
 			}
 		},
 
-		//sets the recruiter state true or false depending on the radio button
 		accountChange: function (e) {
 			this.setState({ recruiter: e.target.value });
 		},
 
-		//creates a div alert-danger with the error message
+		//error message
 		errorMessage: function () {
 			return React.createElement(
 				'div',
@@ -29909,13 +29984,12 @@
 			);
 		},
 
-		//creates an empty div if no error message
 		noErrorMessage: function () {
 			return React.createElement('div', null);
 		},
 
 		render: function () {
-			//gets the appropriate error alert div depending on whether or not the form has an error
+			//get error message
 			var errorAlert;
 			if (this.state.hasError) {
 				errorAlert = this.errorMessage();
@@ -29945,7 +30019,7 @@
 							React.createElement('br', null),
 							React.createElement(
 								'div',
-								{ className: 'sign-up-form' },
+								{ className: 'enter-form' },
 								React.createElement('input', { type: 'text', ref: 'firstName', placeholder: 'First Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
 								React.createElement('br', null),
 								React.createElement('input', { type: 'text', ref: 'lastName', placeholder: 'Last Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
@@ -29958,15 +30032,19 @@
 								React.createElement('br', null),
 								React.createElement(
 									'button',
-									{ onClick: this.handleSignUp, className: 'btn btn-primary margin-bottom-10' },
+									{ onClick: this.handleSignUp, className: 'btn' },
 									'Create Account'
 								),
 								React.createElement('br', null),
-								'Have an account? ',
 								React.createElement(
-									Link,
-									{ to: '/login' },
-									'Login!'
+									'div',
+									{ className: 'linking' },
+									'Have an account? ',
+									React.createElement(
+										Link,
+										{ to: '/login' },
+										'Login!'
+									)
 								)
 							)
 						)
@@ -29980,7 +30058,144 @@
 	module.exports = SignUpForm;
 
 /***/ }),
-/* 279 */
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var firebase = __webpack_require__(187);
+	var Link = __webpack_require__(195).Link;
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var LogInForm = React.createClass({
+		displayName: 'LogInForm',
+
+
+		getInitialState: function () {
+			return { hasError: false };
+		},
+
+		//logs the user in with firebase
+		handleLogIn: function () {
+
+			var that = this;
+			var email = this.refs.email.value;
+			var password = this.refs.password.value;
+
+			firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+				var errorCode = error.code;
+				var errorMessage = error.message;
+
+				if (error) {
+					that.setState({ hasError: true });
+					that.setState({ errorMsg: "Invalid email or password combination." });
+				}
+			});
+
+			//if success, go to page
+			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
+				if (user) {
+					hashHistory.push("/");
+				} else {
+					hashHistory.push("/login");
+				}
+			});
+		},
+
+		componentWillUnmount: function () {
+			if (typeof this.unsubscribe == 'function') {
+				this.unsubscribe();
+			}
+		},
+
+		//submit with enter key
+		handleKeyPress: function (e) {
+			if (e.key == 'Enter') {
+				this.handleLogIn();
+			}
+		},
+
+		errorMessage: function () {
+			return React.createElement(
+				'div',
+				{ className: 'alert alert-danger' },
+				React.createElement(
+					'strong',
+					null,
+					'Error! '
+				),
+				this.state.errorMsg
+			);
+		},
+
+		noErrorMessage: function () {
+			return React.createElement('div', null);
+		},
+
+		render: function () {
+			//display errors
+			var errorAlert;
+			if (this.state.hasError) {
+				errorAlert = this.errorMessage();
+			} else {
+				errorAlert = this.noErrorMessage();
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'Background' },
+				React.createElement(
+					'div',
+					{ className: 'WebHeader' },
+					errorAlert,
+					React.createElement('div', { className: 'col-md-4' }),
+					React.createElement(
+						'div',
+						{ className: 'col-md-4 margin-top-30' },
+						React.createElement(
+							'center',
+							null,
+							React.createElement(
+								'h1',
+								null,
+								'Login'
+							),
+							React.createElement('br', null),
+							React.createElement(
+								'div',
+								{ className: 'enter-form' },
+								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('br', null),
+								React.createElement(
+									'button',
+									{ className: 'btn', onClick: this.handleLogIn },
+									'Login'
+								),
+								React.createElement('br', null),
+								React.createElement(
+									'div',
+									{ className: 'linking' },
+									'No account? ',
+									React.createElement(
+										Link,
+										{ to: '/signup' },
+										'Sign Up!'
+									)
+								)
+							)
+						)
+					),
+					React.createElement('div', { className: 'col-md-4' })
+				)
+			);
+		}
+	});
+
+	module.exports = LogInForm;
+
+/***/ }),
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);
