@@ -1,4 +1,4 @@
-import fire from './config/Fire';
+import fire from '../config/Fire';
 class Login {
     static loginWithEmailAndPassword(email, password){
         console.log(email);

@@ -1,7 +1,7 @@
 import React from 'react';
-import LoginForm from './LoginForm';
-import InputField from './InputField';
-import SubmitButton from './SubmitButton';
+import LoginForm from './login_page/LoginForm';
+import InputField from './login_page/InputField';
+import SubmitButton from './login_page/SubmitButton';
 import './App.css';
 
 class App extends React.Component {
