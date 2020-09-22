@@ -69,7 +69,7 @@ var LogInForm = React.createClass({
 		}
 
 		return (
-         <div className="Background">
+    <div className="Background">
 			<div className="WebHeader">
 				{errorAlert}
 				<div className="col-md-4">
@@ -77,14 +77,38 @@ var LogInForm = React.createClass({
 
 					<div className="col-md-4 margin-top-30">
 					<center>
-               <h1>Login</h1><br />
-                  <div className="enter-form">
-   						<input type="email" ref="email" placeholder="Email Address" className="form-control" onKeyPress={this.handleKeyPress}/><br />
-   						<input type="password" ref="password" placeholder="Password" className="form-control" onKeyPress={this.handleKeyPress}/><br />
-   						<button className="btn" onClick={this.handleLogIn}>Login</button><br />
+          	<h1>Login</h1><br />
+            <div className="enter-form">
+   						<input
+								type="email"
+								ref="email"
+								placeholder="Email Address"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+   						<input
+								type="password"
+								ref="password"
+								placeholder="Password"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+   						<button
+								className="btn"
+								onClick={this.handleLogIn}>
+								Login
+							</button>
+							<br />
 
-                     <div className="linking">No account? <Link to="/signup">Sign Up!</Link></div>
-                  </div>
+              <div className="linking">
+								No account?
+								<Link to="/signup">
+								Sign Up!
+								</Link>
+							</div>
+            </div>
 					</center>
 				</div>
 
