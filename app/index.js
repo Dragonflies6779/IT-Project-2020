@@ -12,12 +12,13 @@ var config = {
   authDomain: "my-portfolio-system.firebaseapp.com",
   databaseURL: "https://my-portfolio-system.firebaseio.com",
   projectId: "my-portfolio-system",
-  storageBucket: "my-portfolio-system.appspot.com",
+  storageBucket: "gs://my-portfolio-system.appspot.com",
   messagingSenderId: "586112178261",
   appId: "1:586112178261:web:afb7cf74be000c74475cdc",
   measurementId: "G-QWS5FB22EG"
 };
 
 firebase.initializeApp(config);
+var storage = firebase.storage();
 
 ReactDOM.render(routes, document.getElementById('app'));
