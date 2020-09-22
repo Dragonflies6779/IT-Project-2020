@@ -102,15 +102,56 @@ var SignUpForm = React.createClass({
 				</div>
 				<div className="col-md-4 margin-top-30">
 					<center>
-						<h1>Sign Up</h1><br />
+						<h1>Sign Up</h1>
+						<br />
 						<div className="enter-form">
-							<input type="text" ref="firstName" placeholder="First Name" className="form-control" onKeyPress={this.handleKeyPress} /><br />
-							<input type="text" ref="lastName" placeholder="Last Name" className="form-control" onKeyPress={this.handleKeyPress} /><br />
-							<input type="email" ref="email" placeholder="Email Address" className="form-control" onKeyPress={this.handleKeyPress} /><br />
-							<input type="password" ref="password" placeholder="Password" className="form-control" onKeyPress={this.handleKeyPress} /><br />
-							<input type="password" ref="password_confirmation" placeholder="Password Confirmation" className="form-control" onKeyPress={this.handleKeyPress} /><br />
+							<input
+								type="text"
+								ref="firstName"
+								placeholder="First Name"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+							<input
+								type="text"
+								ref="lastName"
+								placeholder="Last Name"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+							<input
+								type="email"
+								ref="email"
+								placeholder="Email Address"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+							<input
+								type="password"
+								ref="password"
+								placeholder="Password"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
+							<input
+								type="password"
+								ref="password_confirmation"
+								placeholder="Password Confirmation"
+								className="form-control"
+								onKeyPress={this.handleKeyPress}
+							/>
+							<br />
 
-							<button onClick={this.handleSignUp} className="btn">Create Account</button><br />
+							<button
+								onClick={this.handleSignUp}
+								className="btn">
+								Create Account
+							</button>
+							<br />
 
 							<div className="linking">Have an account? <Link to="/login">Login!</Link></div>
 						</div>
