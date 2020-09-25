@@ -2,6 +2,8 @@ import React from 'react';
 
 class imagesUpload extends React.Component{
 
+  customPath:string = '';
+
   state = {
     selectedFile: null
   };
@@ -59,3 +61,7 @@ class imagesUpload extends React.Component{
       );
     }
   }
+
+  imagesUpload.defaultProps = {
+    customPath: ''
+  };
