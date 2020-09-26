@@ -3,6 +3,7 @@ import React from 'react';
 class imagesUpload extends React.Component{
 
   customPath:string = '';
+  customName:string = '';
 
   state = {
     selectedFile: null
@@ -16,8 +17,12 @@ class imagesUpload extends React.Component{
 
     //What needs to be here is the path where to sore it
     var storageRef = firebase.storage().ref();
-    var mountainsRef = storageRef.child('mountains.jpg');
-    var mountainImagesRef = storageRef.child('images/mountains.jpg');
+
+    var imagesRef = storageRef.child(customPath + '/' + customName);
+
+    ref.put(this.state.selectedFile).then(function(snapshot) {
+      console.log('Uploaded a blob or file!');
+    });
 
   }
 
@@ -63,5 +68,5 @@ class imagesUpload extends React.Component{
   }
 
   imagesUpload.defaultProps = {
-    customPath: ''
+    customPath: 'pathNotDefined'
   };
