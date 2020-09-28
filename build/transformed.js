@@ -29804,11 +29804,12 @@
 	var SignUp = __webpack_require__(278);
 	var Login = __webpack_require__(279);
 	var Home = __webpack_require__(280);
-	var SignOut = __webpack_require__(281);
-	var Layout = __webpack_require__(282);
-	var Profile = __webpack_require__(283);
+	var SignOut = __webpack_require__(282);
+	var Layout = __webpack_require__(283);
+	var Profile = __webpack_require__(284);
+	var Upload = __webpack_require__(281);
 
-	var requireAuth = __webpack_require__(290);
+	var requireAuth = __webpack_require__(291);
 
 	var routes = React.createElement(
 		Router,
@@ -29820,7 +29821,8 @@
 			React.createElement(Route, { path: 'login', component: Login }),
 			React.createElement(Route, { path: 'signup', component: SignUp }),
 			React.createElement(Route, { path: 'logout', component: SignOut }),
-			React.createElement(Route, { path: 'users/:id', component: Profile, onEnter: requireAuth })
+			React.createElement(Route, { path: 'users/:id', component: Profile, onEnter: requireAuth }),
+			React.createElement(Route, { path: '/upload', component: Upload })
 		)
 	);
 
@@ -29874,7 +29876,6 @@
 						email: email,
 						first: firstName,
 						last: lastName,
-						imageURL: "https://firebasestorage.googleapis.com/v0/b/testingproject-cd660.appspot.com/o/images%2Fdefault.jpg?alt=media&token=23d9c5ea-1380-4bd2-94bc-1166a83953b7",
 						interests: "",
 						skills: ""
 					};
@@ -30186,7 +30187,7 @@
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-
+	const Upload = __webpack_require__(281);
 	var Home = React.createClass({
 	    displayName: 'Home',
 
@@ -30208,7 +30209,8 @@
 	                        'Home'
 	                    )
 	                ),
-	                React.createElement('br', null)
+	                React.createElement('br', null),
+	                React.createElement(Upload, null)
 	            )
 	        );
 	    }
@@ -30218,6 +30220,118 @@
 
 /***/ }),
 /* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	const React = __webpack_require__(1);
+	const firebase = __webpack_require__(187);
+	const hashHistory = __webpack_require__(195).hashHistory;
+
+	class PdfUpload extends React.Component {
+	    constructor() {
+	        super();
+	        this.state = {
+	            file: null,
+	            fileStat: "",
+	            downloadStat: ""
+	        };
+	        this.handlechange = this.handlechange.bind(this);
+	        this.handleUpload = this.handleUpload.bind(this);
+	        this.handleDownload = this.handleDownload.bind(this);
+	    }
+	    handleDownload(event) {
+	        // Create a reference to the file we want to download
+	        var resumeRef = storageRef.child('images/stars.jpg');
+
+	        // Get the download URL
+	        resumeRef.getDownloadURL().then(function (url) {
+	            // This can be downloaded directly:
+	            var xhr = new XMLHttpRequest();
+	            xhr.responseType = 'blob';
+	            xhr.onload = function (event) {
+	                var blob = xhr.response;
+	            };
+	            xhr.open('GET', url);
+	            xhr.send();
+	            this.setState({
+	                downloadStat: "downloading"
+	            });
+	        }).catch(function (error) {
+	            this.setState({
+	                downloadStat: "Resume not found / Download error"
+	            });
+	        });
+	    }
+
+	    handlechange(event) {
+	        if (event.target.files[0] != null) {
+	            console.log(event.target.files[0]);
+	            this.setState({
+	                file: event.target.files[0]
+	            });
+	        }
+	    }
+	    handleUpload() {
+	        let storage = firebase.storage();
+	        console.log(this.state.file);
+	        var user = firebase.auth().currentUser;
+
+	        if (user) {
+	            // User is signed in.
+	            const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
+	            uploadTask.on('state_changed', snapshot => {
+	                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	                this.setState({
+	                    fileStat: progress
+	                });
+	                console.log(progress);
+	            }, error => {
+	                console.log(error);
+	                this.setState({
+	                    fileStat: "Upload fail!"
+	                });
+	            }, () => {
+	                this.setState({
+	                    fileStat: "Uploaded!"
+	                });
+	            });
+	        } else {
+	            // No user is signed in.
+	            hashHistory.push("/login");
+	        }
+	    }
+	    render() {
+	        return React.createElement(
+	            React.Fragment,
+	            null,
+	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleUpload },
+	                'Upload Resume'
+	            ),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleDownload },
+	                'Download Resume'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.fileStat
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.downloadStat
+	            )
+	        );
+	    }
+	}
+
+	module.exports = PdfUpload;
+
+/***/ }),
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30246,7 +30360,7 @@
 	module.exports = Logout;
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30258,7 +30372,6 @@
 	    displayName: 'Layout',
 
 
-	    //sets the initial logged in state
 	    getInitialState: function () {
 	        return {
 	            isLoggedIn: null != firebase.auth().currentUser,
@@ -30267,7 +30380,6 @@
 	        };
 	    },
 
-	    //checks for login/logout changes and sets the logged in state accordingly, also gets the user's name
 	    componentWillMount: function () {
 	        var that = this;
 
@@ -30289,7 +30401,6 @@
 	    componentWillReceiveProps: function (nextProps) {
 	        var that = this;
 	        this.unsubscribe();
-	        //this.state.requests.splice(0, this.state.requests.length);
 
 	        this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
 	            this.setState({ isLoggedIn: null != user });
@@ -30344,7 +30455,6 @@
 	            div = null;
 	        }
 
-	        //if the user is logged in, show the logout and profile link
 	        if (this.state.isLoggedIn) {
 	            loginOrOut = React.createElement(
 	                'li',
@@ -30365,8 +30475,6 @@
 	                )
 	            );
 	            signUp = null;
-
-	            //if the user is not logged in, show the login and signup links
 	        } else {
 	            loginOrOut = React.createElement(
 	                'li',
@@ -30389,7 +30497,6 @@
 	            );
 	        }
 
-	        //if recruiter -> black navbar, else job seeker -> default navbar
 	        if (this.state.recruiter == true) {
 	            navClassName = "navbar navbar-inverse navbar-static-top";
 	        } else {
@@ -30418,11 +30525,8 @@
 	                        'ul',
 	                        { className: 'nav navbar-nav pull-right' },
 	                        signUp,
-	                        ' ',
 	                        profile,
-	                        ' ',
-	                        loginOrOut,
-	                        ' '
+	                        loginOrOut
 	                    )
 	                )
 	            ),
@@ -30438,19 +30542,19 @@
 	module.exports = Layout;
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var Summary = __webpack_require__(284);
-	var Education = __webpack_require__(285);
-	var Projects = __webpack_require__(286);
-	var Interests = __webpack_require__(287);
-	var Experience = __webpack_require__(288);
-	var Skills = __webpack_require__(289);
+	var Summary = __webpack_require__(285);
+	var Education = __webpack_require__(286);
+	var Projects = __webpack_require__(287);
+	var Interests = __webpack_require__(288);
+	var Experience = __webpack_require__(289);
+	var Skills = __webpack_require__(290);
 
 	var Profile = React.createClass({
 		displayName: 'Profile',
@@ -30462,16 +30566,13 @@
 		componentWillMount: function () {
 			var that = this;
 
-			//sets the current pageID of the page
 			this.setState({ pageID: this.props.params.id });
 
-			//checks to see if the user page belongs to the current user
 			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
 				this.setState({ isCurrentUser: user.uid == this.props.params.id });
 				this.setState({ currentUserID: user.uid });
 			});
 
-			//gets the name of the user and whether or not he/she is a recruiter--not yet used
 			this.userRef = firebase.database().ref().child('users/' + this.props.params.id);
 			this.userRef.on("value", snap => {
 				var user = snap.val();
@@ -30480,7 +30581,6 @@
 		},
 
 		componentWillReceiveProps: function (nextProps) {
-			//same as componentwillmount, but happens only if the params changed to another user
 			this.setState({ pageID: nextProps.params.id });
 
 			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -30547,7 +30647,7 @@
 	module.exports = Profile;
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30697,7 +30797,7 @@
 	module.exports = Summary;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30762,7 +30862,7 @@
 
 		componentWillReceiveProps: function (nextProps) {
 			if (nextProps.pageID != this.state.id) {
-				this.educationRef.off(); //turn off the educationRef in compWillMount-listen only from one.
+				this.educationRef.off();
 				this.educationRefChanged.off();
 				this.educationRefRemoved.off();
 				this.setState({ educations: [] });
@@ -31091,7 +31191,7 @@
 	module.exports = Education;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31511,7 +31611,7 @@
 	module.exports = Project;
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31660,7 +31760,7 @@
 	module.exports = Interests;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32064,7 +32164,7 @@
 	module.exports = Experience;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32215,7 +32315,7 @@
 	module.exports = Skills;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);
