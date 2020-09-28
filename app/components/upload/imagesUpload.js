@@ -1,72 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
+import {storage} from '..index';
 
 class imagesUpload extends React.Component{
-
-  customPath:string = '';
-  customName:string = '';
-
-  state = {
-    selectedFile: null
-  };
-
-  onFileChange = event => {
-    this.setState({ selectedFile: event.target.files[0]});
-  };
-
-  onFileUpload = ()) => {
-
-    //What needs to be here is the path where to sore it
-    var storageRef = firebase.storage().ref();
-
-    var imagesRef = storageRef.child(customPath + '/' + customName);
-
-    ref.put(this.state.selectedFile).then(function(snapshot) {
-      console.log('Uploaded a blob or file!');
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: null,
+      url: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
+  }
+  handleChange = e => {
+    if(e.target.files[0]) {
+      const {image} = e.target.files[0];
+      this.setState(() => {image});
+    }
+  }
+  handleUpload = () => {
+    const {image} = this.state;
+    const uploadTask = storage.ref('images/${image.name}').put(image);
+    uploadTask.on('state_changed',
+    (snapshot) => {
+      //progess function
+    },
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      storage.ref('images').child(image.name).getDownloadURL().then(url => {
+        console.log(u);
+      })
     });
 
   }
 
-  fileData = () => {
-
-      if (this.state.selectedFile) {
-
-        return (
-          <div>
-            <h2>File Details:</h2>
-            <p>File Name: {this.state.selectedFile.name}</p>
-            <p>File Type: {this.state.selectedFile.type}</p>
-            <p>
-              Last Modified:{" "}
-              {this.state.selectedFile.lastModifiedDate.toDateString()}
-            </p>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <br />
-            <h4>Choose before Pressing the Upload button</h4>
-          </div>
-        );
-      }
-    };
-
-    render() {
-
-      return (
-        <div>
-            <div>
-                <input type="file" onChange={this.onFileChange} />
-                <button onClick={this.onFileUpload}>
-                  Upload
-                </button>
-            </div>
-          {this.fileData()}
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div>
+      <input
+        type = "file"
+        onChange = {this.handleChange}
+      />
+      <button
+        onClick = {this.handleUpload}>
+        Upload</button>
+      </div>
+    )
   }
+}
 
-  imagesUpload.defaultProps = {
-    customPath: 'pathNotDefined'
-  };
+export default imagesUpload;

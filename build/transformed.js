@@ -58,13 +58,14 @@
 	   authDomain: "my-portfolio-system.firebaseapp.com",
 	   databaseURL: "https://my-portfolio-system.firebaseio.com",
 	   projectId: "my-portfolio-system",
-	   storageBucket: "my-portfolio-system.appspot.com",
+	   storageBucket: "gs://my-portfolio-system.appspot.com",
 	   messagingSenderId: "586112178261",
 	   appId: "1:586112178261:web:afb7cf74be000c74475cdc",
 	   measurementId: "G-QWS5FB22EG"
 	};
 
 	firebase.initializeApp(config);
+	var storage = firebase.storage();
 
 	ReactDOM.render(routes, document.getElementById('app'));
 
@@ -30020,19 +30021,51 @@
 							React.createElement(
 								'div',
 								{ className: 'enter-form' },
-								React.createElement('input', { type: 'text', ref: 'firstName', placeholder: 'First Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'text',
+									ref: 'firstName',
+									placeholder: 'First Name',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'text', ref: 'lastName', placeholder: 'Last Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'text',
+									ref: 'lastName',
+									placeholder: 'Last Name',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'email',
+									ref: 'email',
+									placeholder: 'Email Address',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password',
+									placeholder: 'Password',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password_confirmation', placeholder: 'Password Confirmation', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password_confirmation',
+									placeholder: 'Password Confirmation',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
 								React.createElement(
 									'button',
-									{ onClick: this.handleSignUp, className: 'btn' },
+									{
+										onClick: this.handleSignUp,
+										className: 'btn' },
 									'Create Account'
 								),
 								React.createElement('br', null),
@@ -30065,6 +30098,7 @@
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
+	import imagesUpload from '../upload/imagesUpload';
 
 	var LogInForm = React.createClass({
 		displayName: 'LogInForm',
@@ -30160,23 +30194,38 @@
 								'Login'
 							),
 							React.createElement('br', null),
+							React.createElement('imagesUpload', null),
 							React.createElement(
 								'div',
 								{ className: 'enter-form' },
-								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'email',
+									ref: 'email',
+									placeholder: 'Email Address',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password',
+									placeholder: 'Password',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
 								React.createElement(
 									'button',
-									{ className: 'btn', onClick: this.handleLogIn },
+									{
+										className: 'btn',
+										onClick: this.handleLogIn },
 									'Login'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'div',
 									{ className: 'linking' },
-									'No account? ',
+									'No account?',
 									React.createElement(
 										Link,
 										{ to: '/signup' },
