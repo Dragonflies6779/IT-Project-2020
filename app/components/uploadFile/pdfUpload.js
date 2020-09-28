@@ -1,13 +1,14 @@
 const React = require('react');
 const firebase = require('firebase');
+const hashHistory = require('react-router').hashHistory;
 
 
-class pdfUpload extends React.Component{
+class PdfUpload extends React.Component{
     constructor() {
         super();
         this.state = {
             file: null,
-            fileStat: null
+            fileStat: ""
         }
         this.handlechange = this.handlechange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
@@ -48,7 +49,7 @@ class pdfUpload extends React.Component{
                 });
         } else {
             // No user is signed in.
-
+            hashHistory.push("/login");
         }
         
     }
@@ -63,4 +64,4 @@ class pdfUpload extends React.Component{
     }
 }
 
-module.exports = pdfUpload;
+module.exports = PdfUpload;

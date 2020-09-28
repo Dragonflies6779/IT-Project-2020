@@ -29800,33 +29800,20 @@
 	var Route = __webpack_require__(195).Route;
 	var IndexRoute = __webpack_require__(195).IndexRoute;
 	var hashHistory = __webpack_require__(195).hashHistory;
-<<<<<<< HEAD
-	var HomePage = __webpack_require__(278);
-	var NewUser = __webpack_require__(279);
-	var LoginUser = __webpack_require__(280);
-	var Upload = __webpack_require__(281);
-	var requireAuth = __webpack_require__(282);
-=======
 
 	var SignUp = __webpack_require__(278);
 	var Login = __webpack_require__(279);
 	var Home = __webpack_require__(280);
-	var SignOut = __webpack_require__(281);
-	var Layout = __webpack_require__(282);
-	var Profile = __webpack_require__(283);
+	var SignOut = __webpack_require__(282);
+	var Layout = __webpack_require__(283);
+	var Profile = __webpack_require__(284);
+	var Upload = __webpack_require__(281);
 
-	var requireAuth = __webpack_require__(290);
->>>>>>> master
+	var requireAuth = __webpack_require__(291);
 
 	var routes = React.createElement(
 		Router,
 		{ history: hashHistory },
-<<<<<<< HEAD
-		React.createElement(Route, { path: '/', exact: true, component: HomePage, onEnter: requireAuth }),
-		React.createElement(Route, { path: '/login', component: LoginUser }),
-		React.createElement(Route, { path: '/signup', component: NewUser }),
-		React.createElement(Route, { path: '/upload', component: Upload })
-=======
 		React.createElement(
 			Route,
 			{ path: '/', component: Layout },
@@ -29834,9 +29821,9 @@
 			React.createElement(Route, { path: 'login', component: Login }),
 			React.createElement(Route, { path: 'signup', component: SignUp }),
 			React.createElement(Route, { path: 'logout', component: SignOut }),
-			React.createElement(Route, { path: 'users/:id', component: Profile, onEnter: requireAuth })
+			React.createElement(Route, { path: 'users/:id', component: Profile, onEnter: requireAuth }),
+			React.createElement(Route, { path: '/upload', component: Upload })
 		)
->>>>>>> master
 	);
 
 	module.exports = routes;
@@ -29846,89 +29833,6 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-<<<<<<< HEAD
-	var ReactDOM = __webpack_require__(40);
-	var firebase = __webpack_require__(187);
-	var Link = __webpack_require__(195).Link;
-	var hashHistory = __webpack_require__(195).hashHistory;
-	//barebones home page for navigation for sprint 1
-	var Home = React.createClass({
-	   displayName: 'Home',
-
-
-	   //sign up form placeholders
-	   render: function () {
-
-	      return React.createElement(
-	         'div',
-	         { className: 'Background' },
-	         React.createElement(
-	            'div',
-	            { className: 'WebHeader' },
-	            React.createElement('div', { className: 'col-md-4' }),
-	            React.createElement(
-	               'div',
-	               { className: 'col-md-4 margin-top-30' },
-	               React.createElement(
-	                  'center',
-	                  null,
-	                  React.createElement(
-	                     'h1',
-	                     null,
-	                     'Welcome!'
-	                  ),
-	                  React.createElement('br', null),
-	                  React.createElement(
-	                     'div',
-	                     { className: 'enter-form' },
-	                     React.createElement(
-	                        'div',
-	                        { className: 'linking' },
-	                        'Have an account? ',
-	                        React.createElement(
-	                           Link,
-	                           { to: '/login' },
-	                           'Login!'
-	                        )
-	                     ),
-	                     React.createElement(
-	                        'div',
-	                        { className: 'linking' },
-	                        'No account? ',
-	                        React.createElement(
-	                           Link,
-	                           { to: '/signup' },
-	                           'Sign Up!'
-	                        )
-	                     ),
-	                     React.createElement(
-	                        'div',
-	                        { className: 'linking' },
-	                        'Upload:',
-	                        React.createElement(
-	                           Link,
-	                           { to: '/upload' },
-	                           'Click here!'
-	                        )
-	                     )
-	                  )
-	               )
-	            ),
-	            React.createElement('div', { className: 'col-md-4' })
-	         )
-	      );
-	   }
-	});
-
-	module.exports = Home;
-
-/***/ }),
-/* 279 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-=======
->>>>>>> master
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
@@ -29972,7 +29876,6 @@
 						email: email,
 						first: firstName,
 						last: lastName,
-						imageURL: "https://firebasestorage.googleapis.com/v0/b/testingproject-cd660.appspot.com/o/images%2Fdefault.jpg?alt=media&token=23d9c5ea-1380-4bd2-94bc-1166a83953b7",
 						interests: "",
 						skills: ""
 					};
@@ -30282,6 +30185,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(40);
 	var firebase = __webpack_require__(187);
+	const pdfUpload = __webpack_require__(281);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
 
@@ -30306,7 +30210,13 @@
 	                        'Home'
 	                    )
 	                ),
-	                React.createElement('br', null)
+	                React.createElement('br', null),
+	                React.createElement('pdfUpload', null),
+	                React.createElement(
+	                    Link,
+	                    { to: '/upload' },
+	                    'Upload Resume!'
+	                )
 	            )
 	        );
 	    }
@@ -30318,9 +30228,9 @@
 /* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 	const React = __webpack_require__(1);
 	const firebase = __webpack_require__(187);
+	const hashHistory = __webpack_require__(195).hashHistory;
 
 	class pdfUpload extends React.Component {
 	    constructor() {
@@ -30367,12 +30277,12 @@
 	            });
 	        } else {
 	            // No user is signed in.
-
+	            hashHistory.push("/login");
 	        }
 	    }
 	    render() {
 	        return React.createElement(
-	            'div',
+	            React.Fragment,
 	            null,
 	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
 	            React.createElement(
@@ -30393,7 +30303,8 @@
 
 /***/ }),
 /* 282 */
-=======
+/***/ (function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var hashHistory = __webpack_require__(195).hashHistory;
@@ -30420,7 +30331,7 @@
 	module.exports = Logout;
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30432,7 +30343,6 @@
 	    displayName: 'Layout',
 
 
-	    //sets the initial logged in state
 	    getInitialState: function () {
 	        return {
 	            isLoggedIn: null != firebase.auth().currentUser,
@@ -30441,7 +30351,6 @@
 	        };
 	    },
 
-	    //checks for login/logout changes and sets the logged in state accordingly, also gets the user's name
 	    componentWillMount: function () {
 	        var that = this;
 
@@ -30463,7 +30372,6 @@
 	    componentWillReceiveProps: function (nextProps) {
 	        var that = this;
 	        this.unsubscribe();
-	        //this.state.requests.splice(0, this.state.requests.length);
 
 	        this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
 	            this.setState({ isLoggedIn: null != user });
@@ -30518,7 +30426,6 @@
 	            div = null;
 	        }
 
-	        //if the user is logged in, show the logout and profile link
 	        if (this.state.isLoggedIn) {
 	            loginOrOut = React.createElement(
 	                'li',
@@ -30539,8 +30446,6 @@
 	                )
 	            );
 	            signUp = null;
-
-	            //if the user is not logged in, show the login and signup links
 	        } else {
 	            loginOrOut = React.createElement(
 	                'li',
@@ -30563,7 +30468,6 @@
 	            );
 	        }
 
-	        //if recruiter -> black navbar, else job seeker -> default navbar
 	        if (this.state.recruiter == true) {
 	            navClassName = "navbar navbar-inverse navbar-static-top";
 	        } else {
@@ -30592,11 +30496,8 @@
 	                        'ul',
 	                        { className: 'nav navbar-nav pull-right' },
 	                        signUp,
-	                        ' ',
 	                        profile,
-	                        ' ',
-	                        loginOrOut,
-	                        ' '
+	                        loginOrOut
 	                    )
 	                )
 	            ),
@@ -30612,19 +30513,19 @@
 	module.exports = Layout;
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var Summary = __webpack_require__(284);
-	var Education = __webpack_require__(285);
-	var Projects = __webpack_require__(286);
-	var Interests = __webpack_require__(287);
-	var Experience = __webpack_require__(288);
-	var Skills = __webpack_require__(289);
+	var Summary = __webpack_require__(285);
+	var Education = __webpack_require__(286);
+	var Projects = __webpack_require__(287);
+	var Interests = __webpack_require__(288);
+	var Experience = __webpack_require__(289);
+	var Skills = __webpack_require__(290);
 
 	var Profile = React.createClass({
 		displayName: 'Profile',
@@ -30636,16 +30537,13 @@
 		componentWillMount: function () {
 			var that = this;
 
-			//sets the current pageID of the page
 			this.setState({ pageID: this.props.params.id });
 
-			//checks to see if the user page belongs to the current user
 			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
 				this.setState({ isCurrentUser: user.uid == this.props.params.id });
 				this.setState({ currentUserID: user.uid });
 			});
 
-			//gets the name of the user and whether or not he/she is a recruiter--not yet used
 			this.userRef = firebase.database().ref().child('users/' + this.props.params.id);
 			this.userRef.on("value", snap => {
 				var user = snap.val();
@@ -30654,7 +30552,6 @@
 		},
 
 		componentWillReceiveProps: function (nextProps) {
-			//same as componentwillmount, but happens only if the params changed to another user
 			this.setState({ pageID: nextProps.params.id });
 
 			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -30721,7 +30618,7 @@
 	module.exports = Profile;
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30871,7 +30768,7 @@
 	module.exports = Summary;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30936,7 +30833,7 @@
 
 		componentWillReceiveProps: function (nextProps) {
 			if (nextProps.pageID != this.state.id) {
-				this.educationRef.off(); //turn off the educationRef in compWillMount-listen only from one.
+				this.educationRef.off();
 				this.educationRefChanged.off();
 				this.educationRefRemoved.off();
 				this.setState({ educations: [] });
@@ -31265,7 +31162,7 @@
 	module.exports = Education;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31685,7 +31582,7 @@
 	module.exports = Project;
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31834,7 +31731,7 @@
 	module.exports = Interests;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32238,7 +32135,7 @@
 	module.exports = Experience;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32389,8 +32286,7 @@
 	module.exports = Skills;
 
 /***/ }),
-/* 290 */
->>>>>>> master
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);
