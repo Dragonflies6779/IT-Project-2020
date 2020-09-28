@@ -5,7 +5,6 @@ var hashHistory = require('react-router').hashHistory;
 
 var Layout = React.createClass({
 
-    //sets the initial logged in state
     getInitialState: function() {
         return {
             isLoggedIn: (null != firebase.auth().currentUser),
@@ -14,7 +13,6 @@ var Layout = React.createClass({
         }
     },
 
-    //checks for login/logout changes and sets the logged in state accordingly, also gets the user's name
     componentWillMount: function() {
         var that = this;
 
@@ -36,7 +34,6 @@ var Layout = React.createClass({
     componentWillReceiveProps: function(nextProps){
         var that = this;
         this.unsubscribe();
-        //this.state.requests.splice(0, this.state.requests.length);
 
         this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             this.setState({isLoggedIn: (null != user)});
@@ -88,20 +85,20 @@ var Layout = React.createClass({
         }
 
 
-        //if the user is logged in, show the logout and profile link
+
         if(this.state.isLoggedIn) {
             loginOrOut = <li><Link to="/logout" className="navbar-brand">Logout</Link></li>;
             profile = <li><Link to={"/users/" + this.state.user_id} title="Profile" className="navbar-brand"><img src={this.state.imgURL} className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;
             signUp = null;
 
-        //if the user is not logged in, show the login and signup links
+
         } else {
             loginOrOut = <li><Link to="/login" className="navbar-brand">Login</Link></li>;
             profile = null;
             signUp = <li><Link to="/signup" className="navbar-brand">Sign Up</Link></li>;
         }
 
-        //if recruiter -> black navbar, else job seeker -> default navbar
+
         if(this.state.recruiter == true){
             navClassName = "navbar navbar-inverse navbar-static-top";
         }else{
@@ -114,19 +111,17 @@ var Layout = React.createClass({
                     <div className="container">
                         <div className="navbar-header">
                             <Link to="/" className="navbar-brand">
-                                {/*<span className="glyphicon glyphicon-home navbar-icon" title="Home"></span>*/}
                                 <img src="logo.png" alt="logo" height={35}/>
                             </Link>
                         </div>
                         <ul className="nav navbar-nav pull-right">
-                            {signUp} {/*shows only if user is not logged in*/}
-                            {profile} {/*shows only if user is logged in*/}
-                            {loginOrOut} {/*shows login or logout link depending on logged in state*/}
+                            {signUp}
+                            {profile}
+                            {loginOrOut}
                         </ul>
                     </div>
                 </nav>
 
-            {/*shows the rest of the page: home, login, signup, etc. */}
                 <div className="container">
                     {this.props.children}
                 </div>
