@@ -13,7 +13,7 @@ var Home = React.createClass({
            <div className="Background">
                <div>
                    <center><h1>Home</h1></center><br />
-                   <Upload />
+                   <Upload user={firebase.auth().currentUser}/>
                </div>
             </div>
         );

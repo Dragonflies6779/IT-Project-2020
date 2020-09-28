@@ -30185,10 +30185,9 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(40);
 	var firebase = __webpack_require__(187);
-	const pdfUpload = __webpack_require__(281);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-
+	const Upload = __webpack_require__(281);
 	var Home = React.createClass({
 	    displayName: 'Home',
 
@@ -30211,12 +30210,7 @@
 	                    )
 	                ),
 	                React.createElement('br', null),
-	                React.createElement('pdfUpload', null),
-	                React.createElement(
-	                    Link,
-	                    { to: '/upload' },
-	                    'Upload Resume!'
-	                )
+	                React.createElement(Upload, null)
 	            )
 	        );
 	    }
@@ -30232,15 +30226,40 @@
 	const firebase = __webpack_require__(187);
 	const hashHistory = __webpack_require__(195).hashHistory;
 
-	class pdfUpload extends React.Component {
+	class PdfUpload extends React.Component {
 	    constructor() {
 	        super();
 	        this.state = {
 	            file: null,
-	            fileStat: null
+	            fileStat: "",
+	            downloadStat: ""
 	        };
 	        this.handlechange = this.handlechange.bind(this);
 	        this.handleUpload = this.handleUpload.bind(this);
+	        this.handleDownload = this.handleDownload.bind(this);
+	    }
+	    handleDownload(event) {
+	        // Create a reference to the file we want to download
+	        var resumeRef = storageRef.child('images/stars.jpg');
+
+	        // Get the download URL
+	        resumeRef.getDownloadURL().then(function (url) {
+	            // This can be downloaded directly:
+	            var xhr = new XMLHttpRequest();
+	            xhr.responseType = 'blob';
+	            xhr.onload = function (event) {
+	                var blob = xhr.response;
+	            };
+	            xhr.open('GET', url);
+	            xhr.send();
+	            this.setState({
+	                downloadStat: "downloading"
+	            });
+	        }).catch(function (error) {
+	            this.setState({
+	                downloadStat: "Resume not found / Download error"
+	            });
+	        });
 	    }
 
 	    handlechange(event) {
@@ -30288,18 +30307,28 @@
 	            React.createElement(
 	                'button',
 	                { onClick: this.handleUpload },
-	                'Upload'
+	                'Upload Resume'
+	            ),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleDownload },
+	                'Download Resume'
 	            ),
 	            React.createElement(
 	                'p',
 	                null,
 	                this.state.fileStat
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.downloadStat
 	            )
 	        );
 	    }
 	}
 
-	module.exports = pdfUpload;
+	module.exports = PdfUpload;
 
 /***/ }),
 /* 282 */
