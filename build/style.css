@@ -42,6 +42,7 @@ input {
    padding: 8px 8px;
    margin-top: 1em;
    font-size: 1.5em;
+   text-align: center;
 }
 form-control {
   padding: 8px 8px;
