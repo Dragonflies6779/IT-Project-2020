@@ -58,13 +58,14 @@
 	   authDomain: "my-portfolio-system.firebaseapp.com",
 	   databaseURL: "https://my-portfolio-system.firebaseio.com",
 	   projectId: "my-portfolio-system",
-	   storageBucket: "my-portfolio-system.appspot.com",
+	   storageBucket: "gs://my-portfolio-system.appspot.com",
 	   messagingSenderId: "586112178261",
 	   appId: "1:586112178261:web:afb7cf74be000c74475cdc",
 	   measurementId: "G-QWS5FB22EG"
 	};
 
 	firebase.initializeApp(config);
+	var storage = firebase.storage();
 
 	ReactDOM.render(routes, document.getElementById('app'));
 
@@ -29802,19 +29803,16 @@
 	var HomePage = __webpack_require__(278);
 	var NewUser = __webpack_require__(279);
 	var LoginUser = __webpack_require__(280);
-
-	var requireAuth = __webpack_require__(281);
+	var Upload = __webpack_require__(281);
+	var requireAuth = __webpack_require__(282);
 
 	var routes = React.createElement(
 		Router,
 		{ history: hashHistory },
-		React.createElement(
-			Route,
-			{ path: '/' },
-			React.createElement(IndexRoute, { component: HomePage, onEnter: requireAuth }),
-			React.createElement(Route, { path: '/login', component: LoginUser }),
-			React.createElement(Route, { path: '/signup', component: NewUser })
-		)
+		React.createElement(Route, { path: '/', exact: true, component: HomePage, onEnter: requireAuth }),
+		React.createElement(Route, { path: '/login', component: LoginUser }),
+		React.createElement(Route, { path: '/signup', component: NewUser }),
+		React.createElement(Route, { path: '/upload', component: Upload })
 	);
 
 	module.exports = routes;
@@ -29876,6 +29874,16 @@
 	                           Link,
 	                           { to: '/signup' },
 	                           'Sign Up!'
+	                        )
+	                     ),
+	                     React.createElement(
+	                        'div',
+	                        { className: 'linking' },
+	                        'Upload:',
+	                        React.createElement(
+	                           Link,
+	                           { to: '/upload' },
+	                           'Click here!'
 	                        )
 	                     )
 	                  )
@@ -30020,19 +30028,51 @@
 							React.createElement(
 								'div',
 								{ className: 'enter-form' },
-								React.createElement('input', { type: 'text', ref: 'firstName', placeholder: 'First Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'text',
+									ref: 'firstName',
+									placeholder: 'First Name',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'text', ref: 'lastName', placeholder: 'Last Name', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'text',
+									ref: 'lastName',
+									placeholder: 'Last Name',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'email',
+									ref: 'email',
+									placeholder: 'Email Address',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password',
+									placeholder: 'Password',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password_confirmation', placeholder: 'Password Confirmation', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password_confirmation',
+									placeholder: 'Password Confirmation',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
 								React.createElement(
 									'button',
-									{ onClick: this.handleSignUp, className: 'btn' },
+									{
+										onClick: this.handleSignUp,
+										className: 'btn' },
 									'Create Account'
 								),
 								React.createElement('br', null),
@@ -30163,20 +30203,34 @@
 							React.createElement(
 								'div',
 								{ className: 'enter-form' },
-								React.createElement('input', { type: 'email', ref: 'email', placeholder: 'Email Address', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'email',
+									ref: 'email',
+									placeholder: 'Email Address',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
-								React.createElement('input', { type: 'password', ref: 'password', placeholder: 'Password', className: 'form-control', onKeyPress: this.handleKeyPress }),
+								React.createElement('input', {
+									type: 'password',
+									ref: 'password',
+									placeholder: 'Password',
+									className: 'form-control',
+									onKeyPress: this.handleKeyPress
+								}),
 								React.createElement('br', null),
 								React.createElement(
 									'button',
-									{ className: 'btn', onClick: this.handleLogIn },
+									{
+										className: 'btn',
+										onClick: this.handleLogIn },
 									'Login'
 								),
 								React.createElement('br', null),
 								React.createElement(
 									'div',
 									{ className: 'linking' },
-									'No account? ',
+									'No account?',
 									React.createElement(
 										Link,
 										{ to: '/signup' },
@@ -30196,6 +30250,82 @@
 
 /***/ }),
 /* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	const React = __webpack_require__(1);
+	const firebase = __webpack_require__(187);
+
+	class pdfUpload extends React.Component {
+	    constructor() {
+	        super();
+	        this.state = {
+	            file: null,
+	            fileStat: null
+	        };
+	        this.handlechange = this.handlechange.bind(this);
+	        this.handleUpload = this.handleUpload.bind(this);
+	    }
+
+	    handlechange(event) {
+	        if (event.target.files[0] != null) {
+	            console.log(event.target.files[0]);
+	            this.setState({
+	                file: event.target.files[0]
+	            });
+	        }
+	    }
+	    handleUpload() {
+	        let storage = firebase.storage();
+	        console.log(this.state.file);
+	        var user = firebase.auth().currentUser;
+
+	        if (user) {
+	            // User is signed in.
+	            const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
+	            uploadTask.on('state_changed', snapshot => {
+	                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	                this.setState({
+	                    fileStat: progress
+	                });
+	                console.log(progress);
+	            }, error => {
+	                console.log(error);
+	                this.setState({
+	                    fileStat: "Upload fail!"
+	                });
+	            }, () => {
+	                this.setState({
+	                    fileStat: "Uploaded!"
+	                });
+	            });
+	        } else {
+	            // No user is signed in.
+
+	        }
+	    }
+	    render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleUpload },
+	                'Upload'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.fileStat
+	            )
+	        );
+	    }
+	}
+
+	module.exports = pdfUpload;
+
+/***/ }),
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);

@@ -6,16 +6,15 @@ var hashHistory = require('react-router').hashHistory;
 var HomePage = require('../components/page/home.js');
 var NewUser = require('../components/user/new.js');
 var LoginUser = require('../components/user/login.js');
-
+var Upload = require('../components/uploadFile/pdfUpload.js');
 var requireAuth = require('./require_auth.js')
 
 var routes = (
 	<Router history={hashHistory}>
-		<Route path="/">
-			<IndexRoute component={HomePage} onEnter={requireAuth}/>
-			<Route path="/login" component={LoginUser}/>
-			<Route path="/signup" component={NewUser}/>
-		</Route>
+		<Route path="/" exact component={HomePage} onEnter={requireAuth}/>
+		<Route path="/login" component={LoginUser}/>
+		<Route path="/signup" component={NewUser}/>
+		<Route path="/upload" component={Upload}/>
 	</Router>
 );
 
