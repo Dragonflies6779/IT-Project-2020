@@ -58,7 +58,7 @@ var Education = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 		if(nextProps.pageID != this.state.id){
-			this.educationRef.off(); //turn off the educationRef in compWillMount-listen only from one.
+			this.educationRef.off();
 			this.educationRefChanged.off();
 			this.educationRefRemoved.off();
 			this.setState({educations: []});

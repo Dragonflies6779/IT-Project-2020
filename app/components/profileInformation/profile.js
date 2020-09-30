@@ -19,16 +19,13 @@ var Profile = React.createClass({
     componentWillMount: function(){
         var that = this;
 
-		//sets the current pageID of the page
 		this.setState({pageID: this.props.params.id});
 
-		//checks to see if the user page belongs to the current user
 		this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             this.setState({isCurrentUser: user.uid == this.props.params.id});
             this.setState({currentUserID: user.uid});
         });
 
-		//gets the name of the user and whether or not he/she is a recruiter--not yet used
 		this.userRef = firebase.database().ref().child('users/'+this.props.params.id);
 		this.userRef.on("value", snap=>{
 			var user = snap.val();
@@ -37,7 +34,6 @@ var Profile = React.createClass({
 	},
 
 	componentWillReceiveProps: function(nextProps){
-		//same as componentwillmount, but happens only if the params changed to another user
 		this.setState({pageID: nextProps.params.id});
 
 		this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
