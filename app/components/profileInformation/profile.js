@@ -9,6 +9,8 @@ var Interests = require('./interests.js');
 var Experience = require('./experience.js');
 var Skills = require('./skills.js');
 
+// import '/style.css';
+
 var Profile = React.createClass({
 	getInitialState: function(){
 		return {user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""};
@@ -66,22 +68,13 @@ var Profile = React.createClass({
 					<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				</div>
-		return (
-			<div className="Background">
-				<div className="profile">
-					<center>
-						<div className="container profile-container">
-		                    <center>
-		                        <h1>{this.state.user_name}</h1>
-		                    </center>
-	                	</div>
-					</center>
-					<br />
-					<hr/>
-					{show}
-				</div>
+		return <div className="profile">
+				<h1>{this.state.user_name}</h1>
+				<br />
+				<hr/>
+				{show}
 			</div>
-		);
+
 	},
 });
 
