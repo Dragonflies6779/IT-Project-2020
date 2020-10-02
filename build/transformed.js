@@ -30210,7 +30210,7 @@
 	                    )
 	                ),
 	                React.createElement('br', null),
-	                React.createElement(Upload, null)
+	                React.createElement(Upload, { user: firebase.auth().currentUser })
 	            )
 	        );
 	    }
@@ -30227,39 +30227,42 @@
 	const hashHistory = __webpack_require__(195).hashHistory;
 
 	class PdfUpload extends React.Component {
-	    constructor() {
+	    constructor(props) {
 	        super();
 	        this.state = {
 	            file: null,
 	            fileStat: "",
-	            downloadStat: ""
+	            downloadStat: "",
+	            downloadUrl: ""
 	        };
 	        this.handlechange = this.handlechange.bind(this);
 	        this.handleUpload = this.handleUpload.bind(this);
 	        this.handleDownload = this.handleDownload.bind(this);
 	    }
 	    handleDownload(event) {
-	        // Create a reference to the file we want to download
-	        var resumeRef = storageRef.child('images/stars.jpg');
+	        var user = firebase.auth().currentUser;
+	        if (user) {
+	            // Create a reference to the file we want to download
+	            var storageRef = firebase.storage().ref();
+	            var resumeRef = storageRef.child(`resume_pdf/${user.uid}/resume`);
 
-	        // Get the download URL
-	        resumeRef.getDownloadURL().then(function (url) {
-	            // This can be downloaded directly:
-	            var xhr = new XMLHttpRequest();
-	            xhr.responseType = 'blob';
-	            xhr.onload = function (event) {
-	                var blob = xhr.response;
-	            };
-	            xhr.open('GET', url);
-	            xhr.send();
-	            this.setState({
-	                downloadStat: "downloading"
+	            // Get the download URL
+	            const that = this;
+	            resumeRef.getDownloadURL().then(function (url) {
+	                // Or inserted into an <img> element:
+	                that.setState({
+	                    downloadUrl: url,
+	                    downloadStat: "Download success, please click the following links"
+	                });
+	            }).catch(function (error) {
+	                that.setState({
+	                    downloadStat: "Resume not found / Download error"
+	                });
 	            });
-	        }).catch(function (error) {
-	            this.setState({
-	                downloadStat: "Resume not found / Download error"
-	            });
-	        });
+	        } else {
+	            // No user is signed in.
+	            hashHistory.push("/login");
+	        }
 	    }
 
 	    handlechange(event) {
@@ -30300,8 +30303,14 @@
 	        }
 	    }
 	    render() {
+	        let downloadLink = React.createElement('p', null);
+	        if (this.state.downloadUrl) downloadLink = React.createElement(
+	            'a',
+	            { href: this.state.downloadUrl, target: '_blank' },
+	            'download link'
+	        );
 	        return React.createElement(
-	            React.Fragment,
+	            'div',
 	            null,
 	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
 	            React.createElement(
@@ -30323,7 +30332,8 @@
 	                'p',
 	                null,
 	                this.state.downloadStat
-	            )
+	            ),
+	            downloadLink
 	        );
 	    }
 	}
