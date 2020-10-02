@@ -12,6 +12,7 @@ var Layout = require('../components/page/layout.js');
 var Profile = require('../components/profileInformation/profile.js');
 var Upload = require('../components/uploadFile/pdfUpload.js');
 
+
 var requireAuth = require('./require_auth.js')
 
 var routes = (
