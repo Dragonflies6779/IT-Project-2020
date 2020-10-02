@@ -8,6 +8,7 @@ var Projects = require('./projects.js');
 var Interests = require('./interests.js');
 var Experience = require('./experience.js');
 var Skills = require('./skills.js');
+const Upload = require('../uploadFile/pdfUpload.js');
 
 // import '/style.css';
 
@@ -63,6 +64,7 @@ var Profile = React.createClass({
 					<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					<Upload user={firebase.auth().currentUser}/>
 				</div>
 		return <div className="profile">
 				<h1>{this.state.user_name}</h1>

@@ -11,8 +11,9 @@ var Home = React.createClass({
         return (
            <div className="Background">
                <div>
-                   <center><h1>Home</h1></center><br />
-                   <Upload user={firebase.auth().currentUser}/>
+                   <center><h1>Wominjenka!!</h1></center><br />
+                   <input type="text" className="searchBar"></input>
+                   <button>Search</button>
                </div>
             </div>
 
