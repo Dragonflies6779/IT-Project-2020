@@ -1,21 +1,14 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-body, html, #root, .app{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #9eb3c2;
+body{
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  margin: 0;
 }
 
 nav {
     background-color: white;
     padding: 20px;
+    margin:0;
+    box-shadow: 0px -5px 10px 0px rgba(0,0,0,0.1);
 }
 
 input {
@@ -25,30 +18,75 @@ input {
   border: red solid 1px;
 }
 
-.Background {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #9eb3c2;
+.container{
+ width: 100%;
+ margin: 0;
+ padding: 0;
 }
 
-.WebHeader {
-   /*max-width: 45%;*/
-   /*border-radius: 30px;*/
-   /*margin: auto;*/
-   /*background-color: white;*/
-   /*border: 1px solid;*/
-   /*border-color: black;*/
-   /*box-sizing: border-box;*/
-   /* padding: 1%;*/
-  /*overflow: auto;*/
+.jumbotron {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #9eb3c2;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: flex;
+  flex-direction: column;
+  padding: 0;
+  margin:0;
+}
+
+.jumbotron h2 {
+  font-size: 75px;
+  text-shadow: 0 0 20px rgb(0,0,0,0.2);
+  margin: 0;
+}
+
+.jumbotron h3 {
+  margin: 0.5 0;
+  font-size: 40px;
+  text-shadow: 0 5px 20px rgb(0,0,0,0.2);
+}
+
+.Footer {
+  display:flex;
+  padding: 20px;
+  box-shadow: 0px -5px 10px 0px rgba(0,0,0,0.1);
+  background-color: white;
+  font-size: 0.85rem;
+  justify-content: space-between;
+  font-weight: 400;
+
+}
+
+footer{
+  font-size: 12px;
+  padding: 20px;
+}
+
+footer .col-sm-8 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer ul{
+  list-style: none;
+}
+
+footer li img{
+  width: 32px;
+  height: 32px;
 }
 
 .enter-form {
-    width: 100%;
+    width: 100;
     display: flex;
     flex-wrap: wrap;
 }
@@ -65,7 +103,7 @@ input {
   border-radius: 5px;
   outline: none;
   border: 1px solid white;
-  /*width: 100%;*/
+  width: 100%;
   margin-top: 1em;
 }
 
@@ -80,7 +118,7 @@ button {
    border-radius: 5px;
    color: #fff;
    border: 2px solid #1c7293;
-   width: 106%;
+   width: 100%;
    margin-top: 1em;
    padding: 8px 0px;
    font-size: 1em;
@@ -94,6 +132,8 @@ button:hover {
   border: 2px solid #519e8a; */
   box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.1);
 }
+
+
 
 /*for phone screens responsive design*/
 @media screen and (max-width: 300px) {

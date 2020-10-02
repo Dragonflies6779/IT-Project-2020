@@ -29804,10 +29804,10 @@
 	var SignUp = __webpack_require__(278);
 	var Login = __webpack_require__(279);
 	var Home = __webpack_require__(280);
-	var SignOut = __webpack_require__(282);
-	var Layout = __webpack_require__(283);
-	var Profile = __webpack_require__(284);
-	var Upload = __webpack_require__(281);
+	var SignOut = __webpack_require__(281);
+	var Layout = __webpack_require__(282);
+	var Profile = __webpack_require__(283);
+	var Upload = __webpack_require__(290);
 
 	var requireAuth = __webpack_require__(291);
 
@@ -30112,7 +30112,7 @@
 
 			return React.createElement(
 				'div',
-				{ className: 'Background' },
+				{ className: 'jumbotron' },
 				React.createElement(
 					'div',
 					{ className: 'WebHeader' },
@@ -30125,7 +30125,7 @@
 							'center',
 							null,
 							React.createElement(
-								'h1',
+								'h3',
 								null,
 								'Login'
 							),
@@ -30183,34 +30183,23 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(40);
-	var firebase = __webpack_require__(187);
-	var Link = __webpack_require__(195).Link;
-	var hashHistory = __webpack_require__(195).hashHistory;
-	const Upload = __webpack_require__(281);
+
 	var Home = React.createClass({
-	    displayName: 'Home',
+	    displayName: "Home",
 
 
 	    render: function () {
-
 	        return React.createElement(
-	            'div',
-	            { className: 'Background' },
+	            "div",
+	            null,
 	            React.createElement(
-	                'div',
-	                null,
+	                "div",
+	                { className: "jumbotron" },
 	                React.createElement(
-	                    'center',
+	                    "h3",
 	                    null,
-	                    React.createElement(
-	                        'h1',
-	                        null,
-	                        'Home'
-	                    )
-	                ),
-	                React.createElement('br', null),
-	                React.createElement(Upload, null)
+	                    "Welcome to My Portfolio"
+	                )
 	            )
 	        );
 	    }
@@ -30220,118 +30209,6 @@
 
 /***/ }),
 /* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
-
-	class PdfUpload extends React.Component {
-	    constructor() {
-	        super();
-	        this.state = {
-	            file: null,
-	            fileStat: "",
-	            downloadStat: ""
-	        };
-	        this.handlechange = this.handlechange.bind(this);
-	        this.handleUpload = this.handleUpload.bind(this);
-	        this.handleDownload = this.handleDownload.bind(this);
-	    }
-	    handleDownload(event) {
-	        // Create a reference to the file we want to download
-	        var resumeRef = storageRef.child('images/stars.jpg');
-
-	        // Get the download URL
-	        resumeRef.getDownloadURL().then(function (url) {
-	            // This can be downloaded directly:
-	            var xhr = new XMLHttpRequest();
-	            xhr.responseType = 'blob';
-	            xhr.onload = function (event) {
-	                var blob = xhr.response;
-	            };
-	            xhr.open('GET', url);
-	            xhr.send();
-	            this.setState({
-	                downloadStat: "downloading"
-	            });
-	        }).catch(function (error) {
-	            this.setState({
-	                downloadStat: "Resume not found / Download error"
-	            });
-	        });
-	    }
-
-	    handlechange(event) {
-	        if (event.target.files[0] != null) {
-	            console.log(event.target.files[0]);
-	            this.setState({
-	                file: event.target.files[0]
-	            });
-	        }
-	    }
-	    handleUpload() {
-	        let storage = firebase.storage();
-	        console.log(this.state.file);
-	        var user = firebase.auth().currentUser;
-
-	        if (user) {
-	            // User is signed in.
-	            const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
-	            uploadTask.on('state_changed', snapshot => {
-	                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-	                this.setState({
-	                    fileStat: progress
-	                });
-	                console.log(progress);
-	            }, error => {
-	                console.log(error);
-	                this.setState({
-	                    fileStat: "Upload fail!"
-	                });
-	            }, () => {
-	                this.setState({
-	                    fileStat: "Uploaded!"
-	                });
-	            });
-	        } else {
-	            // No user is signed in.
-	            hashHistory.push("/login");
-	        }
-	    }
-	    render() {
-	        return React.createElement(
-	            React.Fragment,
-	            null,
-	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
-	            React.createElement(
-	                'button',
-	                { onClick: this.handleUpload },
-	                'Upload Resume'
-	            ),
-	            React.createElement(
-	                'button',
-	                { onClick: this.handleDownload },
-	                'Download Resume'
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.state.fileStat
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.state.downloadStat
-	            )
-	        );
-	    }
-	}
-
-	module.exports = PdfUpload;
-
-/***/ }),
-/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30360,7 +30237,7 @@
 	module.exports = Logout;
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30542,19 +30419,22 @@
 	module.exports = Layout;
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var Summary = __webpack_require__(285);
-	var Education = __webpack_require__(286);
-	var Projects = __webpack_require__(287);
-	var Interests = __webpack_require__(288);
-	var Experience = __webpack_require__(289);
-	var Skills = __webpack_require__(290);
+	var Summary = __webpack_require__(284);
+	var Education = __webpack_require__(285);
+	var Projects = __webpack_require__(286);
+	var Interests = __webpack_require__(287);
+	var Experience = __webpack_require__(288);
+	var Skills = __webpack_require__(289);
+	const Upload = __webpack_require__(290);
+
+	// import '/style.css';
 
 	var Profile = React.createClass({
 		displayName: 'Profile',
@@ -30611,35 +30491,20 @@
 				React.createElement(Experience, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
 				React.createElement(Education, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
 				React.createElement(Skills, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Interests, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser })
+				React.createElement(Interests, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
+				React.createElement(Upload, { user: firebase.auth().currentUser })
 			);
 			return React.createElement(
 				'div',
-				{ className: 'Background' },
+				{ className: 'jumbotron' },
 				React.createElement(
-					'div',
-					{ className: 'profile' },
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'container profile-container' },
-							React.createElement(
-								'center',
-								null,
-								React.createElement(
-									'h1',
-									null,
-									this.state.user_name
-								)
-							)
-						)
-					),
-					React.createElement('br', null),
-					React.createElement('hr', null),
-					show
-				)
+					'h1',
+					null,
+					this.state.user_name
+				),
+				React.createElement('br', null),
+				React.createElement('hr', null),
+				show
 			);
 		}
 	});
@@ -30647,7 +30512,7 @@
 	module.exports = Profile;
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -30797,7 +30662,7 @@
 	module.exports = Summary;
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31191,7 +31056,7 @@
 	module.exports = Education;
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31611,7 +31476,7 @@
 	module.exports = Project;
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -31760,7 +31625,7 @@
 	module.exports = Interests;
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32164,7 +32029,7 @@
 	module.exports = Experience;
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32313,6 +32178,128 @@
 	});
 
 	module.exports = Skills;
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	const React = __webpack_require__(1);
+	const firebase = __webpack_require__(187);
+	const hashHistory = __webpack_require__(195).hashHistory;
+
+	class PdfUpload extends React.Component {
+	    constructor(props) {
+	        super();
+	        this.state = {
+	            file: null,
+	            fileStat: "",
+	            downloadStat: "",
+	            downloadUrl: ""
+	        };
+	        this.handlechange = this.handlechange.bind(this);
+	        this.handleUpload = this.handleUpload.bind(this);
+	        this.handleDownload = this.handleDownload.bind(this);
+	    }
+	    handleDownload(event) {
+	        var user = firebase.auth().currentUser;
+	        if (user) {
+	            // Create a reference to the file we want to download
+	            var storageRef = firebase.storage().ref();
+	            var resumeRef = storageRef.child(`resume_pdf/${user.uid}/resume`);
+
+	            // Get the download URL
+	            const that = this;
+	            resumeRef.getDownloadURL().then(function (url) {
+	                // Or inserted into an <img> element:
+	                that.setState({
+	                    downloadUrl: url,
+	                    downloadStat: "Download success, please click the following links"
+	                });
+	            }).catch(function (error) {
+	                that.setState({
+	                    downloadStat: "Resume not found / Download error"
+	                });
+	            });
+	        } else {
+	            // No user is signed in.
+	            hashHistory.push("/login");
+	        }
+	    }
+
+	    handlechange(event) {
+	        if (event.target.files[0] != null) {
+	            console.log(event.target.files[0]);
+	            this.setState({
+	                file: event.target.files[0]
+	            });
+	        }
+	    }
+	    handleUpload() {
+	        let storage = firebase.storage();
+	        console.log(this.state.file);
+	        var user = firebase.auth().currentUser;
+
+	        if (user) {
+	            // User is signed in.
+	            const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
+	            uploadTask.on('state_changed', snapshot => {
+	                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	                this.setState({
+	                    fileStat: progress
+	                });
+	                console.log(progress);
+	            }, error => {
+	                console.log(error);
+	                this.setState({
+	                    fileStat: "Upload fail!"
+	                });
+	            }, () => {
+	                this.setState({
+	                    fileStat: "Uploaded!"
+	                });
+	            });
+	        } else {
+	            // No user is signed in.
+	            hashHistory.push("/login");
+	        }
+	    }
+	    render() {
+	        let downloadLink = React.createElement('p', null);
+	        if (this.state.downloadUrl) downloadLink = React.createElement(
+	            'a',
+	            { href: this.state.downloadUrl, target: '_blank' },
+	            'download link'
+	        );
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleUpload },
+	                'Upload Resume'
+	            ),
+	            React.createElement(
+	                'button',
+	                { onClick: this.handleDownload },
+	                'Download Resume'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.fileStat
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                this.state.downloadStat
+	            ),
+	            downloadLink
+	        );
+	    }
+	}
+
+	module.exports = PdfUpload;
 
 /***/ }),
 /* 291 */
