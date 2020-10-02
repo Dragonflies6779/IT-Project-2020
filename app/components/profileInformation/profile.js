@@ -66,12 +66,12 @@ var Profile = React.createClass({
 					<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					<Upload user={firebase.auth().currentUser}/>
 				</div>
-		return <div className="profile">
-				<h1>{this.state.user_name}</h1>
-				<br />
-				<hr/>
-				{show}
-			</div>
+		return <div className="jumbotron">
+					<h1>{this.state.user_name}</h1>
+					<br />
+					<hr/>
+					{show}
+				</div>
 
 	},
 });

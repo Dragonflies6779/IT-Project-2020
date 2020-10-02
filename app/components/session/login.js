@@ -50,7 +50,6 @@ var LogInForm = React.createClass({
 		}
 	},
 
-
 	errorMessage: function(){
 		return <div className="alert alert-danger"><strong>Error! </strong>{this.state.errorMsg}</div>;
 	},
@@ -69,55 +68,53 @@ var LogInForm = React.createClass({
 		}
 
 		return (
-    <div className="Background">
-			<div className="WebHeader">
-				{errorAlert}
-				<div className="col-md-4">
-				</div>
+			<div className="jumbotron">
+					<div className="WebHeader">
+						{errorAlert}
+						<div className="col-md-4">
+						</div>
 
-					<div className="col-md-4 margin-top-30">
-					<center>
-          	<h1>Login</h1><br />
-            <div className="enter-form">
-   						<input
-								type="email"
-								ref="email"
-								placeholder="Email Address"
-								className="form-control"
-								onKeyPress={this.handleKeyPress}
-							/>
-							<br />
-   						<input
-								type="password"
-								ref="password"
-								placeholder="Password"
-								className="form-control"
-								onKeyPress={this.handleKeyPress}
-							/>
-							<br />
-   						<button
-								className="btn"
-								onClick={this.handleLogIn}>
-								Login
-							</button>
-							<br />
+							<div className="col-md-4 margin-top-30">
+							<center>
+					<h3>Login</h3><br />
+					<div className="enter-form">
+								<input
+										type="email"
+										ref="email"
+										placeholder="Email Address"
+										className="form-control"
+										onKeyPress={this.handleKeyPress}
+									/>
+									<br />
+								<input
+										type="password"
+										ref="password"
+										placeholder="Password"
+										className="form-control"
+										onKeyPress={this.handleKeyPress}
+									/>
+									<br />
+								<button
+										className="btn"
+										onClick={this.handleLogIn}>
+										Login
+									</button>
+									<br />
 
-              <div className="linking">
-								No account?
-								<Link to="/signup">
-								Sign Up!
-								</Link>
-							</div>
-            </div>
-					</center>
-				</div>
-
-				<div className="col-md-4">
-				</div>
-
+					<div className="linking">
+										No account?
+										<Link to="/signup">
+										Sign Up!
+										</Link>
+									</div>
+					</div>
+							</center>
+						</div>
+						<div className="col-md-4">
+						</div>
+					</div>
 			</div>
-         </div>
-			);
+		);
 	}
 });
 
