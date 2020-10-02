@@ -15,7 +15,8 @@ var Home = React.createClass({
             <div>
                 <div className ="jumbotron"> 
                     <h3>Welcome to My Portfolio</h3>
-                    <Upload user={firebase.auth().currentUser}/>
+                    <input type="text" className="searchBar"></input>
+                    <button>Search</button>
                    <Account user={firebase.auth().currentUser}/>
                    <Social user={firebase.auth().currentUser}/>
                    <Password user={firebase.auth().currentUser}/>
