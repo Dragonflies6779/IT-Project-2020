@@ -11,7 +11,6 @@ var Home = React.createClass({
 
     render: function(){
 
-
         return (
            <div className="Background">
                <div>
@@ -22,6 +21,7 @@ var Home = React.createClass({
                    <Password user={firebase.auth().currentUser}/>
                </div>
             </div>
+
         );
     }
 });
