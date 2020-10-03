@@ -29803,7 +29803,7 @@
 	var HomePage = __webpack_require__(278);
 	var NewUser = __webpack_require__(279);
 	var LoginUser = __webpack_require__(280);
-	var Upload = __webpack_require__(281);
+	var UploadImage = __webpack_require__(281);
 
 	var requireAuth = __webpack_require__(282);
 
@@ -29816,7 +29816,7 @@
 			React.createElement(IndexRoute, { component: HomePage, onEnter: requireAuth }),
 			React.createElement(Route, { path: '/login', component: LoginUser }),
 			React.createElement(Route, { path: '/signup', component: NewUser }),
-			React.createElement(Route, { path: '/upload', component: Upload })
+			React.createElement(Route, { path: '/uploadImage', component: UploadImage })
 		)
 	);
 
@@ -30256,7 +30256,8 @@
 	    super(props);
 	    this.state = {
 	      image: null,
-	      url: ''
+	      url: '',
+	      progress: 0
 	    };
 	    this.handleChange = this.handleChange.bind(this);
 	    this.handleUpload = this.handleUpload.bind(this);
@@ -30275,6 +30276,8 @@
 	    const uploadTask = storage.ref('images/${image.name').put(this.state.image);
 	    uploadTask.on('state_changed', snapshot => {
 	      //progess function
+	      const progess = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+	      this.setState({ progess });
 	    }, error => {
 	      console.log(error);
 	    }, () => {});
@@ -30284,6 +30287,8 @@
 	    return React.createElement(
 	      'div',
 	      null,
+	      React.createElement('progress', { value: this.state.progess, max: '100' }),
+	      React.createElement('br', null),
 	      React.createElement('input', {
 	        type: 'file',
 	        onChange: this.handleChange
@@ -30291,6 +30296,7 @@
 	      React.createElement(
 	        'button',
 	        {
+	          classname: 'imagesUploadButton',
 	          onClick: this.handleUpload },
 	        'Upload'
 	      )

@@ -7,7 +7,8 @@ class imagesUpload extends React.Component{
     super(props);
     this.state = {
       image: null,
-      url: ''
+      url: '',
+      progress: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
@@ -27,6 +28,8 @@ class imagesUpload extends React.Component{
     uploadTask.on('state_changed',
     (snapshot) => {
       //progess function
+      const progess = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      this.setState({progess});
     },
     (error) => {
       console.log(error);
@@ -39,11 +42,15 @@ class imagesUpload extends React.Component{
   render() {
     return (
       <div>
+      <progress value = {this.state.progess} max = "100"/>
+      <br/>
+
       <input
         type = "file"
         onChange = {this.handleChange}
       />
       <button
+        classname = "imagesUploadButton"
         onClick = {this.handleUpload}>
         Upload</button>
       </div>
