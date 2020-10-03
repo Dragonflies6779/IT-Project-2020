@@ -29803,8 +29803,9 @@
 	var HomePage = __webpack_require__(278);
 	var NewUser = __webpack_require__(279);
 	var LoginUser = __webpack_require__(280);
+	var Upload = __webpack_require__(281);
 
-	var requireAuth = __webpack_require__(281);
+	var requireAuth = __webpack_require__(282);
 
 	var routes = React.createElement(
 		Router,
@@ -29814,7 +29815,8 @@
 			{ path: '/' },
 			React.createElement(IndexRoute, { component: HomePage, onEnter: requireAuth }),
 			React.createElement(Route, { path: '/login', component: LoginUser }),
-			React.createElement(Route, { path: '/signup', component: NewUser })
+			React.createElement(Route, { path: '/signup', component: NewUser }),
+			React.createElement(Route, { path: '/upload', component: Upload })
 		)
 	);
 
@@ -30098,7 +30100,6 @@
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
 	var hashHistory = __webpack_require__(195).hashHistory;
-	import imagesUpload from '../upload/imagesUpload';
 
 	var LogInForm = React.createClass({
 		displayName: 'LogInForm',
@@ -30194,7 +30195,6 @@
 								'Login'
 							),
 							React.createElement('br', null),
-							React.createElement('imagesUpload', null),
 							React.createElement(
 								'div',
 								{ className: 'enter-form' },
@@ -30245,6 +30245,63 @@
 
 /***/ }),
 /* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	const React = __webpack_require__(1);
+	const firebase = __webpack_require__(187);
+	const hashHistory = __webpack_require__(195).hashHistory;
+
+	class imagesUpload extends React.Component {
+	  constructor(props) {
+	    super(props);
+	    this.state = {
+	      image: null,
+	      url: ''
+	    };
+	    this.handleChange = this.handleChange.bind(this);
+	    this.handleUpload = this.handleUpload.bind(this);
+	  }
+	  handleChange(event) {
+	    if (event.target.files[0] != null) {
+	      console.log(event.target.files[0]);
+	      this.setState({
+	        image: event.target.files[0]
+	      });
+	    }
+	  }
+	  handleUpload() {
+	    let storage = firebase.storage();
+	    const { image } = this.state;
+	    const uploadTask = storage.ref('images/${image.name').put(this.state.image);
+	    uploadTask.on('state_changed', snapshot => {
+	      //progess function
+	    }, error => {
+	      console.log(error);
+	    }, () => {});
+	  }
+
+	  render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement('input', {
+	        type: 'file',
+	        onChange: this.handleChange
+	      }),
+	      React.createElement(
+	        'button',
+	        {
+	          onClick: this.handleUpload },
+	        'Upload'
+	      )
+	    );
+	  }
+	}
+
+	module.exports = imagesUpload;
+
+/***/ }),
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);

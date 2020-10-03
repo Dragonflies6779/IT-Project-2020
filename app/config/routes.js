@@ -6,6 +6,7 @@ var hashHistory = require('react-router').hashHistory;
 var HomePage = require('../components/page/home.js');
 var NewUser = require('../components/user/new.js');
 var LoginUser = require('../components/user/login.js');
+var UploadImage = require('../components/upload/imagesUpload.js');
 
 var requireAuth = require('./require_auth.js')
 
@@ -15,6 +16,7 @@ var routes = (
 			<IndexRoute component={HomePage} onEnter={requireAuth}/>
 			<Route path="/login" component={LoginUser}/>
 			<Route path="/signup" component={NewUser}/>
+			<Route path="/uploadImage" component={UploadImage}/>
 		</Route>
 	</Router>
 );

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import {storage} from '..index';
+const React = require('react');
+const firebase = require('firebase');
+const hashHistory = require('react-router').hashHistory;
 
 class imagesUpload extends React.Component{
   constructor(props) {
@@ -11,15 +12,18 @@ class imagesUpload extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
   }
-  handleChange = e => {
-    if(e.target.files[0]) {
-      const {image} = e.target.files[0];
-      this.setState(() => {image});
+  handleChange(event){
+    if (event.target.files[0]!=null){
+      console.log(event.target.files[0]);
+      this.setState({
+        image: event.target.files[0]
+      });
     }
   }
-  handleUpload = () => {
+  handleUpload(){
+    let storage = firebase.storage();
     const {image} = this.state;
-    const uploadTask = storage.ref('images/${image.name}').put(image);
+    const uploadTask = storage.ref('images/${image.name').put(this.state.image);
     uploadTask.on('state_changed',
     (snapshot) => {
       //progess function
@@ -28,9 +32,6 @@ class imagesUpload extends React.Component{
       console.log(error);
     },
     () => {
-      storage.ref('images').child(image.name).getDownloadURL().then(url => {
-        console.log(u);
-      })
     });
 
   }
@@ -50,4 +51,4 @@ class imagesUpload extends React.Component{
   }
 }
 
-export default imagesUpload;
+module.exports = imagesUpload;
