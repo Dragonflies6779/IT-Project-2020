@@ -51,7 +51,7 @@ class accountDetail extends React.Component{
           });
         });
         } else{
-            console.log("no user exist")
+            
         }
 
     }
@@ -62,6 +62,7 @@ class accountDetail extends React.Component{
         return (
             <div className="card-profile">
             <form>
+                <h4>Account Detail</h4>
                 <div className="form-place">
                     <label>First Name</label>
                         <input

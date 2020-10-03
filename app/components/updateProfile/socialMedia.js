@@ -2,11 +2,6 @@ const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
 
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-// import {faInstagram as faIG,
-//         faFacebook as faFB,
-//         faLinkedin as faLI
-//         } from '@fortawesome/free-brands-svg-icons';
 class socialMedia extends React.Component{
     constructor(props) {
         super();
@@ -45,6 +40,18 @@ class socialMedia extends React.Component{
         .then(snapshot => {
           this.setState({
               linkedin: snapshot.val()
+          });
+        });
+
+
+        firebase
+        .database()
+        .ref('user-social/' + firebase.auth().currentUser.uid)
+        .child('facebook')
+        .once('value')
+        .then(snapshot => {
+          this.setState({
+              facebook: snapshot.val()
           });
         });
 
@@ -96,13 +103,20 @@ class socialMedia extends React.Component{
   
     render() {
       return (
+<<<<<<< Updated upstream
         <div className="card-profile">
           <form onSubmit={this.handleSubmit} className="form">
             <h4>Social Media</h4>
           <div className="form-control">
+=======
+        <form onSubmit={this.handleSubmit} className="form">
+            <h4>Social Media</h4>
+          <div className="form-place">
+>>>>>>> Stashed changes
               <label> Instagram </label>
             <input
               name="instagram"
+              placeholder = "https://instagram.com"
               value={this.state.instagram}
               onChange={this.handleChange}
             />
@@ -111,6 +125,7 @@ class socialMedia extends React.Component{
               <label> LinkedIn </label>
             <input
               name="linkedin"
+              placeholder = "https://linkedin.com"
               value={this.state.linkedin}
               onChange={this.handleChange}
             />
@@ -119,6 +134,7 @@ class socialMedia extends React.Component{
               <label> Facebook </label>
             <input
               name="facebook"
+              placeholder = "https://facebook.com"
               value={this.state.facebook}
               onChange={this.handleChange}
             />
@@ -127,6 +143,7 @@ class socialMedia extends React.Component{
               <label> Mail </label>
             <input
               name="mail"
+              placeholder = "test123@gmail.com"
               value={this.state.mail}
               onChange={this.handleChange}
             />
@@ -134,6 +151,7 @@ class socialMedia extends React.Component{
           <div className="btn btn-toolbar">
           <button className="btn btn-primary">Save</button>
           </div>
+<<<<<<< Updated upstream
           </form>
         </div>
         
@@ -160,6 +178,9 @@ class socialMedia extends React.Component{
           </a>
           </div>  */
       
+=======
+        </form>
+>>>>>>> Stashed changes
       );
     }
   }
