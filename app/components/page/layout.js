@@ -100,14 +100,14 @@ var Layout = React.createClass({
 
 
         if(this.state.recruiter == true){
-            navClassName = "navbar navbar-inverse navbar-static-top";
+            navClassName = "navbar";
         }else{
-            navClassName = "navbar navbar-default navbar-static-top";
+            navClassName = "navbar";
         }
 
         return (
             <span>
-                <nav className="navbar navbar-default navbar-static-top">
+                <nav className="navbar" >
                     <div className="container">
                         <div className="navbar-header">
                             <Link to="/" className="navbar-brand">

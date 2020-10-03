@@ -96,9 +96,10 @@ class socialMedia extends React.Component{
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit} className="form">
-            <h1>Social Media</h1>
-          <div className="form-place">
+        <div className="card-profile">
+          <form onSubmit={this.handleSubmit} className="form">
+            <h4>Social Media</h4>
+          <div className="form-control">
               <label> Instagram </label>
             <input
               name="instagram"
@@ -106,7 +107,7 @@ class socialMedia extends React.Component{
               onChange={this.handleChange}
             />
           </div>
-          <div className="form-place">
+          <div className="form-control">
               <label> LinkedIn </label>
             <input
               name="linkedin"
@@ -114,7 +115,7 @@ class socialMedia extends React.Component{
               onChange={this.handleChange}
             />
           </div>
-          <div className="form-place">
+          <div className="form-control">
               <label> Facebook </label>
             <input
               name="facebook"
@@ -122,7 +123,7 @@ class socialMedia extends React.Component{
               onChange={this.handleChange}
             />
           </div>
-          <div className="form-place">
+          <div className="form-control">
               <label> Mail </label>
             <input
               name="mail"
@@ -130,12 +131,15 @@ class socialMedia extends React.Component{
               onChange={this.handleChange}
             />
           </div>
-          <div className="save">
-          <button type="submit">Save</button>
+          <div className="btn btn-toolbar">
+          <button className="btn btn-primary">Save</button>
           </div>
-
-        {/* show if the link is filled */}
-          {/* <div>
+          </form>
+        </div>
+        
+        
+        /* show if the link is filled */
+          /* <div>
           <a href={this.state.instagram}> 
           <b> <FontAwesomeIcon icon={this.state.instagram ? faIG : ""} size="2x"/>
           </b>
@@ -154,8 +158,8 @@ class socialMedia extends React.Component{
           <b> <FontAwesomeIcon icon={this.state.facebook ? faFB : ""} size="2x"/>
           </b>
           </a>
-          </div>  */}
-        </form>
+          </div>  */
+      
       );
     }
   }

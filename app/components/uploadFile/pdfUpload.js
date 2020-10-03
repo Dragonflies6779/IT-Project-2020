@@ -87,7 +87,7 @@ class PdfUpload extends React.Component{
         let downloadLink = <p></p>
         if (this.state.downloadUrl) downloadLink = <a href={this.state.downloadUrl} target="_blank">download link</a>;
         return (
-        <div>
+        <div className = "card-profile">
             <input type="file" onChange={this.handlechange}></input>
             <button onClick={this.handleUpload}>Upload Resume</button>
             <button onClick={this.handleDownload}>Download Resume</button>

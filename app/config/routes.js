@@ -11,6 +11,8 @@ var SignOut = require('../components/session/signout.js');
 var Layout = require('../components/page/layout.js');
 var Profile = require('../components/profileInformation/profile.js');
 var Upload = require('../components/uploadFile/pdfUpload.js');
+var Account = require('../components/page/Account');
+
 
 var requireAuth = require('./require_auth.js')
 
@@ -23,6 +25,7 @@ var routes = (
 			<Route path="logout" component={SignOut}/>
 			<Route path="users/:id" component={Profile} onEnter={requireAuth}/>
 			<Route path="/upload" component={Upload}/>
+			<Route path="/settings" component={Account}/>
 		</Route>
 	</Router>
 );

@@ -256,11 +256,15 @@ var Education = React.createClass({
 		}
 
 		return (
-			<div>
-				{this.educationHeading()}
-				{show}
-				<hr />
+			<div className ="card-profile">
+				<div className ="card-body">
+					{this.educationHeading()}
+					{show}
+					<hr></hr>
+					<hr></hr>
+				</div>
 			</div>
+
 		)
 	},
 

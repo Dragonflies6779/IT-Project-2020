@@ -256,10 +256,13 @@ var Experience = React.createClass({
 		}
 
 		return (
-			<div>
-				{this.experienceHeading()}
-				{show}
-				<hr></hr>
+
+			<div className ="card-profile">
+				<div className ="card-body">
+					{this.experienceHeading()}
+					{show}
+					<hr></hr>
+				</div>
 			</div>
 		)
 	},
