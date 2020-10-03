@@ -21,17 +21,7 @@ input {
   height : 100vh;
 }
 
-.WebHeader {
-  /* max-width: 45%;
-  border-radius: 30px;
-  margin: auto;
-  background-color: white;
-  border: 1px solid;
-  border-color: black;
-  box-sizing: border-box;
-  padding: 1%; */
-  overflow: auto;
-}
+
 
 .enter-form {
     width: 100%;
@@ -42,6 +32,7 @@ input {
    padding: 8px 8px;
    margin-top: 1em;
    font-size: 1.5em;
+   text-align: center;
 }
 form-control {
   padding: 8px 8px;
