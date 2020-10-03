@@ -60,6 +60,7 @@ class accountDetail extends React.Component{
 
     render() {
         return (
+            <div className="card-profile">
             <form>
                 <div className="form-place">
                     <label>First Name</label>
@@ -88,6 +89,7 @@ class accountDetail extends React.Component{
                         />
                 </div>
             </form>
+            </div>
         );
     }
 }

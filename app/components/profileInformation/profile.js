@@ -9,6 +9,10 @@ var Interests = require('./interests.js');
 var Experience = require('./experience.js');
 var Skills = require('./skills.js');
 const Upload = require('../uploadFile/pdfUpload.js');
+const Account = require('../updateProfile/accountDetail.js');
+const Social = require('../updateProfile/socialMedia.js');
+const Password = require('../updateProfile/changePassword.js');
+
 
 // import '/style.css';
 
@@ -57,19 +61,32 @@ var Profile = React.createClass({
 	render: function(){
 		var show;
 
-		show = 	<div>
-					<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					<Upload user={firebase.auth().currentUser}/>
-				</div>
+		show = 
+			<div>
+				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Social user={firebase.auth().currentUser}/>
+				<Upload user={firebase.auth().currentUser}/>
+				<Account user={firebase.auth().currentUser}/>
+				<Password user={firebase.auth().currentUser}/>
+			</div>
+
+				
+				
 		return <div className="jumbotron">
 					<h1>{this.state.user_name}</h1>
 					<br />
 					<hr/>
+					{/* <div class="row">
+						<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					</div>
+					<div class ="row">
+						<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>	
+					</div> */}
 					{show}
 				</div>
 
@@ -77,3 +94,14 @@ var Profile = React.createClass({
 });
 
 module.exports = Profile;
+
+					// <Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					// <Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					// <Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					// <Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					// <Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+					// <Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+                    // <Social user={firebase.auth().currentUser}/>
+					// <Upload user={firebase.auth().currentUser}/>
+					// <Account user={firebase.auth().currentUser}/>
+                    // <Password user={firebase.auth().currentUser}/>

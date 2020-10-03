@@ -11,6 +11,7 @@ var SignOut = require('../components/session/signout.js');
 var Layout = require('../components/page/layout.js');
 var Profile = require('../components/profileInformation/profile.js');
 var Upload = require('../components/uploadFile/pdfUpload.js');
+var account = require('../components/page/account');
 
 var requireAuth = require('./require_auth.js')
 

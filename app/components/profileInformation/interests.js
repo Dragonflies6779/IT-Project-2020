@@ -102,9 +102,11 @@ var Interests = React.createClass({
 		}
 
 		return (
-			<div>
+			<div className ="card-profile">
+				<div className ="card-body">
 				{partToShow}
 				<hr/>
+				</div>
 			</div>
 
 		);

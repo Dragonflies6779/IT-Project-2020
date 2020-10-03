@@ -68,7 +68,7 @@ var LogInForm = React.createClass({
 		}
 
 		return (
-			<div className="jumbotron">
+			<div className="jumbotron jumbotron-fluid">
 					<div className="WebHeader">
 						{errorAlert}
 						<div className="col-md-4">

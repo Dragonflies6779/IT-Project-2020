@@ -104,9 +104,11 @@ var Skills = React.createClass({
 		}
 
 		return (
-			<div>
-				{partToShow}
-				<hr/>
+			<div className="card-profile">
+				<div className="card-body">
+					{partToShow}
+					<hr/>
+				</div>
 			</div>
 
 		);

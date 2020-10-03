@@ -52,8 +52,9 @@ class changePassword extends React.Component{
 
     render() {
         return (
+          <div className="card-profile">
           <form onSubmit={this.handleSubmit} className="form">
-              <h1>Change Password</h1>
+              <h4>Change Password</h4>
             <div className="form-place">
               <label>Old Password</label>
               <input
@@ -86,6 +87,7 @@ class changePassword extends React.Component{
             <button type="submit" onClick={this.handleSubmit}>Change Password</button>
             </div>
           </form>
+          </div>
         );
       }
 }

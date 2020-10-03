@@ -199,24 +199,28 @@ var Project = React.createClass({
 		var indexedProject = this.state.projects[this.state.indexToEdit];
 
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
-					<input type="text" ref="name" className="form-control" defaultValue={indexedProject.name} /><br />
-					<input type="text" ref="url" className="form-control" defaultValue={indexedProject.url}/><br />
-					<div className="input-group">
-						<input type="month" ref="startDate" className="form-control" defaultValue={indexedProject.startDate}/>
-						<span className="input-group-addon">-</span>
-						<input type="month" ref="endDate" className="form-control" defaultValue={indexedProject.endDate}/>
-					</div><br/>
-					<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" defaultValue={indexedProject.description}/><br/>
+			<div className="card-profile">
+				<div className="card-body d-flex flex-row">
+					<div className="col-md-12">
+						<div className="col-md-8">
+							<input type="text" ref="name" className="form-control" defaultValue={indexedProject.name} /><br />
+							<input type="text" ref="url" className="form-control" defaultValue={indexedProject.url}/><br />
+							<div className="input-group">
+								<input type="month" ref="startDate" className="form-control" defaultValue={indexedProject.startDate}/>
+								<span className="input-group-addon">-</span>
+								<input type="month" ref="endDate" className="form-control" defaultValue={indexedProject.endDate}/>
+							</div><br/>
+							<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" defaultValue={indexedProject.description}/><br/>
 
-					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
-							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-							<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this project</button>
+							<center>
+								<div className="btn btn-toolbar">
+									<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+									<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
+									<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this project</button>
+								</div>
+							</center><br/>
 						</div>
-					</center><br/>
+					</div>
 				</div>
 			</div>
 		)
@@ -264,10 +268,12 @@ var Project = React.createClass({
 		}
 
 		return (
-			<div>
-				{this.projectHeading()}
-				{show}
-				<hr></hr>
+			<div className="card-profile">
+				<div className="card-body d-flex flex-row">
+					{this.projectHeading()}
+					{show}
+					<hr></hr>
+				</div>
 			</div>
 		)
 	},

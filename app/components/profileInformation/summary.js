@@ -104,8 +104,10 @@ var Summary = React.createClass({
 		}
 
 		return (
-			<div>
+			<div className ="card-profile">
+				
 				{partToShow}
+			
 			</div>
 
 		);

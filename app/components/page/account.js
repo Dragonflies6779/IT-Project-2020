@@ -7,9 +7,8 @@ const Upload = require('../uploadFile/pdfUpload.js');
 const Account = require('../updateProfile/accountDetail.js');
 const Social = require('../updateProfile/socialMedia.js');
 const Password = require('../updateProfile/changePassword.js');
-// import { Card, Icon, Image } from 'semantic-ui-react';
 
-var Home = React.createClass({
+var account = React.createClass({
 
     render: function(){
 
@@ -21,21 +20,15 @@ var Home = React.createClass({
                         <button>Search</button> */}
 
                         <div className="card">
-                            {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> */}
                             <div className="card-body">
-                                <h3 className="card-title">Welcome!</h3>
-                                <hr/>
-                                <h5 className="card-text">Hi there, It's good to see you. Click the button below to help you get started on your portfolio.</h5>
+                                <h5 className="card-title">Welcome!</h5>
+                                <p className="card-text">Hi there, It's good to see you. Click the button below to help you get started on your portfolio.</p>
                                     <Link to="/"> 
                                     {/* need to link this to portfolio editor */}
                                         <a href="#" className="btn btn-primary">Get Started</a>
                                     </Link>
-                                    <p className="card-text">or</p>
-                                    <Link to="/"> 
-                                    {/* need to link this to portfolio editor */}
-                                        <a href="#" className="btn btn-primary">Settings</a>
-                                    </Link>
-                            </div>
+                            </div> 
+                           
                         </div>
                     </div>
                 </div>
@@ -47,4 +40,4 @@ var Home = React.createClass({
 
 
 
-module.exports = Home;
+module.exports = account;
