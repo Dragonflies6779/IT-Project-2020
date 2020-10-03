@@ -3,33 +3,25 @@ var ReactDOM = require('react-dom');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
-const Upload = require('../uploadFile/pdfUpload.js');
 const Account = require('../updateProfile/accountDetail.js');
-const Social = require('../updateProfile/socialMedia.js');
 const Password = require('../updateProfile/changePassword.js');
 
-var account = React.createClass({
+var settings = React.createClass({
 
     render: function(){
+        var show;
+
+        show =
+            <div>
+                <Account user={firebase.auth().currentUser}/>
+                <Password user={firebase.auth().currentUser}/>
+            </div>
 
         return (
             <div>
                 <div className ="jumbotron jumbotron-fluid">
                     <div className="container">
-                        {/* <input type="text" className="searchBar"></input>
-                        <button>Search</button> */}
-
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Welcome!</h5>
-                                <p className="card-text">Hi there, It's good to see you. Click the button below to help you get started on your portfolio.</p>
-                                    <Link to="/"> 
-                                    {/* need to link this to portfolio editor */}
-                                        <a href="#" className="btn btn-primary">Get Started</a>
-                                    </Link>
-                            </div> 
-                           
-                        </div>
+                            {show}
                     </div>
                 </div>
             </div>
@@ -40,4 +32,4 @@ var account = React.createClass({
 
 
 
-module.exports = account;
+module.exports = settings;

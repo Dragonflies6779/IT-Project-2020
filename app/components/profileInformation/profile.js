@@ -71,11 +71,7 @@ var Profile = React.createClass({
 				<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Social user={firebase.auth().currentUser}/>
 				<Upload user={firebase.auth().currentUser}/>
-				<Account user={firebase.auth().currentUser}/>
-				<Password user={firebase.auth().currentUser}/>
 			</div>
-
-				
 				
 		return <div className="jumbotron">
 					<h1>{this.state.user_name}</h1>
@@ -89,19 +85,8 @@ var Profile = React.createClass({
 					</div> */}
 					{show}
 				</div>
-
 	},
 });
 
 module.exports = Profile;
 
-					// <Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					// <Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					// <Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					// <Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					// <Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					// <Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-                    // <Social user={firebase.auth().currentUser}/>
-					// <Upload user={firebase.auth().currentUser}/>
-					// <Account user={firebase.auth().currentUser}/>
-                    // <Password user={firebase.auth().currentUser}/>
