@@ -6,11 +6,6 @@
   "post":{
     ".indexOn": "user_id"
   },
-  "connections":{
-      "$userid": {
-          ".indexOn": "status"
-      }
-  },
   "users":{
       ".indexOn": ["last"]
   }
