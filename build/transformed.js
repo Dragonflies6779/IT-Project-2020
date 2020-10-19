@@ -29830,7 +29830,7 @@
 			React.createElement(Route, { path: '/settings', component: Account }),
 			React.createElement(Route, { path: '/uploadImage', component: UploadImage }),
 			React.createElement(Route, { path: 'results/:name', component: SearchResults, onEnter: requireAuth }),
-			React.createElement(Route, { path: 'advanced', component: SearchFunc, onEnter: requireAuth })
+			React.createElement(Route, { path: 'search', component: SearchFunc, onEnter: requireAuth })
 		)
 	);
 
