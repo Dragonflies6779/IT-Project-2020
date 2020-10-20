@@ -63,7 +63,7 @@ var Summary = React.createClass({
 		this.setState({editing: false});
 	},
 
-	defaultSummary: function(){
+	defaultComponent: function(){
 		var editButton;
 		if(this.props.isCurrentUser){
 			editButton = <button className="btn btn-default" onClick={this.handleClickEdit}>Edit</button>;
@@ -80,7 +80,7 @@ var Summary = React.createClass({
 		);
 	},
 
-	editingSummary: function(){
+	editComponent: function(){
 		return(
 			<div>
 				<h4>About</h4>
@@ -98,16 +98,16 @@ var Summary = React.createClass({
 	render: function(){
 		var partToShow;
 		if(this.state.editing){
-			partToShow = this.editingSummary();
+			partToShow = this.editComponent();
 		}else{
-			partToShow = this.defaultSummary();
+			partToShow = this.defaultComponent();
 		}
 
 		return (
 			<div className ="card-profile">
-				
+
 				{partToShow}
-			
+
 			</div>
 
 		);

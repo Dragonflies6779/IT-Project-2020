@@ -9,8 +9,8 @@ var Project = React.createClass({
 	},
 
 	componentWillMount: function(){
-        this.projectRef = firebase.database().ref().child('user-project/'+this.props.pageID);
-        this.projectRef.on("child_added", snap => {
+        this.classRef = firebase.database().ref().child('user-project/'+this.props.pageID);
+        this.classRef.on("child_added", snap => {
         	var project = snap.val();
 			if(project){
 				project.key = snap.ref.key;
@@ -19,8 +19,8 @@ var Project = React.createClass({
 			}
         });
 
-        this.projectRefChanged = firebase.database().ref().child('user-project/'+this.props.pageID);
-        this.projectRefChanged.on("child_changed", snap => {
+        this.classRefChanged = firebase.database().ref().child('user-project/'+this.props.pageID);
+        this.classRefChanged.on("child_changed", snap => {
         	var project = snap.val();
 			if(project){
 				project.key = snap.ref.key;
@@ -37,8 +37,8 @@ var Project = React.createClass({
 			}
         });
 
-        this.projectRefRemoved = firebase.database().ref().child('user-project/'+this.props.pageID);
-        this.projectRefRemoved.on("child_removed", snap => {
+        this.classRefRemoved = firebase.database().ref().child('user-project/'+this.props.pageID);
+        this.classRefRemoved.on("child_removed", snap => {
         	var project = snap.val();
 			if(project){
 				project.key = snap.ref.key;
@@ -58,13 +58,13 @@ var Project = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 		if(nextProps.pageID != this.state.id){
-			this.projectRef.off(); //turn off the projectRef in compWillMount-listen only from one.
-			this.projectRefChanged.off();
-			this.projectRefRemoved.off();
+			this.classRef.off(); //turn off the classRef in compWillMount-listen only from one.
+			this.classRefChanged.off();
+			this.classRefRemoved.off();
 			this.setState({projects: []});
 
-			this.projectRef = firebase.database().ref().child('user-project/'+ nextProps.pageID);
-	        this.projectRef.on("child_added", snap => {
+			this.classRef = firebase.database().ref().child('user-project/'+ nextProps.pageID);
+	        this.classRef.on("child_added", snap => {
 	        	var project = snap.val();
 				if(project){
 					project.key = snap.ref.key;
@@ -73,8 +73,8 @@ var Project = React.createClass({
 				}
 	        });
 
-	        this.projectRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
-	        this.projectRefChanged.on("child_changed", snap => {
+	        this.classRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
+	        this.classRefChanged.on("child_changed", snap => {
 	        	var project = snap.val();
 				if(project){
 					project.key = snap.ref.key;
@@ -90,8 +90,8 @@ var Project = React.createClass({
 				}
 	        });
 
-	        this.projectRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
-	        this.projectRefRemoved.on("child_removed", snap => {
+	        this.classRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
+	        this.classRefRemoved.on("child_removed", snap => {
 	        	var project = snap.val();
 				if(project){
 					project.key = snap.ref.key;
@@ -152,8 +152,8 @@ var Project = React.createClass({
 	},
 
 	handleRemoveExisting: function(){
-		var projectRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
-		projectRef.remove();
+		var classRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
+		classRef.remove();
 
 		this.setState({editing: false});
 		this.setState({adding: false});
@@ -172,7 +172,7 @@ var Project = React.createClass({
 		}
 	},
 
-	addingProject: function(){
+	addComponent: function(){
 		return(
 			<div className="col-md-12">
 				<div className="col-md-8">
@@ -195,7 +195,7 @@ var Project = React.createClass({
 		)
 	},
 
-	editingProject: function(){
+	editComponent: function(){
 		var indexedProject = this.state.projects[this.state.indexToEdit];
 
 		return(
@@ -226,7 +226,7 @@ var Project = React.createClass({
 		)
 	},
 
-	defaultProject: function(){
+	defaultComponent: function(){
 		if(this.props.isCurrentUser){
 			return(
 				<div>
@@ -260,11 +260,11 @@ var Project = React.createClass({
 		var show;
 
 		if(this.state.adding){
-			show = this.addingProject();
+			show = this.addComponent();
 		}else if(this.state.editing){
-			show = this.editingProject();
+			show = this.editComponent();
 		}else{
-			show = this.defaultProject();
+			show = this.defaultComponent();
 		}
 
 		return (
@@ -279,9 +279,9 @@ var Project = React.createClass({
 	},
 
 	componentWillUnmount: function(){
-		this.projectRef.off();
-		this.projectRefChanged.off();
-		this.projectRefRemoved.off();
+		this.classRef.off();
+		this.classRefChanged.off();
+		this.classRefRemoved.off();
 	},
 });
 

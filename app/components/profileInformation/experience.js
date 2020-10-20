@@ -1,3 +1,7 @@
+//inspired by https://reactjs.org/docs/forms.html and -
+//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+//education and projects are essentially the same ie. the inputs and dropdowns
+//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -9,8 +13,8 @@ var Experience = React.createClass({
 	},
 
 	componentWillMount: function(){
-        this.experienceRef = firebase.database().ref().child('user-experience/'+this.props.pageID);
-        this.experienceRef.on("child_added", snap => {
+        this.classRef = firebase.database().ref().child('user-experience/'+this.props.pageID);
+        this.classRef.on("child_added", snap => {
         	var experience = snap.val();
 			if(experience){
 				experience.key = snap.ref.key;
@@ -19,8 +23,8 @@ var Experience = React.createClass({
 			}
         });
 
-        this.experienceRefChanged = firebase.database().ref().child('user-experience/'+this.props.pageID);
-        this.experienceRefChanged.on("child_changed", snap => {
+        this.classRefChanged = firebase.database().ref().child('user-experience/'+this.props.pageID);
+        this.classRefChanged.on("child_changed", snap => {
         	var experience = snap.val();
 			if(experience){
 				experience.key = snap.ref.key;
@@ -37,8 +41,8 @@ var Experience = React.createClass({
 			}
         });
 
-        this.experienceRefRemoved = firebase.database().ref().child('user-experience/'+this.props.pageID);
-        this.experienceRefRemoved.on("child_removed", snap => {
+        this.classRefRemoved = firebase.database().ref().child('user-experience/'+this.props.pageID);
+        this.classRefRemoved.on("child_removed", snap => {
         	var experience = snap.val();
 			if(experience){
 				experience.key = snap.ref.key;
@@ -58,13 +62,13 @@ var Experience = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 		if(nextProps.pageID != this.state.id){
-			this.experienceRef.off(); //turn off the experienceRef in compWillMount-listen only from one.
-			this.experienceRefChanged.off();
-			this.experienceRefRemoved.off();
+			this.classRef.off(); //turn off the classRef in compWillMount-listen only from one.
+			this.classRefChanged.off();
+			this.classRefRemoved.off();
 			this.setState({experiences: []});
 
-			this.experienceRef = firebase.database().ref().child('user-experience/'+ nextProps.pageID);
-	        this.experienceRef.on("child_added", snap => {
+			this.classRef = firebase.database().ref().child('user-experience/'+ nextProps.pageID);
+	        this.classRef.on("child_added", snap => {
 	        	var experience = snap.val();
 				if(experience){
 					experience.key = snap.ref.key;
@@ -73,8 +77,8 @@ var Experience = React.createClass({
 				}
 	        });
 
-	        this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-	        this.experienceRefChanged.on("child_changed", snap => {
+	        this.classRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+	        this.classRefChanged.on("child_changed", snap => {
 	        	var experience = snap.val();
 				if(experience){
 					experience.key = snap.ref.key;
@@ -91,8 +95,8 @@ var Experience = React.createClass({
 				}
 	        });
 
-	        this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-	        this.experienceRefChanged.on("child_removed", snap => {
+	        this.classRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+	        this.classRefChanged.on("child_removed", snap => {
 	        	var experience = snap.val();
 				if(experience){
 					experience.key = snap.ref.key;
@@ -144,8 +148,8 @@ var Experience = React.createClass({
 	},
 
 	handleRemoveExisting: function(){
-		var experienceRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
-		experienceRef.remove();
+		var classRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
+		classRef.remove();
 
 		this.setState({editing: false});
 		this.setState({adding: false});
@@ -164,7 +168,7 @@ var Experience = React.createClass({
 		}
 	},
 
-	addingExperience: function(){
+	addComponent: function(){
 		return(
 			<div className="col-md-12">
 				<div className="col-md-8">
@@ -187,7 +191,7 @@ var Experience = React.createClass({
 		)
 	},
 
-	editingExperience: function(){
+	editComponent: function(){
 		var indexedExperience = this.state.experiences[this.state.indexToEdit];
 
 		return(
@@ -214,7 +218,7 @@ var Experience = React.createClass({
 		)
 	},
 
-	defaultExperience: function(){
+	defaultComponent: function(){
 		if(this.props.isCurrentUser){
 			return(
 				<div>
@@ -248,11 +252,11 @@ var Experience = React.createClass({
 		var show;
 
 		if(this.state.adding){
-			show = this.addingExperience();
+			show = this.addComponent();
 		}else if(this.state.editing){
-			show = this.editingExperience();
+			show = this.editComponent();
 		}else{
-			show = this.defaultExperience();
+			show = this.defaultComponent();
 		}
 
 		return (
@@ -268,9 +272,9 @@ var Experience = React.createClass({
 	},
 
 	componentWillUnmount: function(){
-		this.experienceRef.off();
-		this.experienceRefChanged.off();
-		this.experienceRefRemoved.off();
+		this.classRef.off();
+		this.classRefChanged.off();
+		this.classRefRemoved.off();
 	},
 });
 

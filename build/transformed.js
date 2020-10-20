@@ -30844,6 +30844,9 @@
 /* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This is the navbar component of the page.
+	//The calls the classes that will be used
+	//eg. The Logo homepage link, the users search bar, the profile page link and the signin/signout
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
@@ -30861,7 +30864,8 @@
 	            requests: []
 	        };
 	    },
-
+	    //these components check is the session user is currently logged in or not.
+	    //if logged in, change the navbar to display the profile link and the logout button
 	    componentWillMount: function () {
 	        var that = this;
 
@@ -31031,7 +31035,8 @@
 /* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	
+	//This component handles the search bar that allows the searchfunc to work
+	//This component is called from the layout class which is shown in the nav bar section
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(40);
 	var firebase = __webpack_require__(187);
@@ -31050,7 +31055,7 @@
 	    },
 
 	    handleAdvancedSearchForm: function () {
-	        hashHistory.push('/advanced');
+	        hashHistory.push('/searchfunc');
 	    },
 
 	    componentWillMount: function () {
@@ -31096,6 +31101,9 @@
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This is the profile page class that compiles all the information editing functions into one
+	// each of the "components" are essentially the same functionality but it calls-
+	// different locations for the realtime database
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
@@ -31261,7 +31269,7 @@
 			this.setState({ editing: false });
 		},
 
-		defaultSummary: function () {
+		defaultComponent: function () {
 			var editButton;
 			if (this.props.isCurrentUser) {
 				editButton = React.createElement(
@@ -31291,7 +31299,7 @@
 			);
 		},
 
-		editingSummary: function () {
+		editComponent: function () {
 			return React.createElement(
 				'div',
 				null,
@@ -31325,9 +31333,9 @@
 		render: function () {
 			var partToShow;
 			if (this.state.editing) {
-				partToShow = this.editingSummary();
+				partToShow = this.editComponent();
 			} else {
-				partToShow = this.defaultSummary();
+				partToShow = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -31344,6 +31352,10 @@
 /* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//inspired by https://reactjs.org/docs/forms.html and -
+	//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+	//education and projects are essentially the same ie. the inputs and dropdowns
+	//they are split up as they store the data under different names in the realtime database
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
@@ -31355,10 +31367,10 @@
 		getInitialState: function () {
 			return { isCurrentUser: false, editing: false, educations: [], id: this.props.pageID };
 		},
-
+		//this allows the owner of the profile page to add/edit/delete their data regarding the class
 		componentWillMount: function () {
-			this.educationRef = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRef.on("child_added", snap => {
+			this.classRef = firebase.database().ref().child('user-education/' + this.props.pageID);
+			this.classRef.on("child_added", snap => {
 				var education = snap.val();
 				if (education) {
 					education.key = snap.ref.key;
@@ -31367,8 +31379,8 @@
 				}
 			});
 
-			this.educationRefChanged = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRefChanged.on("child_changed", snap => {
+			this.classRefChanged = firebase.database().ref().child('user-education/' + this.props.pageID);
+			this.classRefChanged.on("child_changed", snap => {
 				var education = snap.val();
 				if (education) {
 					education.key = snap.ref.key;
@@ -31385,8 +31397,8 @@
 				}
 			});
 
-			this.educationRefRemoved = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRefRemoved.on("child_removed", snap => {
+			this.classRefRemoved = firebase.database().ref().child('user-education/' + this.props.pageID);
+			this.classRefRemoved.on("child_removed", snap => {
 				var education = snap.val();
 				if (education) {
 					education.key = snap.ref.key;
@@ -31406,13 +31418,13 @@
 
 		componentWillReceiveProps: function (nextProps) {
 			if (nextProps.pageID != this.state.id) {
-				this.educationRef.off();
-				this.educationRefChanged.off();
-				this.educationRefRemoved.off();
+				this.classRef.off();
+				this.classRefChanged.off();
+				this.classRefRemoved.off();
 				this.setState({ educations: [] });
 
-				this.educationRef = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRef.on("child_added", snap => {
+				this.classRef = firebase.database().ref().child('user-education/' + nextProps.pageID);
+				this.classRef.on("child_added", snap => {
 					var education = snap.val();
 					if (education) {
 						education.key = snap.ref.key;
@@ -31421,8 +31433,8 @@
 					}
 				});
 
-				this.educationRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRefChanged.on("child_changed", snap => {
+				this.classRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
+				this.classRefChanged.on("child_changed", snap => {
 					var education = snap.val();
 					if (education) {
 						education.key = snap.ref.key;
@@ -31439,8 +31451,8 @@
 					}
 				});
 
-				this.educationRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRefRemoved.on("child_removed", snap => {
+				this.classRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
+				this.classRefRemoved.on("child_removed", snap => {
 					var education = snap.val();
 					if (education) {
 						education.key = snap.ref.key;
@@ -31491,8 +31503,8 @@
 		},
 
 		handleRemoveExisting: function () {
-			var educationRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
-			educationRef.remove();
+			var classRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
+			classRef.remove();
 
 			this.setState({ editing: false });
 			this.setState({ adding: false });
@@ -31530,7 +31542,7 @@
 			}
 		},
 
-		addingEducation: function () {
+		addComponent: function () {
 			return React.createElement(
 				'div',
 				{ className: 'col-md-12' },
@@ -31576,8 +31588,8 @@
 				)
 			);
 		},
-
-		editingEducation: function () {
+		//if there is already at least one education data component
+		editComponent: function () {
 			var indexedSchool = this.state.educations[this.state.indexToEdit];
 
 			return React.createElement(
@@ -31631,7 +31643,7 @@
 			);
 		},
 
-		defaultEducation: function () {
+		defaultComponent: function () {
 			if (this.props.isCurrentUser) {
 				return React.createElement(
 					'div',
@@ -31709,11 +31721,11 @@
 			var show;
 
 			if (this.state.adding) {
-				show = this.addingEducation();
+				show = this.addComponent();
 			} else if (this.state.editing) {
-				show = this.editingEducation();
+				show = this.editComponent();
 			} else {
-				show = this.defaultEducation();
+				show = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -31731,9 +31743,9 @@
 		},
 
 		componentWillUnmount: function () {
-			this.educationRef.off();
-			this.educationRefChanged.off();
-			this.educationRefRemoved.off();
+			this.classRef.off();
+			this.classRefChanged.off();
+			this.classRefRemoved.off();
 		}
 	});
 
@@ -31756,8 +31768,8 @@
 		},
 
 		componentWillMount: function () {
-			this.projectRef = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRef.on("child_added", snap => {
+			this.classRef = firebase.database().ref().child('user-project/' + this.props.pageID);
+			this.classRef.on("child_added", snap => {
 				var project = snap.val();
 				if (project) {
 					project.key = snap.ref.key;
@@ -31766,8 +31778,8 @@
 				}
 			});
 
-			this.projectRefChanged = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRefChanged.on("child_changed", snap => {
+			this.classRefChanged = firebase.database().ref().child('user-project/' + this.props.pageID);
+			this.classRefChanged.on("child_changed", snap => {
 				var project = snap.val();
 				if (project) {
 					project.key = snap.ref.key;
@@ -31784,8 +31796,8 @@
 				}
 			});
 
-			this.projectRefRemoved = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRefRemoved.on("child_removed", snap => {
+			this.classRefRemoved = firebase.database().ref().child('user-project/' + this.props.pageID);
+			this.classRefRemoved.on("child_removed", snap => {
 				var project = snap.val();
 				if (project) {
 					project.key = snap.ref.key;
@@ -31805,13 +31817,13 @@
 
 		componentWillReceiveProps: function (nextProps) {
 			if (nextProps.pageID != this.state.id) {
-				this.projectRef.off(); //turn off the projectRef in compWillMount-listen only from one.
-				this.projectRefChanged.off();
-				this.projectRefRemoved.off();
+				this.classRef.off(); //turn off the classRef in compWillMount-listen only from one.
+				this.classRefChanged.off();
+				this.classRefRemoved.off();
 				this.setState({ projects: [] });
 
-				this.projectRef = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRef.on("child_added", snap => {
+				this.classRef = firebase.database().ref().child('user-project/' + nextProps.pageID);
+				this.classRef.on("child_added", snap => {
 					var project = snap.val();
 					if (project) {
 						project.key = snap.ref.key;
@@ -31820,8 +31832,8 @@
 					}
 				});
 
-				this.projectRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRefChanged.on("child_changed", snap => {
+				this.classRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
+				this.classRefChanged.on("child_changed", snap => {
 					var project = snap.val();
 					if (project) {
 						project.key = snap.ref.key;
@@ -31837,8 +31849,8 @@
 					}
 				});
 
-				this.projectRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRefRemoved.on("child_removed", snap => {
+				this.classRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
+				this.classRefRemoved.on("child_removed", snap => {
 					var project = snap.val();
 					if (project) {
 						project.key = snap.ref.key;
@@ -31898,8 +31910,8 @@
 		},
 
 		handleRemoveExisting: function () {
-			var projectRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
-			projectRef.remove();
+			var classRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
+			classRef.remove();
 
 			this.setState({ editing: false });
 			this.setState({ adding: false });
@@ -31931,7 +31943,7 @@
 			}
 		},
 
-		addingProject: function () {
+		addComponent: function () {
 			return React.createElement(
 				'div',
 				{ className: 'col-md-12' },
@@ -31979,7 +31991,7 @@
 			);
 		},
 
-		editingProject: function () {
+		editComponent: function () {
 			var indexedProject = this.state.projects[this.state.indexToEdit];
 
 			return React.createElement(
@@ -32042,7 +32054,7 @@
 			);
 		},
 
-		defaultProject: function () {
+		defaultComponent: function () {
 			if (this.props.isCurrentUser) {
 				return React.createElement(
 					'div',
@@ -32142,11 +32154,11 @@
 			var show;
 
 			if (this.state.adding) {
-				show = this.addingProject();
+				show = this.addComponent();
 			} else if (this.state.editing) {
-				show = this.editingProject();
+				show = this.editComponent();
 			} else {
-				show = this.defaultProject();
+				show = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -32163,9 +32175,9 @@
 		},
 
 		componentWillUnmount: function () {
-			this.projectRef.off();
-			this.projectRefChanged.off();
-			this.projectRefRemoved.off();
+			this.classRef.off();
+			this.classRefChanged.off();
+			this.classRefRemoved.off();
 		}
 	});
 
@@ -32240,7 +32252,7 @@
 			this.setState({ editing: false });
 		},
 
-		defaultInterests: function () {
+		defaultComponent: function () {
 			var editButton;
 			if (this.props.isCurrentUser) {
 				editButton = React.createElement(
@@ -32269,7 +32281,7 @@
 			);
 		},
 
-		editingInterests: function () {
+		editComponent: function () {
 			return React.createElement(
 				'div',
 				null,
@@ -32304,9 +32316,9 @@
 		render: function () {
 			var partToShow;
 			if (this.state.editing) {
-				partToShow = this.editingInterests();
+				partToShow = this.editComponent();
 			} else {
-				partToShow = this.defaultInterests();
+				partToShow = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -32341,8 +32353,8 @@
 		},
 
 		componentWillMount: function () {
-			this.experienceRef = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRef.on("child_added", snap => {
+			this.classRef = firebase.database().ref().child('user-experience/' + this.props.pageID);
+			this.classRef.on("child_added", snap => {
 				var experience = snap.val();
 				if (experience) {
 					experience.key = snap.ref.key;
@@ -32351,8 +32363,8 @@
 				}
 			});
 
-			this.experienceRefChanged = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRefChanged.on("child_changed", snap => {
+			this.classRefChanged = firebase.database().ref().child('user-experience/' + this.props.pageID);
+			this.classRefChanged.on("child_changed", snap => {
 				var experience = snap.val();
 				if (experience) {
 					experience.key = snap.ref.key;
@@ -32369,8 +32381,8 @@
 				}
 			});
 
-			this.experienceRefRemoved = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRefRemoved.on("child_removed", snap => {
+			this.classRefRemoved = firebase.database().ref().child('user-experience/' + this.props.pageID);
+			this.classRefRemoved.on("child_removed", snap => {
 				var experience = snap.val();
 				if (experience) {
 					experience.key = snap.ref.key;
@@ -32390,13 +32402,13 @@
 
 		componentWillReceiveProps: function (nextProps) {
 			if (nextProps.pageID != this.state.id) {
-				this.experienceRef.off(); //turn off the experienceRef in compWillMount-listen only from one.
-				this.experienceRefChanged.off();
-				this.experienceRefRemoved.off();
+				this.classRef.off(); //turn off the classRef in compWillMount-listen only from one.
+				this.classRefChanged.off();
+				this.classRefRemoved.off();
 				this.setState({ experiences: [] });
 
-				this.experienceRef = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRef.on("child_added", snap => {
+				this.classRef = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+				this.classRef.on("child_added", snap => {
 					var experience = snap.val();
 					if (experience) {
 						experience.key = snap.ref.key;
@@ -32405,8 +32417,8 @@
 					}
 				});
 
-				this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRefChanged.on("child_changed", snap => {
+				this.classRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+				this.classRefChanged.on("child_changed", snap => {
 					var experience = snap.val();
 					if (experience) {
 						experience.key = snap.ref.key;
@@ -32423,8 +32435,8 @@
 					}
 				});
 
-				this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRefChanged.on("child_removed", snap => {
+				this.classRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+				this.classRefChanged.on("child_removed", snap => {
 					var experience = snap.val();
 					if (experience) {
 						experience.key = snap.ref.key;
@@ -32475,8 +32487,8 @@
 		},
 
 		handleRemoveExisting: function () {
-			var experienceRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
-			experienceRef.remove();
+			var classRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
+			classRef.remove();
 
 			this.setState({ editing: false });
 			this.setState({ adding: false });
@@ -32508,7 +32520,7 @@
 			}
 		},
 
-		addingExperience: function () {
+		addComponent: function () {
 			return React.createElement(
 				'div',
 				{ className: 'col-md-12' },
@@ -32556,7 +32568,7 @@
 			);
 		},
 
-		editingExperience: function () {
+		editComponent: function () {
 			var indexedExperience = this.state.experiences[this.state.indexToEdit];
 
 			return React.createElement(
@@ -32611,7 +32623,7 @@
 			);
 		},
 
-		defaultExperience: function () {
+		defaultComponent: function () {
 			if (this.props.isCurrentUser) {
 				return React.createElement(
 					'div',
@@ -32703,11 +32715,11 @@
 			var show;
 
 			if (this.state.adding) {
-				show = this.addingExperience();
+				show = this.addComponent();
 			} else if (this.state.editing) {
-				show = this.editingExperience();
+				show = this.editComponent();
 			} else {
-				show = this.defaultExperience();
+				show = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -32724,9 +32736,9 @@
 		},
 
 		componentWillUnmount: function () {
-			this.experienceRef.off();
-			this.experienceRefChanged.off();
-			this.experienceRefRemoved.off();
+			this.classRef.off();
+			this.classRefChanged.off();
+			this.classRefRemoved.off();
 		}
 	});
 
@@ -32803,7 +32815,7 @@
 			this.setState({ editing: false });
 		},
 
-		defaultSkills: function () {
+		defaultComponent: function () {
 			var editButton;
 			if (this.props.isCurrentUser) {
 				editButton = React.createElement(
@@ -32832,7 +32844,7 @@
 			);
 		},
 
-		editingSkills: function () {
+		editComponent: function () {
 			return React.createElement(
 				'div',
 				null,
@@ -32867,9 +32879,9 @@
 		render: function () {
 			var partToShow;
 			if (this.state.editing) {
-				partToShow = this.editingSkills();
+				partToShow = this.editComponent();
 			} else {
-				partToShow = this.defaultSkills();
+				partToShow = this.defaultComponent();
 			}
 
 			return React.createElement(
@@ -33046,7 +33058,9 @@
 		componentWillUnmount: function () {
 			this.userRef.off();
 		},
-
+		//This class will  handle the results of the search component
+		//It will display the searched term, the number of results and the Results
+		//Clicking on the users will redirect to the profile page of the user
 		render: function () {
 			return React.createElement(
 				'div',
@@ -33120,7 +33134,7 @@
 				this.educationRef.off();
 			}
 		},
-
+		//The search results will return users that fulfills the search
 		render: function () {
 			return React.createElement(
 				'div',

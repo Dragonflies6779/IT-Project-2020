@@ -63,7 +63,7 @@ var Skills = React.createClass({
 		this.setState({editing: false});
 	},
 
-    defaultSkills: function(){
+    defaultComponent: function(){
 		var editButton;
 		if(this.props.isCurrentUser){
 			editButton = <button className="btn btn-default" onClick={this.handleClickEdit}>Edit</button>;
@@ -79,7 +79,7 @@ var Skills = React.createClass({
 		);
 	},
 
-    editingSkills: function(){
+    editComponent: function(){
 		return(
 			<div>
 				<h4>Skills</h4>
@@ -98,9 +98,9 @@ var Skills = React.createClass({
 	render: function(){
 		var partToShow;
 		if(this.state.editing){
-			partToShow = this.editingSkills();
+			partToShow = this.editComponent();
 		}else{
-			partToShow = this.defaultSkills();
+			partToShow = this.defaultComponent();
 		}
 
 		return (

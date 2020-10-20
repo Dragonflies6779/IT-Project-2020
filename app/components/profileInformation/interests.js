@@ -1,3 +1,6 @@
+//inspired by https://reactjs.org/docs/forms.html and -
+//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -61,7 +64,7 @@ var Interests = React.createClass({
 		this.setState({editing: false});
 	},
 
-	defaultInterests: function(){
+	defaultComponent: function(){
 		var editButton;
 		if(this.props.isCurrentUser){
 			editButton = <button className="btn btn-default" onClick={this.handleClickEdit}>Edit</button>;
@@ -77,7 +80,7 @@ var Interests = React.createClass({
 		);
 	},
 
-	editingInterests: function(){
+	editComponent: function(){
 		return(
 			<div>
 				<h4 className="profile-heading">Interests</h4>
@@ -96,9 +99,9 @@ var Interests = React.createClass({
 	render: function(){
 		var partToShow;
 		if(this.state.editing){
-			partToShow = this.editingInterests();
+			partToShow = this.editComponent();
 		}else{
-			partToShow = this.defaultInterests();
+			partToShow = this.defaultComponent();
 		}
 
 		return (
