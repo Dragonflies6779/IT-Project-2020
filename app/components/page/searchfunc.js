@@ -20,7 +20,7 @@ var SearchFunc = React.createClass({
 		  	this.educationRef.off();
 		}
 	},
-
+	//The search results will return users that fulfills the search
 	render: function(){
 		return(
 			<div>

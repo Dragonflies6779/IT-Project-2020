@@ -44,7 +44,9 @@ var Results = React.createClass({
 	componentWillUnmount: function(){
 		this.userRef.off();
 	},
-
+	//This class will  handle the results of the search component
+	//It will display the searched term, the number of results and the Results
+	//Clicking on the users will redirect to the profile page of the user
 	render: function(){
 		return(
 			<div>

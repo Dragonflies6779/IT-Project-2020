@@ -1,3 +1,6 @@
+//This is the navbar component of the page.
+//The calls the classes that will be used
+//eg. The Logo homepage link, the users search bar, the profile page link and the signin/signout
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -13,7 +16,8 @@ var Layout = React.createClass({
             requests: []
         }
     },
-
+    //these components check is the session user is currently logged in or not.
+    //if logged in, change the navbar to display the profile link and the logout button
     componentWillMount: function() {
         var that = this;
 

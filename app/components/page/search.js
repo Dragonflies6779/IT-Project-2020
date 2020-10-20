@@ -1,4 +1,5 @@
-
+//This component handles the search bar that allows the searchfunc to work
+//This component is called from the layout class which is shown in the nav bar section
 var React = require('react');
 var ReactDOM = require('react-dom');
 var firebase = require('firebase');
@@ -15,7 +16,7 @@ var Search = React.createClass({
   },
 
   handleAdvancedSearchForm: function(){
-      hashHistory.push('/advanced');
+      hashHistory.push('/searchfunc');
   },
 
   componentWillMount:function(){
