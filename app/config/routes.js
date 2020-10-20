@@ -13,7 +13,8 @@ var Profile = require('../components/profileInformation/profile.js');
 var Upload = require('../components/uploadFile/pdfUpload.js');
 var Account = require('../components/page/Account');
 var UploadImage = require('../components/upload/imagesUpload.js');
-
+var SearchResults = require('../components/page/results.js');
+var SearchFunc = require('../components/page/searchfunc.js');
 
 var requireAuth = require('./require_auth.js')
 
@@ -28,6 +29,8 @@ var routes = (
 			<Route path="/upload" component={Upload}/>
 			<Route path="/settings" component={Account}/>
 			<Route path="/uploadImage" component={UploadImage}/>
+			<Route path="results/:name" component={SearchResults} onEnter={requireAuth}/>
+			<Route path="search" component={SearchFunc} onEnter={requireAuth}/>
 		</Route>
 	</Router>
 );

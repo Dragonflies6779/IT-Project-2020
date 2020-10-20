@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "my-portfolio-system"
+  },
+  "targets": {
+    "signuptest-751e1": {
+      "hosting": {
+        "PortfolioApp": [
+          "my-portfolio-system"
+        ]
+      }
+    }
   }
 }
