@@ -1,7 +1,10 @@
 var React = require('react');
 import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
-import { screen } from '@testing-library/dom'
+import { screen ,getByLabelText,
+  getByText,
+  getByTestId,
+  queryByTestId, } from '@testing-library/dom'
 var SignUp = require('./signup.js');
 
 const setupFirstName = () => {
