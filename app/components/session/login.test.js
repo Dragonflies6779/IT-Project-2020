@@ -35,6 +35,6 @@ it('Can input values to Password', () => {
 
 it('The button is not disabled and works', () => {
   const utils = render(<Login />)
-  const input = utils.getByText('Login')
-  expect(input.closest('button').hasAttribute('dsiabled')).toBe(false)
+  const input = utils.getByRole('button')
+  expect(input.hasAttribute('disabled')).toBe(false)
 })
