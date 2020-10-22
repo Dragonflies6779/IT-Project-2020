@@ -1,6 +1,9 @@
 const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
+const passRegex = RegExp(
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
+);
 
 
 class changePassword extends React.Component{
@@ -9,13 +12,33 @@ class changePassword extends React.Component{
             
         this.state = {
             currentPassword : "",
-            newPassword : ""
+            newPassword : "",
+            passwordError : "",
+            errorMessage: "",
+            successMessage : ""
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    
+    validate(newPassword){
+      let passwordError = "";
+      
+      if(!passRegex.test(this.state.newPassword)){
+        passwordError = "Password should contain at least one: uppercase letter, one lowercase letter, and one number"
+      }
+
+      if (passwordError) {
+        this.setState({passwordError });
+        return false;
+      }
   
+      return true;
+
+    }
+
+    //authenticate the password of the user
     reauthenticate(currentPassword) {
         var user = firebase.auth().currentUser;
         var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
@@ -31,22 +54,33 @@ class changePassword extends React.Component{
         [name]: value
         });
     }
-  
+    
     handleSubmit(event) {
+      let successMessage = "";
+      let errorMessage = "";
+      const isValid = this.validate();
+
+      
         this.reauthenticate(this.state.currentPassword).then(() =>{
-            var user = firebase.auth().currentUser;
+          var user = firebase.auth().currentUser;
+
+          // changing password successful
+          if (isValid) {
             user.updatePassword(this.state.newPassword).then(() =>{
-                console.log("Password was changed")
+            //changing password UNsuccessful
             }).catch((error) => {
                 console.log("Error")
             });
+          }
+          }).catch((error) => {
+              this.setState({errorMessage : "Error! Current password incorect"});
 
-        }).catch((error) => {
-            console.log("error")
-        });
+          });
 
 
-        event.preventDefault();
+  
+
+      event.preventDefault();
     };
 
     render() {
@@ -84,6 +118,12 @@ class changePassword extends React.Component{
             </div> */}
             <div className="pass-button">
             <button type="submit" onClick={this.handleSubmit}>Change Password</button>
+            </div>
+            <div className="errorMessage">
+            {this.state.passwordError}
+            </div>
+            <div className="errorMessage">
+            {this.state.errorMessage}
             </div>
           </form>
           </div>

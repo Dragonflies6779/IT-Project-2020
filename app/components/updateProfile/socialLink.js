@@ -14,58 +14,109 @@ class socialLink extends React.Component{
         }
     }
 
-    componentDidMount(){
-        var user = firebase.auth().currentUser;
+    componentWillMount(){
+      var user = firebase.auth().currentUser;
 
-        if (user){
-            firebase
-        .database()
-        .ref('user-social/' + firebase.auth().currentUser.uid)
-        .child('instagram')
-        .once('value')
-        .then(snapshot => {
-          this.setState({
-              instagram: snapshot.val()
-          });
+      if (user){
+          firebase
+      .database()
+      .ref('user-social/' + firebase.auth().currentUser.uid)
+      .child('instagram')
+      .once('value')
+      .then(snapshot => {
+        this.setState({
+            instagram: snapshot.val()
         });
-      
+      });
+    
+      firebase
+      .database()
+      .ref('user-social/' + firebase.auth().currentUser.uid)
+      .child('linkedin')
+      .once('value')
+      .then(snapshot => {
+        this.setState({
+            linkedin: snapshot.val()
+        });
+      });
+
+
+      firebase
+      .database()
+      .ref('user-social/' + firebase.auth().currentUser.uid)
+      .child('facebook')
+      .once('value')
+      .then(snapshot => {
+        this.setState({
+            facebook: snapshot.val()
+        });
+      });
+
+      firebase
+      .database()
+      .ref('user-social/' + firebase.auth().currentUser.uid)
+      .child('mail')
+      .once('value')
+      .then(snapshot => {
+        this.setState({
+            mail: snapshot.val()
+        });
+      });
+      } 
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    var user = firebase.auth().currentUser;
+
+    if (user){
         firebase
-        .database()
-        .ref('user-social/' + firebase.auth().currentUser.uid)
-        .child('linkedin')
-        .once('value')
-        .then(snapshot => {
-          this.setState({
-              linkedin: snapshot.val()
-          });
-        });
+    .database()
+    .ref('user-social/' + firebase.auth().currentUser.uid)
+    .child('instagram')
+    .once('value')
+    .then(snapshot => {
+      this.setState({
+          instagram: snapshot.val()
+      });
+    });
+  
+    firebase
+    .database()
+    .ref('user-social/' + firebase.auth().currentUser.uid)
+    .child('linkedin')
+    .once('value')
+    .then(snapshot => {
+      this.setState({
+          linkedin: snapshot.val()
+      });
+    });
 
-        firebase
-        .database()
-        .ref('user-social/' + firebase.auth().currentUser.uid)
-        .child('facebook')
-        .once('value')
-        .then(snapshot => {
-          this.setState({
-              facebook: snapshot.val()
-          });
-        });
 
-        firebase
-        .database()
-        .ref('user-social/' + firebase.auth().currentUser.uid)
-        .child('mail')
-        .once('value')
-        .then(snapshot => {
-          this.setState({
-              mail: snapshot.val()
-          });
-        });
-        } else{
-            console.log("no user exist")
-        }
+    firebase
+    .database()
+    .ref('user-social/' + firebase.auth().currentUser.uid)
+    .child('facebook')
+    .once('value')
+    .then(snapshot => {
+      this.setState({
+          facebook: snapshot.val()
+      });
+    });
 
-    }
+    firebase
+    .database()
+    .ref('user-social/' + firebase.auth().currentUser.uid)
+    .child('mail')
+    .once('value')
+    .then(snapshot => {
+      this.setState({
+          mail: snapshot.val()
+      });
+    });
+    } 
+
+}
 
     render(){
         return(

@@ -165,8 +165,10 @@ input::placeholder {
   border: red solid 1px;
 }
 
-
-
+.errorMessage {
+  color: red;
+  font-size: 0.7em;
+}
 
 /*for phone screens responsive design*/
 @media screen and (max-width: 300px) {

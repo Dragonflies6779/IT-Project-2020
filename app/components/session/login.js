@@ -9,6 +9,10 @@ var LogInForm = React.createClass({
 		return{hasError: false};
 	},
 
+	validate: function(){
+
+	},
+
 	//logs the user in with firebase
 	handleLogIn: function(){
 

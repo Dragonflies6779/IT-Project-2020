@@ -2,6 +2,9 @@ var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
+const passRegex = RegExp(
+	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
+  );
 
 var SignUpForm = React.createClass({
 
@@ -21,13 +24,19 @@ var SignUpForm = React.createClass({
 		var password_confirmation = this.refs.password_confirmation.value;
 
 		if(firstName && lastName){
-			//creates the user on firebase
-			firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function(error) {
-				if(error){
-					that.setState({hasError: true});
-					that.setState({errorMsg: "Please enter a valid email address with a password of at least 6 characters."});
-				}
-			});
+			if(!passRegex.test(password)){
+				that.setState({hasError: true});
+					that.setState({errorMsg: "Password should contain 8-16 characters, and at least one: uppercase letter, one lowercase letter, and one number."});
+			}
+			else{
+				//creates the user on firebase
+				firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function(error) {
+					if(error){
+						that.setState({hasError: true});
+						that.setState({errorMsg: "Please enter a valid email address with a password of at least 8 characters."});
+					}
+				});
+			}
 		}else{
 			that.setState({hasError: true});
 			that.setState({errorMsg: "First or last name field cannot be empty."})

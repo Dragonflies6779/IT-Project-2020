@@ -14,7 +14,7 @@ class accountDetail extends React.Component{
     }
 
       
-    componentDidMount(){
+    componentWillMount(){
         var user = firebase.auth().currentUser;
 
         if (user){
@@ -56,6 +56,46 @@ class accountDetail extends React.Component{
 
     }
 
+    componentWillReceiveProps(nextProps){
+        var user = firebase.auth().currentUser;
+
+        if (user){
+            firebase
+        .database()
+        .ref('users/' + firebase.auth().currentUser.uid)
+        .child('first')
+        .once('value')
+        .then(snapshot => {
+          this.setState({
+              firstname: snapshot.val()
+          });
+        });
+      
+        firebase
+        .database()
+        .ref('users/' + firebase.auth().currentUser.uid)
+        .child('last')
+        .once('value')
+        .then(snapshot => {
+          this.setState({
+              lastname: snapshot.val()
+          });
+        });
+
+        firebase
+        .database()
+        .ref('users/' + firebase.auth().currentUser.uid)
+        .child('email')
+        .once('value')
+        .then(snapshot => {
+          this.setState({
+              email: snapshot.val()
+          });
+        });
+        } else{
+            
+        }
+    }
 
 
     render() {
