@@ -7,35 +7,34 @@ import { screen ,getByLabelText,
   queryByTestId, } from '@testing-library/dom'
 var Login = require('./login.js');
 
-const setupEmail = () => {
+const setup = ( search ) => {
   const utils = render(<Login />)
-  const input = utils.getByPlaceholderText('Email Address')
+  const input = utils.getByPlaceholderText( search )
   return {
     input,
     ...utils,
   }
 }
-const setupPassword = () => {
-  const utils = render(<Login />)
-  const input = utils.getByPlaceholderText('Password')
-  return {
-    input,
-    ...utils,
-  }
-}
+
 it('renders correctly', () => {
   const tree = renderer.create(<Login/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 it('Can input values to Email', () => {
-  const { input } = setupEmail()
+  const { input } = setup('Email Address')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
 })
 
 it('Can input values to Password', () => {
-  const { input } = setupPassword()
+  const { input } = setup('Password')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
+})
+
+it('The button is not disabled and works', () => {
+  const utils = render(<Login />)
+  const input = utils.getByText('Login')
+  expect(input.closest('button').hasAttribute('dsiabled')).toBe(false)
 })
