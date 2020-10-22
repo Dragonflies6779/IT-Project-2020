@@ -41,7 +41,6 @@ var Home = React.createClass({
 
         return (
             <div>
-<<<<<<< Updated upstream
                 <div className ="jumbotron jumbotron-fluid">
                     <div className="container">
                         {/* <input type="text" className="searchBar"></input>
@@ -65,16 +64,6 @@ var Home = React.createClass({
                             </div>
                         </div>
                     </div>
-=======
-                <div className ="jumbotron"> 
-                    <h3>Welcome to My Portfolio</h3>
-                    <input type="text" className="searchBar"></input>
-                    <button>Search</button>
-                   <Account user={firebase.auth().currentUser}/>
-                   <Social user={firebase.auth().currentUser}/>
-                   <SocialLink user={firebase.auth().currentUser}/>
-                   <Password user={firebase.auth().currentUser}/>
->>>>>>> Stashed changes
                 </div>
             </div>
         );
