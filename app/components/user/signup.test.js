@@ -55,5 +55,5 @@ it('Can input values to Password Confirmation', () => {
 it('The button is not disabled and works', () => {
   const utils = render(<SignUp />)
   const input = utils.getByText('Create Account')
-  expect(input.closest('button').hasAttribute('dsiabled')).toBe(false)
+  expect(input.closest('button').hasAttribute('disabled')).toBe(false)
 })
