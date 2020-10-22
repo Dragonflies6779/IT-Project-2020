@@ -1,3 +1,6 @@
+//This is the profile page class that compiles all the information editing functions into one
+// each of the "components" are essentially the same functionality but it calls-
+// different locations for the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -61,7 +64,7 @@ var Profile = React.createClass({
 	render: function(){
 		var show;
 
-		show = 
+		show =
 			<div>
 				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
@@ -72,7 +75,7 @@ var Profile = React.createClass({
 				<Social user={firebase.auth().currentUser}/>
 				<Upload user={firebase.auth().currentUser}/>
 			</div>
-				
+
 		return <div className="jumbotron">
 					<h1>{this.state.user_name}</h1>
 					<br />
@@ -81,7 +84,7 @@ var Profile = React.createClass({
 						<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					</div>
 					<div class ="row">
-						<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>	
+						<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					</div> */}
 					{show}
 				</div>
@@ -89,4 +92,3 @@ var Profile = React.createClass({
 });
 
 module.exports = Profile;
-
