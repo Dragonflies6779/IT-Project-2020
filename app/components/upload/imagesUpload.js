@@ -50,7 +50,7 @@ class imagesUpload extends React.Component{
         onChange = {this.handleChange}
       />
       <button
-        classname = "imagesUploadButton"
+        className = "imagesUploadButton"
         onClick = {this.handleUpload}>
         Upload</button>
       </div>

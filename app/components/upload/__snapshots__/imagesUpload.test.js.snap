@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
     type="file"
   />
   <button
-    classname="imagesUploadButton"
+    className="imagesUploadButton"
     onClick={[Function]}
   >
     Upload

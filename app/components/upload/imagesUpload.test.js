@@ -18,3 +18,9 @@ it('The button is not disabled and works', () => {
   const input = utils.getAllByRole('button')
   expect(input[0].hasAttribute('disabled')).toBe(false)
 })
+
+it('Check if there a file upload input form', () => {
+  const utils = render(<Upload />)
+  const input = utils.getByRole('progressbar')
+  expect(input.value).toBe(0)
+})
