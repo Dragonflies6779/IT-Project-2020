@@ -4,44 +4,13 @@ import { render, fireEvent } from '@testing-library/react';
 import { screen ,getByLabelText,
   getByText,
   getByTestId,
-  queryByTestId, } from '@testing-library/dom'
+  queryByTestId,
+  toBeDisabled} from '@testing-library/dom'
 var SignUp = require('./signup.js');
 
-const setupFirstName = () => {
+const setup = ( search ) => {
   const utils = render(<SignUp />)
-  const input = utils.getByPlaceholderText('First Name')
-  return {
-    input,
-    ...utils,
-  }
-}
-const setupLastName = () => {
-  const utils = render(<SignUp />)
-  const input = utils.getByPlaceholderText('Last Name')
-  return {
-    input,
-    ...utils,
-  }
-}
-const setupEmail = () => {
-  const utils = render(<SignUp />)
-  const input = utils.getByPlaceholderText('Email Address')
-  return {
-    input,
-    ...utils,
-  }
-}
-const setupPassword = () => {
-  const utils = render(<SignUp />)
-  const input = utils.getByPlaceholderText('Password')
-  return {
-    input,
-    ...utils,
-  }
-}
-const setupPasswordConfirmation = () => {
-  const utils = render(<SignUp />)
-  const input = utils.getByPlaceholderText('Password Confirmation')
+  const input = utils.getByPlaceholderText( search )
   return {
     input,
     ...utils,
@@ -54,31 +23,37 @@ it('renders correctly', () => {
 });
 
 it('Can input values to First Name', () => {
-  const { input } = setupFirstName()
+  const { input } = setup('First Name')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
 })
 
 it('Can input values to Last Name', () => {
-  const { input } = setupLastName()
+  const { input } = setup('Last Name')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
 })
 
 it('Can input values to Email', () => {
-  const { input } = setupEmail()
+  const { input } = setup('Email Address')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
 })
 
 it('Can input values to Password', () => {
-  const { input } = setupPassword()
+  const { input } = setup('Password')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
 })
 
 it('Can input values to Password Confirmation', () => {
-  const { input } = setupPasswordConfirmation()
+  const { input } = setup('Password Confirmation')
   fireEvent.change(input, {target: {value : 'Abcd'} })
   expect(input.value).toBe('Abcd')
+})
+
+it('The button is not disabled and works', () => {
+  const utils = render(<SignUp />)
+  const input = utils.getByText('Create Account')
+  expect(input.closest('button').hasAttribute('dsiabled')).toBe(false)
 })
