@@ -23,8 +23,9 @@ class imagesUpload extends React.Component{
   }
   handleUpload(){
     let storage = firebase.storage();
+    var user = firebase.auth().currentUser;
     const {image} = this.state;
-    const uploadTask = storage.ref('images/${image.name').put(this.state.image);
+    const uploadTask = storage.ref(`images/${user.uid}/image`).put(this.state.image);
     uploadTask.on('state_changed',
     (snapshot) => {
       //progess function
@@ -50,7 +51,7 @@ class imagesUpload extends React.Component{
         onChange = {this.handleChange}
       />
       <button
-        classname = "imagesUploadButton"
+        className = "imagesUploadButton"
         onClick = {this.handleUpload}>
         Upload</button>
       </div>

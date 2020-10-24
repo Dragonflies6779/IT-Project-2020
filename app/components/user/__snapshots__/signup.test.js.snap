@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="Background"
+>
+  <div
+    className="WebHeader"
+  >
+    <div />
+    <div
+      className="col-md-4"
+    />
+    <div
+      className="col-md-4 margin-top-30"
+    >
+      <center>
+        <h1>
+          Sign Up
+        </h1>
+        <br />
+        <div
+          className="enter-form"
+        >
+          <input
+            className="form-control"
+            onKeyPress={[Function]}
+            placeholder="First Name"
+            type="text"
+          />
+          <br />
+          <input
+            className="form-control"
+            onKeyPress={[Function]}
+            placeholder="Last Name"
+            type="text"
+          />
+          <br />
+          <input
+            className="form-control"
+            onKeyPress={[Function]}
+            placeholder="Email Address"
+            type="email"
+          />
+          <br />
+          <input
+            className="form-control"
+            onKeyPress={[Function]}
+            placeholder="Password"
+            type="password"
+          />
+          <br />
+          <input
+            className="form-control"
+            onKeyPress={[Function]}
+            placeholder="Password Confirmation"
+            type="password"
+          />
+          <br />
+          <button
+            className="btn"
+            onClick={[Function]}
+          >
+            Create Account
+          </button>
+          <br />
+          <div
+            className="linking"
+          >
+            Have an account? 
+            <a
+              onClick={[Function]}
+              style={Object {}}
+            >
+              Login!
+            </a>
+          </div>
+        </div>
+      </center>
+    </div>
+    <div
+      className="col-md-4"
+    />
+  </div>
+</div>
+`;
