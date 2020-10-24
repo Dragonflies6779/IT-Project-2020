@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="card-profile"
+>
+  <input
+    onChange={[Function]}
+    type="file"
+  />
+  <button
+    onClick={[Function]}
+  >
+    Upload Resume
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Download Resume
+  </button>
+  <p>
+    
+  </p>
+  <p>
+    
+  </p>
+  <p />
+</div>
+`;

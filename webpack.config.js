@@ -12,7 +12,13 @@ module.exports = {
 			{
 				test:/\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				query: {
+          presets: ["@babel/preset-react","@babel/preset-env"]
+        },
+				options: {
+          presets: ["@babel/preset-react"]
+        }
 			}
 		]
 	},

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <progress
+    max="100"
+  />
+  <br />
+  <input
+    onChange={[Function]}
+    type="file"
+  />
+  <button
+    className="imagesUploadButton"
+    onClick={[Function]}
+  >
+    Upload
+  </button>
+</div>
+`;
