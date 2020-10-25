@@ -45,28 +45,34 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(40);
-	var firebase = __webpack_require__(187);
-	var Router = __webpack_require__(195).Router;
-	var Route = __webpack_require__(195).Route;
-	var Link = __webpack_require__(195).Link;
-	var hashHistory = __webpack_require__(195).hashHistory;
-	var routes = __webpack_require__(277);
-	//config to final hosting site
-	var config = {
-	   apiKey: "AIzaSyBLlvZgg2_Y9RC9mKZv2_c1mXMZvgQK5Cw",
-	   authDomain: "my-portfolio-system.firebaseapp.com",
-	   databaseURL: "https://my-portfolio-system.firebaseio.com",
-	   projectId: "my-portfolio-system",
-	   storageBucket: "gs://my-portfolio-system.appspot.com",
-	   messagingSenderId: "586112178261",
-	   appId: "1:586112178261:web:afb7cf74be000c74475cdc",
-	   measurementId: "G-QWS5FB22EG"
-	};
 
+	var ReactDOM = __webpack_require__(40);
+
+	var firebase = __webpack_require__(187);
+
+	var Router = __webpack_require__(195).Router;
+
+	var Route = __webpack_require__(195).Route;
+
+	var Link = __webpack_require__(195).Link;
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var routes = __webpack_require__(277); //config to final hosting site
+
+
+	var config = {
+	  apiKey: "AIzaSyBLlvZgg2_Y9RC9mKZv2_c1mXMZvgQK5Cw",
+	  authDomain: "my-portfolio-system.firebaseapp.com",
+	  databaseURL: "https://my-portfolio-system.firebaseio.com",
+	  projectId: "my-portfolio-system",
+	  storageBucket: "gs://my-portfolio-system.appspot.com",
+	  messagingSenderId: "586112178261",
+	  appId: "1:586112178261:web:afb7cf74be000c74475cdc",
+	  measurementId: "G-QWS5FB22EG"
+	};
 	firebase.initializeApp(config);
 	var storage = firebase.storage();
-
 	ReactDOM.render(routes, document.getElementById('app'));
 
 /***/ }),
@@ -29796,44 +29802,78 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var Router = __webpack_require__(195).Router;
+
 	var Route = __webpack_require__(195).Route;
+
 	var IndexRoute = __webpack_require__(195).IndexRoute;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
 	var SignUp = __webpack_require__(278);
+
 	var Login = __webpack_require__(279);
+
 	var Home = __webpack_require__(280);
-	var SignOut = __webpack_require__(285);
-	var Layout = __webpack_require__(286);
-	var Profile = __webpack_require__(288);
+
+	var SignOut = __webpack_require__(286);
+
+	var Layout = __webpack_require__(287);
+
+	var Profile = __webpack_require__(289);
+
 	var Upload = __webpack_require__(281);
-	var Account = __webpack_require__(295);
-	var UploadImage = __webpack_require__(296);
-	var SearchResults = __webpack_require__(297);
-	var SearchFunc = __webpack_require__(298);
 
-	var requireAuth = __webpack_require__(299);
+	var Account = __webpack_require__(296);
 
-	var routes = React.createElement(
-		Router,
-		{ history: hashHistory },
-		React.createElement(
-			Route,
-			{ path: '/', component: Layout },
-			React.createElement(IndexRoute, { component: Home, onEnter: requireAuth }),
-			React.createElement(Route, { path: 'login', component: Login }),
-			React.createElement(Route, { path: 'signup', component: SignUp }),
-			React.createElement(Route, { path: 'logout', component: SignOut }),
-			React.createElement(Route, { path: 'users/:id', component: Profile, onEnter: requireAuth }),
-			React.createElement(Route, { path: '/upload', component: Upload }),
-			React.createElement(Route, { path: '/settings', component: Account }),
-			React.createElement(Route, { path: '/uploadImage', component: UploadImage }),
-			React.createElement(Route, { path: 'results/:name', component: SearchResults, onEnter: requireAuth }),
-			React.createElement(Route, { path: 'search', component: SearchFunc, onEnter: requireAuth })
-		)
-	);
+	var UploadImage = __webpack_require__(297);
 
+	var SearchResults = __webpack_require__(298);
+
+	var SearchFunc = __webpack_require__(299);
+
+	var requireAuth = __webpack_require__(300);
+
+	var routes = /*#__PURE__*/React.createElement(Router, {
+	  history: hashHistory
+	}, /*#__PURE__*/React.createElement(Route, {
+	  path: "/",
+	  component: Layout
+	}, /*#__PURE__*/React.createElement(IndexRoute, {
+	  component: Home,
+	  onEnter: requireAuth
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "login",
+	  component: Login
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "signup",
+	  component: SignUp
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "logout",
+	  component: SignOut
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "users/:id",
+	  component: Profile,
+	  onEnter: requireAuth
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "/upload",
+	  component: Upload
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "/settings",
+	  component: Account
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "/uploadImage",
+	  component: UploadImage
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "results/:name",
+	  component: SearchResults,
+	  onEnter: requireAuth
+	}), /*#__PURE__*/React.createElement(Route, {
+	  path: "search",
+	  component: SearchFunc,
+	  onEnter: requireAuth
+	})));
 	module.exports = routes;
 
 /***/ }),
@@ -29841,198 +29881,167 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
+	var passRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/);
 	var SignUpForm = React.createClass({
-		displayName: 'SignUpForm',
+	  displayName: "SignUpForm",
+	  //initially, no submission errors
+	  getInitialState: function getInitialState() {
+	    return {
+	      hasError: false
+	    };
+	  },
+	  handleSignUp: function handleSignUp() {
+	    var that = this; //gets the data from the form fields
+
+	    var firstName = this.refs.firstName.value;
+	    var lastName = this.refs.lastName.value;
+	    var email = this.refs.email.value;
+	    var password = this.refs.password.value;
+	    var password_confirmation = this.refs.password_confirmation.value;
+
+	    if (firstName && lastName) {
+	      if (!passRegex.test(password)) {
+	        that.setState({
+	          hasError: true
+	        });
+	        that.setState({
+	          errorMsg: "Password should contain 8-16 characters, and at least one: uppercase letter, one lowercase letter, and one number."
+	        });
+	      } else {
+	        //creates the user on firebase
+	        firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil")["catch"](function (error) {
+	          if (error) {
+	            that.setState({
+	              hasError: true
+	            });
+	            that.setState({
+	              errorMsg: "Please enter a valid email address with a password of at least 6 characters."
+	            });
+	          }
+	        });
+	      }
+	    } else {
+	      that.setState({
+	        hasError: true
+	      });
+	      that.setState({
+	        errorMsg: "First or last name field cannot be empty."
+	      });
+	    } //if successfully logged in, add the user child to the database with the name and email.
 
 
-		//initially, no submission errors
-		getInitialState: function () {
-			return { hasError: false };
-		},
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      if (user) {
+	        var userData = {
+	          email: email,
+	          first: firstName,
+	          last: lastName,
+	          interests: "",
+	          skills: ""
+	        };
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set(userData); //update display name for user
 
-		handleSignUp: function () {
-			var that = this;
+	        user.updateProfile({
+	          displayName: firstName + " " + lastName
+	        });
+	        hashHistory.push("/");
+	      }
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    if (typeof this.unsubscribe == 'function') {
+	      this.unsubscribe();
+	    }
+	  },
+	  //if "Enter" was pressed, act as Sign Up was clicked
+	  handleKeyPress: function handleKeyPress(e) {
+	    if (e.key == 'Enter') {
+	      try {
+	        this.handleSignUp();
+	      } catch (e) {}
 
-			//gets the data from the form fields
-			var firstName = this.refs.firstName.value;
-			var lastName = this.refs.lastName.value;
-			var email = this.refs.email.value;
-			var password = this.refs.password.value;
-			var password_confirmation = this.refs.password_confirmation.value;
+	      ;
+	    }
+	  },
+	  //creates a div alert-danger with the error message
+	  errorMessage: function errorMessage() {
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "alert alert-danger"
+	    }, /*#__PURE__*/React.createElement("strong", null, "Error! "), this.state.errorMsg);
+	  },
+	  //creates an empty div if no error message
+	  noErrorMessage: function noErrorMessage() {
+	    return /*#__PURE__*/React.createElement("div", null);
+	  },
+	  render: function render() {
+	    //gets the appropriate error alert div depending on whether or not the form has an error
+	    var errorAlert;
 
-			if (firstName && lastName) {
-				//creates the user on firebase
-				firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function (error) {
-					if (error) {
-						that.setState({ hasError: true });
-						that.setState({ errorMsg: "Please enter a valid email address with a password of at least 6 characters." });
-					}
-				});
-			} else {
-				that.setState({ hasError: true });
-				that.setState({ errorMsg: "First or last name field cannot be empty." });
-			}
+	    if (this.state.hasError) {
+	      errorAlert = this.errorMessage();
+	    } else {
+	      errorAlert = this.noErrorMessage();
+	    }
 
-			//if successfully logged in, add the user child to the database with the name and email.
-			this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
-				if (user) {
-					var userData = {
-						email: email,
-						first: firstName,
-						last: lastName,
-						interests: "",
-						skills: ""
-					};
-
-					firebase.database().ref('users/' + firebase.auth().currentUser.uid).set(userData);
-
-					//update display name for user
-					user.updateProfile({
-						displayName: firstName + " " + lastName
-					});
-
-					hashHistory.push("/");
-				}
-			});
-		},
-
-		componentWillUnmount: function () {
-			if (typeof this.unsubscribe == 'function') {
-				this.unsubscribe();
-			}
-		},
-
-		//if "Enter" was pressed, act as Sign Up was clicked
-		handleKeyPress: function (e) {
-			if (e.key == 'Enter') {
-				try {
-					this.handleSignUp();
-				} catch (e) {};
-			}
-		},
-
-		//creates a div alert-danger with the error message
-		errorMessage: function () {
-			return React.createElement(
-				'div',
-				{ className: 'alert alert-danger' },
-				React.createElement(
-					'strong',
-					null,
-					'Error! '
-				),
-				this.state.errorMsg
-			);
-		},
-
-		//creates an empty div if no error message
-		noErrorMessage: function () {
-			return React.createElement('div', null);
-		},
-
-		render: function () {
-			//gets the appropriate error alert div depending on whether or not the form has an error
-			var errorAlert;
-			if (this.state.hasError) {
-				errorAlert = this.errorMessage();
-			} else {
-				errorAlert = this.noErrorMessage();
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'Background' },
-				React.createElement(
-					'div',
-					{ className: 'WebHeader' },
-					errorAlert,
-					React.createElement('div', { className: 'col-md-4' }),
-					React.createElement(
-						'div',
-						{ className: 'col-md-4 margin-top-30' },
-						React.createElement(
-							'center',
-							null,
-							React.createElement(
-								'h1',
-								null,
-								'Sign Up'
-							),
-							React.createElement('br', null),
-							React.createElement(
-								'div',
-								{ className: 'enter-form' },
-								React.createElement('input', {
-									type: 'text',
-									ref: 'firstName',
-									placeholder: 'First Name',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement('input', {
-									type: 'text',
-									ref: 'lastName',
-									placeholder: 'Last Name',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement('input', {
-									type: 'email',
-									ref: 'email',
-									placeholder: 'Email Address',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement('input', {
-									type: 'password',
-									ref: 'password',
-									placeholder: 'Password',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement('input', {
-									type: 'password',
-									ref: 'password_confirmation',
-									placeholder: 'Password Confirmation',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement(
-									'button',
-									{
-										onClick: this.handleSignUp,
-										className: 'btn' },
-									'Create Account'
-								),
-								React.createElement('br', null),
-								React.createElement(
-									'div',
-									{ className: 'linking' },
-									'Have an account? ',
-									React.createElement(
-										Link,
-										{ to: '/login' },
-										'Login!'
-									)
-								)
-							)
-						)
-					),
-					React.createElement('div', { className: 'col-md-4' })
-				)
-			);
-		}
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "Background"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "WebHeader"
+	    }, errorAlert, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4"
+	    }), /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4 margin-top-30"
+	    }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", null, "Sign Up"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "enter-form"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "firstName",
+	      placeholder: "First Name",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "lastName",
+	      placeholder: "Last Name",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "email",
+	      ref: "email",
+	      placeholder: "Email Address",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "password",
+	      ref: "password",
+	      placeholder: "Password",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "password",
+	      ref: "password_confirmation",
+	      placeholder: "Password Confirmation",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+	      onClick: this.handleSignUp,
+	      className: "btn"
+	    }, "Create Account"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "linking"
+	    }, "Have an account? ", /*#__PURE__*/React.createElement(Link, {
+	      to: "/login"
+	    }, "Login!"))))), /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4"
+	    })));
+	  }
 	});
-
 	module.exports = SignUpForm;
 
 /***/ }),
@@ -30040,150 +30049,110 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
 	var LogInForm = React.createClass({
-		displayName: 'LogInForm',
+	  displayName: "LogInForm",
+	  getInitialState: function getInitialState() {
+	    return {
+	      hasError: false
+	    };
+	  },
+	  //logs the user in with firebase
+	  handleLogIn: function handleLogIn() {
+	    var that = this;
+	    var email = this.refs.email.value;
+	    var password = this.refs.password.value;
+	    firebase.auth().signInWithEmailAndPassword(email, password)["catch"](function (error) {
+	      var errorCode = error.code;
+	      var errorMessage = error.message;
 
+	      if (error) {
+	        that.setState({
+	          hasError: true
+	        });
+	        that.setState({
+	          errorMsg: "Invalid email or password combination."
+	        });
+	      }
+	    }); //if success, go to page
 
-		getInitialState: function () {
-			return { hasError: false };
-		},
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      if (user) {
+	        hashHistory.push("/");
+	      } else {
+	        hashHistory.push("/login");
+	      }
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    if (typeof this.unsubscribe == 'function') {
+	      this.unsubscribe();
+	    }
+	  },
+	  //submit with enter key
+	  handleKeyPress: function handleKeyPress(e) {
+	    if (e.key == 'Enter') {
+	      this.handleLogIn();
+	    }
+	  },
+	  errorMessage: function errorMessage() {
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "alert alert-danger"
+	    }, /*#__PURE__*/React.createElement("strong", null, "Error! "), this.state.errorMsg);
+	  },
+	  noErrorMessage: function noErrorMessage() {
+	    return /*#__PURE__*/React.createElement("div", null);
+	  },
+	  render: function render() {
+	    //display errors
+	    var errorAlert;
 
-		//logs the user in with firebase
-		handleLogIn: function () {
+	    if (this.state.hasError) {
+	      errorAlert = this.errorMessage();
+	    } else {
+	      errorAlert = this.noErrorMessage();
+	    }
 
-			var that = this;
-			var email = this.refs.email.value;
-			var password = this.refs.password.value;
-
-			firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-				var errorCode = error.code;
-				var errorMessage = error.message;
-
-				if (error) {
-					that.setState({ hasError: true });
-					that.setState({ errorMsg: "Invalid email or password combination." });
-				}
-			});
-
-			//if success, go to page
-			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-				if (user) {
-					hashHistory.push("/");
-				} else {
-					hashHistory.push("/login");
-				}
-			});
-		},
-
-		componentWillUnmount: function () {
-			if (typeof this.unsubscribe == 'function') {
-				this.unsubscribe();
-			}
-		},
-
-		//submit with enter key
-		handleKeyPress: function (e) {
-			if (e.key == 'Enter') {
-				this.handleLogIn();
-			}
-		},
-
-		errorMessage: function () {
-			return React.createElement(
-				'div',
-				{ className: 'alert alert-danger' },
-				React.createElement(
-					'strong',
-					null,
-					'Error! '
-				),
-				this.state.errorMsg
-			);
-		},
-
-		noErrorMessage: function () {
-			return React.createElement('div', null);
-		},
-
-		render: function () {
-			//display errors
-			var errorAlert;
-			if (this.state.hasError) {
-				errorAlert = this.errorMessage();
-			} else {
-				errorAlert = this.noErrorMessage();
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'jumbotron jumbotron-fluid' },
-				React.createElement(
-					'div',
-					{ className: 'WebHeader' },
-					errorAlert,
-					React.createElement('div', { className: 'col-md-4' }),
-					React.createElement(
-						'div',
-						{ className: 'col-md-4 margin-top-30' },
-						React.createElement(
-							'center',
-							null,
-							React.createElement(
-								'h3',
-								null,
-								'Login'
-							),
-							React.createElement('br', null),
-							React.createElement(
-								'div',
-								{ className: 'enter-form' },
-								React.createElement('input', {
-									type: 'email',
-									ref: 'email',
-									placeholder: 'Email Address',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement('input', {
-									type: 'password',
-									ref: 'password',
-									placeholder: 'Password',
-									className: 'form-control',
-									onKeyPress: this.handleKeyPress
-								}),
-								React.createElement('br', null),
-								React.createElement(
-									'button',
-									{
-										className: 'btn',
-										onClick: this.handleLogIn },
-									'Login'
-								),
-								React.createElement('br', null),
-								React.createElement(
-									'div',
-									{ className: 'linking' },
-									'No account?',
-									React.createElement(
-										Link,
-										{ to: '/signup' },
-										'Sign Up!'
-									)
-								)
-							)
-						)
-					),
-					React.createElement('div', { className: 'col-md-4' })
-				)
-			);
-		}
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "jumbotron jumbotron-fluid"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "WebHeader"
+	    }, errorAlert, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4"
+	    }), /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4 margin-top-30"
+	    }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h3", null, "Login"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "enter-form"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "email",
+	      ref: "email",
+	      placeholder: "Email Address",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "password",
+	      ref: "password",
+	      placeholder: "Password",
+	      className: "form-control",
+	      onKeyPress: this.handleKeyPress
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+	      className: "btn",
+	      onClick: this.handleLogIn
+	    }, "Login"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "linking"
+	    }, "No account?", /*#__PURE__*/React.createElement(Link, {
+	      to: "/signup"
+	    }, "Sign Up!"))))), /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-4"
+	    })));
+	  }
 	});
-
 	module.exports = LogInForm;
 
 /***/ }),
@@ -30191,225 +30160,243 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
-	const Upload = __webpack_require__(281);
-	const Account = __webpack_require__(282);
-	const Social = __webpack_require__(283);
-	const Password = __webpack_require__(284);
+
+	var Upload = __webpack_require__(281);
+
+	var Account = __webpack_require__(282);
+
+	var Social = __webpack_require__(283);
+
+	var Password = __webpack_require__(285);
 
 	var Home = React.createClass({
-	    displayName: 'Home',
+	  displayName: "Home",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isLoggedIn: null != firebase.auth().currentUser,
+	      imgURL: "",
+	      requests: []
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
+	    var that = this;
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      _this.setState({
+	        isLoggedIn: null != user
+	      });
 
-	    getInitialState: function () {
-	        return {
-	            isLoggedIn: null != firebase.auth().currentUser,
-	            imgURL: "",
-	            requests: []
-	        };
-	    },
+	      _this.setState({
+	        name: _this.state.isLoggedIn ? user.displayName : null
+	      });
 
-	    componentWillMount: function () {
-	        var that = this;
+	      _this.setState({
+	        user_id: _this.state.isLoggedIn ? user.uid : null
+	      });
 
-	        this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-	            this.setState({ isLoggedIn: null != user });
-	            this.setState({ name: this.state.isLoggedIn ? user.displayName : null });
-	            this.setState({ user_id: this.state.isLoggedIn ? user.uid : null });
+	      if (_this.state.isLoggedIn) {
+	        _this.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
 
-	            if (this.state.isLoggedIn) {
-	                this.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
-	                this.userRef.on("value", snap => {
-	                    var user = snap.val();
-	                    this.setState({ imgURL: user.imageURL });
-	                });
-	            }
+	        _this.userRef.on("value", function (snap) {
+	          var user = snap.val();
+
+	          _this.setState({
+	            imgURL: user.imageURL
+	          });
 	        });
-	    },
-
-	    render: function () {
-
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'div',
-	                { className: 'jumbotron jumbotron-fluid' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'card' },
-	                        React.createElement(
-	                            'div',
-	                            { className: 'card-body' },
-	                            React.createElement(
-	                                'h3',
-	                                { className: 'card-title' },
-	                                'Welcome!'
-	                            ),
-	                            React.createElement('hr', null),
-	                            React.createElement(
-	                                'h5',
-	                                { className: 'card-text' },
-	                                'Hi there, It\'s good to see you. Click the button below to help you get started on your portfolio.'
-	                            ),
-	                            React.createElement(
-	                                Link,
-	                                { to: "/users/" + this.state.user_id },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'btn btn-primary' },
-	                                    'Get Started'
-	                                )
-	                            ),
-	                            React.createElement(
-	                                'p',
-	                                { className: 'card-text' },
-	                                'or'
-	                            ),
-	                            React.createElement(
-	                                Link,
-	                                { to: '/settings' },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'btn btn-primary' },
-	                                    'Settings'
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            )
-	        );
-	    }
+	      }
+	    });
+	  },
+	  render: function render() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+	      className: "jumbotron jumbotron-fluid"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "container"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body"
+	    }, /*#__PURE__*/React.createElement("h3", {
+	      className: "card-title"
+	    }, "Welcome!"), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h5", {
+	      className: "card-text"
+	    }, "Hi there, It's good to see you. Click the button below to help you get started on your portfolio."), /*#__PURE__*/React.createElement(Link, {
+	      to: "/users/" + this.state.user_id
+	    }, /*#__PURE__*/React.createElement("a", {
+	      href: "#",
+	      className: "btn btn-primary"
+	    }, "Get Started")), /*#__PURE__*/React.createElement("p", {
+	      className: "card-text"
+	    }, "or"), /*#__PURE__*/React.createElement(Link, {
+	      to: "/settings"
+	    }, /*#__PURE__*/React.createElement("a", {
+	      href: "#",
+	      className: "btn btn-primary"
+	    }, "Settings")))))));
+	  }
 	});
-
 	module.exports = Home;
 
 /***/ }),
 /* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-	class PdfUpload extends React.Component {
-	    constructor(props) {
-	        super();
-	        this.state = {
-	            file: null,
-	            fileStat: "",
-	            downloadStat: "",
-	            downloadUrl: ""
-	        };
-	        this.handlechange = this.handlechange.bind(this);
-	        this.handleUpload = this.handleUpload.bind(this);
-	        this.handleDownload = this.handleDownload.bind(this);
-	    }
-	    handleDownload(event) {
-	        var user = firebase.auth().currentUser;
-	        if (user) {
-	            // Create a reference to the file we want to download
-	            var storageRef = firebase.storage().ref();
-	            var resumeRef = storageRef.child(`resume_pdf/${user.uid}/resume`);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	            // Get the download URL
-	            const that = this;
-	            resumeRef.getDownloadURL().then(function (url) {
-	                // Or inserted into an <img> element:
-	                that.setState({
-	                    downloadUrl: url,
-	                    downloadStat: "Download success, please click the following links"
-	                });
-	            }).catch(function (error) {
-	                that.setState({
-	                    downloadStat: "Resume not found / Download error"
-	                });
-	            });
-	        } else {
-	            // No user is signed in.
-	            hashHistory.push("/login");
-	        }
-	    }
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-	    handlechange(event) {
-	        if (event.target.files[0] != null) {
-	            console.log(event.target.files[0]);
-	            this.setState({
-	                file: event.target.files[0]
-	            });
-	        }
-	    }
-	    handleUpload() {
-	        let storage = firebase.storage();
-	        console.log(this.state.file);
-	        var user = firebase.auth().currentUser;
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-	        if (user) {
-	            // User is signed in.
-	            const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
-	            uploadTask.on('state_changed', snapshot => {
-	                var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-	                this.setState({
-	                    fileStat: progress
-	                });
-	                console.log(progress);
-	            }, error => {
-	                console.log(error);
-	                this.setState({
-	                    fileStat: "Upload fail!"
-	                });
-	            }, () => {
-	                this.setState({
-	                    fileStat: "Uploaded!"
-	                });
-	            });
-	        } else {
-	            // No user is signed in.
-	            hashHistory.push("/login");
-	        }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+	var React = __webpack_require__(1);
+
+	var firebase = __webpack_require__(187);
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var PdfUpload = /*#__PURE__*/function (_React$Component) {
+	  _inherits(PdfUpload, _React$Component);
+
+	  var _super = _createSuper(PdfUpload);
+
+	  function PdfUpload(props) {
+	    var _this;
+
+	    _classCallCheck(this, PdfUpload);
+
+	    _this = _super.call(this);
+	    _this.state = {
+	      file: null,
+	      fileStat: "",
+	      downloadStat: "",
+	      downloadUrl: ""
+	    };
+	    _this.handlechange = _this.handlechange.bind(_assertThisInitialized(_this));
+	    _this.handleUpload = _this.handleUpload.bind(_assertThisInitialized(_this));
+	    _this.handleDownload = _this.handleDownload.bind(_assertThisInitialized(_this));
+	    return _this;
+	  }
+
+	  _createClass(PdfUpload, [{
+	    key: "handleDownload",
+	    value: function handleDownload(event) {
+	      var user = firebase.auth().currentUser;
+
+	      if (user) {
+	        // Create a reference to the file we want to download
+	        var storageRef = firebase.storage().ref();
+	        var resumeRef = storageRef.child("resume_pdf/".concat(user.uid, "/resume")); // Get the download URL
+
+	        var that = this;
+	        resumeRef.getDownloadURL().then(function (url) {
+	          // Or inserted into an <img> element:
+	          that.setState({
+	            downloadUrl: url,
+	            downloadStat: "Download success, please click the following links"
+	          });
+	        })["catch"](function (error) {
+	          that.setState({
+	            downloadStat: "Resume not found / Download error"
+	          });
+	        });
+	      } else {
+	        // No user is signed in.
+	        hashHistory.push("/login");
+	      }
 	    }
-	    render() {
-	        let downloadLink = React.createElement('p', null);
-	        if (this.state.downloadUrl) downloadLink = React.createElement(
-	            'a',
-	            { href: this.state.downloadUrl, target: '_blank' },
-	            'download link'
-	        );
-	        return React.createElement(
-	            'div',
-	            { className: 'card-profile' },
-	            React.createElement('input', { type: 'file', onChange: this.handlechange }),
-	            React.createElement(
-	                'button',
-	                { onClick: this.handleUpload },
-	                'Upload Resume'
-	            ),
-	            React.createElement(
-	                'button',
-	                { onClick: this.handleDownload },
-	                'Download Resume'
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.state.fileStat
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.state.downloadStat
-	            ),
-	            downloadLink
-	        );
+	  }, {
+	    key: "handlechange",
+	    value: function handlechange(event) {
+	      if (event.target.files[0] != null) {
+	        console.log(event.target.files[0]);
+	        this.setState({
+	          file: event.target.files[0]
+	        });
+	      }
 	    }
-	}
+	  }, {
+	    key: "handleUpload",
+	    value: function handleUpload() {
+	      var _this2 = this;
+
+	      var storage = firebase.storage();
+	      console.log(this.state.file);
+	      var user = firebase.auth().currentUser;
+
+	      if (user) {
+	        // User is signed in.
+	        var uploadTask = storage.ref("resume_pdf/".concat(user.uid, "/resume")).put(this.state.file);
+	        uploadTask.on('state_changed', function (snapshot) {
+	          var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+
+	          _this2.setState({
+	            fileStat: progress
+	          });
+
+	          console.log(progress);
+	        }, function (error) {
+	          console.log(error);
+
+	          _this2.setState({
+	            fileStat: "Upload fail!"
+	          });
+	        }, function () {
+	          _this2.setState({
+	            fileStat: "Uploaded!"
+	          });
+	        });
+	      } else {
+	        // No user is signed in.
+	        hashHistory.push("/login");
+	      }
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var downloadLink = /*#__PURE__*/React.createElement("p", null);
+	      if (this.state.downloadUrl) downloadLink = /*#__PURE__*/React.createElement("a", {
+	        href: this.state.downloadUrl,
+	        target: "_blank"
+	      }, "download link");
+	      return /*#__PURE__*/React.createElement("div", {
+	        className: "card-profile"
+	      }, /*#__PURE__*/React.createElement("input", {
+	        type: "file",
+	        onChange: this.handlechange
+	      }), /*#__PURE__*/React.createElement("button", {
+	        onClick: this.handleUpload
+	      }, "Upload Resume"), /*#__PURE__*/React.createElement("button", {
+	        onClick: this.handleDownload
+	      }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	    }
+	  }]);
+
+	  return PdfUpload;
+	}(React.Component);
 
 	module.exports = PdfUpload;
 
@@ -30417,100 +30404,129 @@
 /* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-	class accountDetail extends React.Component {
-	    constructor(props) {
-	        super();
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	        this.state = {
-	            firstname: "",
-	            lastname: "",
-	            email: ""
-	        };
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+	var React = __webpack_require__(1);
+
+	var firebase = __webpack_require__(187);
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var accountDetail = /*#__PURE__*/function (_React$Component) {
+	  _inherits(accountDetail, _React$Component);
+
+	  var _super = _createSuper(accountDetail);
+
+	  function accountDetail(props) {
+	    var _this;
+
+	    _classCallCheck(this, accountDetail);
+
+	    _this = _super.call(this);
+	    _this.state = {
+	      firstname: "",
+	      lastname: "",
+	      email: ""
+	    };
+	    return _this;
+	  }
+
+	  _createClass(accountDetail, [{
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
+	      var _this2 = this;
+
+	      var user = firebase.auth().currentUser;
+
+	      if (user) {
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('first').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            firstname: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('last').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            lastname: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('email').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            email: snapshot.val()
+	          });
+	        });
+	      } else {}
 	    }
+	  }, {
+	    key: "componentWillReceiveProps",
+	    value: function componentWillReceiveProps() {
+	      var _this3 = this;
 
-	    componentDidMount() {
-	        var user = firebase.auth().currentUser;
+	      var user = firebase.auth().currentUser;
 
-	        if (user) {
-	            firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('first').once('value').then(snapshot => {
-	                this.setState({
-	                    firstname: snapshot.val()
-	                });
-	            });
-
-	            firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('last').once('value').then(snapshot => {
-	                this.setState({
-	                    lastname: snapshot.val()
-	                });
-	            });
-
-	            firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('email').once('value').then(snapshot => {
-	                this.setState({
-	                    email: snapshot.val()
-	                });
-	            });
-	        } else {
-	            console.log("no user exist");
-	        }
+	      if (user) {
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('first').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            firstname: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('last').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            lastname: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('users/' + firebase.auth().currentUser.uid).child('email').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            email: snapshot.val()
+	          });
+	        });
+	      } else {}
 	    }
-
-	    render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'card-profile' },
-	            React.createElement(
-	                'form',
-	                null,
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-place' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'First Name'
-	                    ),
-	                    React.createElement('input', {
-	                        name: 'firstname',
-	                        value: this.state.firstname
-
-	                    })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-place' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Last Name'
-	                    ),
-	                    React.createElement('input', {
-	                        name: 'lastname',
-	                        value: this.state.lastname
-
-	                    })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-place' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        ' Email Address '
-	                    ),
-	                    React.createElement('input', {
-	                        name: 'email',
-	                        value: this.state.email
-
-	                    })
-	                )
-	            )
-	        );
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return /*#__PURE__*/React.createElement("div", {
+	        className: "card-profile"
+	      }, /*#__PURE__*/React.createElement("form", null, /*#__PURE__*/React.createElement("h4", null, "Account Detail"), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, "First Name"), /*#__PURE__*/React.createElement("input", {
+	        name: "firstname",
+	        value: this.state.firstname
+	      })), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, "Last Name"), /*#__PURE__*/React.createElement("input", {
+	        name: "lastname",
+	        value: this.state.lastname
+	      })), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, " Email Address "), /*#__PURE__*/React.createElement("input", {
+	        name: "email",
+	        value: this.state.email
+	      }))));
 	    }
-	}
+	  }]);
+
+	  return accountDetail;
+	}(React.Component);
 
 	module.exports = accountDetail;
 
@@ -30518,186 +30534,253 @@
 /* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-	// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-	// import {faInstagram as faIG,
-	//         faFacebook as faFB,
-	//         faLinkedin as faLI
-	//         } from '@fortawesome/free-brands-svg-icons';
-	class socialMedia extends React.Component {
-	  constructor(props) {
-	    super();
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	    this.state = {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+	var React = __webpack_require__(1);
+
+	var firebase = __webpack_require__(187);
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var mailto = __webpack_require__(284);
+
+	var socialMedia = /*#__PURE__*/function (_React$Component) {
+	  _inherits(socialMedia, _React$Component);
+
+	  var _super = _createSuper(socialMedia);
+
+	  function socialMedia(props) {
+	    var _this;
+
+	    _classCallCheck(this, socialMedia);
+
+	    _this = _super.call(this);
+	    _this.state = {
 	      instagram: "",
 	      linkedin: "",
 	      facebook: "",
-	      mail: ""
+	      mail: "",
+	      alert: ""
 	    };
-	    this.handleChange = this.handleChange.bind(this);
-	    this.handleSubmit = this.handleSubmit.bind(this);
+	    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+	    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+	    return _this;
 	  }
 
-	  componentDidMount() {
-	    var user = firebase.auth().currentUser;
+	  _createClass(socialMedia, [{
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
+	      var _this2 = this;
 
-	    if (user) {
-	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(snapshot => {
-	        this.setState({
-	          instagram: snapshot.val()
-	        });
-	      });
+	      var user = firebase.auth().currentUser;
 
-	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(snapshot => {
-	        this.setState({
-	          linkedin: snapshot.val()
+	      if (user) {
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            instagram: snapshot.val()
+	          });
 	        });
-	      });
-
-	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(snapshot => {
-	        this.setState({
-	          mail: snapshot.val()
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            linkedin: snapshot.val()
+	          });
 	        });
-	      });
-	    } else {
-	      console.log("no user exist");
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            facebook: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
+	          _this2.setState({
+	            mail: snapshot.val()
+	          });
+	        });
+	      }
 	    }
-	  }
+	  }, {
+	    key: "componentWillReceiveProps",
+	    value: function componentWillReceiveProps(nextProps) {
+	      var _this3 = this;
 
-	  handleChange(event) {
-	    const target = event.target;
-	    const value = target.type === 'checkbox' ? target.checked : target.value;
-	    const name = target.name;
+	      var user = firebase.auth().currentUser;
 
-	    this.setState({
-	      [name]: value
-	    });
-	  }
+	      if (user) {
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            instagram: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            linkedin: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            facebook: snapshot.val()
+	          });
+	        });
+	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
+	          _this3.setState({
+	            mail: snapshot.val()
+	          });
+	        });
+	      }
+	    }
+	  }, {
+	    key: "handleChange",
+	    value: function handleChange(event) {
+	      var target = event.target;
+	      var value = target.type === 'checkbox' ? target.checked : target.value;
+	      var name = target.name;
+	      this.setState(_defineProperty({}, name, value));
+	    }
+	  }, {
+	    key: "handleSubmit",
+	    value: function handleSubmit(event) {
+	      var user = firebase.auth().currentUser;
+	      var socialRef = firebase.database().ref('user-social');
+	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).set({
+	        instagram: this.state.instagram,
+	        linkedin: this.state.linkedin,
+	        facebook: this.state.facebook,
+	        mail: this.state.mail
+	      });
+	      this.setState({
+	        instagram: this.state.instagram
+	      });
+	      this.setState({
+	        linkedin: this.state.linkedin
+	      });
+	      this.setState({
+	        facebook: this.state.facebook
+	      });
+	      this.setState({
+	        mail: this.state.mail
+	      });
+	      this.setState({
+	        alert: "Change has been successfully saved"
+	      });
+	      event.preventDefault();
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var user = firebase.auth().currentUser;
 
-	  handleSubmit(event) {
-	    var user = firebase.auth().currentUser;
+	      if (user) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          className: "card-profile"
+	        }, /*#__PURE__*/React.createElement("form", {
+	          onSubmit: this.handleSubmit,
+	          className: "form"
+	        }, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, "Instagram"), /*#__PURE__*/React.createElement("input", {
+	          name: "instagram",
+	          placeholder: "https://instagram.com",
+	          value: this.state.instagram == null ? "" : this.state.instagram,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, " LinkedIn "), /*#__PURE__*/React.createElement("input", {
+	          name: "linkedin",
+	          placeholder: "https://linkedin.com",
+	          value: this.state.linkedin == null ? "" : this.state.linkedin,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, " facebook "), /*#__PURE__*/React.createElement("input", {
+	          name: "facebook",
+	          placeholder: "https://facebook.com",
+	          value: this.state.facebook == null ? "" : this.state.facebook,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, " Mail "), /*#__PURE__*/React.createElement("input", {
+	          name: "mail",
+	          placeholder: "test123@gmail.com",
+	          value: this.state.mail == null ? "" : this.state.mail,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
+	          className: "btn btn-toolbar"
+	        }, /*#__PURE__*/React.createElement("button", {
+	          className: "btn btn-primary"
+	        }, "Save"))), /*#__PURE__*/React.createElement("div", {
+	          className: "errorMessage"
+	        }, this.state.alert), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+	          href: this.state.instagram,
+	          target: "_blank"
+	        }, this.state.instagram ? /*#__PURE__*/React.createElement("img", {
+	          src: "igIcon.png",
+	          alt: "logo",
+	          height: "30px"
+	        }) : ""), /*#__PURE__*/React.createElement("a", {
+	          href: this.state.linkedin,
+	          target: "_blank"
+	        }, this.state.linkedin ? /*#__PURE__*/React.createElement("img", {
+	          src: "liIcon.png",
+	          alt: "logo",
+	          height: "30px"
+	        }) : ""), /*#__PURE__*/React.createElement("a", {
+	          href: this.state.facebook,
+	          target: "_blank"
+	        }, this.state.facebook ? /*#__PURE__*/React.createElement("img", {
+	          src: "fbIcon.png",
+	          alt: "logo",
+	          height: "30px"
+	        }) : ""), /*#__PURE__*/React.createElement("a", {
+	          href: "mailto:" + this.state.mail
+	        }, this.state.mail ? /*#__PURE__*/React.createElement("img", {
+	          src: "mailIcon.png",
+	          alt: "logo",
+	          height: "30px"
+	        }) : "")));
+	      } else {
+	        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+	          href: this.state.instagram,
+	          target: "_blank"
+	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.instagram ? /*#__PURE__*/React.createElement("img", {
+	          src: "igIcon.png",
+	          alt: "logo",
+	          height: 35
+	        }) : "")), /*#__PURE__*/React.createElement("a", {
+	          href: this.state.linkedin,
+	          target: "_blank"
+	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.linkedin ? "LinkedIn" : "")), /*#__PURE__*/React.createElement("a", {
+	          href: this.state.facebook,
+	          target: "_blank"
+	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.facebook ? "Facebook" : ""))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+	          href: "mailto:" + this.state.mail
+	        }, " Mail ")));
+	      }
+	    }
+	  }]);
 
-	    let socialRef = firebase.database().ref('user-social');
-	    firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).set({
-	      instagram: this.state.instagram,
-	      linkedin: this.state.linkedin,
-	      facebook: this.state.facebook,
-	      mail: this.state.mail
-	    });
-	    this.setState({ instagram: this.state.instagram });
-	    this.setState({ linkedin: this.state.linkedin });
-	    this.setState({ facebook: this.state.facebook });
-	    this.setState({ mail: this.state.mail });
-
-	    event.preventDefault();
-	  }
-
-	  render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'card-profile' },
-	      React.createElement(
-	        'form',
-	        { onSubmit: this.handleSubmit, className: 'form' },
-	        React.createElement(
-	          'h4',
-	          null,
-	          'Social Media'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'form-control' },
-	          React.createElement(
-	            'label',
-	            null,
-	            ' Instagram '
-	          ),
-	          React.createElement('input', {
-	            name: 'instagram',
-	            value: this.state.instagram,
-	            onChange: this.handleChange
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'form-control' },
-	          React.createElement(
-	            'label',
-	            null,
-	            ' LinkedIn '
-	          ),
-	          React.createElement('input', {
-	            name: 'linkedin',
-	            value: this.state.linkedin,
-	            onChange: this.handleChange
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'form-control' },
-	          React.createElement(
-	            'label',
-	            null,
-	            ' Facebook '
-	          ),
-	          React.createElement('input', {
-	            name: 'facebook',
-	            value: this.state.facebook,
-	            onChange: this.handleChange
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'form-control' },
-	          React.createElement(
-	            'label',
-	            null,
-	            ' Mail '
-	          ),
-	          React.createElement('input', {
-	            name: 'mail',
-	            value: this.state.mail,
-	            onChange: this.handleChange
-	          })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'btn btn-toolbar' },
-	          React.createElement(
-	            'button',
-	            { className: 'btn btn-primary' },
-	            'Save'
-	          )
-	        )
-	      )
-	    )
-
-	    /* show if the link is filled */
-	    /* <div>
-	    <a href={this.state.instagram}> 
-	    <b> <FontAwesomeIcon icon={this.state.instagram ? faIG : ""} size="2x"/>
-	    </b>
-	    </a>
-	    </div>
-	      <div>
-	    <a href={this.state.linkedin}> 
-	    <b> <FontAwesomeIcon icon={this.state.linkedin ? faLI : ""} size="2x"/>
-	    </b>
-	    </a>
-	    </div>
-	      <div>
-	    <a href={this.state.facebook}> 
-	    <b> <FontAwesomeIcon icon={this.state.facebook ? faFB : ""} size="2x"/>
-	    </b>
-	    </a>
-	    </div>  */
-
-	    ;
-	  }
-	}
+	  return socialMedia;
+	}(React.Component);
 
 	module.exports = socialMedia;
 
@@ -30705,2484 +30788,2594 @@
 /* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
+	'use strict';
 
-	class changePassword extends React.Component {
-	    constructor(props) {
-	        super();
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createMailtoLink = exports.toSearchString = undefined;
 
-	        this.state = {
-	            currentPassword: "",
-	            newPassword: ""
-	        };
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	        this.handleChange = this.handleChange.bind(this);
-	        this.handleSubmit = this.handleSubmit.bind(this);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var toSearchString = exports.toSearchString = function toSearchString() {
+	  var searchParams = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  return Object.keys(searchParams).map(function (key) {
+	    return key + '=' + encodeURIComponent(searchParams[key]);
+	  }).join('&');
+	};
+
+	var createMailtoLink = exports.createMailtoLink = function createMailtoLink(email, headers) {
+	  var link = 'mailto:' + email;
+	  if (headers) {
+	    link += '?' + toSearchString(headers);
+	  }
+	  return link;
+	};
+
+	var Mailto = function (_Component) {
+	  _inherits(Mailto, _Component);
+
+	  function Mailto() {
+	    _classCallCheck(this, Mailto);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Mailto).apply(this, arguments));
+	  }
+
+	  _createClass(Mailto, [{
+	    key: 'render',
+	    value: function render() {
+	      return this.props.obfuscate ? this.renderObfuscatedLink() : this.renderLink();
 	    }
+	  }, {
+	    key: 'renderLink',
+	    value: function renderLink() {
+	      var _props = this.props;
+	      var email = _props.email;
+	      var obfuscate = _props.obfuscate;
+	      var headers = _props.headers;
+	      var children = _props.children;
 
-	    reauthenticate(currentPassword) {
-	        var user = firebase.auth().currentUser;
-	        var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
-	        return user.reauthenticateWithCredential(cred);
+	      var others = _objectWithoutProperties(_props, ['email', 'obfuscate', 'headers', 'children']);
+
+	      return _react2.default.createElement(
+	        'a',
+	        _extends({ href: createMailtoLink(email, headers) }, others),
+	        children
+	      );
 	    }
+	  }, {
+	    key: 'renderObfuscatedLink',
+	    value: function renderObfuscatedLink() {
+	      var _props2 = this.props;
+	      var email = _props2.email;
+	      var obfuscate = _props2.obfuscate;
+	      var headers = _props2.headers;
+	      var children = _props2.children;
 
-	    handleChange(event) {
-	        const target = event.target;
-	        const value = target.type === 'checkbox' ? target.checked : target.value;
-	        const name = target.name;
+	      var others = _objectWithoutProperties(_props2, ['email', 'obfuscate', 'headers', 'children']);
 
-	        this.setState({
-	            [name]: value
-	        });
+	      return _react2.default.createElement(
+	        'a',
+	        _extends({ onClick: this.handleClick.bind(this), href: 'mailto:obfuscated' }, others),
+	        children
+	      );
 	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      event.preventDefault();
+	      var _props3 = this.props;
+	      var email = _props3.email;
+	      var headers = _props3.headers;
 
-	    handleSubmit(event) {
-	        this.reauthenticate(this.state.currentPassword).then(() => {
-	            var user = firebase.auth().currentUser;
-	            user.updatePassword(this.state.newPassword).then(() => {
-	                console.log("Password was changed");
-	            }).catch(error => {
-	                console.log("Error");
-	            });
-	        }).catch(error => {
-	            console.log("error");
-	        });
-
-	        event.preventDefault();
+	      window.location.href = createMailtoLink(email, headers);
 	    }
+	  }]);
 
-	    render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'card-profile' },
-	            React.createElement(
-	                'form',
-	                { onSubmit: this.handleSubmit, className: 'form' },
-	                React.createElement(
-	                    'h4',
-	                    null,
-	                    'Change Password'
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-place' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Old Password'
-	                    ),
-	                    React.createElement('input', {
-	                        type: 'password',
-	                        name: 'currentPassword',
-	                        value: this.state.currentPassword,
-	                        onChange: this.handleChange
-	                    })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-place' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'New Password'
-	                    ),
-	                    React.createElement('input', {
-	                        type: 'password',
-	                        name: 'newPassword',
-	                        value: this.state.newPassword,
-	                        onChange: this.handleChange
-	                    })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'pass-button' },
-	                    React.createElement(
-	                        'button',
-	                        { type: 'submit', onClick: this.handleSubmit },
-	                        'Change Password'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	}
+	  return Mailto;
+	}(_react.Component);
 
-	module.exports = changePassword;
+	Mailto.propTypes = {
+	  children: _react.PropTypes.node.isRequired,
+	  email: _react.PropTypes.string.isRequired,
+	  headers: _react.PropTypes.object,
+	  obfuscate: _react.PropTypes.bool
+	};
+
+	Mailto.defaultProps = {
+	  obfuscate: false
+	};
+
+	exports.default = Mailto;
 
 /***/ }),
 /* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Logout = React.createClass({
-		displayName: 'Logout',
+	var passRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/);
+
+	var changePassword = /*#__PURE__*/function (_React$Component) {
+	  _inherits(changePassword, _React$Component);
+
+	  var _super = _createSuper(changePassword);
+
+	  function changePassword(props) {
+	    var _this;
+
+	    _classCallCheck(this, changePassword);
+
+	    _this = _super.call(this);
+	    _this.state = {
+	      currentPassword: "",
+	      newPassword: "",
+	      confirmation: "",
+	      alert: ""
+	    };
+	    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+	    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+	    _this.validate = _this.validate.bind(_assertThisInitialized(_this));
+	    _this.reauthenticate = _this.reauthenticate.bind(_assertThisInitialized(_this));
+	    return _this;
+	  }
+
+	  _createClass(changePassword, [{
+	    key: "validate",
+	    value: function validate(newPassword) {
+	      var alert = "";
+
+	      if (this.state.confirmation !== this.state.newPassword) {
+	        alert = "Password Confirmation does not match with new password!";
+	      }
+
+	      if (!passRegex.test(this.state.newPassword)) {
+	        alert = "Password should contain at least one: uppercase letter, one lowercase letter, and one number";
+	      }
+
+	      if (alert) {
+	        this.setState({
+	          alert: alert
+	        });
+	        return false;
+	      }
+
+	      return true;
+	    }
+	  }, {
+	    key: "reauthenticate",
+	    value: function reauthenticate(currentPassword) {
+	      var user = firebase.auth().currentUser;
+	      var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
+	      return user.reauthenticateWithCredential(cred);
+	    }
+	  }, {
+	    key: "handleChange",
+	    value: function handleChange(event) {
+	      var target = event.target;
+	      var value = target.type === 'checkbox' ? target.checked : target.value;
+	      var name = target.name;
+	      this.setState(_defineProperty({}, name, value));
+	    }
+	  }, {
+	    key: "handleSubmit",
+	    value: function handleSubmit(event) {
+	      var _this2 = this;
+
+	      var alert = "";
+	      var isValid = this.validate();
+
+	      if (isValid) {
+	        this.reauthenticate(this.state.currentPassword).then(function () {
+	          var user = firebase.auth().currentUser;
+
+	          _this2.setState({
+	            alert: ""
+	          }); //change password successful
 
 
-		//sign out from firebase, reroute to login page
-		componentDidMount() {
-			firebase.auth().signOut();
-			hashHistory.push('/login');
-		},
+	          user.updatePassword(_this2.state.newPassword).then(function () {
+	            _this2.setState({
+	              alert: "Password has been successfully changed!"
+	            });
 
-		render: function () {
-			return React.createElement(
-				'p',
-				null,
-				'Logged out'
-			);
-		}
-	});
+	            _this2.setState({
+	              newPassword: ""
+	            });
 
-	module.exports = Logout;
+	            _this2.setState({
+	              currentPassword: ""
+	            });
+
+	            _this2.setState({
+	              confirmation: ""
+	            }); //change password UNsuccesful
+
+	          })["catch"](function (error) {
+	            _this2.setState({
+	              alert: "Error! Please try again!"
+	            });
+	          });
+	        })["catch"](function (error) {
+	          _this2.setState({
+	            alert: "Error! Current Password incorrect!"
+	          });
+	        });
+	      }
+
+	      event.preventDefault();
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return /*#__PURE__*/React.createElement("div", {
+	        className: "card-profile"
+	      }, /*#__PURE__*/React.createElement("form", {
+	        onSubmit: this.handleSubmit,
+	        className: "form"
+	      }, /*#__PURE__*/React.createElement("h4", null, "Change Password"), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, "Old Password"), /*#__PURE__*/React.createElement("input", {
+	        type: "password",
+	        name: "currentPassword",
+	        value: this.state.currentPassword,
+	        onChange: this.handleChange
+	      })), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, "New Password"), /*#__PURE__*/React.createElement("input", {
+	        type: "password",
+	        name: "newPassword",
+	        value: this.state.newPassword,
+	        onChange: this.handleChange
+	      })), /*#__PURE__*/React.createElement("div", {
+	        className: "form-place"
+	      }, /*#__PURE__*/React.createElement("label", null, " Confirm Password "), /*#__PURE__*/React.createElement("input", {
+	        type: "password",
+	        name: "confirmation",
+	        value: this.state.confirmation,
+	        onChange: this.handleChange
+	      })), /*#__PURE__*/React.createElement("div", {
+	        className: "pass-button"
+	      }, /*#__PURE__*/React.createElement("button", {
+	        type: "submit",
+	        onClick: this.handleSubmit
+	      }, "Change Password")), /*#__PURE__*/React.createElement("div", {
+	        className: "errorMessage"
+	      }, this.state.alert)));
+	    }
+	  }]);
+
+	  return changePassword;
+	}(React.Component);
+
+	module.exports = changePassword;
 
 /***/ }),
 /* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
-	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var Search = __webpack_require__(287);
 
-	var Layout = React.createClass({
-	    displayName: 'Layout',
-
-
-	    getInitialState: function () {
-	        return {
-	            isLoggedIn: null != firebase.auth().currentUser,
-	            imgURL: "",
-	            requests: []
-	        };
-	    },
-
-	    componentWillMount: function () {
-	        var that = this;
-
-	        this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-	            this.setState({ isLoggedIn: null != user });
-	            this.setState({ name: this.state.isLoggedIn ? user.displayName : null });
-	            this.setState({ user_id: this.state.isLoggedIn ? user.uid : null });
-
-	            if (this.state.isLoggedIn) {
-	                this.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
-	                this.userRef.on("value", snap => {
-	                    var user = snap.val();
-	                    this.setState({ imgURL: user.imageURL });
-	                });
-	            }
-	        });
-	    },
-
-	    componentWillReceiveProps: function (nextProps) {
-	        var that = this;
-	        this.unsubscribe();
-
-	        this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-	            this.setState({ isLoggedIn: null != user });
-	            this.setState({ name: this.state.isLoggedIn ? user.displayName : null });
-	            this.setState({ user_id: this.state.isLoggedIn ? user.uid : null });
-
-	            if (this.state.isLoggedIn) {
-	                this.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
-	                this.userRef.on("value", snap => {
-	                    var user = snap.val();
-	                    this.setState({ imgURL: user.imageURL });
-	                });
-	            }
-	        });
-	    },
-
-	    componentWillUnmount: function () {
-	        console.log("unmounted");
-	        this.unsubscribe();
-	    },
-
-	    render: function () {
-	        var loginOrOut;
-	        var profile;
-	        var signUp;
-	        var search;
-
-	        var navClassName;
-
-	        var div;
-
-	        var divStyle = {
-	            fontSize: '10px',
-	            textAlign: 'center',
-	            color: 'white',
-	            width: '15px',
-	            height: '15px',
-	            position: 'relative',
-	            backgroundColor: 'red',
-	            borderRadius: '5px',
-	            top: '-30px',
-	            right: '-10px',
-	            zIndex: '1'
-	        };
-
-	        if (this.state.requests.length > 0) {
-	            div = React.createElement(
-	                'div',
-	                { style: divStyle },
-	                this.state.requests.length
-	            );
-	        } else {
-	            div = null;
-	        }
-
-	        if (this.state.isLoggedIn) {
-	            loginOrOut = React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                    Link,
-	                    { to: '/logout', className: 'navbar-brand' },
-	                    'Logout'
-	                )
-	            );
-	            profile = React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                    Link,
-	                    { to: "/users/" + this.state.user_id, title: 'Profile', className: 'navbar-brand' },
-	                    React.createElement('img', { src: this.state.imgURL, className: 'img-circle', width: '20', height: '20', style: { objectFit: 'cover' } })
-	                )
-	            );
-	            signUp = null;
-	            search = React.createElement(Search, { isRecruiter: this.state.recruiter });
-	        } else {
-	            loginOrOut = React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                    Link,
-	                    { to: '/login', className: 'navbar-brand' },
-	                    'Login'
-	                )
-	            );
-	            profile = null;
-	            signUp = React.createElement(
-	                'li',
-	                null,
-	                React.createElement(
-	                    Link,
-	                    { to: '/signup', className: 'navbar-brand' },
-	                    'Sign Up'
-	                )
-	            );
-	            search = null;
-	        }
-
-	        if (this.state.recruiter == true) {
-	            navClassName = "navbar";
-	        } else {
-	            navClassName = "navbar";
-	        }
-
-	        return React.createElement(
-	            'span',
-	            null,
-	            React.createElement(
-	                'nav',
-	                { className: 'navbar' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    React.createElement(
-	                        'div',
-	                        { className: 'navbar-header' },
-	                        React.createElement(
-	                            Link,
-	                            { to: '/', className: 'navbar-brand' },
-	                            React.createElement('img', { src: 'logo.png', alt: 'logo', height: 35 })
-	                        )
-	                    ),
-	                    search,
-	                    React.createElement(
-	                        'ul',
-	                        { className: 'nav navbar-nav pull-right' },
-	                        signUp,
-	                        profile,
-	                        loginOrOut
-	                    )
-	                )
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'container' },
-	                this.props.children
-	            )
-	        );
-	    }
+	var Logout = React.createClass({
+	  displayName: "Logout",
+	  //sign out from firebase, reroute to login page
+	  componentDidMount: function componentDidMount() {
+	    firebase.auth().signOut();
+	    hashHistory.push('/login');
+	  },
+	  render: function render() {
+	    return /*#__PURE__*/React.createElement("p", null, "Logged out");
+	  }
 	});
-
-	module.exports = Layout;
+	module.exports = Logout;
 
 /***/ }),
 /* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	
+	//This is the navbar component of the page.
+	//The calls the classes that will be used
+	//eg. The Logo homepage link, the users search bar, the profile page link and the signin/signout
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Search = React.createClass({
-	    displayName: 'Search',
+	var Search = __webpack_require__(288);
 
-	    handleSearch: function (e) {
-	        e.preventDefault();
-	        if (this.refs.search.value != "") {
-	            var path = "results/" + this.refs.search.value;
-	            hashHistory.push(path);
-	        }
-	    },
+	var Layout = React.createClass({
+	  displayName: "Layout",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isLoggedIn: null != firebase.auth().currentUser,
+	      imgURL: "",
+	      requests: []
+	    };
+	  },
+	  //these components check is the session user is currently logged in or not.
+	  //if logged in, change the navbar to display the profile link and the logout button
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-	    handleAdvancedSearchForm: function () {
-	        hashHistory.push('/advanced');
-	    },
+	    var that = this;
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      _this.setState({
+	        isLoggedIn: null != user
+	      });
 
-	    componentWillMount: function () {
-	        this.setState({ isRecruiter: this.props.isRecruiter });
-	    },
+	      _this.setState({
+	        name: _this.state.isLoggedIn ? user.displayName : null
+	      });
 
-	    componentWillReceiveProps: function (nextProps) {
-	        this.setState({ isRecruiter: nextProps.isRecruiter });
-	    },
+	      _this.setState({
+	        user_id: _this.state.isLoggedIn ? user.uid : null
+	      });
 
-	    render: function () {
-	        var advancedSearch;
-	        if (this.props.isRecruiter) {
-	            advancedSearch = React.createElement(
-	                'button',
-	                { className: 'btn btn-link', onClick: this.handleAdvancedSearchForm },
-	                React.createElement(
-	                    Link,
-	                    { style: { color: "white" }, to: '#' },
-	                    'Advanced Search'
-	                )
-	            );
-	        } else {
-	            advancedSearch = null;
-	        }
+	      if (_this.state.isLoggedIn) {
+	        _this.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
 
-	        return React.createElement(
-	            'form',
-	            { className: 'navbar-form pull-left', onChange: this.handleSearch },
-	            React.createElement(
-	                'div',
-	                { className: 'form-group' },
-	                React.createElement('input', { type: 'text', className: 'form-control navbar-search', ref: 'search', placeholder: 'Search for people' })
-	            ),
-	            advancedSearch
-	        );
+	        _this.userRef.on("value", function (snap) {
+	          var user = snap.val();
+
+	          _this.setState({
+	            imgURL: user.imageURL
+	          });
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
+
+	    var that = this;
+	    this.unsubscribe();
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      _this2.setState({
+	        isLoggedIn: null != user
+	      });
+
+	      _this2.setState({
+	        name: _this2.state.isLoggedIn ? user.displayName : null
+	      });
+
+	      _this2.setState({
+	        user_id: _this2.state.isLoggedIn ? user.uid : null
+	      });
+
+	      if (_this2.state.isLoggedIn) {
+	        _this2.userRef = firebase.database().ref().child('users/' + firebase.auth().currentUser.uid);
+
+	        _this2.userRef.on("value", function (snap) {
+	          var user = snap.val();
+
+	          _this2.setState({
+	            imgURL: user.imageURL
+	          });
+	        });
+	      }
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    console.log("unmounted");
+	    this.unsubscribe();
+	  },
+	  render: function render() {
+	    var loginOrOut;
+	    var profile;
+	    var signUp;
+	    var search;
+	    var navClassName;
+	    var div;
+	    var divStyle = {
+	      fontSize: '10px',
+	      textAlign: 'center',
+	      color: 'white',
+	      width: '15px',
+	      height: '15px',
+	      position: 'relative',
+	      backgroundColor: 'red',
+	      borderRadius: '5px',
+	      top: '-30px',
+	      right: '-10px',
+	      zIndex: '1'
+	    };
+
+	    if (this.state.requests.length > 0) {
+	      div = /*#__PURE__*/React.createElement("div", {
+	        style: divStyle
+	      }, this.state.requests.length);
+	    } else {
+	      div = null;
 	    }
-	});
 
-	module.exports = Search;
+	    if (this.state.isLoggedIn) {
+	      loginOrOut = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/logout",
+	        className: "navbar-brand"
+	      }, "Logout"));
+	      profile = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/users/" + this.state.user_id,
+	        title: "Profile",
+	        className: "navbar-brand"
+	      }, /*#__PURE__*/React.createElement("img", {
+	        src: this.state.imgURL,
+	        className: "img-circle",
+	        width: "20",
+	        height: "20",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      })));
+	      signUp = null;
+	      search = /*#__PURE__*/React.createElement(Search, {
+	        isRecruiter: this.state.recruiter
+	      });
+	    } else {
+	      loginOrOut = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/login",
+	        className: "navbar-brand"
+	      }, "Login"));
+	      profile = null;
+	      signUp = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/signup",
+	        className: "navbar-brand"
+	      }, "Sign Up"));
+	      search = null;
+	    }
+
+	    if (this.state.recruiter == true) {
+	      navClassName = "navbar";
+	    } else {
+	      navClassName = "navbar";
+	    }
+
+	    return /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("nav", {
+	      className: "navbar"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "container"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "navbar-header"
+	    }, /*#__PURE__*/React.createElement(Link, {
+	      to: "/",
+	      className: "navbar-brand"
+	    }, /*#__PURE__*/React.createElement("img", {
+	      src: "logo.png",
+	      alt: "logo",
+	      height: 35
+	    }))), search, /*#__PURE__*/React.createElement("ul", {
+	      className: "nav navbar-nav pull-right"
+	    }, signUp, profile, loginOrOut))), /*#__PURE__*/React.createElement("div", {
+	      className: "container"
+	    }, this.props.children));
+	  }
+	});
+	module.exports = Layout;
 
 /***/ }),
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This component handles the search bar that allows the searchfunc to work
+	//This component is called from the layout class which is shown in the nav bar section
 	var React = __webpack_require__(1);
+
+	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
-	var Summary = __webpack_require__(289);
-	var Education = __webpack_require__(290);
-	var Projects = __webpack_require__(291);
-	var Interests = __webpack_require__(292);
-	var Experience = __webpack_require__(293);
-	var Skills = __webpack_require__(294);
-	const Upload = __webpack_require__(281);
-	const Account = __webpack_require__(282);
-	const Social = __webpack_require__(283);
-	const Password = __webpack_require__(284);
 
-	// import '/style.css';
+	var Search = React.createClass({
+	  displayName: "Search",
+	  handleSearch: function handleSearch(e) {
+	    e.preventDefault();
 
-	var Profile = React.createClass({
-		displayName: 'Profile',
+	    if (this.refs.search.value != "") {
+	      var path = "results/" + this.refs.search.value;
+	      hashHistory.push(path);
+	    }
+	  },
+	  handleAdvancedSearchForm: function handleAdvancedSearchForm() {
+	    hashHistory.push('/searchfunc');
+	  },
+	  componentWillMount: function componentWillMount() {
+	    this.setState({
+	      isRecruiter: this.props.isRecruiter
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    this.setState({
+	      isRecruiter: nextProps.isRecruiter
+	    });
+	  },
+	  render: function render() {
+	    var advancedSearch;
 
-		getInitialState: function () {
-			return { user_name: "", isCurrentUser: false, pageID: "", currentUserID: "" };
-		},
+	    if (this.props.isRecruiter) {
+	      advancedSearch = /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-link",
+	        onClick: this.handleAdvancedSearchForm
+	      }, /*#__PURE__*/React.createElement(Link, {
+	        style: {
+	          color: "white"
+	        },
+	        to: "#"
+	      }, "Advanced Search"));
+	    } else {
+	      advancedSearch = null;
+	    }
 
-		componentWillMount: function () {
-			var that = this;
-
-			this.setState({ pageID: this.props.params.id });
-
-			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-				this.setState({ isCurrentUser: user.uid == this.props.params.id });
-				this.setState({ currentUserID: user.uid });
-			});
-
-			this.userRef = firebase.database().ref().child('users/' + this.props.params.id);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				this.setState({ user_name: user.first + " " + user.last });
-			});
-		},
-
-		componentWillReceiveProps: function (nextProps) {
-			this.setState({ pageID: nextProps.params.id });
-
-			this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
-				this.setState({ isCurrentUser: user.uid == nextProps.params.id });
-				this.setState({ currentUserID: user.uid });
-			});
-
-			this.userRef = firebase.database().ref().child('users/' + nextProps.params.id);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				this.setState({ user_name: user.first + " " + user.last });
-			});
-		},
-
-		componentWillUnmount: function () {
-			this.userRef.off();
-			this.unsubscribe();
-		},
-
-		render: function () {
-			var show;
-
-			show = React.createElement(
-				'div',
-				null,
-				React.createElement(Summary, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Projects, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Experience, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Education, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Skills, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Interests, { pageID: this.state.pageID, isCurrentUser: this.state.isCurrentUser }),
-				React.createElement(Social, { user: firebase.auth().currentUser }),
-				React.createElement(Upload, { user: firebase.auth().currentUser })
-			);
-
-			return React.createElement(
-				'div',
-				{ className: 'jumbotron' },
-				React.createElement(
-					'h1',
-					null,
-					this.state.user_name
-				),
-				React.createElement('br', null),
-				React.createElement('hr', null),
-				show
-			);
-		}
+	    return /*#__PURE__*/React.createElement("form", {
+	      className: "navbar-form pull-left",
+	      onChange: this.handleSearch
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "form-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      className: "form-control navbar-search",
+	      ref: "search",
+	      placeholder: "Search for people"
+	    })), advancedSearch);
+	  }
 	});
-
-	module.exports = Profile;
+	module.exports = Search;
 
 /***/ }),
 /* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This is the profile page class that compiles all the information editing functions into one
+	// each of the "components" are essentially the same functionality but it calls-
+	// different locations for the realtime database
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Summary = React.createClass({
-		displayName: 'Summary',
+	var Summary = __webpack_require__(290);
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false };
-		},
+	var Education = __webpack_require__(291);
 
-		componentWillMount: function () {
-			this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.summary) {
-					this.setState({ summary: user.summary });
-				} else {
-					this.setState({ summary: "" });
-				}
-			});
-		},
+	var Projects = __webpack_require__(292);
 
-		componentWillReceiveProps: function (nextProps) {
-			this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.summary) {
-					this.setState({ summary: user.summary });
-				} else {
-					this.setState({ summary: "" });
-				}
-			});
-		},
+	var Interests = __webpack_require__(293);
 
-		componentWillUnmount: function () {
-			this.userRef.off();
-		},
+	var Experience = __webpack_require__(294);
 
-		handleClickEdit: function () {
-			this.setState({ editing: true });
-		},
+	var Skills = __webpack_require__(295);
 
-		handleClickSave: function () {
-			this.setState({ editing: false });
-			var newSummary = this.refs.newSummary.value;
+	var Upload = __webpack_require__(281);
 
-			this.userRef.once("value", snap => {
-				var user = snap.val();
-				var userInfo = {};
-				for (var i in user) {
-					userInfo[i] = user[i];
-				}
-				userInfo.summary = newSummary;
-				var updates = {};
-				updates['users/' + this.props.pageID] = userInfo;
-				firebase.database().ref().update(updates);
-			});
+	var Account = __webpack_require__(282);
 
-			this.setState({ summary: newSummary });
-		},
+	var Social = __webpack_require__(283);
 
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-		},
+	var Password = __webpack_require__(285); // import '/style.css';
 
-		defaultSummary: function () {
-			var editButton;
-			if (this.props.isCurrentUser) {
-				editButton = React.createElement(
-					'button',
-					{ className: 'btn btn-default', onClick: this.handleClickEdit },
-					'Edit'
-				);
-			} else {
-				editButton = React.createElement('div', null);
-			}
 
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'About ',
-					editButton
-				),
-				React.createElement(
-					'pre',
-					{ className: 'summary-pre' },
-					this.state.summary
-				),
-				React.createElement('hr', null)
-			);
-		},
+	var Profile = React.createClass({
+	  displayName: "Profile",
+	  getInitialState: function getInitialState() {
+	    return {
+	      user_name: "",
+	      isCurrentUser: false,
+	      pageID: "",
+	      currentUserID: ""
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		editingSummary: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					null,
-					'About'
-				),
-				React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'newSummary', defaultValue: this.state.summary }),
-				React.createElement(
-					'center',
-					null,
-					React.createElement(
-						'div',
-						{ className: 'btn btn-toolbar' },
-						React.createElement(
-							'button',
-							{ className: 'btn btn-primary', onClick: this.handleClickSave },
-							'Save'
-						),
-						React.createElement(
-							'button',
-							{ className: 'btn btn-default', onClick: this.handleClickCancel },
-							'Cancel'
-						)
-					)
-				)
-			);
-		},
+	    var that = this;
+	    this.setState({
+	      pageID: this.props.params.id
+	    });
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      _this.setState({
+	        isCurrentUser: user.uid == _this.props.params.id
+	      });
 
-		render: function () {
-			var partToShow;
-			if (this.state.editing) {
-				partToShow = this.editingSummary();
-			} else {
-				partToShow = this.defaultSummary();
-			}
+	      _this.setState({
+	        currentUserID: user.uid
+	      });
+	    });
+	    this.userRef = firebase.database().ref().child('users/' + this.props.params.id);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				partToShow
-			);
-		}
+	      _this.setState({
+	        user_name: user.first + " " + user.last
+	      });
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
+
+	    this.setState({
+	      pageID: nextProps.params.id
+	    });
+	    this.unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+	      _this2.setState({
+	        isCurrentUser: user.uid == nextProps.params.id
+	      });
+
+	      _this2.setState({
+	        currentUserID: user.uid
+	      });
+	    });
+	    this.userRef = firebase.database().ref().child('users/' + nextProps.params.id);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
+
+	      _this2.setState({
+	        user_name: user.first + " " + user.last
+	      });
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.userRef.off();
+	    this.unsubscribe();
+	  },
+	  render: function render() {
+	    var show;
+	    show = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Summary, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Projects, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Experience, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Education, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Skills, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Interests, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
+	    }), /*#__PURE__*/React.createElement(Social, {
+	      user: firebase.auth().currentUser
+	    }), /*#__PURE__*/React.createElement(Upload, {
+	      user: firebase.auth().currentUser
+	    }));
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "jumbotron"
+	    }, /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("hr", null), show);
+	  }
 	});
-
-	module.exports = Summary;
+	module.exports = Profile;
 
 /***/ }),
 /* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Education = React.createClass({
-		displayName: 'Education',
+	var Summary = React.createClass({
+	  displayName: "Summary",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false, educations: [], id: this.props.pageID };
-		},
+	    this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-		componentWillMount: function () {
-			this.educationRef = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRef.on("child_added", snap => {
-				var education = snap.val();
-				if (education) {
-					education.key = snap.ref.key;
-					this.state.educations.push(education);
-					this.setState({ educations: this.state.educations });
-				}
-			});
+	      if (user.summary) {
+	        _this.setState({
+	          summary: user.summary
+	        });
+	      } else {
+	        _this.setState({
+	          summary: ""
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-			this.educationRefChanged = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRefChanged.on("child_changed", snap => {
-				var education = snap.val();
-				if (education) {
-					education.key = snap.ref.key;
+	    this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-					var index;
-					for (var i = 0; i < this.state.educations.length; i++) {
-						if (this.state.educations[i].key == education.key) {
-							index = i;
-						}
-					}
+	      if (user.summary) {
+	        _this2.setState({
+	          summary: user.summary
+	        });
+	      } else {
+	        _this2.setState({
+	          summary: ""
+	        });
+	      }
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.userRef.off();
+	  },
+	  handleClickEdit: function handleClickEdit() {
+	    this.setState({
+	      editing: true
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var _this3 = this;
 
-					this.state.educations.splice(index, 1, education);
-					this.setState({ educations: this.state.educations });
-				}
-			});
+	    this.setState({
+	      editing: false
+	    });
+	    var newSummary = this.refs.newSummary.value;
+	    this.userRef.once("value", function (snap) {
+	      var user = snap.val();
+	      var userInfo = {};
 
-			this.educationRefRemoved = firebase.database().ref().child('user-education/' + this.props.pageID);
-			this.educationRefRemoved.on("child_removed", snap => {
-				var education = snap.val();
-				if (education) {
-					education.key = snap.ref.key;
+	      for (var i in user) {
+	        userInfo[i] = user[i];
+	      }
 
-					var index;
-					for (var i = 0; i < this.state.educations.length; i++) {
-						if (this.state.educations[i].key == education.key) {
-							index = i;
-						}
-					}
+	      userInfo.summary = newSummary;
+	      var updates = {};
+	      updates['users/' + _this3.props.pageID] = userInfo;
+	      firebase.database().ref().update(updates);
+	    });
+	    this.setState({
+	      summary: newSummary
+	    });
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	  },
+	  defaultSummary: function defaultSummary() {
+	    var editButton;
 
-					this.state.educations.splice(index, 1);
-					this.setState({ educations: this.state.educations });
-				}
-			});
-		},
+	    if (this.props.isCurrentUser) {
+	      editButton = /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickEdit
+	      }, "Edit");
+	    } else {
+	      editButton = /*#__PURE__*/React.createElement("div", null);
+	    }
 
-		componentWillReceiveProps: function (nextProps) {
-			if (nextProps.pageID != this.state.id) {
-				this.educationRef.off();
-				this.educationRefChanged.off();
-				this.educationRefRemoved.off();
-				this.setState({ educations: [] });
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	      className: "profile-heading"
+	    }, "About ", editButton), /*#__PURE__*/React.createElement("pre", {
+	      className: "summary-pre"
+	    }, this.state.summary), /*#__PURE__*/React.createElement("hr", null));
+	  },
+	  editingSummary: function editingSummary() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "About"), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "newSummary",
+	      defaultValue: this.state.summary
+	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))));
+	  },
+	  render: function render() {
+	    var partToShow;
 
-				this.educationRef = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRef.on("child_added", snap => {
-					var education = snap.val();
-					if (education) {
-						education.key = snap.ref.key;
-						this.state.educations.push(education);
-						this.setState({ educations: this.state.educations });
-					}
-				});
+	    if (this.state.editing) {
+	      partToShow = this.editingSummary();
+	    } else {
+	      partToShow = this.defaultSummary();
+	    }
 
-				this.educationRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRefChanged.on("child_changed", snap => {
-					var education = snap.val();
-					if (education) {
-						education.key = snap.ref.key;
-
-						var index;
-						for (var i = 0; i < this.state.educations.length; i++) {
-							if (this.state.educations[i].key == education.key) {
-								index = i;
-							}
-						}
-
-						this.state.educations.splice(index, 1, education);
-						this.setState({ educations: this.state.educations });
-					}
-				});
-
-				this.educationRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
-				this.educationRefRemoved.on("child_removed", snap => {
-					var education = snap.val();
-					if (education) {
-						education.key = snap.ref.key;
-
-						var index;
-						for (var i = 0; i < this.state.educations.length; i++) {
-							if (this.state.educations[i].key == education.key) {
-								index = i;
-							}
-						}
-
-						this.state.educations.splice(index, 1);
-						this.setState({ educations: this.state.educations });
-					}
-				});
-			}
-		},
-
-		handleClickAdd: function () {
-			this.setState({ adding: true });
-		},
-
-		handleClickEdit: function (index) {
-			this.setState({ editing: true });
-			this.setState({ indexToEdit: index });
-		},
-
-		handleClickSave: function () {
-			var educationData = {
-				school: this.refs.school.value,
-				degree: this.refs.degree.value,
-				major: this.refs.major.value,
-				startDate: this.refs.startDate.value,
-				endDate: this.refs.endDate.value
-			};
-
-			if (this.state.editing) {
-				var educationUpdate = {};
-				educationUpdate['/user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key] = educationData;
-				firebase.database().ref().update(educationUpdate);
-			} else {
-				var newEducationKey = firebase.database().ref().child('education').push().key;
-				firebase.database().ref('/user-education/' + this.props.pageID + '/' + newEducationKey).set(educationData);
-			}
-
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		handleRemoveExisting: function () {
-			var educationRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
-			educationRef.remove();
-
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		educationHeading: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'div',
-					null,
-					' ',
-					React.createElement(
-						'h4',
-						{ className: 'profile-heading' },
-						'Education ',
-						React.createElement(
-							'button',
-							{ className: 'btn btn-default', onClick: this.handleClickAdd },
-							'+'
-						)
-					),
-					' '
-				);
-			} else {
-				return React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Education'
-				);
-			}
-		},
-
-		addingEducation: function () {
-			return React.createElement(
-				'div',
-				{ className: 'col-md-12' },
-				React.createElement(
-					'div',
-					{ className: 'col-md-8' },
-					React.createElement('input', { type: 'text', ref: 'school', className: 'form-control', placeholder: 'School' }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'degree', className: 'form-control', placeholder: 'Degree' }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'major', className: 'form-control', placeholder: 'Field of Study' }),
-					React.createElement('br', null),
-					React.createElement(
-						'div',
-						{ className: 'input-group' },
-						React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control' }),
-						React.createElement(
-							'span',
-							{ className: 'input-group-addon' },
-							'-'
-						),
-						React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control' })
-					),
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'btn btn-toolbar' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary', onClick: this.handleClickSave },
-								'Save'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickCancel },
-								'Cancel'
-							)
-						)
-					),
-					React.createElement('br', null)
-				)
-			);
-		},
-
-		editingEducation: function () {
-			var indexedSchool = this.state.educations[this.state.indexToEdit];
-
-			return React.createElement(
-				'div',
-				{ className: 'col-md-12' },
-				React.createElement(
-					'div',
-					{ className: 'col-md-8' },
-					React.createElement('input', { type: 'text', ref: 'school', className: 'form-control', defaultValue: indexedSchool.school }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'degree', className: 'form-control', defaultValue: indexedSchool.degree }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'major', className: 'form-control', defaultValue: indexedSchool.major }),
-					React.createElement('br', null),
-					React.createElement(
-						'div',
-						{ className: 'input-group' },
-						React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control', defaultValue: indexedSchool.startDate }),
-						React.createElement(
-							'span',
-							{ className: 'input-group-addon' },
-							'-'
-						),
-						React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control', defaultValue: indexedSchool.endDate })
-					),
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'btn btn-toolbar' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary', onClick: this.handleClickSave },
-								'Save'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickCancel },
-								'Cancel'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-link', onClick: this.handleRemoveExisting },
-								'Remove this school'
-							)
-						)
-					),
-					React.createElement('br', null)
-				)
-			);
-		},
-
-		defaultEducation: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'div',
-					null,
-					this.state.educations.map((education, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								education.school
-							),
-							' ',
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickEdit.bind(null, index) },
-								'Edit'
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							education.degree,
-							': ',
-							education.major
-						),
-						React.createElement(
-							'h6',
-							null,
-							education.startDate,
-							' - ',
-							education.endDate
-						)
-					))
-				);
-			} else {
-				return React.createElement(
-					'div',
-					null,
-					this.state.educations.map((education, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								education.school
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							education.degree,
-							': ',
-							education.major
-						),
-						React.createElement(
-							'h6',
-							null,
-							education.startDate,
-							' - ',
-							education.endDate
-						)
-					))
-				);
-			}
-		},
-
-		render: function () {
-			var show;
-
-			if (this.state.adding) {
-				show = this.addingEducation();
-			} else if (this.state.editing) {
-				show = this.editingEducation();
-			} else {
-				show = this.defaultEducation();
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body' },
-					this.educationHeading(),
-					show,
-					React.createElement('hr', null),
-					React.createElement('hr', null)
-				)
-			);
-		},
-
-		componentWillUnmount: function () {
-			this.educationRef.off();
-			this.educationRefChanged.off();
-			this.educationRefRemoved.off();
-		}
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, partToShow);
+	  }
 	});
-
-	module.exports = Education;
+	module.exports = Summary;
 
 /***/ }),
 /* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Project = React.createClass({
-		displayName: 'Project',
+	var Education = React.createClass({
+	  displayName: "Education",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false,
+	      educations: [],
+	      id: this.props.pageID
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false, projects: [], id: this.props.pageID };
-		},
+	    this.educationRef = firebase.database().ref().child('user-education/' + this.props.pageID);
+	    this.educationRef.on("child_added", function (snap) {
+	      var education = snap.val();
 
-		componentWillMount: function () {
-			this.projectRef = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRef.on("child_added", snap => {
-				var project = snap.val();
-				if (project) {
-					project.key = snap.ref.key;
-					this.state.projects.push(project);
-					this.setState({ projects: this.state.projects });
-				}
-			});
+	      if (education) {
+	        education.key = snap.ref.key;
 
-			this.projectRefChanged = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRefChanged.on("child_changed", snap => {
-				var project = snap.val();
-				if (project) {
-					project.key = snap.ref.key;
+	        _this.state.educations.push(education);
 
-					var index;
-					for (var i = 0; i < this.state.projects.length; i++) {
-						if (this.state.projects[i].key == project.key) {
-							index = i;
-						}
-					}
+	        _this.setState({
+	          educations: _this.state.educations
+	        });
+	      }
+	    });
+	    this.educationRefChanged = firebase.database().ref().child('user-education/' + this.props.pageID);
+	    this.educationRefChanged.on("child_changed", function (snap) {
+	      var education = snap.val();
 
-					this.state.projects.splice(index, 1, project);
-					this.setState({ projects: this.state.projects });
-				}
-			});
+	      if (education) {
+	        education.key = snap.ref.key;
+	        var index;
 
-			this.projectRefRemoved = firebase.database().ref().child('user-project/' + this.props.pageID);
-			this.projectRefRemoved.on("child_removed", snap => {
-				var project = snap.val();
-				if (project) {
-					project.key = snap.ref.key;
+	        for (var i = 0; i < _this.state.educations.length; i++) {
+	          if (_this.state.educations[i].key == education.key) {
+	            index = i;
+	          }
+	        }
 
-					var index;
-					for (var i = 0; i < this.state.projects.length; i++) {
-						if (this.state.projects[i].key == project.key) {
-							index = i;
-						}
-					}
+	        _this.state.educations.splice(index, 1, education);
 
-					this.state.projects.splice(index, 1);
-					this.setState({ projects: this.state.projects });
-				}
-			});
-		},
+	        _this.setState({
+	          educations: _this.state.educations
+	        });
+	      }
+	    });
+	    this.educationRefRemoved = firebase.database().ref().child('user-education/' + this.props.pageID);
+	    this.educationRefRemoved.on("child_removed", function (snap) {
+	      var education = snap.val();
 
-		componentWillReceiveProps: function (nextProps) {
-			if (nextProps.pageID != this.state.id) {
-				this.projectRef.off(); //turn off the projectRef in compWillMount-listen only from one.
-				this.projectRefChanged.off();
-				this.projectRefRemoved.off();
-				this.setState({ projects: [] });
+	      if (education) {
+	        education.key = snap.ref.key;
+	        var index;
 
-				this.projectRef = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRef.on("child_added", snap => {
-					var project = snap.val();
-					if (project) {
-						project.key = snap.ref.key;
-						this.state.projects.push(project);
-						this.setState({ projects: this.state.projects });
-					}
-				});
+	        for (var i = 0; i < _this.state.educations.length; i++) {
+	          if (_this.state.educations[i].key == education.key) {
+	            index = i;
+	          }
+	        }
 
-				this.projectRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRefChanged.on("child_changed", snap => {
-					var project = snap.val();
-					if (project) {
-						project.key = snap.ref.key;
-						var index;
-						for (var i = 0; i < this.state.projects.length; i++) {
-							if (this.state.projects[i].key == project.key) {
-								index = i;
-							}
-						}
+	        _this.state.educations.splice(index, 1);
 
-						this.state.projects.splice(index, 1, project);
-						this.setState({ projects: this.state.projects });
-					}
-				});
+	        _this.setState({
+	          educations: _this.state.educations
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-				this.projectRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
-				this.projectRefRemoved.on("child_removed", snap => {
-					var project = snap.val();
-					if (project) {
-						project.key = snap.ref.key;
+	    if (nextProps.pageID != this.state.id) {
+	      this.educationRef.off();
+	      this.educationRefChanged.off();
+	      this.educationRefRemoved.off();
+	      this.setState({
+	        educations: []
+	      });
+	      this.educationRef = firebase.database().ref().child('user-education/' + nextProps.pageID);
+	      this.educationRef.on("child_added", function (snap) {
+	        var education = snap.val();
 
-						var index;
-						for (var i = 0; i < this.state.projects.length; i++) {
-							if (this.state.projects[i].key == project.key) {
-								index = i;
-							}
-						}
+	        if (education) {
+	          education.key = snap.ref.key;
 
-						this.state.projects.splice(index, 1);
-						this.setState({ projects: this.state.projects });
-					}
-				});
-			}
-		},
+	          _this2.state.educations.push(education);
 
-		handleClickAdd: function () {
-			this.setState({ adding: true });
-		},
+	          _this2.setState({
+	            educations: _this2.state.educations
+	          });
+	        }
+	      });
+	      this.educationRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
+	      this.educationRefChanged.on("child_changed", function (snap) {
+	        var education = snap.val();
 
-		handleClickEdit: function (index) {
-			this.setState({ editing: true });
-			this.setState({ indexToEdit: index });
-		},
+	        if (education) {
+	          education.key = snap.ref.key;
+	          var index;
 
-		handleClickSave: function () {
-			var url;
-			var pattern = /^https?:\/\//i;
+	          for (var i = 0; i < _this2.state.educations.length; i++) {
+	            if (_this2.state.educations[i].key == education.key) {
+	              index = i;
+	            }
+	          }
 
-			if (pattern.test(this.refs.url.value)) {
-				url = this.refs.url.value;
-			} else {
-				url = "http://" + this.refs.url.value;
-			}
+	          _this2.state.educations.splice(index, 1, education);
 
-			var projectData = {
-				name: this.refs.name.value,
-				url: url,
-				startDate: this.refs.startDate.value,
-				endDate: this.refs.endDate.value,
-				description: this.refs.description.value
-			};
+	          _this2.setState({
+	            educations: _this2.state.educations
+	          });
+	        }
+	      });
+	      this.educationRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
+	      this.educationRefRemoved.on("child_removed", function (snap) {
+	        var education = snap.val();
 
-			if (this.state.editing) {
-				var projectUpdate = {};
-				projectUpdate['/user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key] = projectData;
-				firebase.database().ref().update(projectUpdate);
-			} else {
-				var newProjectKey = firebase.database().ref().child('project').push().key;
-				firebase.database().ref('/user-project/' + this.props.pageID + '/' + newProjectKey).set(projectData);
-			}
+	        if (education) {
+	          education.key = snap.ref.key;
+	          var index;
 
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
+	          for (var i = 0; i < _this2.state.educations.length; i++) {
+	            if (_this2.state.educations[i].key == education.key) {
+	              index = i;
+	            }
+	          }
 
-		handleRemoveExisting: function () {
-			var projectRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
-			projectRef.remove();
+	          _this2.state.educations.splice(index, 1);
 
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
+	          _this2.setState({
+	            educations: _this2.state.educations
+	          });
+	        }
+	      });
+	    }
+	  },
+	  handleClickAdd: function handleClickAdd() {
+	    this.setState({
+	      adding: true
+	    });
+	  },
+	  handleClickEdit: function handleClickEdit(index) {
+	    this.setState({
+	      editing: true
+	    });
+	    this.setState({
+	      indexToEdit: index
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var educationData = {
+	      school: this.refs.school.value,
+	      degree: this.refs.degree.value,
+	      major: this.refs.major.value,
+	      startDate: this.refs.startDate.value,
+	      endDate: this.refs.endDate.value
+	    };
 
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
+	    if (this.state.editing) {
+	      var educationUpdate = {};
+	      educationUpdate['/user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key] = educationData;
+	      firebase.database().ref().update(educationUpdate);
+	    } else {
+	      var newEducationKey = firebase.database().ref().child('education').push().key;
+	      firebase.database().ref('/user-education/' + this.props.pageID + '/' + newEducationKey).set(educationData);
+	    }
 
-		projectHeading: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Projects ',
-					React.createElement(
-						'button',
-						{ className: 'btn btn-default', onClick: this.handleClickAdd },
-						'+'
-					)
-				);
-			} else {
-				return React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Projects'
-				);
-			}
-		},
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleRemoveExisting: function handleRemoveExisting() {
+	    var educationRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
+	    educationRef.remove();
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  educationHeading: function educationHeading() {
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("div", null, " ", /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Education ", /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickAdd
+	      }, "+")), " ");
+	    } else {
+	      return /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Education");
+	    }
+	  },
+	  addingEducation: function addingEducation() {
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "school",
+	      className: "form-control",
+	      placeholder: "School"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "degree",
+	      className: "form-control",
+	      placeholder: "Degree"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "major",
+	      className: "form-control",
+	      placeholder: "Field of Study"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control"
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control"
+	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	  },
+	  editingEducation: function editingEducation() {
+	    var indexedSchool = this.state.educations[this.state.indexToEdit];
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "school",
+	      className: "form-control",
+	      defaultValue: indexedSchool.school
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "degree",
+	      className: "form-control",
+	      defaultValue: indexedSchool.degree
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "major",
+	      className: "form-control",
+	      defaultValue: indexedSchool.major
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control",
+	      defaultValue: indexedSchool.startDate
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control",
+	      defaultValue: indexedSchool.endDate
+	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-link",
+	      onClick: this.handleRemoveExisting
+	    }, "Remove this school"))), /*#__PURE__*/React.createElement("br", null)));
+	  },
+	  defaultEducation: function defaultEducation() {
+	    var _this3 = this;
 
-		addingProject: function () {
-			return React.createElement(
-				'div',
-				{ className: 'col-md-12' },
-				React.createElement(
-					'div',
-					{ className: 'col-md-8' },
-					React.createElement('input', { type: 'text', ref: 'name', className: 'form-control', placeholder: 'Project Name' }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'url', className: 'form-control', placeholder: 'Project URL' }),
-					React.createElement('br', null),
-					React.createElement(
-						'div',
-						{ className: 'input-group' },
-						React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control' }),
-						React.createElement(
-							'span',
-							{ className: 'input-group-addon' },
-							'-'
-						),
-						React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control' })
-					),
-					React.createElement('br', null),
-					React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'description', placeholder: 'Description' }),
-					React.createElement('br', null),
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'btn btn-toolbar' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary', onClick: this.handleClickSave },
-								'Save'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickCancel },
-								'Cancel'
-							)
-						)
-					),
-					React.createElement('br', null)
-				)
-			);
-		},
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.educations.map(function (education, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, education.school), " ", /*#__PURE__*/React.createElement("button", {
+	          className: "btn btn-default",
+	          onClick: _this3.handleClickEdit.bind(null, index)
+	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, education.degree, ": ", education.major), /*#__PURE__*/React.createElement("h6", null, education.startDate, " - ", education.endDate));
+	      }));
+	    } else {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.educations.map(function (education, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, education.school)), /*#__PURE__*/React.createElement("h5", null, education.degree, ": ", education.major), /*#__PURE__*/React.createElement("h6", null, education.startDate, " - ", education.endDate));
+	      }));
+	    }
+	  },
+	  render: function render() {
+	    var show;
 
-		editingProject: function () {
-			var indexedProject = this.state.projects[this.state.indexToEdit];
+	    if (this.state.adding) {
+	      show = this.addingEducation();
+	    } else if (this.state.editing) {
+	      show = this.editingEducation();
+	    } else {
+	      show = this.defaultEducation();
+	    }
 
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body d-flex flex-row' },
-					React.createElement(
-						'div',
-						{ className: 'col-md-12' },
-						React.createElement(
-							'div',
-							{ className: 'col-md-8' },
-							React.createElement('input', { type: 'text', ref: 'name', className: 'form-control', defaultValue: indexedProject.name }),
-							React.createElement('br', null),
-							React.createElement('input', { type: 'text', ref: 'url', className: 'form-control', defaultValue: indexedProject.url }),
-							React.createElement('br', null),
-							React.createElement(
-								'div',
-								{ className: 'input-group' },
-								React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control', defaultValue: indexedProject.startDate }),
-								React.createElement(
-									'span',
-									{ className: 'input-group-addon' },
-									'-'
-								),
-								React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control', defaultValue: indexedProject.endDate })
-							),
-							React.createElement('br', null),
-							React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'description', defaultValue: indexedProject.description }),
-							React.createElement('br', null),
-							React.createElement(
-								'center',
-								null,
-								React.createElement(
-									'div',
-									{ className: 'btn btn-toolbar' },
-									React.createElement(
-										'button',
-										{ className: 'btn btn-primary', onClick: this.handleClickSave },
-										'Save'
-									),
-									React.createElement(
-										'button',
-										{ className: 'btn btn-default', onClick: this.handleClickCancel },
-										'Cancel'
-									),
-									React.createElement(
-										'button',
-										{ className: 'btn btn-link', onClick: this.handleRemoveExisting },
-										'Remove this project'
-									)
-								)
-							),
-							React.createElement('br', null)
-						)
-					)
-				)
-			);
-		},
-
-		defaultProject: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'div',
-					null,
-					this.state.projects.map((project, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								project.name
-							),
-							' ',
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickEdit.bind(null, index) },
-								'Edit'
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							React.createElement(
-								'a',
-								{ href: project.url },
-								project.url
-							)
-						),
-						React.createElement(
-							'h6',
-							null,
-							project.startDate,
-							' - ',
-							project.endDate
-						),
-						React.createElement(
-							'h6',
-							null,
-							React.createElement(
-								'pre',
-								{ style: { margin: "-10px 0px 0px -10px" } },
-								project.description
-							)
-						)
-					))
-				);
-			} else {
-				return React.createElement(
-					'div',
-					null,
-					this.state.projects.map((project, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								project.name
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							React.createElement(
-								'a',
-								{ href: project.url },
-								project.url
-							)
-						),
-						React.createElement(
-							'h6',
-							null,
-							project.startDate,
-							' - ',
-							project.endDate
-						),
-						React.createElement(
-							'h6',
-							null,
-							React.createElement(
-								'pre',
-								{ style: { margin: "-10px 0px 0px -10px" } },
-								project.description
-							)
-						)
-					))
-				);
-			}
-		},
-
-		render: function () {
-			var show;
-
-			if (this.state.adding) {
-				show = this.addingProject();
-			} else if (this.state.editing) {
-				show = this.editingProject();
-			} else {
-				show = this.defaultProject();
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body d-flex flex-row' },
-					this.projectHeading(),
-					show,
-					React.createElement('hr', null)
-				)
-			);
-		},
-
-		componentWillUnmount: function () {
-			this.projectRef.off();
-			this.projectRefChanged.off();
-			this.projectRefRemoved.off();
-		}
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body"
+	    }, this.educationHeading(), show, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("hr", null)));
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.educationRef.off();
+	    this.educationRefChanged.off();
+	    this.educationRefRemoved.off();
+	  }
 	});
-
-	module.exports = Project;
+	module.exports = Education;
 
 /***/ }),
 /* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Interests = React.createClass({
-		displayName: 'Interests',
+	var Project = React.createClass({
+	  displayName: "Project",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false,
+	      projects: [],
+	      id: this.props.pageID
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false };
-		},
+	    this.projectRef = firebase.database().ref().child('user-project/' + this.props.pageID);
+	    this.projectRef.on("child_added", function (snap) {
+	      var project = snap.val();
 
-		componentWillMount: function () {
-			this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.interests) {
-					this.setState({ interests: user.interests });
-				} else {
-					this.setState({ interests: "" });
-				}
-			});
-		},
+	      if (project) {
+	        project.key = snap.ref.key;
 
-		componentWillReceiveProps: function (nextProps) {
-			this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.interests) {
-					this.setState({ interests: user.interests });
-				} else {
-					this.setState({ interests: "" });
-				}
-			});
-		},
+	        _this.state.projects.push(project);
 
-		handleClickEdit: function () {
-			this.setState({ editing: true });
-		},
+	        _this.setState({
+	          projects: _this.state.projects
+	        });
+	      }
+	    });
+	    this.projectRefChanged = firebase.database().ref().child('user-project/' + this.props.pageID);
+	    this.projectRefChanged.on("child_changed", function (snap) {
+	      var project = snap.val();
 
-		handleClickSave: function () {
-			var that = this;
-			this.setState({ editing: false });
+	      if (project) {
+	        project.key = snap.ref.key;
+	        var index;
 
-			var newInterests = this.refs.newInterests.value;
+	        for (var i = 0; i < _this.state.projects.length; i++) {
+	          if (_this.state.projects[i].key == project.key) {
+	            index = i;
+	          }
+	        }
 
-			this.userRef.once("value", snap => {
-				var user = snap.val();
-				var userInfo = {};
-				for (var i in user) {
-					userInfo[i] = user[i];
-				}
-				userInfo.interests = newInterests;
-				var updates = {};
-				updates['users/' + this.props.pageID] = userInfo;
-				firebase.database().ref().update(updates);
-			});
+	        _this.state.projects.splice(index, 1, project);
 
-			this.setState({ interests: newInterests });
-		},
+	        _this.setState({
+	          projects: _this.state.projects
+	        });
+	      }
+	    });
+	    this.projectRefRemoved = firebase.database().ref().child('user-project/' + this.props.pageID);
+	    this.projectRefRemoved.on("child_removed", function (snap) {
+	      var project = snap.val();
 
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-		},
+	      if (project) {
+	        project.key = snap.ref.key;
+	        var index;
 
-		defaultInterests: function () {
-			var editButton;
-			if (this.props.isCurrentUser) {
-				editButton = React.createElement(
-					'button',
-					{ className: 'btn btn-default', onClick: this.handleClickEdit },
-					'Edit'
-				);
-			} else {
-				editButton = React.createElement('div', null);
-			}
+	        for (var i = 0; i < _this.state.projects.length; i++) {
+	          if (_this.state.projects[i].key == project.key) {
+	            index = i;
+	          }
+	        }
 
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Interests ',
-					editButton
-				),
-				React.createElement(
-					'pre',
-					null,
-					this.state.interests
-				)
-			);
-		},
+	        _this.state.projects.splice(index, 1);
 
-		editingInterests: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Interests'
-				),
-				React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'newInterests', defaultValue: this.state.interests, placeholder: 'Cooking, Reading, Sports...' }),
-				React.createElement('br', null),
-				React.createElement(
-					'center',
-					null,
-					React.createElement(
-						'div',
-						{ className: 'btn btn-toolbar' },
-						React.createElement(
-							'button',
-							{ className: 'btn btn-primary', onClick: this.handleClickSave },
-							'Save'
-						),
-						React.createElement(
-							'button',
-							{ className: 'btn btn-default', onClick: this.handleClickCancel },
-							'Cancel'
-						)
-					)
-				)
-			);
-		},
+	        _this.setState({
+	          projects: _this.state.projects
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-		render: function () {
-			var partToShow;
-			if (this.state.editing) {
-				partToShow = this.editingInterests();
-			} else {
-				partToShow = this.defaultInterests();
-			}
+	    if (nextProps.pageID != this.state.id) {
+	      this.projectRef.off(); //turn off the projectRef in compWillMount-listen only from one.
 
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body' },
-					partToShow,
-					React.createElement('hr', null)
-				)
-			);
-		}
+	      this.projectRefChanged.off();
+	      this.projectRefRemoved.off();
+	      this.setState({
+	        projects: []
+	      });
+	      this.projectRef = firebase.database().ref().child('user-project/' + nextProps.pageID);
+	      this.projectRef.on("child_added", function (snap) {
+	        var project = snap.val();
+
+	        if (project) {
+	          project.key = snap.ref.key;
+
+	          _this2.state.projects.push(project);
+
+	          _this2.setState({
+	            projects: _this2.state.projects
+	          });
+	        }
+	      });
+	      this.projectRefChanged = firebase.database().ref().child('user-project/' + nextProps.pageID);
+	      this.projectRefChanged.on("child_changed", function (snap) {
+	        var project = snap.val();
+
+	        if (project) {
+	          project.key = snap.ref.key;
+	          var index;
+
+	          for (var i = 0; i < _this2.state.projects.length; i++) {
+	            if (_this2.state.projects[i].key == project.key) {
+	              index = i;
+	            }
+	          }
+
+	          _this2.state.projects.splice(index, 1, project);
+
+	          _this2.setState({
+	            projects: _this2.state.projects
+	          });
+	        }
+	      });
+	      this.projectRefRemoved = firebase.database().ref().child('user-project/' + nextProps.pageID);
+	      this.projectRefRemoved.on("child_removed", function (snap) {
+	        var project = snap.val();
+
+	        if (project) {
+	          project.key = snap.ref.key;
+	          var index;
+
+	          for (var i = 0; i < _this2.state.projects.length; i++) {
+	            if (_this2.state.projects[i].key == project.key) {
+	              index = i;
+	            }
+	          }
+
+	          _this2.state.projects.splice(index, 1);
+
+	          _this2.setState({
+	            projects: _this2.state.projects
+	          });
+	        }
+	      });
+	    }
+	  },
+	  handleClickAdd: function handleClickAdd() {
+	    this.setState({
+	      adding: true
+	    });
+	  },
+	  handleClickEdit: function handleClickEdit(index) {
+	    this.setState({
+	      editing: true
+	    });
+	    this.setState({
+	      indexToEdit: index
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var url;
+	    var pattern = /^https?:\/\//i;
+
+	    if (pattern.test(this.refs.url.value)) {
+	      url = this.refs.url.value;
+	    } else {
+	      url = "http://" + this.refs.url.value;
+	    }
+
+	    var projectData = {
+	      name: this.refs.name.value,
+	      url: url,
+	      startDate: this.refs.startDate.value,
+	      endDate: this.refs.endDate.value,
+	      description: this.refs.description.value
+	    };
+
+	    if (this.state.editing) {
+	      var projectUpdate = {};
+	      projectUpdate['/user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key] = projectData;
+	      firebase.database().ref().update(projectUpdate);
+	    } else {
+	      var newProjectKey = firebase.database().ref().child('project').push().key;
+	      firebase.database().ref('/user-project/' + this.props.pageID + '/' + newProjectKey).set(projectData);
+	    }
+
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleRemoveExisting: function handleRemoveExisting() {
+	    var projectRef = firebase.database().ref('user-project/' + this.props.pageID + '/' + this.state.projects[this.state.indexToEdit].key);
+	    projectRef.remove();
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  projectHeading: function projectHeading() {
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Projects ", /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickAdd
+	      }, "+"));
+	    } else {
+	      return /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Projects");
+	    }
+	  },
+	  addingProject: function addingProject() {
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "name",
+	      className: "form-control",
+	      placeholder: "Project Name"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "url",
+	      className: "form-control",
+	      placeholder: "Project URL"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control"
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control"
+	    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "description",
+	      placeholder: "Description"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	  },
+	  editingProject: function editingProject() {
+	    var indexedProject = this.state.projects[this.state.indexToEdit];
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body d-flex flex-row"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "name",
+	      className: "form-control",
+	      defaultValue: indexedProject.name
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "url",
+	      className: "form-control",
+	      defaultValue: indexedProject.url
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control",
+	      defaultValue: indexedProject.startDate
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control",
+	      defaultValue: indexedProject.endDate
+	    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "description",
+	      defaultValue: indexedProject.description
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-link",
+	      onClick: this.handleRemoveExisting
+	    }, "Remove this project"))), /*#__PURE__*/React.createElement("br", null)))));
+	  },
+	  defaultProject: function defaultProject() {
+	    var _this3 = this;
+
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.projects.map(function (project, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, project.name), " ", /*#__PURE__*/React.createElement("button", {
+	          className: "btn btn-default",
+	          onClick: _this3.handleClickEdit.bind(null, index)
+	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, /*#__PURE__*/React.createElement("a", {
+	          href: project.url
+	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
+	          style: {
+	            margin: "-10px 0px 0px -10px"
+	          }
+	        }, project.description)));
+	      }));
+	    } else {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.projects.map(function (project, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, project.name)), /*#__PURE__*/React.createElement("h5", null, /*#__PURE__*/React.createElement("a", {
+	          href: project.url
+	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
+	          style: {
+	            margin: "-10px 0px 0px -10px"
+	          }
+	        }, project.description)));
+	      }));
+	    }
+	  },
+	  render: function render() {
+	    var show;
+
+	    if (this.state.adding) {
+	      show = this.addingProject();
+	    } else if (this.state.editing) {
+	      show = this.editingProject();
+	    } else {
+	      show = this.defaultProject();
+	    }
+
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body d-flex flex-row"
+	    }, this.projectHeading(), show, /*#__PURE__*/React.createElement("hr", null)));
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.projectRef.off();
+	    this.projectRefChanged.off();
+	    this.projectRefRemoved.off();
+	  }
 	});
-
-	module.exports = Interests;
+	module.exports = Project;
 
 /***/ }),
 /* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Experience = React.createClass({
-		displayName: 'Experience',
+	var Interests = React.createClass({
+	  displayName: "Interests",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false, experiences: [], id: this.props.pageID };
-		},
+	    this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-		componentWillMount: function () {
-			this.experienceRef = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRef.on("child_added", snap => {
-				var experience = snap.val();
-				if (experience) {
-					experience.key = snap.ref.key;
-					this.state.experiences.push(experience);
-					this.setState({ experiences: this.state.experiences });
-				}
-			});
+	      if (user.interests) {
+	        _this.setState({
+	          interests: user.interests
+	        });
+	      } else {
+	        _this.setState({
+	          interests: ""
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-			this.experienceRefChanged = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRefChanged.on("child_changed", snap => {
-				var experience = snap.val();
-				if (experience) {
-					experience.key = snap.ref.key;
+	    this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-					var index;
-					for (var i = 0; i < this.state.experiences.length; i++) {
-						if (this.state.experiences[i].key == experience.key) {
-							index = i;
-						}
-					}
+	      if (user.interests) {
+	        _this2.setState({
+	          interests: user.interests
+	        });
+	      } else {
+	        _this2.setState({
+	          interests: ""
+	        });
+	      }
+	    });
+	  },
+	  handleClickEdit: function handleClickEdit() {
+	    this.setState({
+	      editing: true
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var _this3 = this;
 
-					this.state.experiences.splice(index, 1, experience);
-					this.setState({ experiences: this.state.experiences });
-				}
-			});
+	    var that = this;
+	    this.setState({
+	      editing: false
+	    });
+	    var newInterests = this.refs.newInterests.value;
+	    this.userRef.once("value", function (snap) {
+	      var user = snap.val();
+	      var userInfo = {};
 
-			this.experienceRefRemoved = firebase.database().ref().child('user-experience/' + this.props.pageID);
-			this.experienceRefRemoved.on("child_removed", snap => {
-				var experience = snap.val();
-				if (experience) {
-					experience.key = snap.ref.key;
+	      for (var i in user) {
+	        userInfo[i] = user[i];
+	      }
 
-					var index;
-					for (var i = 0; i < this.state.experiences.length; i++) {
-						if (this.state.experiences[i].key == experience.key) {
-							index = i;
-						}
-					}
+	      userInfo.interests = newInterests;
+	      var updates = {};
+	      updates['users/' + _this3.props.pageID] = userInfo;
+	      firebase.database().ref().update(updates);
+	    });
+	    this.setState({
+	      interests: newInterests
+	    });
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	  },
+	  defaultInterests: function defaultInterests() {
+	    var editButton;
 
-					this.state.experiences.splice(index, 1);
-					this.setState({ experiences: this.state.experiences });
-				}
-			});
-		},
+	    if (this.props.isCurrentUser) {
+	      editButton = /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickEdit
+	      }, "Edit");
+	    } else {
+	      editButton = /*#__PURE__*/React.createElement("div", null);
+	    }
 
-		componentWillReceiveProps: function (nextProps) {
-			if (nextProps.pageID != this.state.id) {
-				this.experienceRef.off(); //turn off the experienceRef in compWillMount-listen only from one.
-				this.experienceRefChanged.off();
-				this.experienceRefRemoved.off();
-				this.setState({ experiences: [] });
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	      className: "profile-heading"
+	    }, "Interests ", editButton), /*#__PURE__*/React.createElement("pre", null, this.state.interests));
+	  },
+	  editingInterests: function editingInterests() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	      className: "profile-heading"
+	    }, "Interests"), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "newInterests",
+	      defaultValue: this.state.interests,
+	      placeholder: "Cooking, Reading, Sports..."
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))));
+	  },
+	  render: function render() {
+	    var partToShow;
 
-				this.experienceRef = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRef.on("child_added", snap => {
-					var experience = snap.val();
-					if (experience) {
-						experience.key = snap.ref.key;
-						this.state.experiences.push(experience);
-						this.setState({ experiences: this.state.experiences });
-					}
-				});
+	    if (this.state.editing) {
+	      partToShow = this.editingInterests();
+	    } else {
+	      partToShow = this.defaultInterests();
+	    }
 
-				this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRefChanged.on("child_changed", snap => {
-					var experience = snap.val();
-					if (experience) {
-						experience.key = snap.ref.key;
-
-						var index;
-						for (var i = 0; i < this.state.experiences.length; i++) {
-							if (this.state.experiences[i].key == experience.key) {
-								index = i;
-							}
-						}
-
-						this.state.experiences.splice(index, 1, experience);
-						this.setState({ experiences: this.state.experiences });
-					}
-				});
-
-				this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
-				this.experienceRefChanged.on("child_removed", snap => {
-					var experience = snap.val();
-					if (experience) {
-						experience.key = snap.ref.key;
-
-						var index;
-						for (var i = 0; i < this.state.experiences.length; i++) {
-							if (this.state.experiences[i].key == experience.key) {
-								index = i;
-							}
-						}
-
-						this.state.experiences.splice(index, 1);
-						this.setState({ experiences: this.state.experiences });
-					}
-				});
-			}
-		},
-
-		handleClickAdd: function () {
-			this.setState({ adding: true });
-		},
-
-		handleClickEdit: function (index) {
-			this.setState({ editing: true });
-			this.setState({ indexToEdit: index });
-		},
-
-		handleClickSave: function () {
-			var experienceData = {
-				employer: this.refs.employer.value,
-				position: this.refs.position.value,
-				startDate: this.refs.startDate.value,
-				endDate: this.refs.endDate.value,
-				description: this.refs.description.value
-			};
-
-			if (this.state.editing) {
-				var experienceUpdate = {};
-				experienceUpdate['/user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key] = experienceData;
-				firebase.database().ref().update(experienceUpdate);
-			} else {
-				var newExperienceKey = firebase.database().ref().child('experience').push().key;
-				firebase.database().ref('/user-experience/' + this.props.pageID + '/' + newExperienceKey).set(experienceData);
-			}
-
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		handleRemoveExisting: function () {
-			var experienceRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
-			experienceRef.remove();
-
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-			this.setState({ adding: false });
-		},
-
-		experienceHeading: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Experience ',
-					React.createElement(
-						'button',
-						{ className: 'btn btn-default', onClick: this.handleClickAdd },
-						'+'
-					)
-				);
-			} else {
-				return React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Experience'
-				);
-			}
-		},
-
-		addingExperience: function () {
-			return React.createElement(
-				'div',
-				{ className: 'col-md-12' },
-				React.createElement(
-					'div',
-					{ className: 'col-md-8' },
-					React.createElement('input', { type: 'text', ref: 'employer', className: 'form-control', placeholder: 'Company Name' }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'position', className: 'form-control', placeholder: 'Position' }),
-					React.createElement('br', null),
-					React.createElement(
-						'div',
-						{ className: 'input-group' },
-						React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control' }),
-						React.createElement(
-							'span',
-							{ className: 'input-group-addon' },
-							'-'
-						),
-						React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control' })
-					),
-					React.createElement('br', null),
-					React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'description', placeholder: 'Description' }),
-					React.createElement('br', null),
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'btn btn-toolbar' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary', onClick: this.handleClickSave },
-								'Save'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickCancel },
-								'Cancel'
-							)
-						)
-					),
-					React.createElement('br', null)
-				)
-			);
-		},
-
-		editingExperience: function () {
-			var indexedExperience = this.state.experiences[this.state.indexToEdit];
-
-			return React.createElement(
-				'div',
-				{ className: 'col-md-12' },
-				React.createElement(
-					'div',
-					{ className: 'col-md-8' },
-					React.createElement('input', { type: 'text', ref: 'employer', className: 'form-control', defaultValue: indexedExperience.employer }),
-					React.createElement('br', null),
-					React.createElement('input', { type: 'text', ref: 'position', className: 'form-control', defaultValue: indexedExperience.position }),
-					React.createElement('br', null),
-					React.createElement(
-						'div',
-						{ className: 'input-group' },
-						React.createElement('input', { type: 'month', ref: 'startDate', className: 'form-control', defaultValue: indexedExperience.startDate }),
-						React.createElement(
-							'span',
-							{ className: 'input-group-addon' },
-							'-'
-						),
-						React.createElement('input', { type: 'month', ref: 'endDate', className: 'form-control', defaultValue: indexedExperience.endDate })
-					),
-					React.createElement('br', null),
-					React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'description', defaultValue: indexedExperience.description }),
-					React.createElement('br', null),
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'btn btn-toolbar' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary', onClick: this.handleClickSave },
-								'Save'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickCancel },
-								'Cancel'
-							),
-							React.createElement(
-								'button',
-								{ className: 'btn btn-link', onClick: this.handleRemoveExisting },
-								'Remove this experience'
-							)
-						)
-					),
-					React.createElement('br', null)
-				)
-			);
-		},
-
-		defaultExperience: function () {
-			if (this.props.isCurrentUser) {
-				return React.createElement(
-					'div',
-					null,
-					this.state.experiences.map((experience, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								experience.employer
-							),
-							' ',
-							React.createElement(
-								'button',
-								{ className: 'btn btn-default', onClick: this.handleClickEdit.bind(null, index) },
-								'Edit'
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							experience.position
-						),
-						React.createElement(
-							'h6',
-							null,
-							experience.startDate,
-							' - ',
-							experience.endDate
-						),
-						React.createElement(
-							'h6',
-							null,
-							React.createElement(
-								'pre',
-								{ style: { margin: "-10px 0px 0px -10px" } },
-								experience.description
-							)
-						)
-					))
-				);
-			} else {
-				return React.createElement(
-					'div',
-					null,
-					this.state.experiences.map((experience, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement(
-								'strong',
-								null,
-								experience.employer
-							)
-						),
-						React.createElement(
-							'h5',
-							null,
-							experience.position
-						),
-						React.createElement(
-							'h6',
-							null,
-							experience.startDate,
-							' - ',
-							experience.endDate
-						),
-						React.createElement(
-							'h6',
-							null,
-							React.createElement(
-								'pre',
-								{ style: { margin: "-10px 0px 0px -10px" } },
-								experience.description
-							)
-						)
-					))
-				);
-			}
-		},
-
-		render: function () {
-			var show;
-
-			if (this.state.adding) {
-				show = this.addingExperience();
-			} else if (this.state.editing) {
-				show = this.editingExperience();
-			} else {
-				show = this.defaultExperience();
-			}
-
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body' },
-					this.experienceHeading(),
-					show,
-					React.createElement('hr', null)
-				)
-			);
-		},
-
-		componentWillUnmount: function () {
-			this.experienceRef.off();
-			this.experienceRefChanged.off();
-			this.experienceRefRemoved.off();
-		}
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body"
+	    }, partToShow, /*#__PURE__*/React.createElement("hr", null)));
+	  }
 	});
-
-	module.exports = Experience;
+	module.exports = Interests;
 
 /***/ }),
 /* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Skills = React.createClass({
-		displayName: 'Skills',
+	var Experience = React.createClass({
+	  displayName: "Experience",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false,
+	      experiences: [],
+	      id: this.props.pageID
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { isCurrentUser: false, editing: false };
-		},
+	    this.experienceRef = firebase.database().ref().child('user-experience/' + this.props.pageID);
+	    this.experienceRef.on("child_added", function (snap) {
+	      var experience = snap.val();
 
-		componentWillMount: function () {
-			this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.skills) {
-					this.setState({ skills: user.skills });
-				} else {
-					this.setState({ skills: "" });
-				}
-			});
-		},
+	      if (experience) {
+	        experience.key = snap.ref.key;
 
-		componentWillReceiveProps: function (nextProps) {
-			this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
-			this.userRef.on("value", snap => {
-				var user = snap.val();
-				if (user.skills) {
-					this.setState({ skills: user.skills });
-				} else {
-					this.setState({ skills: "" });
-				}
-			});
-		},
+	        _this.state.experiences.push(experience);
 
-		handleClickEdit: function () {
-			this.setState({ editing: true });
-		},
+	        _this.setState({
+	          experiences: _this.state.experiences
+	        });
+	      }
+	    });
+	    this.experienceRefChanged = firebase.database().ref().child('user-experience/' + this.props.pageID);
+	    this.experienceRefChanged.on("child_changed", function (snap) {
+	      var experience = snap.val();
 
-		handleClickSave: function () {
-			this.setState({ editing: false });
-			var newSkills = this.refs.newSkills.value;
+	      if (experience) {
+	        experience.key = snap.ref.key;
+	        var index;
 
-			this.userRef.once("value", snap => {
-				var user = snap.val();
-				var userInfo = {};
-				for (var i in user) {
-					userInfo[i] = user[i];
-				}
-				userInfo.skills = newSkills;
-				var updates = {};
-				updates['users/' + this.props.pageID] = userInfo;
-				firebase.database().ref().update(updates);
-			});
+	        for (var i = 0; i < _this.state.experiences.length; i++) {
+	          if (_this.state.experiences[i].key == experience.key) {
+	            index = i;
+	          }
+	        }
 
-			this.setState({ skills: newSkills });
-		},
+	        _this.state.experiences.splice(index, 1, experience);
 
-		componentWillUnmount: function () {
-			this.userRef.off();
-		},
+	        _this.setState({
+	          experiences: _this.state.experiences
+	        });
+	      }
+	    });
+	    this.experienceRefRemoved = firebase.database().ref().child('user-experience/' + this.props.pageID);
+	    this.experienceRefRemoved.on("child_removed", function (snap) {
+	      var experience = snap.val();
 
-		handleClickCancel: function () {
-			this.setState({ editing: false });
-		},
+	      if (experience) {
+	        experience.key = snap.ref.key;
+	        var index;
 
-		defaultSkills: function () {
-			var editButton;
-			if (this.props.isCurrentUser) {
-				editButton = React.createElement(
-					'button',
-					{ className: 'btn btn-default', onClick: this.handleClickEdit },
-					'Edit'
-				);
-			} else {
-				editButton = React.createElement('div', null);
-			}
+	        for (var i = 0; i < _this.state.experiences.length; i++) {
+	          if (_this.state.experiences[i].key == experience.key) {
+	            index = i;
+	          }
+	        }
 
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					{ className: 'profile-heading' },
-					'Skills ',
-					editButton
-				),
-				React.createElement(
-					'pre',
-					null,
-					this.state.skills
-				)
-			);
-		},
+	        _this.state.experiences.splice(index, 1);
 
-		editingSkills: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h4',
-					null,
-					'Skills'
-				),
-				React.createElement('textarea', { className: 'form-control', rows: '6', style: { width: '100%' }, ref: 'newSkills', defaultValue: this.state.skills, placeholder: 'Git, Java, C,...' }),
-				React.createElement('br', null),
-				React.createElement(
-					'center',
-					null,
-					React.createElement(
-						'div',
-						{ className: 'btn btn-toolbar' },
-						React.createElement(
-							'button',
-							{ className: 'btn btn-primary', onClick: this.handleClickSave },
-							'Save'
-						),
-						React.createElement(
-							'button',
-							{ className: 'btn btn-default', onClick: this.handleClickCancel },
-							'Cancel'
-						)
-					)
-				)
-			);
-		},
+	        _this.setState({
+	          experiences: _this.state.experiences
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-		render: function () {
-			var partToShow;
-			if (this.state.editing) {
-				partToShow = this.editingSkills();
-			} else {
-				partToShow = this.defaultSkills();
-			}
+	    if (nextProps.pageID != this.state.id) {
+	      this.experienceRef.off(); //turn off the experienceRef in compWillMount-listen only from one.
 
-			return React.createElement(
-				'div',
-				{ className: 'card-profile' },
-				React.createElement(
-					'div',
-					{ className: 'card-body' },
-					partToShow,
-					React.createElement('hr', null)
-				)
-			);
-		}
+	      this.experienceRefChanged.off();
+	      this.experienceRefRemoved.off();
+	      this.setState({
+	        experiences: []
+	      });
+	      this.experienceRef = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+	      this.experienceRef.on("child_added", function (snap) {
+	        var experience = snap.val();
+
+	        if (experience) {
+	          experience.key = snap.ref.key;
+
+	          _this2.state.experiences.push(experience);
+
+	          _this2.setState({
+	            experiences: _this2.state.experiences
+	          });
+	        }
+	      });
+	      this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+	      this.experienceRefChanged.on("child_changed", function (snap) {
+	        var experience = snap.val();
+
+	        if (experience) {
+	          experience.key = snap.ref.key;
+	          var index;
+
+	          for (var i = 0; i < _this2.state.experiences.length; i++) {
+	            if (_this2.state.experiences[i].key == experience.key) {
+	              index = i;
+	            }
+	          }
+
+	          _this2.state.experiences.splice(index, 1, experience);
+
+	          _this2.setState({
+	            experiences: _this2.state.experiences
+	          });
+	        }
+	      });
+	      this.experienceRefChanged = firebase.database().ref().child('user-experience/' + nextProps.pageID);
+	      this.experienceRefChanged.on("child_removed", function (snap) {
+	        var experience = snap.val();
+
+	        if (experience) {
+	          experience.key = snap.ref.key;
+	          var index;
+
+	          for (var i = 0; i < _this2.state.experiences.length; i++) {
+	            if (_this2.state.experiences[i].key == experience.key) {
+	              index = i;
+	            }
+	          }
+
+	          _this2.state.experiences.splice(index, 1);
+
+	          _this2.setState({
+	            experiences: _this2.state.experiences
+	          });
+	        }
+	      });
+	    }
+	  },
+	  handleClickAdd: function handleClickAdd() {
+	    this.setState({
+	      adding: true
+	    });
+	  },
+	  handleClickEdit: function handleClickEdit(index) {
+	    this.setState({
+	      editing: true
+	    });
+	    this.setState({
+	      indexToEdit: index
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var experienceData = {
+	      employer: this.refs.employer.value,
+	      position: this.refs.position.value,
+	      startDate: this.refs.startDate.value,
+	      endDate: this.refs.endDate.value,
+	      description: this.refs.description.value
+	    };
+
+	    if (this.state.editing) {
+	      var experienceUpdate = {};
+	      experienceUpdate['/user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key] = experienceData;
+	      firebase.database().ref().update(experienceUpdate);
+	    } else {
+	      var newExperienceKey = firebase.database().ref().child('experience').push().key;
+	      firebase.database().ref('/user-experience/' + this.props.pageID + '/' + newExperienceKey).set(experienceData);
+	    }
+
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleRemoveExisting: function handleRemoveExisting() {
+	    var experienceRef = firebase.database().ref('user-experience/' + this.props.pageID + '/' + this.state.experiences[this.state.indexToEdit].key);
+	    experienceRef.remove();
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	    this.setState({
+	      adding: false
+	    });
+	  },
+	  experienceHeading: function experienceHeading() {
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Experience ", /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickAdd
+	      }, "+"));
+	    } else {
+	      return /*#__PURE__*/React.createElement("h4", {
+	        className: "profile-heading"
+	      }, "Experience");
+	    }
+	  },
+	  addingExperience: function addingExperience() {
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "employer",
+	      className: "form-control",
+	      placeholder: "Company Name"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "position",
+	      className: "form-control",
+	      placeholder: "Position"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control"
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control"
+	    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "description",
+	      placeholder: "Description"
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	  },
+	  editingExperience: function editingExperience() {
+	    var indexedExperience = this.state.experiences[this.state.indexToEdit];
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-12"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-8"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "employer",
+	      className: "form-control",
+	      defaultValue: indexedExperience.employer
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	      type: "text",
+	      ref: "position",
+	      className: "form-control",
+	      defaultValue: indexedExperience.position
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+	      className: "input-group"
+	    }, /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "startDate",
+	      className: "form-control",
+	      defaultValue: indexedExperience.startDate
+	    }), /*#__PURE__*/React.createElement("span", {
+	      className: "input-group-addon"
+	    }, "-"), /*#__PURE__*/React.createElement("input", {
+	      type: "month",
+	      ref: "endDate",
+	      className: "form-control",
+	      defaultValue: indexedExperience.endDate
+	    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "description",
+	      defaultValue: indexedExperience.description
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-link",
+	      onClick: this.handleRemoveExisting
+	    }, "Remove this experience"))), /*#__PURE__*/React.createElement("br", null)));
+	  },
+	  defaultExperience: function defaultExperience() {
+	    var _this3 = this;
+
+	    if (this.props.isCurrentUser) {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.experiences.map(function (experience, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, experience.employer), " ", /*#__PURE__*/React.createElement("button", {
+	          className: "btn btn-default",
+	          onClick: _this3.handleClickEdit.bind(null, index)
+	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
+	          style: {
+	            margin: "-10px 0px 0px -10px"
+	          }
+	        }, experience.description)));
+	      }));
+	    } else {
+	      return /*#__PURE__*/React.createElement("div", null, this.state.experiences.map(function (experience, index) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          key: index
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, experience.employer)), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
+	          style: {
+	            margin: "-10px 0px 0px -10px"
+	          }
+	        }, experience.description)));
+	      }));
+	    }
+	  },
+	  render: function render() {
+	    var show;
+
+	    if (this.state.adding) {
+	      show = this.addingExperience();
+	    } else if (this.state.editing) {
+	      show = this.editingExperience();
+	    } else {
+	      show = this.defaultExperience();
+	    }
+
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body"
+	    }, this.experienceHeading(), show, /*#__PURE__*/React.createElement("hr", null)));
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.experienceRef.off();
+	    this.experienceRefChanged.off();
+	    this.experienceRefRemoved.off();
+	  }
 	});
-
-	module.exports = Skills;
+	module.exports = Experience;
 
 /***/ }),
 /* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
-	const Account = __webpack_require__(282);
-	const Password = __webpack_require__(284);
 
-	var settings = React.createClass({
-	    displayName: 'settings',
+	var Skills = React.createClass({
+	  displayName: "Skills",
+	  getInitialState: function getInitialState() {
+	    return {
+	      isCurrentUser: false,
+	      editing: false
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
+	    this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-	    render: function () {
-	        var show;
+	      if (user.skills) {
+	        _this.setState({
+	          skills: user.skills
+	        });
+	      } else {
+	        _this.setState({
+	          skills: ""
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
 
-	        show = React.createElement(
-	            'div',
-	            null,
-	            React.createElement(Account, { user: firebase.auth().currentUser }),
-	            React.createElement(Password, { user: firebase.auth().currentUser })
-	        );
+	    this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
 
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'div',
-	                { className: 'jumbotron jumbotron-fluid' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'container' },
-	                    show
-	                )
-	            )
-	        );
+	      if (user.skills) {
+	        _this2.setState({
+	          skills: user.skills
+	        });
+	      } else {
+	        _this2.setState({
+	          skills: ""
+	        });
+	      }
+	    });
+	  },
+	  handleClickEdit: function handleClickEdit() {
+	    this.setState({
+	      editing: true
+	    });
+	  },
+	  handleClickSave: function handleClickSave() {
+	    var _this3 = this;
+
+	    this.setState({
+	      editing: false
+	    });
+	    var newSkills = this.refs.newSkills.value;
+	    this.userRef.once("value", function (snap) {
+	      var user = snap.val();
+	      var userInfo = {};
+
+	      for (var i in user) {
+	        userInfo[i] = user[i];
+	      }
+
+	      userInfo.skills = newSkills;
+	      var updates = {};
+	      updates['users/' + _this3.props.pageID] = userInfo;
+	      firebase.database().ref().update(updates);
+	    });
+	    this.setState({
+	      skills: newSkills
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.userRef.off();
+	  },
+	  handleClickCancel: function handleClickCancel() {
+	    this.setState({
+	      editing: false
+	    });
+	  },
+	  defaultSkills: function defaultSkills() {
+	    var editButton;
+
+	    if (this.props.isCurrentUser) {
+	      editButton = /*#__PURE__*/React.createElement("button", {
+	        className: "btn btn-default",
+	        onClick: this.handleClickEdit
+	      }, "Edit");
+	    } else {
+	      editButton = /*#__PURE__*/React.createElement("div", null);
 	    }
-	});
 
-	module.exports = settings;
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	      className: "profile-heading"
+	    }, "Skills ", editButton), /*#__PURE__*/React.createElement("pre", null, this.state.skills));
+	  },
+	  editingSkills: function editingSkills() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "Skills"), /*#__PURE__*/React.createElement("textarea", {
+	      className: "form-control",
+	      rows: "6",
+	      style: {
+	        width: '100%'
+	      },
+	      ref: "newSkills",
+	      defaultValue: this.state.skills,
+	      placeholder: "Git, Java, C,..."
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
+	      className: "btn btn-toolbar"
+	    }, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-primary",
+	      onClick: this.handleClickSave
+	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
+	      onClick: this.handleClickCancel
+	    }, "Cancel"))));
+	  },
+	  render: function render() {
+	    var partToShow;
+
+	    if (this.state.editing) {
+	      partToShow = this.editingSkills();
+	    } else {
+	      partToShow = this.defaultSkills();
+	    }
+
+	    return /*#__PURE__*/React.createElement("div", {
+	      className: "card-profile"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "card-body"
+	    }, partToShow, /*#__PURE__*/React.createElement("hr", null)));
+	  }
+	});
+	module.exports = Skills;
 
 /***/ }),
 /* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	const React = __webpack_require__(1);
-	const firebase = __webpack_require__(187);
-	const hashHistory = __webpack_require__(195).hashHistory;
+	var React = __webpack_require__(1);
 
-	class imagesUpload extends React.Component {
-	  constructor(props) {
-	    super(props);
-	    this.state = {
-	      image: null,
-	      url: '',
-	      progress: 0
-	    };
-	    this.handleChange = this.handleChange.bind(this);
-	    this.handleUpload = this.handleUpload.bind(this);
-	  }
-	  handleChange(event) {
-	    if (event.target.files[0] != null) {
-	      console.log(event.target.files[0]);
-	      this.setState({
-	        image: event.target.files[0]
-	      });
-	    }
-	  }
-	  handleUpload() {
-	    let storage = firebase.storage();
-	    const { image } = this.state;
-	    const uploadTask = storage.ref('images/${image.name').put(this.state.image);
-	    uploadTask.on('state_changed', snapshot => {
-	      //progess function
-	      const progess = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-	      this.setState({ progess });
-	    }, error => {
-	      console.log(error);
-	    }, () => {});
-	  }
+	var ReactDOM = __webpack_require__(40);
 
-	  render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement('progress', { value: this.state.progess, max: '100' }),
-	      React.createElement('br', null),
-	      React.createElement('input', {
-	        type: 'file',
-	        onChange: this.handleChange
-	      }),
-	      React.createElement(
-	        'button',
-	        {
-	          classname: 'imagesUploadButton',
-	          onClick: this.handleUpload },
-	        'Upload'
-	      )
-	    );
-	  }
-	}
+	var firebase = __webpack_require__(187);
 
-	module.exports = imagesUpload;
+	var Link = __webpack_require__(195).Link;
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var Account = __webpack_require__(282);
+
+	var Password = __webpack_require__(285);
+
+	var settings = React.createClass({
+	  displayName: "settings",
+	  render: function render() {
+	    var show;
+	    show = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Account, {
+	      user: firebase.auth().currentUser
+	    }), /*#__PURE__*/React.createElement(Password, {
+	      user: firebase.auth().currentUser
+	    }));
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+	      className: "jumbotron jumbotron-fluid"
+	    }, /*#__PURE__*/React.createElement("div", {
+	      className: "container"
+	    }, show)));
+	  }
+	});
+	module.exports = settings;
 
 /***/ }),
 /* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
-	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var Results = React.createClass({
-		displayName: 'Results',
+	var imagesUpload = /*#__PURE__*/function (_React$Component) {
+	  _inherits(imagesUpload, _React$Component);
 
-		getInitialState: function () {
-			return { users: [], prop_name: "" };
-		},
+	  var _super = _createSuper(imagesUpload);
 
-		componentWillMount: function () {
-			this.state.users.splice(0, this.state.users.length);
-			this.setState({ prop_name: this.props.params.name });
+	  function imagesUpload(props) {
+	    var _this;
 
-			this.userRef = firebase.database().ref().child('users').orderByChild('last');
-			this.userRef.on('child_added', snap => {
-				var user = snap.val();
-				if ((user.first + " " + user.last).toLowerCase().indexOf(this.props.params.name.toLowerCase()) >= 0) {
-					user.id = snap.ref.key;
-					this.state.users.push(user);
-					this.setState({ users: this.state.users });
-				}
-			});
-		},
+	    _classCallCheck(this, imagesUpload);
 
-		componentWillReceiveProps: function (nextProps) {
-			if (this.state.prop_name != nextProps.params.name) {
-				this.setState({ prop_name: nextProps.params.name });
+	    _this = _super.call(this, props);
+	    _this.state = {
+	      image: null,
+	      url: '',
+	      progress: 0
+	    };
+	    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+	    _this.handleUpload = _this.handleUpload.bind(_assertThisInitialized(_this));
+	    return _this;
+	  }
 
-				this.state.users.splice(0, this.state.users.length);
-				this.userRef = firebase.database().ref().child('users').orderByChild('last');
-				this.userRef.on('child_added', snap => {
-					var user = snap.val();
-					if ((user.first + " " + user.last).toLowerCase().indexOf(nextProps.params.name.toLowerCase()) >= 0) {
-						user.id = snap.ref.key;
-						this.state.users.push(user);
-						this.setState({ users: this.state.users });
-					}
-				});
-			}
-		},
+	  _createClass(imagesUpload, [{
+	    key: "handleChange",
+	    value: function handleChange(event) {
+	      if (event.target.files[0] != null) {
+	        console.log(event.target.files[0]);
+	        this.setState({
+	          image: event.target.files[0]
+	        });
+	      }
+	    }
+	  }, {
+	    key: "handleUpload",
+	    value: function handleUpload() {
+	      var _this2 = this;
 
-		componentWillUnmount: function () {
-			this.userRef.off();
-		},
+	      var storage = firebase.storage();
+	      var user = firebase.auth().currentUser;
+	      var image = this.state.image;
+	      var uploadTask = storage.ref("images/".concat(user.uid, "/image")).put(this.state.image);
+	      uploadTask.on('state_changed', function (snapshot) {
+	        //progess function
+	        var progess = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
 
-		render: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'center',
-					null,
-					React.createElement(
-						'h1',
-						{ className: 'grid-title' },
-						'Search results for "',
-						this.state.prop_name,
-						'"'
-					),
-					React.createElement(
-						'div',
-						null,
-						'Returned ',
-						this.state.users.length,
-						' results...'
-					)
-				),
-				this.state.users.map((user, index) => React.createElement(
-					'div',
-					{ className: 'grid-item col-md-3', clkey: index },
-					React.createElement(
-						Link,
-						{ to: "users/" + user.id },
-						React.createElement(
-							'h4',
-							null,
-							React.createElement('img', { src: user.imageURL, className: 'img-circle grid-img', alt: '', width: '100', height: '100', style: { objectFit: 'cover' } }),
-							React.createElement('br', null),
-							user.first + " " + user.last
-						)
-					),
-					React.createElement('br', null),
-					React.createElement('br', null)
-				))
-			);
-		}
-	});
+	        _this2.setState({
+	          progess: progess
+	        });
+	      }, function (error) {
+	        console.log(error);
+	      }, function () {});
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("progress", {
+	        value: this.state.progess,
+	        max: "100"
+	      }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	        type: "file",
+	        onChange: this.handleChange
+	      }), /*#__PURE__*/React.createElement("button", {
+	        className: "imagesUploadButton",
+	        onClick: this.handleUpload
+	      }, "Upload"));
+	    }
+	  }]);
 
-	module.exports = Results;
+	  return imagesUpload;
+	}(React.Component);
+
+	module.exports = imagesUpload;
 
 /***/ }),
 /* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+
 	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
 	var Link = __webpack_require__(195).Link;
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
-	var SearchFunc = React.createClass({
-		displayName: 'SearchFunc',
+	var Results = React.createClass({
+	  displayName: "Results",
+	  getInitialState: function getInitialState() {
+	    return {
+	      users: [],
+	      prop_name: ""
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
 
-		getInitialState: function () {
-			return { results: [] };
-		},
+	    this.state.users.splice(0, this.state.users.length);
+	    this.setState({
+	      prop_name: this.props.params.name
+	    });
+	    this.userRef = firebase.database().ref().child('users').orderByChild('last');
+	    this.userRef.on('child_added', function (snap) {
+	      var user = snap.val();
 
-		componentWillUnmount: function () {
-			if (typeof this.userRef == 'function') {
-				this.userRef.off();
-			}
-			if (typeof this.experienceRef == 'function') {
-				this.experienceRef.off();
-			}
-			if (typeof this.eduationRef == 'function') {
-				this.educationRef.off();
-			}
-		},
+	      if ((user.first + " " + user.last).toLowerCase().indexOf(_this.props.params.name.toLowerCase()) >= 0) {
+	        user.id = snap.ref.key;
 
-		render: function () {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement('div', { className: 'col-md-2' }),
-				React.createElement(
-					'div',
-					{ className: 'col-md-5' },
-					React.createElement(
-						'center',
-						null,
-						React.createElement(
-							'h1',
-							null,
-							'Search Results'
-						),
-						'Your search returned ',
-						this.state.results.length,
-						' results:'
-					),
-					React.createElement('br', null),
-					this.state.results.map((user, index) => React.createElement(
-						'div',
-						{ key: index },
-						React.createElement(
-							Link,
-							{ to: "users/" + user.id },
-							React.createElement(
-								'h4',
-								null,
-								React.createElement('img', { src: user.imageURL, className: 'img-circle', alt: '', width: '100', height: '100', style: { objectFit: 'cover', border: "1px solid #B5A4A4" } }),
-								user.first + " " + user.last
-							)
-						),
-						React.createElement('br', null),
-						React.createElement('br', null)
-					))
-				)
-			);
-		}
+	        _this.state.users.push(user);
+
+	        _this.setState({
+	          users: _this.state.users
+	        });
+	      }
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
+
+	    if (this.state.prop_name != nextProps.params.name) {
+	      this.setState({
+	        prop_name: nextProps.params.name
+	      });
+	      this.state.users.splice(0, this.state.users.length);
+	      this.userRef = firebase.database().ref().child('users').orderByChild('last');
+	      this.userRef.on('child_added', function (snap) {
+	        var user = snap.val();
+
+	        if ((user.first + " " + user.last).toLowerCase().indexOf(nextProps.params.name.toLowerCase()) >= 0) {
+	          user.id = snap.ref.key;
+
+	          _this2.state.users.push(user);
+
+	          _this2.setState({
+	            users: _this2.state.users
+	          });
+	        }
+	      });
+	    }
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.userRef.off();
+	  },
+	  //This class will  handle the results of the search component
+	  //It will display the searched term, the number of results and the Results
+	  //Clicking on the users will redirect to the profile page of the user
+	  render: function render() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", {
+	      className: "grid-title"
+	    }, "Search results for \"", this.state.prop_name, "\""), /*#__PURE__*/React.createElement("div", null, "Returned ", this.state.users.length, " results...")), this.state.users.map(function (user, index) {
+	      return /*#__PURE__*/React.createElement("div", {
+	        className: "grid-item col-md-3",
+	        clkey: index
+	      }, /*#__PURE__*/React.createElement(Link, {
+	        to: "users/" + user.id
+	      }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("img", {
+	        src: user.imageURL,
+	        className: "img-circle grid-img",
+	        alt: "",
+	        width: "100",
+	        height: "100",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      }), /*#__PURE__*/React.createElement("br", null), user.first + " " + user.last)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null));
+	    }));
+	  }
 	});
-
-	module.exports = SearchFunc;
+	module.exports = Results;
 
 /***/ }),
 /* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	var React = __webpack_require__(1);
+
+	var ReactDOM = __webpack_require__(40);
+
 	var firebase = __webpack_require__(187);
+
+	var Link = __webpack_require__(195).Link;
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var SearchFunc = React.createClass({
+	  displayName: "SearchFunc",
+	  getInitialState: function getInitialState() {
+	    return {
+	      results: []
+	    };
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    if (typeof this.userRef == 'function') {
+	      this.userRef.off();
+	    }
+
+	    if (typeof this.experienceRef == 'function') {
+	      this.experienceRef.off();
+	    }
+
+	    if (typeof this.eduationRef == 'function') {
+	      this.educationRef.off();
+	    }
+	  },
+	  //The search results will return users that fulfills the search
+	  render: function render() {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-2"
+	    }), /*#__PURE__*/React.createElement("div", {
+	      className: "col-md-5"
+	    }, /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h1", null, "Search Results"), "Your search returned ", this.state.results.length, " results:"), /*#__PURE__*/React.createElement("br", null), this.state.results.map(function (user, index) {
+	      return /*#__PURE__*/React.createElement("div", {
+	        key: index
+	      }, /*#__PURE__*/React.createElement(Link, {
+	        to: "users/" + user.id
+	      }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("img", {
+	        src: user.imageURL,
+	        className: "img-circle",
+	        alt: "",
+	        width: "100",
+	        height: "100",
+	        style: {
+	          objectFit: 'cover',
+	          border: "1px solid #B5A4A4"
+	        }
+	      }), user.first + " " + user.last)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null));
+	    })));
+	  }
+	});
+	module.exports = SearchFunc;
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var firebase = __webpack_require__(187);
+
 	var hashHistory = __webpack_require__(195).hashHistory;
 
 	function requireAuth(nextState) {
-		var directingToPath = nextState.routes[0].path; //gets the path the user wants to go to
+	  var directingToPath = nextState.routes[0].path; //gets the path the user wants to go to
 
-		firebase.auth().onAuthStateChanged(function (user) {
-			//check if user is logged in
-			if (user == null) {
-				hashHistory.push('/login');
-			}
-		});
-	};
+	  firebase.auth().onAuthStateChanged(function (user) {
+	    //check if user is logged in
+	    if (user == null) {
+	      hashHistory.push('/login');
+	    }
+	  });
+	}
 
+	;
 	module.exports = requireAuth;
 
 /***/ })

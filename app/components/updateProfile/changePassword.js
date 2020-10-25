@@ -1,7 +1,9 @@
 const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
-
+const passRegex = RegExp(
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
+);
 
 class changePassword extends React.Component{
     constructor(props){
@@ -9,11 +11,35 @@ class changePassword extends React.Component{
             
         this.state = {
             currentPassword : "",
-            newPassword : ""
+            newPassword : "",
+            confirmation : "",
+            alert: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.validate = this.validate.bind(this);
+        this.reauthenticate = this.reauthenticate.bind(this);
+    }
+
+    validate(newPassword){
+      let alert = "";
+      
+      if(this.state.confirmation !== this.state.newPassword){
+        alert = "Password Confirmation does not match with new password!"
+      }
+
+      if(!passRegex.test(this.state.newPassword)){
+        alert = "Password should contain at least one: uppercase letter, one lowercase letter, and one number"
+      }
+
+      if (alert) {
+        this.setState({alert});
+        return false;
+      }
+  
+      return true;
+
     }
   
     reauthenticate(currentPassword) {
@@ -33,18 +59,29 @@ class changePassword extends React.Component{
     }
   
     handleSubmit(event) {
+      let alert = "";
+      const isValid = this.validate();
+
+      if(isValid){
         this.reauthenticate(this.state.currentPassword).then(() =>{
             var user = firebase.auth().currentUser;
+            this.setState({alert : ""})
+            //change password successful
+            
             user.updatePassword(this.state.newPassword).then(() =>{
-                console.log("Password was changed")
+              this.setState({alert : "Password has been successfully changed!"})
+              this.setState({newPassword : ""})
+              this.setState({currentPassword : ""})
+              this.setState({confirmation : ""})
+            //change password UNsuccesful
             }).catch((error) => {
-                console.log("Error")
+                this.setState({alert : "Error! Please try again!"})
             });
-
+          
         }).catch((error) => {
-            console.log("error")
+            this.setState({alert : "Error! Current Password incorrect!"})
         });
-
+      }
 
         event.preventDefault();
 
@@ -75,16 +112,22 @@ class changePassword extends React.Component{
               />
             </div>
     
-            {/* <div className="form-place">
+            <div className="form-place">
                 <label> Confirm Password </label>
               <input
+                type = "password"
                 name="confirmation"
                 value={this.state.confirmation}
                 onChange={this.handleChange}
               />
-            </div> */}
+            </div>
+
             <div className="pass-button">
             <button type="submit" onClick={this.handleSubmit}>Change Password</button>
+            </div>
+
+            <div className="errorMessage">
+            {this.state.alert}
             </div>
           </form>
           </div>
