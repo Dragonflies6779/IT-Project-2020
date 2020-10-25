@@ -73,8 +73,11 @@ var Summary = React.createClass({
 
 		return(
 			<div>
-				<h4 className="profile-heading">About {editButton}</h4>
-				<pre className="summary-pre">{this.state.summary}</pre>
+				<hr></hr>
+				<h4 className="profile-heading">About</h4>
+				<h4></h4>
+				<h4>{editButton}</h4>
+				<h4 className="card-body">{this.state.summary}</h4>
 				<hr></hr>
 			</div>
 		);
@@ -86,10 +89,10 @@ var Summary = React.createClass({
 				<h4>About</h4>
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newSummary" defaultValue={this.state.summary} />
 				<center>
-					<div className="btn btn-toolbar">
-						<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
-						<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-					</div>
+					<h4>
+						<button className="btn" onClick={this.handleClickSave}>Save</button>
+						<button  onClick={this.handleClickCancel}>Cancel</button>
+					</h4>
 				</center>
 			</div>
 		);
@@ -104,10 +107,10 @@ var Summary = React.createClass({
 		}
 
 		return (
-			<div className ="card-profile">
-				
-				{partToShow}
-			
+			<div className = "card-profile-summary">
+				<h2>
+					{partToShow}
+				</h2>
 			</div>
 
 		);
