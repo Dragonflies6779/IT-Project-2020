@@ -44,23 +44,24 @@ var Home = React.createClass({
                     <div className="container">
                         {/* <input type="text" className="searchBar"></input>
                         <button>Search</button> */}
+                        <h1>
+                            <img src="logo.png" height={80}/>
+                        </h1>
+            
 
-                        <div className="card">
+                        {/* <div className="card-home"> */}
                             {/* <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} /> */}
                             <div className="card-body">
                                 <h3 className="card-title">Welcome!</h3>
-                                <hr/>
+                               
                                 <h5 className="card-text">Hi there, It's good to see you. Click the button below to help you get started on your portfolio.</h5>
+                                    <br></br>
                                     <Link to={"/users/" + this.state.user_id}> 
                                     {/* need to link this to portfolio editor */}
-                                        <a href="#" className="btn btn-primary">Get Started</a>
+                                        <a href="#" className="btn">Get Started</a>
                                     </Link>
-                                    <p className="card-text">or</p>
-                                    <Link to="/settings"> 
-                                    {/* need to link this to portfolio editor */}
-                                        <a href="#" className="btn btn-primary">Settings</a>
-                                    </Link>
-                            </div>
+                                    {/* <p className="card-text">or</p> */}
+                            {/* </div> */}
                         </div>
                     </div>
                 </div>

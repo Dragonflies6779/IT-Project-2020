@@ -30242,44 +30242,31 @@
 	                    'div',
 	                    { className: 'container' },
 	                    React.createElement(
+	                        'h1',
+	                        null,
+	                        React.createElement('img', { src: 'logo.png', height: 80 })
+	                    ),
+	                    React.createElement(
 	                        'div',
-	                        { className: 'card' },
+	                        { className: 'card-body' },
 	                        React.createElement(
-	                            'div',
-	                            { className: 'card-body' },
+	                            'h3',
+	                            { className: 'card-title' },
+	                            'Welcome!'
+	                        ),
+	                        React.createElement(
+	                            'h5',
+	                            { className: 'card-text' },
+	                            'Hi there, It\'s good to see you. Click the button below to help you get started on your portfolio.'
+	                        ),
+	                        React.createElement('br', null),
+	                        React.createElement(
+	                            Link,
+	                            { to: "/users/" + this.state.user_id },
 	                            React.createElement(
-	                                'h3',
-	                                { className: 'card-title' },
-	                                'Welcome!'
-	                            ),
-	                            React.createElement('hr', null),
-	                            React.createElement(
-	                                'h5',
-	                                { className: 'card-text' },
-	                                'Hi there, It\'s good to see you. Click the button below to help you get started on your portfolio.'
-	                            ),
-	                            React.createElement(
-	                                Link,
-	                                { to: "/users/" + this.state.user_id },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'btn btn-primary' },
-	                                    'Get Started'
-	                                )
-	                            ),
-	                            React.createElement(
-	                                'p',
-	                                { className: 'card-text' },
-	                                'or'
-	                            ),
-	                            React.createElement(
-	                                Link,
-	                                { to: '/settings' },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'btn btn-primary' },
-	                                    'Settings'
-	                                )
+	                                'a',
+	                                { href: '#', className: 'btn' },
+	                                'Get Started'
 	                            )
 	                        )
 	                    )
@@ -30844,6 +30831,9 @@
 /* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This is the navbar component of the page.
+	//The calls the classes that will be used
+	//eg. The Logo homepage link, the users search bar, the profile page link and the signin/signout
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
@@ -30861,7 +30851,8 @@
 	            requests: []
 	        };
 	    },
-
+	    //these components check is the session user is currently logged in or not.
+	    //if logged in, change the navbar to display the profile link and the logout button
 	    componentWillMount: function () {
 	        var that = this;
 
@@ -30959,6 +30950,15 @@
 	            );
 	            signUp = null;
 	            search = React.createElement(Search, { isRecruiter: this.state.recruiter });
+	            settings = React.createElement(
+	                'li',
+	                null,
+	                React.createElement(
+	                    Link,
+	                    { to: "/settings", title: 'Settings', className: 'navbar-brand' },
+	                    React.createElement('img', { src: 'settings.png', className: 'img-circle', width: '20', height: '20', style: { objectFit: 'cover' } })
+	                )
+	            );
 	        } else {
 	            loginOrOut = React.createElement(
 	                'li',
@@ -30980,6 +30980,7 @@
 	                )
 	            );
 	            search = null;
+	            settings = null;
 	        }
 
 	        if (this.state.recruiter == true) {
@@ -31012,6 +31013,7 @@
 	                        { className: 'nav navbar-nav pull-right' },
 	                        signUp,
 	                        profile,
+	                        settings,
 	                        loginOrOut
 	                    )
 	                )
@@ -31031,7 +31033,8 @@
 /* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	
+	//This component handles the search bar that allows the searchfunc to work
+	//This component is called from the layout class which is shown in the nav bar section
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(40);
 	var firebase = __webpack_require__(187);
@@ -31050,7 +31053,7 @@
 	    },
 
 	    handleAdvancedSearchForm: function () {
-	        hashHistory.push('/advanced');
+	        hashHistory.push('/searchfunc');
 	    },
 
 	    componentWillMount: function () {
@@ -31096,6 +31099,9 @@
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//This is the profile page class that compiles all the information editing functions into one
+	// each of the "components" are essentially the same functionality but it calls-
+	// different locations for the realtime database
 	var React = __webpack_require__(1);
 	var firebase = __webpack_require__(187);
 	var Link = __webpack_require__(195).Link;
@@ -31182,7 +31188,7 @@
 					this.state.user_name
 				),
 				React.createElement('br', null),
-				React.createElement('hr', null),
+				React.createElement('br', null),
 				show
 			);
 		}
@@ -31276,15 +31282,21 @@
 			return React.createElement(
 				'div',
 				null,
+				React.createElement('hr', null),
 				React.createElement(
 					'h4',
 					{ className: 'profile-heading' },
-					'About ',
+					'About'
+				),
+				React.createElement('h4', null),
+				React.createElement(
+					'h4',
+					null,
 					editButton
 				),
 				React.createElement(
-					'pre',
-					{ className: 'summary-pre' },
+					'h4',
+					{ className: 'card-body' },
 					this.state.summary
 				),
 				React.createElement('hr', null)
@@ -31305,16 +31317,16 @@
 					'center',
 					null,
 					React.createElement(
-						'div',
-						{ className: 'btn btn-toolbar' },
+						'h4',
+						null,
 						React.createElement(
 							'button',
-							{ className: 'btn btn-primary', onClick: this.handleClickSave },
+							{ className: 'btn', onClick: this.handleClickSave },
 							'Save'
 						),
 						React.createElement(
 							'button',
-							{ className: 'btn btn-default', onClick: this.handleClickCancel },
+							{ onClick: this.handleClickCancel },
 							'Cancel'
 						)
 					)
@@ -31332,8 +31344,12 @@
 
 			return React.createElement(
 				'div',
-				{ className: 'card-profile' },
-				partToShow
+				{ className: 'card-profile-summary' },
+				React.createElement(
+					'h2',
+					null,
+					partToShow
+				)
 			);
 		}
 	});
@@ -33046,7 +33062,9 @@
 		componentWillUnmount: function () {
 			this.userRef.off();
 		},
-
+		//This class will  handle the results of the search component
+		//It will display the searched term, the number of results and the Results
+		//Clicking on the users will redirect to the profile page of the user
 		render: function () {
 			return React.createElement(
 				'div',
@@ -33120,7 +33138,7 @@
 				this.educationRef.off();
 			}
 		},
-
+		//The search results will return users that fulfills the search
 		render: function () {
 			return React.createElement(
 				'div',
