@@ -21,7 +21,9 @@ const Password = require('../updateProfile/changePassword.js');
 
 var Profile = React.createClass({
 	getInitialState: function(){
-		return {user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""};
+		return(
+			
+			{user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""});
 	},
 
     componentWillMount: function(){
@@ -66,7 +68,7 @@ var Profile = React.createClass({
 
 		show =
 			<div>
-				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/> 
 				<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
@@ -79,7 +81,7 @@ var Profile = React.createClass({
 		return <div className="jumbotron">
 					<h1>{this.state.user_name}</h1>
 					<br />
-					<hr/>
+					<br />
 					{/* <div class="row">
 						<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 					</div>
