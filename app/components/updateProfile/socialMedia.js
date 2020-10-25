@@ -187,9 +187,10 @@ class socialMedia extends React.Component{
         <form onSubmit={this.handleSubmit} className="form">
           <h4>Contact</h4>
 
-        <div className="col-md-8">
+        <div className="form-control">
+          <label>Text</label>
           <textarea
-            rows = "5"
+            rows = "3"
             name="description"
             placeholder = "Message : please do not hesitate to contact me if there are questions..."
             value={this.state.description == null ? "" : this.state.description}
