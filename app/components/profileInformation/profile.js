@@ -15,6 +15,7 @@ const Upload = require('../uploadFile/pdfUpload.js');
 const Account = require('../updateProfile/accountDetail.js');
 const Social = require('../updateProfile/socialMedia.js');
 const Password = require('../updateProfile/changePassword.js');
+const ProfilePict = require('./profilepict.js');
 
 
 // import '/style.css';
@@ -78,18 +79,21 @@ var Profile = React.createClass({
 				<Upload pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser} user={firebase.auth().currentUser}/>
 			</div>
 
-		return <div className="jumbotron">
-					<h1>{this.state.user_name}</h1>
-					<br />
-					<br />
-					{/* <div class="row">
-						<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					</div>
-					<div class ="row">
-						<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					</div> */}
-					{show}
+		return (
+			<div className="jumbotron">
+				<ProfilePict pageID={this.state.pageID}/>
+				<h1>{this.state.user_name}</h1>
+				<br />
+				<br />
+				{/* <div class="row">
+					<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				</div>
+				<div class ="row">
+					<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				</div> */}
+				{show}
+			</div>
+		);
 	},
 });
 
