@@ -7,7 +7,7 @@ class profilepict extends React.Component{
     constructor(props){
         super();
         this.state = {
-            pictUrl: null
+            pictUrl: "profile.png"
         }
     }
     componentDidMount(){
@@ -30,10 +30,14 @@ class profilepict extends React.Component{
     }
     render(){
         // className="btn btn-default"
-        if(this.state.pictUrl){
+        var user = firebase.auth().currentUser;
+
+        if(user && user.uid == this.props.pageID){
             return(
                 <div>
                     <div>
+                        <br/>
+                        <br/>
                         <img src={this.state.pictUrl} alt="Pict Not Found!" className="img-circle" width="200" height="200" style={{objectFit: 'cover'}}></img>
                     </div>
                     
@@ -44,7 +48,10 @@ class profilepict extends React.Component{
         }else{
             return(
                 <div>
-                    <img src="profile.png" alt="Pict Not Found!" className="img-circle" width="200" height="200" style={{objectFit: 'cover'}}></img>
+                    <div>
+                        <img src={this.state.pictUrl} alt="Pict Not Found!" className="img-circle" width="200" height="200" style={{objectFit: 'cover'}}></img>
+                    </div>
+                    
                 </div>
             );
         }
