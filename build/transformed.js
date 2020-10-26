@@ -29825,15 +29825,15 @@
 
 	var Upload = __webpack_require__(281);
 
-	var Account = __webpack_require__(296);
+	var Account = __webpack_require__(297);
 
-	var UploadImage = __webpack_require__(297);
+	var UploadImage = __webpack_require__(298);
 
-	var SearchResults = __webpack_require__(298);
+	var SearchResults = __webpack_require__(299);
 
-	var SearchFunc = __webpack_require__(299);
+	var SearchFunc = __webpack_require__(300);
 
-	var requireAuth = __webpack_require__(300);
+	var requireAuth = __webpack_require__(301);
 
 	var routes = /*#__PURE__*/React.createElement(Router, {
 	  history: hashHistory
@@ -29857,7 +29857,7 @@
 	  component: Profile,
 	  onEnter: requireAuth
 	}), /*#__PURE__*/React.createElement(Route, {
-	  path: "/upload",
+	  path: "/upload/:id",
 	  component: Upload
 	}), /*#__PURE__*/React.createElement(Route, {
 	  path: "/settings",
@@ -29889,6 +29889,7 @@
 	var hashHistory = __webpack_require__(195).hashHistory;
 
 	var passRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/);
+	var nameRegex = RegExp(/^[a-z ,.'-]+$/i);
 	var SignUpForm = React.createClass({
 	  displayName: "SignUpForm",
 	  //initially, no submission errors
@@ -29906,7 +29907,7 @@
 	    var password = this.refs.password.value;
 	    var password_confirmation = this.refs.password_confirmation.value;
 
-	    if (firstName && lastName) {
+	    if (nameRegex.test(firstName) && nameRegex.test(lastName)) {
 	      if (!passRegex.test(password)) {
 	        that.setState({
 	          hasError: true
@@ -29922,7 +29923,7 @@
 	              hasError: true
 	            });
 	            that.setState({
-	              errorMsg: "Please enter a valid email address with a password of at least 6 characters."
+	              errorMsg: "Please enter a valid email address with a password of at least 8 characters."
 	            });
 	          }
 	        });
@@ -29932,7 +29933,7 @@
 	        hasError: true
 	      });
 	      that.setState({
-	        errorMsg: "First or last name field cannot be empty."
+	        errorMsg: "Please enter a valid name."
 	      });
 	    } //if successfully logged in, add the user child to the database with the name and email.
 
@@ -30221,27 +30222,21 @@
 	      className: "jumbotron jumbotron-fluid"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "container"
-	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "card"
-	    }, /*#__PURE__*/React.createElement("div", {
+	    }, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("img", {
+	      src: "logo.png",
+	      height: 80
+	    })), /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
 	    }, /*#__PURE__*/React.createElement("h3", {
 	      className: "card-title"
-	    }, "Welcome!"), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h5", {
+	    }, "Welcome!"), /*#__PURE__*/React.createElement("h5", {
 	      className: "card-text"
-	    }, "Hi there, It's good to see you. Click the button below to help you get started on your portfolio."), /*#__PURE__*/React.createElement(Link, {
+	    }, "Hi there, It's good to see you. Click the button below to help you get started on your portfolio."), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(Link, {
 	      to: "/users/" + this.state.user_id
 	    }, /*#__PURE__*/React.createElement("a", {
 	      href: "#",
-	      className: "btn btn-primary"
-	    }, "Get Started")), /*#__PURE__*/React.createElement("p", {
-	      className: "card-text"
-	    }, "or"), /*#__PURE__*/React.createElement(Link, {
-	      to: "/settings"
-	    }, /*#__PURE__*/React.createElement("a", {
-	      href: "#",
-	      className: "btn btn-primary"
-	    }, "Settings")))))));
+	      className: "btn"
+	    }, "Get Started"))))));
 	  }
 	});
 	module.exports = Home;
@@ -30291,7 +30286,9 @@
 	    _this = _super.call(this);
 	    _this.state = {
 	      file: null,
+	      // for upload file status
 	      fileStat: "",
+	      // for download file status
 	      downloadStat: "",
 	      downloadUrl: ""
 	    };
@@ -30304,29 +30301,26 @@
 	  _createClass(PdfUpload, [{
 	    key: "handleDownload",
 	    value: function handleDownload(event) {
-	      var user = firebase.auth().currentUser;
+	      // Create a reference to the file we want to download
+	      var storageRef = firebase.storage().ref();
+	      var resumeRef = storageRef.child("resume_pdf/".concat(this.props.pageID, "/resume"));
+	      console.log(this.props.pageID); // Get the download URL
 
-	      if (user) {
-	        // Create a reference to the file we want to download
-	        var storageRef = firebase.storage().ref();
-	        var resumeRef = storageRef.child("resume_pdf/".concat(user.uid, "/resume")); // Get the download URL
-
-	        var that = this;
-	        resumeRef.getDownloadURL().then(function (url) {
-	          // Or inserted into an <img> element:
-	          that.setState({
-	            downloadUrl: url,
-	            downloadStat: "Download success, please click the following links"
-	          });
-	        })["catch"](function (error) {
-	          that.setState({
-	            downloadStat: "Resume not found / Download error"
-	          });
+	      var that = this;
+	      resumeRef.getDownloadURL().then(function (url) {
+	        // Or inserted into an <img> element:
+	        that.setState({
+	          downloadUrl: url,
+	          downloadStat: "Download success, please click the following links"
 	        });
-	      } else {
-	        // No user is signed in.
-	        hashHistory.push("/login");
-	      }
+	      })["catch"](function (error) {
+	        that.setState({
+	          downloadStat: "Resume not found / Download error"
+	        });
+	      }); // } else {
+	      //     // No user is signed in.
+	      //     hashHistory.push("/login");
+	      // }
 	    }
 	  }, {
 	    key: "handlechange",
@@ -30351,7 +30345,7 @@
 	        // User is signed in.
 	        var uploadTask = storage.ref("resume_pdf/".concat(user.uid, "/resume")).put(this.state.file);
 	        uploadTask.on('state_changed', function (snapshot) {
-	          var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	          var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100).toString() + "%";
 
 	          _this2.setState({
 	            fileStat: progress
@@ -30382,16 +30376,26 @@
 	        href: this.state.downloadUrl,
 	        target: "_blank"
 	      }, "download link");
-	      return /*#__PURE__*/React.createElement("div", {
-	        className: "card-profile"
-	      }, /*#__PURE__*/React.createElement("input", {
-	        type: "file",
-	        onChange: this.handlechange
-	      }), /*#__PURE__*/React.createElement("button", {
-	        onClick: this.handleUpload
-	      }, "Upload Resume"), /*#__PURE__*/React.createElement("button", {
-	        onClick: this.handleDownload
-	      }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      var user = firebase.auth().currentUser;
+
+	      if (user && user.uid == this.props.pageID) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          className: "card-profile"
+	        }, /*#__PURE__*/React.createElement("input", {
+	          type: "file",
+	          onChange: this.handlechange
+	        }), /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleUpload
+	        }, "Upload Resume"), /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleDownload
+	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      } else {
+	        return /*#__PURE__*/React.createElement("div", {
+	          className: "card-profile"
+	        }, /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleDownload
+	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      }
 	    }
 	  }]);
 
@@ -30578,6 +30582,7 @@
 
 	    _this = _super.call(this);
 	    _this.state = {
+	      description: "",
 	      instagram: "",
 	      linkedin: "",
 	      facebook: "",
@@ -30590,64 +30595,74 @@
 	  }
 
 	  _createClass(socialMedia, [{
+	    key: "getInitialState",
+	    value: function getInitialState() {
+	      return {
+	        isCurrentUser: false,
+	        id: this.props.pageID
+	      };
+	    }
+	  }, {
 	    key: "componentWillMount",
 	    value: function componentWillMount() {
 	      var _this2 = this;
 
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            instagram: snapshot.val()
-	          });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('instagram').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          instagram: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            linkedin: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('linkedin').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          linkedin: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            facebook: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('facebook').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          facebook: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            mail: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('mail').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          mail: snapshot.val()
 	        });
-	      }
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('description').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          description: snapshot.val()
+	        });
+	      });
 	    }
 	  }, {
 	    key: "componentWillReceiveProps",
 	    value: function componentWillReceiveProps(nextProps) {
 	      var _this3 = this;
 
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            instagram: snapshot.val()
-	          });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('instagram').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          instagram: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            linkedin: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('linkedin').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          linkedin: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            facebook: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('facebook').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          facebook: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            mail: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('mail').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          mail: snapshot.val()
 	        });
-	      }
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('description').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          description: snapshot.val()
+	        });
+	      });
 	    }
 	  }, {
 	    key: "handleChange",
@@ -30662,11 +30677,12 @@
 	    value: function handleSubmit(event) {
 	      var user = firebase.auth().currentUser;
 	      var socialRef = firebase.database().ref('user-social');
-	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).set({
+	      firebase.database().ref('user-social/' + this.props.pageID).set({
 	        instagram: this.state.instagram,
 	        linkedin: this.state.linkedin,
 	        facebook: this.state.facebook,
-	        mail: this.state.mail
+	        mail: this.state.mail,
+	        description: this.state.description
 	      });
 	      this.setState({
 	        instagram: this.state.instagram
@@ -30681,6 +30697,9 @@
 	        mail: this.state.mail
 	      });
 	      this.setState({
+	        description: this.state.description
+	      });
+	      this.setState({
 	        alert: "Change has been successfully saved"
 	      });
 	      event.preventDefault();
@@ -30688,15 +30707,22 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
+	      //render the place to edit and save changes to social media 
+	      if (this.props.isCurrentUser) {
 	        return /*#__PURE__*/React.createElement("div", {
 	          className: "card-profile"
 	        }, /*#__PURE__*/React.createElement("form", {
 	          onSubmit: this.handleSubmit,
 	          className: "form"
 	        }, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, "Text"), /*#__PURE__*/React.createElement("textarea", {
+	          rows: "3",
+	          name: "description",
+	          placeholder: "Message : please do not hesitate to contact me if there are questions...",
+	          value: this.state.description == null ? "" : this.state.description,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
 	        }, /*#__PURE__*/React.createElement("label", null, "Instagram"), /*#__PURE__*/React.createElement("input", {
 	          name: "instagram",
@@ -30758,24 +30784,37 @@
 	          alt: "logo",
 	          height: "30px"
 	        }) : "")));
-	      } else {
-	        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-	          href: this.state.instagram,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.instagram ? /*#__PURE__*/React.createElement("img", {
-	          src: "igIcon.png",
-	          alt: "logo",
-	          height: 35
-	        }) : "")), /*#__PURE__*/React.createElement("a", {
-	          href: this.state.linkedin,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.linkedin ? "LinkedIn" : "")), /*#__PURE__*/React.createElement("a", {
-	          href: this.state.facebook,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.facebook ? "Facebook" : ""))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-	          href: "mailto:" + this.state.mail
-	        }, " Mail ")));
-	      }
+	      } //only return the icons 
+	      else {
+	          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, " ", this.state.description), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.instagram,
+	            target: "_blank"
+	          }, this.state.instagram ? /*#__PURE__*/React.createElement("img", {
+	            src: "igIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.linkedin,
+	            target: "_blank"
+	          }, this.state.linkedin ? /*#__PURE__*/React.createElement("img", {
+	            src: "liIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.facebook,
+	            target: "_blank"
+	          }, this.state.facebook ? /*#__PURE__*/React.createElement("img", {
+	            src: "fbIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: "mailto:" + this.state.mail
+	          }, this.state.mail ? /*#__PURE__*/React.createElement("img", {
+	            src: "mailIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""));
+	        }
 	    }
 	  }]);
 
@@ -31250,7 +31289,7 @@
 	        title: "Profile",
 	        className: "navbar-brand"
 	      }, /*#__PURE__*/React.createElement("img", {
-	        src: this.state.imgURL,
+	        src: "profile.png",
 	        className: "img-circle",
 	        width: "20",
 	        height: "20",
@@ -31262,6 +31301,19 @@
 	      search = /*#__PURE__*/React.createElement(Search, {
 	        isRecruiter: this.state.recruiter
 	      });
+	      settings = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/settings",
+	        title: "Settings",
+	        className: "navbar-brand"
+	      }, /*#__PURE__*/React.createElement("img", {
+	        src: "settings.png",
+	        className: "img-circle",
+	        width: "20",
+	        height: "20",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      })));
 	    } else {
 	      loginOrOut = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
 	        to: "/login",
@@ -31273,6 +31325,7 @@
 	        className: "navbar-brand"
 	      }, "Sign Up"));
 	      search = null;
+	      settings = null;
 	    }
 
 	    if (this.state.recruiter == true) {
@@ -31296,7 +31349,7 @@
 	      height: 35
 	    }))), search, /*#__PURE__*/React.createElement("ul", {
 	      className: "nav navbar-nav pull-right"
-	    }, signUp, profile, loginOrOut))), /*#__PURE__*/React.createElement("div", {
+	    }, signUp, profile, settings, loginOrOut))), /*#__PURE__*/React.createElement("div", {
 	      className: "container"
 	    }, this.props.children));
 	  }
@@ -31407,7 +31460,9 @@
 
 	var Social = __webpack_require__(283);
 
-	var Password = __webpack_require__(285); // import '/style.css';
+	var Password = __webpack_require__(285);
+
+	var ProfilePict = __webpack_require__(296); // import '/style.css';
 
 
 	var Profile = React.createClass({
@@ -31494,13 +31549,18 @@
 	      pageID: this.state.pageID,
 	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement(Social, {
-	      user: firebase.auth().currentUser
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement(Upload, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser,
 	      user: firebase.auth().currentUser
 	    }));
 	    return /*#__PURE__*/React.createElement("div", {
 	      className: "jumbotron"
-	    }, /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("hr", null), show);
+	    }, /*#__PURE__*/React.createElement(ProfilePict, {
+	      pageID: this.state.pageID
+	    }), /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), show);
 	  }
 	});
 	module.exports = Profile;
@@ -31610,10 +31670,10 @@
 	      editButton = /*#__PURE__*/React.createElement("div", null);
 	    }
 
-	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "About ", editButton), /*#__PURE__*/React.createElement("pre", {
-	      className: "summary-pre"
+	    }, "About"), /*#__PURE__*/React.createElement("h4", null), /*#__PURE__*/React.createElement("h4", null, editButton), /*#__PURE__*/React.createElement("h4", {
+	      className: "card-body"
 	    }, this.state.summary), /*#__PURE__*/React.createElement("hr", null));
 	  },
 	  editingSummary: function editingSummary() {
@@ -31625,13 +31685,10 @@
 	      },
 	      ref: "newSummary",
 	      defaultValue: this.state.summary
-	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
 	    }, "Cancel"))));
 	  },
@@ -31645,8 +31702,8 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
-	    }, partToShow);
+	      className: "card-profile-summary"
+	    }, /*#__PURE__*/React.createElement("h2", null, partToShow));
 	  }
 	});
 	module.exports = Summary;
@@ -33061,6 +33118,81 @@
 /* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+	var React = __webpack_require__(1);
+
+	var firebase = __webpack_require__(187);
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var profilepict = /*#__PURE__*/function (_React$Component) {
+	  _inherits(profilepict, _React$Component);
+
+	  var _super = _createSuper(profilepict);
+
+	  function profilepict(props) {
+	    var _this;
+
+	    _classCallCheck(this, profilepict);
+
+	    _this = _super.call(this);
+	    _this.state = {
+	      pictUrl: null
+	    };
+	    return _this;
+	  }
+
+	  _createClass(profilepict, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var storageRef = firebase.storage().ref();
+	      var pictRef = storageRef.child("images/".concat(this.props.pageID, "/image"));
+	      pictRef.getDownloadURL().then(function (url) {
+	        _this2.setState({
+	          pictUrl: url
+	        });
+	      });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+	        src: url,
+	        alt: "Pict Not Found!"
+	      }));
+	    }
+	  }]);
+
+	  return profilepict;
+	}(React.Component);
+
+/***/ }),
+/* 297 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
 
 	var ReactDOM = __webpack_require__(40);
@@ -33094,7 +33226,7 @@
 	module.exports = settings;
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -33198,7 +33330,7 @@
 	module.exports = imagesUpload;
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -33296,7 +33428,7 @@
 	module.exports = Results;
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -33357,7 +33489,7 @@
 	module.exports = SearchFunc;
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(187);
