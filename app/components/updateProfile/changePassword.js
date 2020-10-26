@@ -90,9 +90,9 @@ class changePassword extends React.Component{
     render() {
         return (
           <div className="card-profile">
-          <form onSubmit={this.handleSubmit} className="form">
+          <form onSubmit={this.handleSubmit} className="block">
               <h4>Change Password</h4>
-            <div className="form-place">
+            <div className="block">
               <label>Old Password</label>
               <input
                 type="password"
@@ -102,7 +102,7 @@ class changePassword extends React.Component{
               />
             </div>
     
-            <div className="form-place">
+            <div className="block">
                 <label>New Password</label>
               <input
                 type="password"

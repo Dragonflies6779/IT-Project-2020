@@ -187,9 +187,10 @@ class socialMedia extends React.Component{
         <form onSubmit={this.handleSubmit} className="form">
           <h4>Contact</h4>
 
-        <div className="form-control">
-          <label>Text</label>
+        <div>
+        
           <textarea
+            className = "form-control"
             rows = "3"
             name="description"
             placeholder = "Message : please do not hesitate to contact me if there are questions..."
@@ -197,18 +198,23 @@ class socialMedia extends React.Component{
             onChange={this.handleChange}
           />
         </div>
-        <div className="form-control">
-          <label>Instagram</label>
+        
+        <div className = "form-control">
+          <h4>Instagram</h4>
           <input
             name="instagram"
             placeholder = "https://instagram.com"
             value={this.state.instagram == null ? "" : this.state.instagram}
             onChange={this.handleChange}
           />
+           <br/>
         </div>
+        <br/>
+        <br/>
+        <br/>
 
         <div className="form-control">
-        <label> LinkedIn </label>
+        <h4> LinkedIn </h4>
           <input
             name="linkedin"
             placeholder = "https://linkedin.com"
@@ -216,9 +222,12 @@ class socialMedia extends React.Component{
             onChange={this.handleChange}
           />
         </div>
+        <br/>
+        <br/>
+        <br/>
         
         <div className="form-control">
-        <label> facebook </label>
+        <h4> Facebook </h4>
           <input
             name="facebook"
             placeholder = "https://facebook.com"
@@ -226,8 +235,12 @@ class socialMedia extends React.Component{
             onChange={this.handleChange}
           />
         </div>
+        <br/>
+        <br/>
+        <br/>
+        
         <div className="form-control">
-            <label> Mail </label>
+            <h4>Mail</h4> 
           <input
             name="mail"
             placeholder = "test123@gmail.com"
@@ -235,9 +248,14 @@ class socialMedia extends React.Component{
             onChange={this.handleChange}
           />
         </div>
-        <div className="btn btn-toolbar">
-        <button className="btn btn-primary">Save</button>
-        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+        
+        <button className="btn btn-default">Save</button>
+        
       </form>
 
         <div className="errorMessage">
@@ -249,7 +267,7 @@ class socialMedia extends React.Component{
             </a>
 
             <a href={this.state.linkedin} target="_blank"> 
-            {this.state.linkedin ? <img src="liIcon.png" alt="logo" height="30px"/> : ""}
+            {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
             </a>
             
             <a href={this.state.facebook} target="_blank">
@@ -276,7 +294,7 @@ class socialMedia extends React.Component{
           </a>
 
           <a href={this.state.linkedin} target="_blank"> 
-          {this.state.linkedin ? <img src="liIcon.png" alt="logo" height="30px"/> : ""}
+          {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
           </a>
           
           <a href={this.state.facebook} target="_blank">
