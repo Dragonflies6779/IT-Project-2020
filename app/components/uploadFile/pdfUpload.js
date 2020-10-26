@@ -89,7 +89,8 @@ class PdfUpload extends React.Component{
         let downloadLink = <p></p>
         if (this.state.downloadUrl) downloadLink = <a href={this.state.downloadUrl} target="_blank">download link</a>;
         var user = firebase.auth().currentUser;
-        if (user.uid == this.props.pageID){
+
+        if (user && user.uid == this.props.pageID){
             return (
             <div className = "card-profile">
                 <input type="file" onChange={this.handlechange}></input>
