@@ -29889,6 +29889,7 @@
 	var hashHistory = __webpack_require__(195).hashHistory;
 
 	var passRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/);
+	var nameRegex = RegExp(/^[a-z ,.'-]+$/i);
 	var SignUpForm = React.createClass({
 	  displayName: "SignUpForm",
 	  //initially, no submission errors
@@ -29906,7 +29907,7 @@
 	    var password = this.refs.password.value;
 	    var password_confirmation = this.refs.password_confirmation.value;
 
-	    if (firstName && lastName) {
+	    if (nameRegex.test(firstName) && nameRegex.test(lastName)) {
 	      if (!passRegex.test(password)) {
 	        that.setState({
 	          hasError: true
@@ -29922,7 +29923,7 @@
 	              hasError: true
 	            });
 	            that.setState({
-	              errorMsg: "Please enter a valid email address with a password of at least 6 characters."
+	              errorMsg: "Please enter a valid email address with a password of at least 8 characters."
 	            });
 	          }
 	        });
@@ -29932,7 +29933,7 @@
 	        hasError: true
 	      });
 	      that.setState({
-	        errorMsg: "First or last name field cannot be empty."
+	        errorMsg: "Please enter a valid name."
 	      });
 	    } //if successfully logged in, add the user child to the database with the name and email.
 
@@ -30221,27 +30222,21 @@
 	      className: "jumbotron jumbotron-fluid"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "container"
-	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "card"
-	    }, /*#__PURE__*/React.createElement("div", {
+	    }, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement("img", {
+	      src: "logo.png",
+	      height: 80
+	    })), /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
 	    }, /*#__PURE__*/React.createElement("h3", {
 	      className: "card-title"
-	    }, "Welcome!"), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h5", {
+	    }, "Welcome!"), /*#__PURE__*/React.createElement("h5", {
 	      className: "card-text"
-	    }, "Hi there, It's good to see you. Click the button below to help you get started on your portfolio."), /*#__PURE__*/React.createElement(Link, {
+	    }, "Hi there, It's good to see you. Click the button below to help you get started on your portfolio."), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(Link, {
 	      to: "/users/" + this.state.user_id
 	    }, /*#__PURE__*/React.createElement("a", {
 	      href: "#",
-	      className: "btn btn-primary"
-	    }, "Get Started")), /*#__PURE__*/React.createElement("p", {
-	      className: "card-text"
-	    }, "or"), /*#__PURE__*/React.createElement(Link, {
-	      to: "/settings"
-	    }, /*#__PURE__*/React.createElement("a", {
-	      href: "#",
-	      className: "btn btn-primary"
-	    }, "Settings")))))));
+	      className: "btn"
+	    }, "Get Started"))))));
 	  }
 	});
 	module.exports = Home;
@@ -30578,6 +30573,7 @@
 
 	    _this = _super.call(this);
 	    _this.state = {
+	      description: "",
 	      instagram: "",
 	      linkedin: "",
 	      facebook: "",
@@ -30590,64 +30586,74 @@
 	  }
 
 	  _createClass(socialMedia, [{
+	    key: "getInitialState",
+	    value: function getInitialState() {
+	      return {
+	        isCurrentUser: false,
+	        id: this.props.pageID
+	      };
+	    }
+	  }, {
 	    key: "componentWillMount",
 	    value: function componentWillMount() {
 	      var _this2 = this;
 
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            instagram: snapshot.val()
-	          });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('instagram').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          instagram: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            linkedin: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('linkedin').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          linkedin: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            facebook: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('facebook').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          facebook: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
-	          _this2.setState({
-	            mail: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('mail').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          mail: snapshot.val()
 	        });
-	      }
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('description').once('value').then(function (snapshot) {
+	        _this2.setState({
+	          description: snapshot.val()
+	        });
+	      });
 	    }
 	  }, {
 	    key: "componentWillReceiveProps",
 	    value: function componentWillReceiveProps(nextProps) {
 	      var _this3 = this;
 
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('instagram').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            instagram: snapshot.val()
-	          });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('instagram').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          instagram: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('linkedin').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            linkedin: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('linkedin').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          linkedin: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('facebook').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            facebook: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('facebook').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          facebook: snapshot.val()
 	        });
-	        firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).child('mail').once('value').then(function (snapshot) {
-	          _this3.setState({
-	            mail: snapshot.val()
-	          });
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('mail').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          mail: snapshot.val()
 	        });
-	      }
+	      });
+	      firebase.database().ref('user-social/' + this.props.pageID).child('description').once('value').then(function (snapshot) {
+	        _this3.setState({
+	          description: snapshot.val()
+	        });
+	      });
 	    }
 	  }, {
 	    key: "handleChange",
@@ -30662,11 +30668,12 @@
 	    value: function handleSubmit(event) {
 	      var user = firebase.auth().currentUser;
 	      var socialRef = firebase.database().ref('user-social');
-	      firebase.database().ref('user-social/' + firebase.auth().currentUser.uid).set({
+	      firebase.database().ref('user-social/' + this.props.pageID).set({
 	        instagram: this.state.instagram,
 	        linkedin: this.state.linkedin,
 	        facebook: this.state.facebook,
-	        mail: this.state.mail
+	        mail: this.state.mail,
+	        description: this.state.description
 	      });
 	      this.setState({
 	        instagram: this.state.instagram
@@ -30681,6 +30688,9 @@
 	        mail: this.state.mail
 	      });
 	      this.setState({
+	        description: this.state.description
+	      });
+	      this.setState({
 	        alert: "Change has been successfully saved"
 	      });
 	      event.preventDefault();
@@ -30688,15 +30698,22 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var user = firebase.auth().currentUser;
-
-	      if (user) {
+	      //render the place to edit and save changes to social media 
+	      if (this.props.isCurrentUser) {
 	        return /*#__PURE__*/React.createElement("div", {
 	          className: "card-profile"
 	        }, /*#__PURE__*/React.createElement("form", {
 	          onSubmit: this.handleSubmit,
 	          className: "form"
 	        }, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("div", {
+	          className: "form-control"
+	        }, /*#__PURE__*/React.createElement("label", null, "Text"), /*#__PURE__*/React.createElement("textarea", {
+	          rows: "3",
+	          name: "description",
+	          placeholder: "Message : please do not hesitate to contact me if there are questions...",
+	          value: this.state.description == null ? "" : this.state.description,
+	          onChange: this.handleChange
+	        })), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
 	        }, /*#__PURE__*/React.createElement("label", null, "Instagram"), /*#__PURE__*/React.createElement("input", {
 	          name: "instagram",
@@ -30758,24 +30775,37 @@
 	          alt: "logo",
 	          height: "30px"
 	        }) : "")));
-	      } else {
-	        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-	          href: this.state.instagram,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.instagram ? /*#__PURE__*/React.createElement("img", {
-	          src: "igIcon.png",
-	          alt: "logo",
-	          height: 35
-	        }) : "")), /*#__PURE__*/React.createElement("a", {
-	          href: this.state.linkedin,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.linkedin ? "LinkedIn" : "")), /*#__PURE__*/React.createElement("a", {
-	          href: this.state.facebook,
-	          target: "_blank"
-	        }, /*#__PURE__*/React.createElement("b", null, " ", this.state.facebook ? "Facebook" : ""))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-	          href: "mailto:" + this.state.mail
-	        }, " Mail ")));
-	      }
+	      } //only return the icons 
+	      else {
+	          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, " ", this.state.description), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.instagram,
+	            target: "_blank"
+	          }, this.state.instagram ? /*#__PURE__*/React.createElement("img", {
+	            src: "igIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.linkedin,
+	            target: "_blank"
+	          }, this.state.linkedin ? /*#__PURE__*/React.createElement("img", {
+	            src: "liIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: this.state.facebook,
+	            target: "_blank"
+	          }, this.state.facebook ? /*#__PURE__*/React.createElement("img", {
+	            src: "fbIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""), /*#__PURE__*/React.createElement("a", {
+	            href: "mailto:" + this.state.mail
+	          }, this.state.mail ? /*#__PURE__*/React.createElement("img", {
+	            src: "mailIcon.png",
+	            alt: "logo",
+	            height: "30px"
+	          }) : ""));
+	        }
 	    }
 	  }]);
 
@@ -31250,7 +31280,7 @@
 	        title: "Profile",
 	        className: "navbar-brand"
 	      }, /*#__PURE__*/React.createElement("img", {
-	        src: this.state.imgURL,
+	        src: "profile.png",
 	        className: "img-circle",
 	        width: "20",
 	        height: "20",
@@ -31262,6 +31292,19 @@
 	      search = /*#__PURE__*/React.createElement(Search, {
 	        isRecruiter: this.state.recruiter
 	      });
+	      settings = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
+	        to: "/settings",
+	        title: "Settings",
+	        className: "navbar-brand"
+	      }, /*#__PURE__*/React.createElement("img", {
+	        src: "settings.png",
+	        className: "img-circle",
+	        width: "20",
+	        height: "20",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      })));
 	    } else {
 	      loginOrOut = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
 	        to: "/login",
@@ -31273,6 +31316,7 @@
 	        className: "navbar-brand"
 	      }, "Sign Up"));
 	      search = null;
+	      settings = null;
 	    }
 
 	    if (this.state.recruiter == true) {
@@ -31296,7 +31340,7 @@
 	      height: 35
 	    }))), search, /*#__PURE__*/React.createElement("ul", {
 	      className: "nav navbar-nav pull-right"
-	    }, signUp, profile, loginOrOut))), /*#__PURE__*/React.createElement("div", {
+	    }, signUp, profile, settings, loginOrOut))), /*#__PURE__*/React.createElement("div", {
 	      className: "container"
 	    }, this.props.children));
 	  }
@@ -31494,13 +31538,14 @@
 	      pageID: this.state.pageID,
 	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement(Social, {
-	      user: firebase.auth().currentUser
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement(Upload, {
 	      user: firebase.auth().currentUser
 	    }));
 	    return /*#__PURE__*/React.createElement("div", {
 	      className: "jumbotron"
-	    }, /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("hr", null), show);
+	    }, /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), show);
 	  }
 	});
 	module.exports = Profile;
@@ -31610,10 +31655,10 @@
 	      editButton = /*#__PURE__*/React.createElement("div", null);
 	    }
 
-	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "About ", editButton), /*#__PURE__*/React.createElement("pre", {
-	      className: "summary-pre"
+	    }, "About"), /*#__PURE__*/React.createElement("h4", null), /*#__PURE__*/React.createElement("h4", null, editButton), /*#__PURE__*/React.createElement("h4", {
+	      className: "card-body"
 	    }, this.state.summary), /*#__PURE__*/React.createElement("hr", null));
 	  },
 	  editingSummary: function editingSummary() {
@@ -31625,13 +31670,10 @@
 	      },
 	      ref: "newSummary",
 	      defaultValue: this.state.summary
-	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
 	    }, "Cancel"))));
 	  },
@@ -31645,8 +31687,8 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
-	    }, partToShow);
+	      className: "card-profile-summary"
+	    }, /*#__PURE__*/React.createElement("h2", null, partToShow));
 	  }
 	});
 	module.exports = Summary;
