@@ -29857,7 +29857,7 @@
 	  component: Profile,
 	  onEnter: requireAuth
 	}), /*#__PURE__*/React.createElement(Route, {
-	  path: "/upload",
+	  path: "/upload/:id",
 	  component: Upload
 	}), /*#__PURE__*/React.createElement(Route, {
 	  path: "/settings",
@@ -30286,7 +30286,9 @@
 	    _this = _super.call(this);
 	    _this.state = {
 	      file: null,
+	      // for upload file status
 	      fileStat: "",
+	      // for download file status
 	      downloadStat: "",
 	      downloadUrl: ""
 	    };
@@ -30299,29 +30301,26 @@
 	  _createClass(PdfUpload, [{
 	    key: "handleDownload",
 	    value: function handleDownload(event) {
-	      var user = firebase.auth().currentUser;
+	      // Create a reference to the file we want to download
+	      var storageRef = firebase.storage().ref();
+	      var resumeRef = storageRef.child("resume_pdf/".concat(this.props.pageID, "/resume"));
+	      console.log(this.props.pageID); // Get the download URL
 
-	      if (user) {
-	        // Create a reference to the file we want to download
-	        var storageRef = firebase.storage().ref();
-	        var resumeRef = storageRef.child("resume_pdf/".concat(user.uid, "/resume")); // Get the download URL
-
-	        var that = this;
-	        resumeRef.getDownloadURL().then(function (url) {
-	          // Or inserted into an <img> element:
-	          that.setState({
-	            downloadUrl: url,
-	            downloadStat: "Download success, please click the following links"
-	          });
-	        })["catch"](function (error) {
-	          that.setState({
-	            downloadStat: "Resume not found / Download error"
-	          });
+	      var that = this;
+	      resumeRef.getDownloadURL().then(function (url) {
+	        // Or inserted into an <img> element:
+	        that.setState({
+	          downloadUrl: url,
+	          downloadStat: "Download success, please click the following links"
 	        });
-	      } else {
-	        // No user is signed in.
-	        hashHistory.push("/login");
-	      }
+	      })["catch"](function (error) {
+	        that.setState({
+	          downloadStat: "Resume not found / Download error"
+	        });
+	      }); // } else {
+	      //     // No user is signed in.
+	      //     hashHistory.push("/login");
+	      // }
 	    }
 	  }, {
 	    key: "handlechange",
@@ -30346,7 +30345,7 @@
 	        // User is signed in.
 	        var uploadTask = storage.ref("resume_pdf/".concat(user.uid, "/resume")).put(this.state.file);
 	        uploadTask.on('state_changed', function (snapshot) {
-	          var progress = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+	          var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100).toString() + "%";
 
 	          _this2.setState({
 	            fileStat: progress
@@ -30377,16 +30376,26 @@
 	        href: this.state.downloadUrl,
 	        target: "_blank"
 	      }, "download link");
-	      return /*#__PURE__*/React.createElement("div", {
-	        className: "card-profile"
-	      }, /*#__PURE__*/React.createElement("input", {
-	        type: "file",
-	        onChange: this.handlechange
-	      }), /*#__PURE__*/React.createElement("button", {
-	        onClick: this.handleUpload
-	      }, "Upload Resume"), /*#__PURE__*/React.createElement("button", {
-	        onClick: this.handleDownload
-	      }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      var user = firebase.auth().currentUser;
+
+	      if (user && user.uid == this.props.pageID) {
+	        return /*#__PURE__*/React.createElement("div", {
+	          className: "card-profile"
+	        }, /*#__PURE__*/React.createElement("input", {
+	          type: "file",
+	          onChange: this.handlechange
+	        }), /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleUpload
+	        }, "Upload Resume"), /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleDownload
+	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      } else {
+	        return /*#__PURE__*/React.createElement("div", {
+	          className: "card-profile"
+	        }, /*#__PURE__*/React.createElement("button", {
+	          onClick: this.handleDownload
+	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
+	      }
 	    }
 	  }]);
 
@@ -31541,6 +31550,8 @@
 	      pageID: this.state.pageID,
 	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement(Upload, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser,
 	      user: firebase.auth().currentUser
 	    }));
 	    return /*#__PURE__*/React.createElement("div", {
