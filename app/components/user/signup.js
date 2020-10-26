@@ -2,9 +2,9 @@ var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
-const passRegex = RegExp(
-	/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
-  );
+const passRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/);
+const nameRegex = RegExp(/^[a-z ,.'-]+$/i);
+
 
 var SignUpForm = React.createClass({
 
@@ -23,7 +23,7 @@ var SignUpForm = React.createClass({
 		var password = this.refs.password.value;
 		var password_confirmation = this.refs.password_confirmation.value;
 
-		if(firstName && lastName){
+		if(nameRegex.test(firstName) && nameRegex.test(lastName)){
 			if(!passRegex.test(password)){
 				that.setState({hasError: true});
 					that.setState({errorMsg: "Password should contain 8-16 characters, and at least one: uppercase letter, one lowercase letter, and one number."});
@@ -33,13 +33,13 @@ var SignUpForm = React.createClass({
 				firebase.auth().createUserWithEmailAndPassword(email, password == password_confirmation ? password : "nil").catch(function(error) {
 					if(error){
 						that.setState({hasError: true});
-						that.setState({errorMsg: "Please enter a valid email address with a password of at least 6 characters."});
+						that.setState({errorMsg: "Please enter a valid email address with a password of at least 8 characters."});
 					}
 				});
 			}
 		}else{
 			that.setState({hasError: true});
-			that.setState({errorMsg: "First or last name field cannot be empty."})
+			that.setState({errorMsg: "Please enter a valid name."})
 		}
 
 		//if successfully logged in, add the user child to the database with the name and email.

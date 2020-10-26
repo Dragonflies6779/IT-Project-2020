@@ -74,7 +74,7 @@ var Profile = React.createClass({
 				<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-				<Social user={firebase.auth().currentUser}/>
+				<Social pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Upload user={firebase.auth().currentUser}/>
 			</div>
 
