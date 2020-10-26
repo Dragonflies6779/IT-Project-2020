@@ -262,19 +262,19 @@ class socialMedia extends React.Component{
             {this.state.alert}
         </div>
         <div>
-            <a href={this.state.instagram} target="_blank"> 
+            <a href={this.state.instagram} target="_blank" className="icons"> 
             {this.state.instagram ? <img src="igIcon.png" alt="logo" height="30px"/> : ""}
             </a>
 
-            <a href={this.state.linkedin} target="_blank"> 
+            <a href={this.state.linkedin} target="_blank" className="icons"> 
             {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
             </a>
             
-            <a href={this.state.facebook} target="_blank">
+            <a href={this.state.facebook} target="_blank" className="icons">
             {this.state.facebook ? <img src="fbIcon.png" alt="logo" height="30px"/> : ""}
             </a>
 
-            <a href={"mailto:" + this.state.mail}>
+            <a href={"mailto:" + this.state.mail} className="icons">
             {this.state.mail ? <img src="mailIcon.png" alt="logo" height="30px"/> : ""}
             </a>
             
@@ -288,20 +288,24 @@ class socialMedia extends React.Component{
       else{
         return(
           <div>
+            <h4>Contact</h4>
+            <br></br>
             <div> {this.state.description}</div>
-          <a href={this.state.instagram} target="_blank"> 
+            {this.state.description ? <br></br> : <div></div>}
+
+          <a href={this.state.instagram} target="_blank" className="icons"> 
           {this.state.instagram ? <img src="igIcon.png" alt="logo" height="30px"/> : ""}
           </a>
 
-          <a href={this.state.linkedin} target="_blank"> 
+          <a href={this.state.linkedin} target="_blank" className="icons"> 
           {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
           </a>
           
-          <a href={this.state.facebook} target="_blank">
+          <a href={this.state.facebook} target="_blank" className="icons">
           {this.state.facebook ? <img src="fbIcon.png" alt="logo" height="30px"/> : ""}
           </a>
 
-          <a href={"mailto:" + this.state.mail}>
+          <a href={"mailto:" + this.state.mail} className="icons">
           {this.state.mail ? <img src="mailIcon.png" alt="logo" height="30px"/> : ""}
           </a>
           

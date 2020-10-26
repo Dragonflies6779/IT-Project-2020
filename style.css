@@ -218,7 +218,9 @@ input::placeholder {
   border: red solid 1px;
 }
 
-
+.icons{
+  margin-right: 5px;
+}
 
 
 /*for phone screens responsive design*/
