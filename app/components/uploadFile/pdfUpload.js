@@ -86,6 +86,7 @@ class PdfUpload extends React.Component{
     render() {
         let downloadLink = <p></p>
         if (this.state.downloadUrl) downloadLink = <a href={this.state.downloadUrl} target="_blank">download link</a>;
+<<<<<<< Updated upstream
         return (
         <div className = "card-profile">
             <input type="file" onChange={this.handlechange}></input>
@@ -96,6 +97,31 @@ class PdfUpload extends React.Component{
             {downloadLink}
         </div>
         );
+=======
+        var user = firebase.auth().currentUser;
+
+        if (user && user.uid == this.props.pageID){
+            return (
+            <div className = "card-profile-summary">
+                <input type="file" onChange={this.handlechange}></input>
+                <button onClick={this.handleUpload}>Upload Resume</button>
+                <button onClick={this.handleDownload}>Download Resume</button>
+                <p>{this.state.fileStat}</p>
+                <p>{this.state.downloadStat}</p>
+                {downloadLink}
+            </div>
+            );
+        }else {
+            return (
+            <div className = "card-profile-summary">
+                <button onClick={this.handleDownload}>Download Resume</button>
+                <p>{this.state.fileStat}</p>
+                <p>{this.state.downloadStat}</p>
+                {downloadLink}
+            </div>
+            );
+        }
+>>>>>>> Stashed changes
     }
 }
 

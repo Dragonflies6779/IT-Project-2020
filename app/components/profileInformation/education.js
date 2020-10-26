@@ -167,8 +167,8 @@ var Education = React.createClass({
 
 	addingEducation: function(){
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-summary">
+				<div className="card-body d-flex flex-row">
 					<input type="text" ref="school" className="form-control" placeholder="School"/><br />
 					<input type="text" ref="degree" className="form-control" placeholder="Degree"/><br />
 					<input type="text" ref="major" className="form-control" placeholder="Field of Study"/><br />
@@ -179,10 +179,10 @@ var Education = React.createClass({
 					</div>
 
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+						
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-						</div>
+						
 					</center><br/>
 				</div>
 			</div>
@@ -205,11 +205,9 @@ var Education = React.createClass({
 					</div>
 
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
 							<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this school</button>
-						</div>
 					</center><br/>
 				</div>
 			</div>
@@ -256,11 +254,14 @@ var Education = React.createClass({
 		}
 
 		return (
-			<div className ="card-profile">
+			<div className ="card-profile-summary">
 				<div className ="card-body">
 					{this.educationHeading()}
+					<br/>
 					{show}
-					<hr></hr>
+					<br />
+					<br />
+					<br />
 					<hr></hr>
 				</div>
 			</div>

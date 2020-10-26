@@ -166,8 +166,8 @@ var Experience = React.createClass({
 
 	addingExperience: function(){
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-summary">
+				<div className="card-body d-flex flex-row">
 					<input type="text" ref="employer" className="form-control" placeholder="Company Name"/><br />
 					<input type="text" ref="position" className="form-control" placeholder="Position"/><br />
 					<div className="input-group">
@@ -177,10 +177,8 @@ var Experience = React.createClass({
 					</div><br/>
 					<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" placeholder="Description" /><br/>
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-						</div>
 					</center><br/>
 				</div>
 			</div>
@@ -191,8 +189,8 @@ var Experience = React.createClass({
 		var indexedExperience = this.state.experiences[this.state.indexToEdit];
 
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-summary">
+				<div className="card-body d-flex flex-row">
 					<input type="text" ref="employer" className="form-control" defaultValue={indexedExperience.employer} /><br />
 					<input type="text" ref="position" className="form-control" defaultValue={indexedExperience.position}/><br />
 					<div className="input-group">
@@ -203,11 +201,9 @@ var Experience = React.createClass({
 					<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" defaultValue={indexedExperience.description}/><br/>
 
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
 							<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this experience</button>
-						</div>
 					</center><br/>
 				</div>
 			</div>
@@ -223,7 +219,7 @@ var Experience = React.createClass({
 			       			<h4><strong>{experience.employer}</strong> <button className="btn btn-default" onClick={this.handleClickEdit.bind(null, index)}>Edit</button></h4>
 			       			<h5>{experience.position}</h5>
 			       			<h6>{experience.startDate} - {experience.endDate}</h6>
-			       			<h6><pre style={{margin: "-10px 0px 0px -10px"}}>{experience.description}</pre></h6>
+			       			<h4>{experience.description}</h4>
 			       		</div>
 			   		))}
 				</div>
@@ -236,7 +232,7 @@ var Experience = React.createClass({
 			       			<h4><strong>{experience.employer}</strong></h4>
 			       			<h5>{experience.position}</h5>
 			       			<h6>{experience.startDate} - {experience.endDate}</h6>
-			       			<h6><pre style={{margin: "-10px 0px 0px -10px"}}>{experience.description}</pre></h6>
+			       			<h4>{experience.description}</h4>
 			       		</div>
 			   		))}
 				</div>
@@ -257,10 +253,14 @@ var Experience = React.createClass({
 
 		return (
 
-			<div className ="card-profile">
+			<div className ="card-profile-summary">
 				<div className ="card-body">
 					{this.experienceHeading()}
+					<br/>
 					{show}
+					<br/>
+					<br/>
+					<br/>
 					<hr></hr>
 				</div>
 			</div>

@@ -75,6 +75,7 @@ var Summary = React.createClass({
 			<div>
 				<hr></hr>
 				<h4 className="profile-heading">About</h4>
+				<br/>
 				<h4></h4>
 				<h4>{editButton}</h4>
 				<h4 className="card-body">{this.state.summary}</h4>
@@ -90,8 +91,8 @@ var Summary = React.createClass({
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newSummary" defaultValue={this.state.summary} />
 				<center>
 					<h4>
-						<button className="btn" onClick={this.handleClickSave}>Save</button>
-						<button  onClick={this.handleClickCancel}>Cancel</button>
+						<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
+						<button className = "btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
 					</h4>
 				</center>
 			</div>
