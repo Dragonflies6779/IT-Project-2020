@@ -8,7 +8,9 @@ class PdfUpload extends React.Component{
         super();
         this.state = {
             file: null,
+            // for upload file status
             fileStat: "",
+            // for download file status
             downloadStat: "",
             downloadUrl:"", 
         }
@@ -17,30 +19,30 @@ class PdfUpload extends React.Component{
         this.handleDownload = this.handleDownload.bind(this);
     }
     handleDownload(event){
-        var user = firebase.auth().currentUser;
-        if (user) {
-            // Create a reference to the file we want to download
-            var storageRef = firebase.storage().ref();
-            var resumeRef = storageRef.child(`resume_pdf/${user.uid}/resume`);
+       
+        // Create a reference to the file we want to download
+        var storageRef = firebase.storage().ref();
+        var resumeRef = storageRef.child(`resume_pdf/${this.props.pageID}/resume`);
+        console.log(this.props.pageID);
 
-            // Get the download URL
-            const that = this;
-            resumeRef.getDownloadURL().then(function(url) {
-                // Or inserted into an <img> element:
-                that.setState({
-                    downloadUrl: url,
-                    downloadStat: "Download success, please click the following links"
-                });
-            }).catch(function(error) {
-                that.setState({
-                    downloadStat: "Resume not found / Download error"
-                });
-                
+        // Get the download URL
+        const that = this;
+        resumeRef.getDownloadURL().then(function(url) {
+            // Or inserted into an <img> element:
+            that.setState({
+                downloadUrl: url,
+                downloadStat: "Download success, please click the following links"
             });
-        } else {
-            // No user is signed in.
-            hashHistory.push("/login");
-        }
+        }).catch(function(error) {
+            that.setState({
+                downloadStat: "Resume not found / Download error"
+            });
+            
+        });
+        // } else {
+        //     // No user is signed in.
+        //     hashHistory.push("/login");
+        // }
         
     }
 
@@ -62,7 +64,7 @@ class PdfUpload extends React.Component{
             const uploadTask = storage.ref(`resume_pdf/${user.uid}/resume`).put(this.state.file);
             uploadTask.on('state_changed', 
                 (snapshot)=>{
-                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100).toString() + "%";
                     this.setState({
                         fileStat: progress
                     });
@@ -86,16 +88,28 @@ class PdfUpload extends React.Component{
     render() {
         let downloadLink = <p></p>
         if (this.state.downloadUrl) downloadLink = <a href={this.state.downloadUrl} target="_blank">download link</a>;
-        return (
-        <div className = "card-profile">
-            <input type="file" onChange={this.handlechange}></input>
-            <button onClick={this.handleUpload}>Upload Resume</button>
-            <button onClick={this.handleDownload}>Download Resume</button>
-            <p>{this.state.fileStat}</p>
-            <p>{this.state.downloadStat}</p>
-            {downloadLink}
-        </div>
-        );
+        var user = firebase.auth().currentUser;
+        if (user.uid == this.props.pageID){
+            return (
+            <div className = "card-profile">
+                <input type="file" onChange={this.handlechange}></input>
+                <button onClick={this.handleUpload}>Upload Resume</button>
+                <button onClick={this.handleDownload}>Download Resume</button>
+                <p>{this.state.fileStat}</p>
+                <p>{this.state.downloadStat}</p>
+                {downloadLink}
+            </div>
+            );
+        }else {
+            return (
+            <div className = "card-profile">
+                <button onClick={this.handleDownload}>Download Resume</button>
+                <p>{this.state.fileStat}</p>
+                <p>{this.state.downloadStat}</p>
+                {downloadLink}
+            </div>
+            );
+        }
     }
 }
 

@@ -75,7 +75,7 @@ var Profile = React.createClass({
 				<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Social pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-				<Upload user={firebase.auth().currentUser}/>
+				<Upload pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser} user={firebase.auth().currentUser}/>
 			</div>
 
 		return <div className="jumbotron">

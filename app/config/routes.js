@@ -26,7 +26,7 @@ var routes = (
 			<Route path="signup" component={SignUp}/>
 			<Route path="logout" component={SignOut}/>
 			<Route path="users/:id" component={Profile} onEnter={requireAuth}/>
-			<Route path="/upload" component={Upload}/>
+			<Route path="/upload/:id" component={Upload}/>
 			<Route path="/settings" component={Account}/>
 			<Route path="/uploadImage" component={UploadImage}/>
 			<Route path="results/:name" component={SearchResults} onEnter={requireAuth}/>
