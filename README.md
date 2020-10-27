@@ -9,6 +9,7 @@ Allows others to also view the others portfolios
 
 # Core Functions
 Can search for others portfolio <br />
+Allows outside viewers to view others portfolios <br />
 Can sign up and login - requires first name, last name, email and password <br />
 Allows the adding and editing of text <br />
 Allows the uploading of images <br />
