@@ -1,5 +1,8 @@
-# Portfolio sign-up page
-Link (hosted individually): https://signuptest-751e1.web.app/#/?_k=mlyuo1
+# 1.2 Portfolio sign-up page
+Sign up an account on the website to access functions.
+## Core functions
+1.2.1 Dedicated sign up page <br />
+1.2.2 Api to send to firebase to create account <br />
+1.2.3 Create new account on the firebase realtime database <br />
 
-## Core function
-Allows new users to signup with the usual details. Name, email address and password.
+Regex Filters are implemented to prevent names with digits and follow normal conventions of password making to increase security for users.
