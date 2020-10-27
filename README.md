@@ -17,7 +17,8 @@ Allows the uploading and download of a resume (pdf format) <br />
 Can attach social media handles
 
 # Hosting service
-Firebase - required
+Firebase - required <br />
+Firebase is used as storage within the portfolio system
 
 # Installation
 https://firebase.google.com/docs/hosting/quickstart <br />
