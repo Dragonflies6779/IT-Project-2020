@@ -23,7 +23,7 @@ https://firebase.google.com/docs/hosting/quickstart <br />
 Firebase is required for this to be hosted
 
 # Testing
-On the console run npm run test
+On the console run - "npm run test"
 
 # Language
 Javascript <br />
