@@ -13,6 +13,7 @@ Allows outside viewers to view others portfolios <br />
 Can sign up and login - requires first name, last name, email and password <br />
 Allows the adding and editing of text <br />
 Allows the uploading of images <br />
+Allows the uploading and download of a resume (pdf format) <br />
 Can attach social media handles
 
 # Hosting service
