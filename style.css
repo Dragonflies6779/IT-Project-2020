@@ -220,6 +220,79 @@ input::placeholder {
 
 
 
+.timeline {
+  width: 100%;
+  height: auto;
+  max-width: 80rem;
+  margin: 0 auto;
+  position: absolute;
+}
+
+.timeline ul {
+  list-style: none;
+}
+.timeline ul li {
+  padding: 20px;
+  background-color: #2c2f38;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.timeline ul li:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .timeline:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background-color: pink;
+  }
+  .timeline ul li {
+    width:50%;
+    position: relative;
+    margin-bottom: 50px;
+    justify-content: center;
+  }
+  .timeline ul li:nth-child(odd) {
+    float: left;
+    clear: right;
+    transform: translateX(-50px);
+    border-radius: 20px 0px 20px 20px; */
+  }
+  .timeline ul li:nth-child(even) {
+    float: right;
+    clear: left;
+    transform: translateX(10px);
+    border-radius: 0px 20px 20px 20px;
+  }
+  .timeline ul li::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: gray;
+    top: 0px;
+  }
+  .timeline ul li:nth-child(odd)::before {
+    transform: translate(50%, -50%);
+    right: -30px;
+  }
+  .timeline ul li:nth-child(even)::before {
+    transform: translate(-50%, -50%);
+    left: -30px;
+  }
+
+  .timeline ul li:hover::before {
+    background-color:#2c2f38;
+  }
+}
+
 
 /*for phone screens responsive design*/
 @media screen and (max-width: 300px) {
@@ -231,3 +304,4 @@ input::placeholder {
 .profile{
     margin-top: 5%;
 }
+
