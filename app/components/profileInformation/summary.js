@@ -1,3 +1,7 @@
+//inspired by https://reactjs.org/docs/forms.html and -
+//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+//education and projects are essentially the same ie. the inputs and dropdowns
+//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -63,7 +67,7 @@ var Summary = React.createClass({
 		this.setState({editing: false});
 	},
 
-	defaultComponent: function(){
+	defaultSummary: function(){
 		var editButton;
 		if(this.props.isCurrentUser){
 			editButton = <button className="btn btn-default" onClick={this.handleClickEdit}>Edit</button>;
@@ -73,23 +77,27 @@ var Summary = React.createClass({
 
 		return(
 			<div>
-				<h4 className="profile-heading">About {editButton}</h4>
-				<pre className="summary-pre">{this.state.summary}</pre>
+				<hr></hr>
+				<h4 className="profile-heading">About</h4>
+				<br/>
+				<h4></h4>
+				<h4>{editButton}</h4>
+				<h4 className="card-body">{this.state.summary}</h4>
 				<hr></hr>
 			</div>
 		);
 	},
 
-	editComponent: function(){
+	editingSummary: function(){
 		return(
 			<div>
 				<h4>About</h4>
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newSummary" defaultValue={this.state.summary} />
 				<center>
-					<div className="btn btn-toolbar">
-						<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
-						<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-					</div>
+					<h4>
+						<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
+						<button className = "btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
+					</h4>
 				</center>
 			</div>
 		);
@@ -98,16 +106,16 @@ var Summary = React.createClass({
 	render: function(){
 		var partToShow;
 		if(this.state.editing){
-			partToShow = this.editComponent();
+			partToShow = this.editingSummary();
 		}else{
-			partToShow = this.defaultComponent();
+			partToShow = this.defaultSummary();
 		}
 
 		return (
-			<div className ="card-profile">
-
-				{partToShow}
-
+			<div className = "card-profile-summary">
+				<h2>
+					{partToShow}
+				</h2>
 			</div>
 
 		);

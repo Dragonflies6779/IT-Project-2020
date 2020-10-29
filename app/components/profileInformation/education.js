@@ -1,7 +1,3 @@
-//inspired by https://reactjs.org/docs/forms.html and -
-//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
-//education and projects are essentially the same ie. the inputs and dropdowns
-//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -11,10 +7,10 @@ var Education = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false, educations: [], id: this.props.pageID};
 	},
-	//this allows the owner of the profile page to add/edit/delete their data regarding the class
+
 	componentWillMount: function(){
-        this.classRef = firebase.database().ref().child('user-education/'+this.props.pageID);
-        this.classRef.on("child_added", snap => {
+        this.educationRef = firebase.database().ref().child('user-education/'+this.props.pageID);
+        this.educationRef.on("child_added", snap => {
         	var education = snap.val();
 			if(education){
 				education.key = snap.ref.key;
@@ -23,8 +19,8 @@ var Education = React.createClass({
 			}
         });
 
-        this.classRefChanged = firebase.database().ref().child('user-education/'+this.props.pageID);
-        this.classRefChanged.on("child_changed", snap => {
+        this.educationRefChanged = firebase.database().ref().child('user-education/'+this.props.pageID);
+        this.educationRefChanged.on("child_changed", snap => {
         	var education = snap.val();
 			if(education){
 				education.key = snap.ref.key;
@@ -41,8 +37,8 @@ var Education = React.createClass({
 			}
         });
 
-        this.classRefRemoved = firebase.database().ref().child('user-education/'+this.props.pageID);
-        this.classRefRemoved.on("child_removed", snap => {
+        this.educationRefRemoved = firebase.database().ref().child('user-education/'+this.props.pageID);
+        this.educationRefRemoved.on("child_removed", snap => {
         	var education = snap.val();
 			if(education){
 				education.key = snap.ref.key;
@@ -62,13 +58,13 @@ var Education = React.createClass({
 
 	componentWillReceiveProps: function(nextProps){
 		if(nextProps.pageID != this.state.id){
-			this.classRef.off();
-			this.classRefChanged.off();
-			this.classRefRemoved.off();
+			this.educationRef.off();
+			this.educationRefChanged.off();
+			this.educationRefRemoved.off();
 			this.setState({educations: []});
 
-			this.classRef = firebase.database().ref().child('user-education/'+ nextProps.pageID);
-	        this.classRef.on("child_added", snap => {
+			this.educationRef = firebase.database().ref().child('user-education/'+ nextProps.pageID);
+	        this.educationRef.on("child_added", snap => {
 	        	var education = snap.val();
 				if(education){
 					education.key = snap.ref.key;
@@ -77,8 +73,8 @@ var Education = React.createClass({
 				}
 	        });
 
-	        this.classRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
-	        this.classRefChanged.on("child_changed", snap => {
+	        this.educationRefChanged = firebase.database().ref().child('user-education/' + nextProps.pageID);
+	        this.educationRefChanged.on("child_changed", snap => {
 	        	var education = snap.val();
 				if(education){
 					education.key = snap.ref.key;
@@ -95,8 +91,8 @@ var Education = React.createClass({
 				}
 	        });
 
-	        this.classRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
-	        this.classRefRemoved.on("child_removed", snap => {
+	        this.educationRefRemoved = firebase.database().ref().child('user-education/' + nextProps.pageID);
+	        this.educationRefRemoved.on("child_removed", snap => {
 	        	var education = snap.val();
 				if(education){
 					education.key = snap.ref.key;
@@ -148,8 +144,8 @@ var Education = React.createClass({
 	},
 
 	handleRemoveExisting: function(){
-		var classRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
-		classRef.remove();
+		var educationRef = firebase.database().ref('user-education/' + this.props.pageID + '/' + this.state.educations[this.state.indexToEdit].key);
+		educationRef.remove();
 
 		this.setState({editing: false});
 		this.setState({adding: false});
@@ -169,10 +165,10 @@ var Education = React.createClass({
 		}
 	},
 
-	addComponent: function(){
+	addingEducation: function(){
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-summary">
+				<div className="card-body d-flex flex-row">
 					<input type="text" ref="school" className="form-control" placeholder="School"/><br />
 					<input type="text" ref="degree" className="form-control" placeholder="Degree"/><br />
 					<input type="text" ref="major" className="form-control" placeholder="Field of Study"/><br />
@@ -183,17 +179,17 @@ var Education = React.createClass({
 					</div>
 
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-						</div>
+
 					</center><br/>
 				</div>
 			</div>
 		)
 	},
-	//if there is already at least one education data component
-	editComponent: function(){
+
+	editingEducation: function(){
 		var indexedSchool = this.state.educations[this.state.indexToEdit];
 
 		return(
@@ -209,18 +205,16 @@ var Education = React.createClass({
 					</div>
 
 					<center>
-						<div className="btn btn-toolbar">
-							<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
 							<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this school</button>
-						</div>
 					</center><br/>
 				</div>
 			</div>
 		)
 	},
 
-	defaultComponent: function(){
+	defaultEducation: function(){
 		if(this.props.isCurrentUser){
 			return(
 				<div>
@@ -252,19 +246,22 @@ var Education = React.createClass({
 		var show;
 
 		if(this.state.adding){
-			show = this.addComponent();
+			show = this.addingEducation();
 		}else if(this.state.editing){
-			show = this.editComponent();
+			show = this.editingEducation();
 		}else{
-			show = this.defaultComponent();
+			show = this.defaultEducation();
 		}
 
 		return (
-			<div className ="card-profile">
+			<div className ="card-profile-summary">
 				<div className ="card-body">
 					{this.educationHeading()}
+					<br/>
 					{show}
-					<hr></hr>
+					<br />
+					<br />
+					<br />
 					<hr></hr>
 				</div>
 			</div>
@@ -273,9 +270,9 @@ var Education = React.createClass({
 	},
 
 	componentWillUnmount: function(){
-		this.classRef.off();
-		this.classRefChanged.off();
-		this.classRefRemoved.off();
+		this.educationRef.off();
+		this.educationRefChanged.off();
+		this.educationRefRemoved.off();
 	},
 });
 

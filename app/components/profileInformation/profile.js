@@ -15,13 +15,16 @@ const Upload = require('../uploadFile/pdfUpload.js');
 const Account = require('../updateProfile/accountDetail.js');
 const Social = require('../updateProfile/socialMedia.js');
 const Password = require('../updateProfile/changePassword.js');
+const ProfilePict = require('./profilepict.js');
 
 
 // import '/style.css';
 
 var Profile = React.createClass({
 	getInitialState: function(){
-		return {user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""};
+		return(
+
+			{user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""});
 	},
 
     componentWillMount: function(){
@@ -72,22 +75,21 @@ var Profile = React.createClass({
 				<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Skills pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Interests pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-				<Social user={firebase.auth().currentUser}/>
-				<Upload user={firebase.auth().currentUser}/>
+				<Social pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+				<Upload pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser} user={firebase.auth().currentUser}/>
 			</div>
 
-		return <div className="jumbotron">
-					<h1>{this.state.user_name}</h1>
-					<br />
-					<hr/>
-					{/* <div class="row">
-						<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					</div>
-					<div class ="row">
-						<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-					</div> */}
-					{show}
-				</div>
+		return (
+			<div className="jumbotron">
+				<br />
+				<ProfilePict pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+
+				<h1>{this.state.user_name}</h1>
+				<br />
+				<br />
+				{show}
+			</div>
+		);
 	},
 });
 

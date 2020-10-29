@@ -38,7 +38,7 @@ var Search = React.createClass({
       return (
           <form className="navbar-form pull-left" onChange={this.handleSearch}>
              <div className="form-group">
-                  <input type="text" className="form-control navbar-search" ref="search" placeholder="Search for people"/>
+                  <input type="text" className="form-control navbar-search" ref="search" placeholder="Search..."/>
              </div>
                {advancedSearch}
           </form>

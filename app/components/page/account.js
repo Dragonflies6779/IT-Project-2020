@@ -10,7 +10,7 @@ var settings = React.createClass({
 
     render: function(){
         var show;
-
+            
         show =
             <div>
                 <Account user={firebase.auth().currentUser}/>
@@ -21,7 +21,7 @@ var settings = React.createClass({
             <div>
                 <div className ="jumbotron jumbotron-fluid">
                     <div className="container">
-                            {show}
+                        {show}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,3 @@
-//inspired by https://reactjs.org/docs/forms.html and -
-//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
-//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
@@ -64,7 +61,7 @@ var Interests = React.createClass({
 		this.setState({editing: false});
 	},
 
-	defaultComponent: function(){
+	defaultInterests: function(){
 		var editButton;
 		if(this.props.isCurrentUser){
 			editButton = <button className="btn btn-default" onClick={this.handleClickEdit}>Edit</button>;
@@ -75,22 +72,23 @@ var Interests = React.createClass({
 		return(
 			<div>
 				<h4 className="profile-heading">Interests {editButton}</h4>
-			<pre>{this.state.interests}</pre>
+				<h4>{this.state.interests}</h4>
 			</div>
 		);
 	},
 
-	editComponent: function(){
+	editingInterests: function(){
 		return(
 			<div>
 				<h4 className="profile-heading">Interests</h4>
+				<br/>
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newInterests" defaultValue={this.state.interests}  placeholder="Cooking, Reading, Sports..."/>
 				<br/>
 				<center>
-					<div className="btn btn-toolbar">
-						<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+
+						<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 						<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-					</div>
+
 				</center>
 			</div>
 		);
@@ -99,15 +97,18 @@ var Interests = React.createClass({
 	render: function(){
 		var partToShow;
 		if(this.state.editing){
-			partToShow = this.editComponent();
+			partToShow = this.editingInterests();
 		}else{
-			partToShow = this.defaultComponent();
+			partToShow = this.defaultInterests();
 		}
 
 		return (
-			<div className ="card-profile">
+			<div className ="card-profile-summary">
 				<div className ="card-body">
 				{partToShow}
+				<br/>
+				<br/>
+				<br/>
 				<hr/>
 				</div>
 			</div>
