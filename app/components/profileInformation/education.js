@@ -179,10 +179,10 @@ var Education = React.createClass({
 					</div>
 
 					<center>
-						
+
 							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-						
+
 					</center><br/>
 				</div>
 			</div>

@@ -1,62 +1,89 @@
-const React = require('react');
-const firebase = require('firebase');
-const hashHistory = require('react-router').hashHistory;
+var React = require('react');
+var ReactDOM = require('react-dom');
+var firebase = require('firebase');
+var Link = require('react-router').Link;
+var hashHistory = require('react-router').hashHistory;
 
-class profilepict extends React.Component{
+var profilepict = React.createClass({
+    getInitialState: function(){
+        return{
+            imgURL: "",
+            userData: {},
+            };
+    },
 
-    constructor(props){
-        super();
-        this.state = {
-            pictUrl: "profile.png"
-        }
-    }
-    componentDidMount(){
-        var storageRef = firebase.storage().ref();
-        var pictRef = storageRef.child(`images/${this.props.pageID}/image`);
-        if (pictRef){
-            console.log(pictRef);
-            pictRef.getDownloadURL().then((url) => {
-                console.log(url);
-                this.setState({
-                    pictUrl: url
-                });
-                console.log(this.pictUrl);
-            }).then(()=>{console.log(this.pictUrl)});
-        }
-        
-    }
-    editHandle() {
-        hashHistory.push("/uploadImage");
-    }
-    render(){
-        // className="btn btn-default"
-        var user = firebase.auth().currentUser;
+    componentWillMount: function(){
+        var that = this;
 
-        if(user && user.uid == this.props.pageID){
-            return(
-                <div>
-                    <div>
-                        <br/>
-                        <br/>
-                        <img src={this.state.pictUrl} alt="Pict Not Found!" className="img-circle" width="200" height="200" style={{objectFit: 'cover'}}></img>
-                    </div>
-                    
-                    <a onClick={this.editHandle}>Edit Photo</a>
-                    
-                </div>
-            );
+
+        this.userRef = firebase.database().ref().child('users/'+this.props.pageID);
+        this.userRef.on("value", snap=>{
+            var user = snap.val();
+            this.setState({userData: user});
+        });
+    },
+
+    componentWillReceiveProps: function(nextProps){
+        var that = this;
+
+
+        this.userRef = firebase.database().ref().child('users/'+ nextProps.pageID);
+        this.userRef.on("value", snap=>{
+            var user = snap.val();
+            this.setState({userData: user});
+        });
+    },
+
+    componentWillUnmount: function(){
+        this.userRef.off();
+    },
+
+
+    handleUpload: function(e){
+        var that = this;
+
+
+        var imageFile = e.target.files[0];
+
+        var pictRef = firebase.storage().ref().child('images/users/' + this.props.pageID + '/profilepic.jpg');
+
+        pictRef.put(imageFile).then(function(snapshot){
+
+            var userData = {};
+            for(var i in that.state.userData){
+                userData[i] = that.state.userData[i];
+            }
+
+            userData.linkImg = snapshot.downloadURL;
+
+            var updates = {};
+            updates['users/' + that.props.pageID] = userData;
+            firebase.database().ref().update(updates);
+        });
+    },
+
+
+
+    render: function(){
+        var showUpload;
+
+        if(this.props.isCurrentUser){
+            showUpload = <label className="btn btn-file btn-link">
+                            <img src={this.state.userData.linkImg} className="img-circle" alt="" width="200" height="200" style={{objectFit: 'cover'}}/><br />
+                            <input type="file" accept="image/*" onChange={this.handleUpload} style={{display: 'none'}} />
+                        </label>
         }else{
-            return(
-                <div>
-                    <div>
-                        <img src={this.state.pictUrl} alt="Pict Not Found!" className="img-circle" width="200" height="200" style={{objectFit: 'cover'}}></img>
-                    </div>
-                    
-                </div>
-            );
+            showUpload = <div><img src={this.state.userData.linkImg} className="img-circle" alt="" width="200" height="200" style={{objectFit: 'cover'}}/><br /></div>
         }
-        
+
+        return (
+            <div>
+                <br />
+                {showUpload}
+                <br />
+            </div>
+        );
     }
-}
+});
 
 module.exports = profilepict;

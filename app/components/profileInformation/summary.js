@@ -1,3 +1,7 @@
+//inspired by https://reactjs.org/docs/forms.html and -
+//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+//education and projects are essentially the same ie. the inputs and dropdowns
+//they are split up as they store the data under different names in the realtime database
 var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;

@@ -23,7 +23,7 @@ const ProfilePict = require('./profilepict.js');
 var Profile = React.createClass({
 	getInitialState: function(){
 		return(
-			
+
 			{user_name: "", isCurrentUser: false, pageID: "", currentUserID: ""});
 	},
 
@@ -69,7 +69,7 @@ var Profile = React.createClass({
 
 		show =
 			<div>
-				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/> 
+				<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Experience pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
 				<Education pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
@@ -81,16 +81,12 @@ var Profile = React.createClass({
 
 		return (
 			<div className="jumbotron">
-				<ProfilePict pageID={this.state.pageID}/>
+				<br />
+				<ProfilePict pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
+
 				<h1>{this.state.user_name}</h1>
 				<br />
 				<br />
-				{/* <div class="row">
-					<Summary pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-				</div>
-				<div class ="row">
-					<Projects pageID={this.state.pageID} isCurrentUser={this.state.isCurrentUser}/>
-				</div> */}
 				{show}
 			</div>
 		);
