@@ -38,7 +38,8 @@ var profilepict = React.createClass({
         this.userRef.off();
     },
 
-
+    //assign the image to directory images/users/pageID/profilepic.jpg
+    //reason being there should be one profile pic per user which is why it is assigned a file name
     handleUpload: function(e){
         var that = this;
 
@@ -62,7 +63,9 @@ var profilepict = React.createClass({
         });
     },
 
-
+    // if the current user is on his own page, it will allow the user to click on
+    // the box which will create a file explorer popup and then insert image
+    // if not, it will just be a blank image
 
     render: function(){
         var showUpload;
