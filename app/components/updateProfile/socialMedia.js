@@ -6,7 +6,7 @@ const mailto = require('react-mailto');
 class socialMedia extends React.Component{
     constructor(props) {
         super();
-
+        
         this.state = {
             description : "",
             instagram : "",
@@ -23,9 +23,9 @@ class socialMedia extends React.Component{
     getInitialState(){
       return{isCurrentUser: false, id: this.props.pageID};
     }
-
+  
     componentWillMount(){
-
+      
       firebase
       .database()
       .ref('user-social/' + this.props.pageID)
@@ -36,7 +36,7 @@ class socialMedia extends React.Component{
             instagram: snapshot.val()
         });
       });
-
+    
       firebase
       .database()
       .ref('user-social/' + this.props.pageID)
@@ -81,7 +81,7 @@ class socialMedia extends React.Component{
             description: snapshot.val()
         });
       });
-
+      
 
   }
 
@@ -97,7 +97,7 @@ class socialMedia extends React.Component{
           instagram: snapshot.val()
       });
     });
-
+  
     firebase
     .database()
     .ref('user-social/' + this.props.pageID)
@@ -152,13 +152,13 @@ class socialMedia extends React.Component{
 
         this.setState({
         [name]: value
-        });
+        }); 
     }
-
-
+  
+  
     handleSubmit(event) {
         var user = firebase.auth().currentUser;
-
+  
         let socialRef = firebase.database().ref('user-social');
         firebase.database().ref('user-social/' + this.props.pageID).set({
             instagram: this.state.instagram,
@@ -176,19 +176,19 @@ class socialMedia extends React.Component{
 
         event.preventDefault();
     };
-
+  
 
     render() {
 
-      //render the place to edit and save changes to social media
+      //render the place to edit and save changes to social media 
       if(this.props.isCurrentUser){
-      return (
+      return ( 
         <div className="card-profile">
         <form onSubmit={this.handleSubmit} className="form">
           <h4>Contact</h4>
 
         <div>
-
+        
           <textarea
             className = "form-control"
             rows = "3"
@@ -198,7 +198,7 @@ class socialMedia extends React.Component{
             onChange={this.handleChange}
           />
         </div>
-
+        
         <div className = "form-control">
           <h4>Instagram</h4>
           <input
@@ -225,7 +225,7 @@ class socialMedia extends React.Component{
         <br/>
         <br/>
         <br/>
-
+        
         <div className="form-control">
         <h4> Facebook </h4>
           <input
@@ -238,9 +238,9 @@ class socialMedia extends React.Component{
         <br/>
         <br/>
         <br/>
-
+        
         <div className="form-control">
-            <h4>Mail</h4>
+            <h4>Mail</h4> 
           <input
             name="mail"
             placeholder = "test123@gmail.com"
@@ -252,24 +252,24 @@ class socialMedia extends React.Component{
         <br/>
         <br/>
         <br/>
-
-
+        
+        
         <button className="btn btn-default">Save</button>
-
+        
       </form>
 
         <div className="errorMessage">
             {this.state.alert}
         </div>
         <div>
-            <a href={this.state.instagram} target="_blank" className="icons">
+            <a href={this.state.instagram} target="_blank" className="icons"> 
             {this.state.instagram ? <img src="igIcon.png" alt="logo" height="30px"/> : ""}
             </a>
 
-            <a href={this.state.linkedin} target="_blank" className="icons">
+            <a href={this.state.linkedin} target="_blank" className="icons"> 
             {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
             </a>
-
+            
             <a href={this.state.facebook} target="_blank" className="icons">
             {this.state.facebook ? <img src="fbIcon.png" alt="logo" height="30px"/> : ""}
             </a>
@@ -277,14 +277,14 @@ class socialMedia extends React.Component{
             <a href={"mailto:" + this.state.mail} className="icons">
             {this.state.mail ? <img src="mailIcon.png" alt="logo" height="30px"/> : ""}
             </a>
-
+            
         </div>
 
       </div>
       )
       }
 
-      //only return the icons
+      //only return the icons 
       else{
         return(
           <div>
@@ -293,14 +293,14 @@ class socialMedia extends React.Component{
             <div> {this.state.description}</div>
             {this.state.description ? <br></br> : <div></div>}
 
-          <a href={this.state.instagram} target="_blank" className="icons">
+          <a href={this.state.instagram} target="_blank" className="icons"> 
           {this.state.instagram ? <img src="igIcon.png" alt="logo" height="30px"/> : ""}
           </a>
 
-          <a href={this.state.linkedin} target="_blank" className="icons">
+          <a href={this.state.linkedin} target="_blank" className="icons"> 
           {this.state.linkedin ? <img src="LiIcon.png" alt="logo" height="30px"/> : ""}
           </a>
-
+          
           <a href={this.state.facebook} target="_blank" className="icons">
           {this.state.facebook ? <img src="fbIcon.png" alt="logo" height="30px"/> : ""}
           </a>
@@ -308,7 +308,7 @@ class socialMedia extends React.Component{
           <a href={"mailto:" + this.state.mail} className="icons">
           {this.state.mail ? <img src="mailIcon.png" alt="logo" height="30px"/> : ""}
           </a>
-
+          
       </div>
         )
       }
