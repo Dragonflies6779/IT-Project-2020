@@ -8,7 +8,7 @@ const passRegex = RegExp(
 class changePassword extends React.Component{
     constructor(props){
         super();
-            
+
         this.state = {
             currentPassword : "",
             newPassword : "",
@@ -24,7 +24,7 @@ class changePassword extends React.Component{
 
     validate(newPassword){
       let alert = "";
-      
+
       if(this.state.confirmation !== this.state.newPassword){
         alert = "Password Confirmation does not match with new password!"
       }
@@ -37,11 +37,11 @@ class changePassword extends React.Component{
         this.setState({alert});
         return false;
       }
-  
+
       return true;
 
     }
-  
+
     reauthenticate(currentPassword) {
         var user = firebase.auth().currentUser;
         var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
@@ -57,7 +57,7 @@ class changePassword extends React.Component{
         [name]: value
         });
     }
-  
+
     handleSubmit(event) {
       let alert = "";
       const isValid = this.validate();
@@ -67,7 +67,7 @@ class changePassword extends React.Component{
             var user = firebase.auth().currentUser;
             this.setState({alert : ""})
             //change password successful
-            
+
             user.updatePassword(this.state.newPassword).then(() =>{
               this.setState({alert : "Password has been successfully changed!"})
               this.setState({newPassword : ""})
@@ -77,7 +77,7 @@ class changePassword extends React.Component{
             }).catch((error) => {
                 this.setState({alert : "Error! Please try again!"})
             });
-          
+
         }).catch((error) => {
             this.setState({alert : "Error! Current Password incorrect!"})
         });
@@ -101,7 +101,7 @@ class changePassword extends React.Component{
                 onChange={this.handleChange}
               />
             </div>
-    
+
             <div className="block">
                 <label>New Password</label>
               <input
@@ -111,7 +111,7 @@ class changePassword extends React.Component{
                 onChange={this.handleChange}
               />
             </div>
-    
+
             <div className="form-place">
                 <label> Confirm Password </label>
               <input

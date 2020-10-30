@@ -5,7 +5,7 @@ const hashHistory = require('react-router').hashHistory;
 class accountDetail extends React.Component{
     constructor(props) {
         super();
-        
+
         this.state = {
             firstname : "",
             lastname : "",
@@ -28,7 +28,7 @@ class accountDetail extends React.Component{
               firstname: snapshot.val()
           });
         });
-      
+
         firebase
         .database()
         .ref('users/' + firebase.auth().currentUser.uid)
@@ -51,7 +51,7 @@ class accountDetail extends React.Component{
           });
         });
         } else{
-            
+
         }
 
     }
@@ -70,7 +70,7 @@ class accountDetail extends React.Component{
               firstname: snapshot.val()
           });
         });
-      
+
         firebase
         .database()
         .ref('users/' + firebase.auth().currentUser.uid)
@@ -93,7 +93,7 @@ class accountDetail extends React.Component{
           });
         });
         } else{
-            
+
         }
 
     }
@@ -108,7 +108,7 @@ class accountDetail extends React.Component{
                         <input
                         name="firstname"
                         value={this.state.firstname}
-                        
+
                         />
                 </div>
 
@@ -117,16 +117,16 @@ class accountDetail extends React.Component{
                         <input
                         name="lastname"
                         value={this.state.lastname}
-                         
+
                         />
                 </div>
-    
+
                 <div className="form-place">
                     <label> Email Address </label>
                         <input
                         name="email"
                         value={this.state.email}
-                        
+
                         />
                 </div>
             </form>
