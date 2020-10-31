@@ -94,7 +94,8 @@ var Layout = React.createClass({
 
         if(this.state.isLoggedIn) {
             loginOrOut = <li><Link to="/logout" className="navbar-brand">Logout</Link></li>;
-            profile = <li><Link to={"/users/" + this.state.user_id} title="Profile" className="navbar-brand"><img src="profile.png" className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;
+            //profile = <li><Link to={"/users/" + this.state.user_id} title="Profile" className="navbar-brand"><img src="profile.png" className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;
+            profile = <li><Link to={"/users/" + this.state.user_id} title="Profile" className="navbar-brand"><img src={this.state.imgURL} className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;
             signUp = null;
             search = <Search isRecruiter={this.state.recruiter}/>
             settings = <li><Link to={"/settings"} title="Settings" className="navbar-brand"><img src="settings.png" className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;

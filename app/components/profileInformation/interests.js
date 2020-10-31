@@ -7,7 +7,8 @@ var Interests = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false};
 	},
-
+	
+	// to download the profile picture from the database if any
 	componentWillMount: function(){
         this.userRef = firebase.database().ref().child('users/'+this.props.pageID);
         this.userRef.on("value", snap => {
@@ -72,7 +73,7 @@ var Interests = React.createClass({
 		return(
 			<div>
 				<h4 className="profile-heading">Interests {editButton}</h4>
-			<pre>{this.state.interests}</pre>
+				<h4>{this.state.interests}</h4>
 			</div>
 		);
 	},
@@ -81,13 +82,14 @@ var Interests = React.createClass({
 		return(
 			<div>
 				<h4 className="profile-heading">Interests</h4>
+				<br/>
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newInterests" defaultValue={this.state.interests}  placeholder="Cooking, Reading, Sports..."/>
 				<br/>
 				<center>
-					<div className="btn btn-toolbar">
-						<button className="btn btn-primary" onClick={this.handleClickSave}>Save</button>
+
+						<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 						<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-					</div>
+
 				</center>
 			</div>
 		);
@@ -102,9 +104,12 @@ var Interests = React.createClass({
 		}
 
 		return (
-			<div className ="card-profile">
+			<div className ="card-profile-summary">
 				<div className ="card-body">
 				{partToShow}
+				<br/>
+				<br/>
+				<br/>
 				<hr/>
 				</div>
 			</div>

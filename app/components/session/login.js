@@ -76,6 +76,7 @@ var LogInForm = React.createClass({
 
 							<div className="col-md-4 margin-top-30">
 							<center>
+								
 					<h3>Login</h3><br />
 					<div className="enter-form">
 								<input
@@ -85,7 +86,7 @@ var LogInForm = React.createClass({
 										className="form-control"
 										onKeyPress={this.handleKeyPress}
 									/>
-									<br />
+									
 								<input
 										type="password"
 										ref="password"
@@ -93,9 +94,10 @@ var LogInForm = React.createClass({
 										className="form-control"
 										onKeyPress={this.handleKeyPress}
 									/>
-									<br />
+								
+								
 								<button
-										className="btn"
+										className="btn btn-default"
 										onClick={this.handleLogIn}>
 										Login
 									</button>

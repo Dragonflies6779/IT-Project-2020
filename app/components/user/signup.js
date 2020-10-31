@@ -102,7 +102,7 @@ var SignUpForm = React.createClass({
 		}
 
 		return (
-			<div className="Background">
+			<div className="jumbotron jumbotron-fluid">
 			<div className="WebHeader">
 				{errorAlert}
 
@@ -156,7 +156,7 @@ var SignUpForm = React.createClass({
 
 							<button
 								onClick={this.handleSignUp}
-								className="btn">
+								className="btn btn-default">
 								Create Account
 							</button>
 							<br />

@@ -90,7 +90,7 @@ class PdfUpload extends React.Component{
 
         if (user && user.uid == this.props.pageID){
             return (
-            <div className = "card-profile">
+            <div className = "card-profile-summary">
                 <input type="file" onChange={this.handlechange}></input>
                 <button onClick={this.handleUpload}>Upload Resume</button>
                 <button onClick={this.handleDownload}>Download Resume</button>
@@ -101,7 +101,7 @@ class PdfUpload extends React.Component{
             );
         }else {
             return (
-            <div className = "card-profile">
+            <div className = "card-profile-summary">
                 <button onClick={this.handleDownload}>Download Resume</button>
                 <p>{this.state.fileStat}</p>
                 <p>{this.state.downloadStat}</p>
@@ -109,6 +109,7 @@ class PdfUpload extends React.Component{
             </div>
             );
         }
+
     }
 }
 

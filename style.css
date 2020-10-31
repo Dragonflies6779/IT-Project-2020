@@ -29,7 +29,7 @@ button {
 
 .btn:hover{
   box-shadow: inset 0 0 0 50px rgba(46, 51, 95, 0.1);
-  transition-duration: 2s;
+  transition-duration: 0.75s;
   border-color: #404242;
 }
 
@@ -78,7 +78,18 @@ button:hover {
   padding: 20px;
   margin: 0 auto;
   float: none;
-  margin-bottom:20px;
+  margin-bottom:0px;
+}
+
+.card-profile-sosmed{
+  margin-top: 20px;
+  width: 80rem;
+  background-color:#f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 auto;
+  float: none;
+  margin-bottom:0px;
 }
 
 .container{
@@ -176,7 +187,7 @@ input {
   padding: 8px;
   margin: 2px;
   border-radius: 2px;
-  border: red solid 1px;
+  border: grey solid 1px;
 }
 
 input::placeholder {
@@ -207,7 +218,9 @@ input::placeholder {
   border: red solid 1px;
 }
 
-
+.icons{
+  margin-right: 5px;
+}
 
 
 /*for phone screens responsive design*/
