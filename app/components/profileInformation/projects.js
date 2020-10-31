@@ -185,10 +185,10 @@ var Project = React.createClass({
 					</div><br/>
 					<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" placeholder="Description" /><br/>
 					<center>
-						
+
 							<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 							<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
-						
+
 					</center><br/>
 				</div>
 			</div>
@@ -213,11 +213,11 @@ var Project = React.createClass({
 							<textarea className="form-control" rows="6" style={{width: '100%'}} ref="description" defaultValue={indexedProject.description}/><br/>
 
 							<center>
-								
+
 									<button className="btn btn-default" onClick={this.handleClickSave}>Save</button>
 									<button className="btn btn-default" onClick={this.handleClickCancel}>Cancel</button>
 									<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this project</button>
-								
+
 							</center><br/>
 						</div>
 					</div>
