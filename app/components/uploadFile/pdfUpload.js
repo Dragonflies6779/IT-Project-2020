@@ -39,13 +39,9 @@ class PdfUpload extends React.Component{
             });
             
         });
-        // } else {
-        //     // No user is signed in.
-        //     hashHistory.push("/login");
-        // }
         
     }
-
+    // to handle the shange of input files
     handlechange(event){
         if (event.target.files[0]!=null){
             console.log(event.target.files[0]);
@@ -54,6 +50,8 @@ class PdfUpload extends React.Component{
             });
         }
     }
+
+    // handle the upload button to upload to firebase
     handleUpload() {
         let storage = firebase.storage();
         console.log(this.state.file);

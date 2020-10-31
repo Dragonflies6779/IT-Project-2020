@@ -10,6 +10,8 @@ class profilepict extends React.Component{
             pictUrl: "profile.png"
         }
     }
+
+    // get profile picture from the database if any
     componentDidMount(){
         var storageRef = firebase.storage().ref();
         var pictRef = storageRef.child(`images/${this.props.pageID}/image`);
@@ -25,6 +27,7 @@ class profilepict extends React.Component{
         }
         
     }
+    // to handle uploading profie picture
     editHandle() {
         hashHistory.push("/uploadImage");
     }
