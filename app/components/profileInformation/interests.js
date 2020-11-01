@@ -72,6 +72,7 @@ var Interests = React.createClass({
 		return(
 			<div>
 				<h4 className="profile-heading">Interests {editButton}</h4>
+				<br/>
 				<h4>{this.state.interests}</h4>
 			</div>
 		);
@@ -103,13 +104,13 @@ var Interests = React.createClass({
 		}
 
 		return (
-			<div className ="card-profile-summary">
+			<div className ="card-profile-interests">
 				<div className ="card-body">
+				<br/>
+				<br/>
 				{partToShow}
 				<br/>
 				<br/>
-				<br/>
-				<hr/>
 				</div>
 			</div>
 

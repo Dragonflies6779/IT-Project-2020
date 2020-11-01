@@ -29992,7 +29992,7 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "Background"
+	      className: "jumbotron jumbotron-fluid"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "WebHeader"
 	    }, errorAlert, /*#__PURE__*/React.createElement("div", {
@@ -30033,7 +30033,7 @@
 	      onKeyPress: this.handleKeyPress
 	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
 	      onClick: this.handleSignUp,
-	      className: "btn"
+	      className: "btn btn-default"
 	    }, "Create Account"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
 	      className: "linking"
 	    }, "Have an account? ", /*#__PURE__*/React.createElement(Link, {
@@ -30136,14 +30136,14 @@
 	      placeholder: "Email Address",
 	      className: "form-control",
 	      onKeyPress: this.handleKeyPress
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	    }), /*#__PURE__*/React.createElement("input", {
 	      type: "password",
 	      ref: "password",
 	      placeholder: "Password",
 	      className: "form-control",
 	      onKeyPress: this.handleKeyPress
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
-	      className: "btn",
+	    }), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleLogIn
 	    }, "Login"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
 	      className: "linking"
@@ -30235,7 +30235,7 @@
 	      to: "/users/" + this.state.user_id
 	    }, /*#__PURE__*/React.createElement("a", {
 	      href: "#",
-	      className: "btn"
+	      className: "btn btn-default"
 	    }, "Get Started"))))));
 	  }
 	});
@@ -30380,7 +30380,7 @@
 
 	      if (user && user.uid == this.props.pageID) {
 	        return /*#__PURE__*/React.createElement("div", {
-	          className: "card-profile"
+	          className: "card-profile-summary"
 	        }, /*#__PURE__*/React.createElement("input", {
 	          type: "file",
 	          onChange: this.handlechange
@@ -30391,7 +30391,7 @@
 	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
 	      } else {
 	        return /*#__PURE__*/React.createElement("div", {
-	          className: "card-profile"
+	          className: "card-profile-summary"
 	        }, /*#__PURE__*/React.createElement("button", {
 	          onClick: this.handleDownload
 	        }, "Download Resume"), /*#__PURE__*/React.createElement("p", null, this.state.fileStat), /*#__PURE__*/React.createElement("p", null, this.state.downloadStat), downloadLink);
@@ -30714,9 +30714,8 @@
 	        }, /*#__PURE__*/React.createElement("form", {
 	          onSubmit: this.handleSubmit,
 	          className: "form"
-	        }, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("div", {
-	          className: "form-control"
-	        }, /*#__PURE__*/React.createElement("label", null, "Text"), /*#__PURE__*/React.createElement("textarea", {
+	        }, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("textarea", {
+	          className: "form-control",
 	          rows: "3",
 	          name: "description",
 	          placeholder: "Message : please do not hesitate to contact me if there are questions...",
@@ -30724,61 +30723,63 @@
 	          onChange: this.handleChange
 	        })), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
-	        }, /*#__PURE__*/React.createElement("label", null, "Instagram"), /*#__PURE__*/React.createElement("input", {
+	        }, /*#__PURE__*/React.createElement("h4", null, "Instagram"), /*#__PURE__*/React.createElement("input", {
 	          name: "instagram",
 	          placeholder: "https://instagram.com",
 	          value: this.state.instagram == null ? "" : this.state.instagram,
 	          onChange: this.handleChange
-	        })), /*#__PURE__*/React.createElement("div", {
+	        }), /*#__PURE__*/React.createElement("br", null)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
-	        }, /*#__PURE__*/React.createElement("label", null, " LinkedIn "), /*#__PURE__*/React.createElement("input", {
+	        }, /*#__PURE__*/React.createElement("h4", null, " LinkedIn "), /*#__PURE__*/React.createElement("input", {
 	          name: "linkedin",
 	          placeholder: "https://linkedin.com",
 	          value: this.state.linkedin == null ? "" : this.state.linkedin,
 	          onChange: this.handleChange
-	        })), /*#__PURE__*/React.createElement("div", {
+	        })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
-	        }, /*#__PURE__*/React.createElement("label", null, " facebook "), /*#__PURE__*/React.createElement("input", {
+	        }, /*#__PURE__*/React.createElement("h4", null, " Facebook "), /*#__PURE__*/React.createElement("input", {
 	          name: "facebook",
 	          placeholder: "https://facebook.com",
 	          value: this.state.facebook == null ? "" : this.state.facebook,
 	          onChange: this.handleChange
-	        })), /*#__PURE__*/React.createElement("div", {
+	        })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
 	          className: "form-control"
-	        }, /*#__PURE__*/React.createElement("label", null, " Mail "), /*#__PURE__*/React.createElement("input", {
+	        }, /*#__PURE__*/React.createElement("h4", null, "Mail"), /*#__PURE__*/React.createElement("input", {
 	          name: "mail",
 	          placeholder: "test123@gmail.com",
 	          value: this.state.mail == null ? "" : this.state.mail,
 	          onChange: this.handleChange
-	        })), /*#__PURE__*/React.createElement("div", {
-	          className: "btn btn-toolbar"
-	        }, /*#__PURE__*/React.createElement("button", {
-	          className: "btn btn-primary"
-	        }, "Save"))), /*#__PURE__*/React.createElement("div", {
+	        })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+	          className: "btn btn-default"
+	        }, "Save")), /*#__PURE__*/React.createElement("div", {
 	          className: "errorMessage"
 	        }, this.state.alert), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
 	          href: this.state.instagram,
-	          target: "_blank"
+	          target: "_blank",
+	          className: "icons"
 	        }, this.state.instagram ? /*#__PURE__*/React.createElement("img", {
 	          src: "igIcon.png",
 	          alt: "logo",
 	          height: "30px"
 	        }) : ""), /*#__PURE__*/React.createElement("a", {
 	          href: this.state.linkedin,
-	          target: "_blank"
+	          target: "_blank",
+	          className: "icons"
 	        }, this.state.linkedin ? /*#__PURE__*/React.createElement("img", {
-	          src: "liIcon.png",
+	          src: "LiIcon.png",
 	          alt: "logo",
 	          height: "30px"
 	        }) : ""), /*#__PURE__*/React.createElement("a", {
 	          href: this.state.facebook,
-	          target: "_blank"
+	          target: "_blank",
+	          className: "icons"
 	        }, this.state.facebook ? /*#__PURE__*/React.createElement("img", {
 	          src: "fbIcon.png",
 	          alt: "logo",
 	          height: "30px"
 	        }) : ""), /*#__PURE__*/React.createElement("a", {
-	          href: "mailto:" + this.state.mail
+	          href: "mailto:" + this.state.mail,
+	          className: "icons"
 	        }, this.state.mail ? /*#__PURE__*/React.createElement("img", {
 	          src: "mailIcon.png",
 	          alt: "logo",
@@ -30786,29 +30787,33 @@
 	        }) : "")));
 	      } //only return the icons 
 	      else {
-	          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, " ", this.state.description), /*#__PURE__*/React.createElement("a", {
+	          return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "Contact"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, " ", this.state.description), this.state.description ? /*#__PURE__*/React.createElement("br", null) : /*#__PURE__*/React.createElement("div", null), /*#__PURE__*/React.createElement("a", {
 	            href: this.state.instagram,
-	            target: "_blank"
+	            target: "_blank",
+	            className: "icons"
 	          }, this.state.instagram ? /*#__PURE__*/React.createElement("img", {
 	            src: "igIcon.png",
 	            alt: "logo",
 	            height: "30px"
 	          }) : ""), /*#__PURE__*/React.createElement("a", {
 	            href: this.state.linkedin,
-	            target: "_blank"
+	            target: "_blank",
+	            className: "icons"
 	          }, this.state.linkedin ? /*#__PURE__*/React.createElement("img", {
-	            src: "liIcon.png",
+	            src: "LiIcon.png",
 	            alt: "logo",
 	            height: "30px"
 	          }) : ""), /*#__PURE__*/React.createElement("a", {
 	            href: this.state.facebook,
-	            target: "_blank"
+	            target: "_blank",
+	            className: "icons"
 	          }, this.state.facebook ? /*#__PURE__*/React.createElement("img", {
 	            src: "fbIcon.png",
 	            alt: "logo",
 	            height: "30px"
 	          }) : ""), /*#__PURE__*/React.createElement("a", {
-	            href: "mailto:" + this.state.mail
+	            href: "mailto:" + this.state.mail,
+	            className: "icons"
 	          }, this.state.mail ? /*#__PURE__*/React.createElement("img", {
 	            src: "mailIcon.png",
 	            alt: "logo",
@@ -31096,16 +31101,16 @@
 	        className: "card-profile"
 	      }, /*#__PURE__*/React.createElement("form", {
 	        onSubmit: this.handleSubmit,
-	        className: "form"
+	        className: "block"
 	      }, /*#__PURE__*/React.createElement("h4", null, "Change Password"), /*#__PURE__*/React.createElement("div", {
-	        className: "form-place"
+	        className: "block"
 	      }, /*#__PURE__*/React.createElement("label", null, "Old Password"), /*#__PURE__*/React.createElement("input", {
 	        type: "password",
 	        name: "currentPassword",
 	        value: this.state.currentPassword,
 	        onChange: this.handleChange
 	      })), /*#__PURE__*/React.createElement("div", {
-	        className: "form-place"
+	        className: "block"
 	      }, /*#__PURE__*/React.createElement("label", null, "New Password"), /*#__PURE__*/React.createElement("input", {
 	        type: "password",
 	        name: "newPassword",
@@ -31283,13 +31288,14 @@
 	      loginOrOut = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
 	        to: "/logout",
 	        className: "navbar-brand"
-	      }, "Logout"));
+	      }, "Logout")); //profile = <li><Link to={"/users/" + this.state.user_id} title="Profile" className="navbar-brand"><img src="profile.png" className="img-circle" width="20" height="20" style={{objectFit: 'cover'}}/></Link></li>;
+
 	      profile = /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement(Link, {
 	        to: "/users/" + this.state.user_id,
 	        title: "Profile",
 	        className: "navbar-brand"
 	      }, /*#__PURE__*/React.createElement("img", {
-	        src: "profile.png",
+	        src: this.state.imgURL,
 	        className: "img-circle",
 	        width: "20",
 	        height: "20",
@@ -31448,11 +31454,11 @@
 
 	var Projects = __webpack_require__(292);
 
-	var Interests = __webpack_require__(293);
+	var Interests = __webpack_require__(294);
 
-	var Experience = __webpack_require__(294);
+	var Experience = __webpack_require__(295);
 
-	var Skills = __webpack_require__(295);
+	var Skills = __webpack_require__(296);
 
 	var Upload = __webpack_require__(281);
 
@@ -31462,7 +31468,7 @@
 
 	var Password = __webpack_require__(285);
 
-	var ProfilePict = __webpack_require__(296); // import '/style.css';
+	var ProfilePict = __webpack_require__(293); // import '/style.css';
 
 
 	var Profile = React.createClass({
@@ -31558,8 +31564,9 @@
 	    }));
 	    return /*#__PURE__*/React.createElement("div", {
 	      className: "jumbotron"
-	    }, /*#__PURE__*/React.createElement(ProfilePict, {
-	      pageID: this.state.pageID
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(ProfilePict, {
+	      pageID: this.state.pageID,
+	      isCurrentUser: this.state.isCurrentUser
 	    }), /*#__PURE__*/React.createElement("h1", null, this.state.user_name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), show);
 	  }
 	});
@@ -31569,6 +31576,10 @@
 /* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	//inspired by https://reactjs.org/docs/forms.html and -
+	//https://scrimba.com/learn/learnreact/react-form-practice-ceLWEsp
+	//education and projects are essentially the same ie. the inputs and dropdowns
+	//they are split up as they store the data under different names in the realtime database
 	var React = __webpack_require__(1);
 
 	var firebase = __webpack_require__(187);
@@ -31672,7 +31683,7 @@
 
 	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "About"), /*#__PURE__*/React.createElement("h4", null), /*#__PURE__*/React.createElement("h4", null, editButton), /*#__PURE__*/React.createElement("h4", {
+	    }, "About"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null), /*#__PURE__*/React.createElement("h4", null, editButton), /*#__PURE__*/React.createElement("h4", {
 	      className: "card-body"
 	    }, this.state.summary), /*#__PURE__*/React.createElement("hr", null));
 	  },
@@ -31686,9 +31697,10 @@
 	      ref: "newSummary",
 	      defaultValue: this.state.summary
 	    }), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("button", {
-	      className: "btn",
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
 	    }, "Cancel"))));
 	  },
@@ -31930,9 +31942,9 @@
 	  },
 	  addingEducation: function addingEducation() {
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
+	      className: "card-profile-summary"
 	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
+	      className: "card-body"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "school",
@@ -31960,22 +31972,20 @@
 	      type: "month",
 	      ref: "endDate",
 	      className: "form-control"
-	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
-	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	    }, "Cancel")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  editingEducation: function editingEducation() {
 	    var indexedSchool = this.state.educations[this.state.indexToEdit];
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
+	      className: "card-profile-education"
 	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
+	      className: "card-body"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "school",
@@ -32005,10 +32015,8 @@
 	      ref: "endDate",
 	      className: "form-control",
 	      defaultValue: indexedSchool.endDate
-	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    })), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
@@ -32016,7 +32024,7 @@
 	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-link",
 	      onClick: this.handleRemoveExisting
-	    }, "Remove this school"))), /*#__PURE__*/React.createElement("br", null)));
+	    }, "Remove this school")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  defaultEducation: function defaultEducation() {
 	    var _this3 = this;
@@ -32050,10 +32058,10 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-education"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
-	    }, this.educationHeading(), show, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("hr", null)));
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), this.educationHeading(), /*#__PURE__*/React.createElement("br", null), show, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.educationRef.off();
@@ -32074,6 +32082,8 @@
 	var Link = __webpack_require__(195).Link;
 
 	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var ProfilePict = __webpack_require__(293);
 
 	var Project = React.createClass({
 	  displayName: "Project",
@@ -32295,9 +32305,9 @@
 	  },
 	  addingProject: function addingProject() {
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
+	      className: "card-profile-projects"
 	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
+	      className: "card-body"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "name",
@@ -32328,26 +32338,20 @@
 	      },
 	      ref: "description",
 	      placeholder: "Description"
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
-	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	    }, "Cancel")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  editingProject: function editingProject() {
 	    var indexedProject = this.state.projects[this.state.indexToEdit];
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-projects"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body d-flex flex-row"
-	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
-	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "name",
@@ -32380,10 +32384,8 @@
 	      },
 	      ref: "description",
 	      defaultValue: indexedProject.description
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
@@ -32391,7 +32393,7 @@
 	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-link",
 	      onClick: this.handleRemoveExisting
-	    }, "Remove this project"))), /*#__PURE__*/React.createElement("br", null)))));
+	    }, "Remove this project")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  defaultProject: function defaultProject() {
 	    var _this3 = this;
@@ -32405,11 +32407,7 @@
 	          onClick: _this3.handleClickEdit.bind(null, index)
 	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, /*#__PURE__*/React.createElement("a", {
 	          href: project.url
-	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
-	          style: {
-	            margin: "-10px 0px 0px -10px"
-	          }
-	        }, project.description)));
+	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h4", null, project.description));
 	      }));
 	    } else {
 	      return /*#__PURE__*/React.createElement("div", null, this.state.projects.map(function (project, index) {
@@ -32417,11 +32415,7 @@
 	          key: index
 	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, project.name)), /*#__PURE__*/React.createElement("h5", null, /*#__PURE__*/React.createElement("a", {
 	          href: project.url
-	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
-	          style: {
-	            margin: "-10px 0px 0px -10px"
-	          }
-	        }, project.description)));
+	        }, project.url)), /*#__PURE__*/React.createElement("h6", null, project.startDate, " - ", project.endDate), /*#__PURE__*/React.createElement("h4", null, project.description));
 	      }));
 	    }
 	  },
@@ -32437,10 +32431,10 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-projects"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body d-flex flex-row"
-	    }, this.projectHeading(), show, /*#__PURE__*/React.createElement("hr", null)));
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), this.projectHeading(), /*#__PURE__*/React.createElement("br", null), show, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.projectRef.off();
@@ -32452,6 +32446,120 @@
 
 /***/ }),
 /* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var ReactDOM = __webpack_require__(40);
+
+	var firebase = __webpack_require__(187);
+
+	var Link = __webpack_require__(195).Link;
+
+	var hashHistory = __webpack_require__(195).hashHistory;
+
+	var profilepict = React.createClass({
+	  displayName: "profilepict",
+	  getInitialState: function getInitialState() {
+	    return {
+	      imgURL: "",
+	      userData: {}
+	    };
+	  },
+	  componentWillMount: function componentWillMount() {
+	    var _this = this;
+
+	    var that = this;
+	    this.userRef = firebase.database().ref().child('users/' + this.props.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
+
+	      _this.setState({
+	        userData: user
+	      });
+	    });
+	  },
+	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+	    var _this2 = this;
+
+	    var that = this;
+	    this.userRef = firebase.database().ref().child('users/' + nextProps.pageID);
+	    this.userRef.on("value", function (snap) {
+	      var user = snap.val();
+
+	      _this2.setState({
+	        userData: user
+	      });
+	    });
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.userRef.off();
+	  },
+	  //assign the image to directory images/users/pageID/profilepic.jpg
+	  //reason being there should be one profile pic per user which is why it is assigned a file name
+	  handleUpload: function handleUpload(e) {
+	    var that = this;
+	    var imageFile = e.target.files[0];
+	    var pictRef = firebase.storage().ref().child('images/users/' + this.props.pageID + '/profilepic.jpg');
+	    pictRef.put(imageFile).then(function (snapshot) {
+	      var userData = {};
+
+	      for (var i in that.state.userData) {
+	        userData[i] = that.state.userData[i];
+	      }
+
+	      userData.linkImg = snapshot.downloadURL;
+	      var updates = {};
+	      updates['users/' + that.props.pageID] = userData;
+	      firebase.database().ref().update(updates);
+	    });
+	  },
+	  // if the current user is on his own page, it will allow the user to click on
+	  // the box which will create a file explorer popup and then insert image
+	  // if not, it will just be a blank image
+	  render: function render() {
+	    var showUpload;
+
+	    if (this.props.isCurrentUser) {
+	      showUpload = /*#__PURE__*/React.createElement("label", {
+	        className: "btn file-btn-link"
+	      }, /*#__PURE__*/React.createElement("img", {
+	        src: this.state.userData.linkImg,
+	        className: "img-circle",
+	        alt: "",
+	        width: "200",
+	        height: "200",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+	        type: "file",
+	        accept: "image/*",
+	        onChange: this.handleUpload,
+	        style: {
+	          display: 'none'
+	        }
+	      }));
+	    } else {
+	      showUpload = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+	        src: this.state.userData.linkImg,
+	        className: "img-circle",
+	        alt: "",
+	        width: "200",
+	        height: "200",
+	        style: {
+	          objectFit: 'cover'
+	        }
+	      }), /*#__PURE__*/React.createElement("br", null));
+	    }
+
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("br", null), showUpload, /*#__PURE__*/React.createElement("br", null));
+	  }
+	});
+	module.exports = profilepict;
+
+/***/ }),
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32555,12 +32663,12 @@
 
 	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "Interests ", editButton), /*#__PURE__*/React.createElement("pre", null, this.state.interests));
+	    }, "Interests ", editButton), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, this.state.interests));
 	  },
 	  editingInterests: function editingInterests() {
 	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "Interests"), /*#__PURE__*/React.createElement("textarea", {
+	    }, "Interests"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
 	      className: "form-control",
 	      rows: "6",
 	      style: {
@@ -32569,15 +32677,13 @@
 	      ref: "newInterests",
 	      defaultValue: this.state.interests,
 	      placeholder: "Cooking, Reading, Sports..."
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
-	    }, "Cancel"))));
+	    }, "Cancel")));
 	  },
 	  render: function render() {
 	    var partToShow;
@@ -32589,16 +32695,16 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-interests"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
-	    }, partToShow, /*#__PURE__*/React.createElement("hr", null)));
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), partToShow, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null)));
 	  }
 	});
 	module.exports = Interests;
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -32820,9 +32926,9 @@
 	  },
 	  addingExperience: function addingExperience() {
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
+	      className: "card-profile-experience"
 	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
+	      className: "card-body d-flex flex-row"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "employer",
@@ -32853,22 +32959,20 @@
 	      },
 	      ref: "description",
 	      placeholder: "Description"
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
-	    }, "Cancel"))), /*#__PURE__*/React.createElement("br", null)));
+	    }, "Cancel")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  editingExperience: function editingExperience() {
 	    var indexedExperience = this.state.experiences[this.state.indexToEdit];
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-12"
+	      className: "card-profile-experience"
 	    }, /*#__PURE__*/React.createElement("div", {
-	      className: "col-md-8"
+	      className: "card-body d-flex flex-row"
 	    }, /*#__PURE__*/React.createElement("input", {
 	      type: "text",
 	      ref: "employer",
@@ -32901,10 +33005,8 @@
 	      },
 	      ref: "description",
 	      defaultValue: indexedExperience.description
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
@@ -32912,7 +33014,7 @@
 	    }, "Cancel"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-link",
 	      onClick: this.handleRemoveExisting
-	    }, "Remove this experience"))), /*#__PURE__*/React.createElement("br", null)));
+	    }, "Remove this experience")), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  defaultExperience: function defaultExperience() {
 	    var _this3 = this;
@@ -32924,21 +33026,13 @@
 	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, experience.employer), " ", /*#__PURE__*/React.createElement("button", {
 	          className: "btn btn-default",
 	          onClick: _this3.handleClickEdit.bind(null, index)
-	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
-	          style: {
-	            margin: "-10px 0px 0px -10px"
-	          }
-	        }, experience.description)));
+	        }, "Edit")), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h4", null, experience.description));
 	      }));
 	    } else {
 	      return /*#__PURE__*/React.createElement("div", null, this.state.experiences.map(function (experience, index) {
 	        return /*#__PURE__*/React.createElement("div", {
 	          key: index
-	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, experience.employer)), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("pre", {
-	          style: {
-	            margin: "-10px 0px 0px -10px"
-	          }
-	        }, experience.description)));
+	        }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("strong", null, experience.employer)), /*#__PURE__*/React.createElement("h5", null, experience.position), /*#__PURE__*/React.createElement("h6", null, experience.startDate, " - ", experience.endDate), /*#__PURE__*/React.createElement("h4", null, experience.description));
 	      }));
 	    }
 	  },
@@ -32954,10 +33048,10 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-experience"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
-	    }, this.experienceHeading(), show, /*#__PURE__*/React.createElement("hr", null)));
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), this.experienceHeading(), /*#__PURE__*/React.createElement("br", null), show, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null)));
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.experienceRef.off();
@@ -32968,7 +33062,7 @@
 	module.exports = Experience;
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -33074,10 +33168,10 @@
 
 	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
 	      className: "profile-heading"
-	    }, "Skills ", editButton), /*#__PURE__*/React.createElement("pre", null, this.state.skills));
+	    }, "Skills ", editButton), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, this.state.skills));
 	  },
 	  editingSkills: function editingSkills() {
-	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "Skills"), /*#__PURE__*/React.createElement("textarea", {
+	    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", null, "Skills"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("textarea", {
 	      className: "form-control",
 	      rows: "6",
 	      style: {
@@ -33086,15 +33180,13 @@
 	      ref: "newSkills",
 	      defaultValue: this.state.skills,
 	      placeholder: "Git, Java, C,..."
-	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("div", {
-	      className: "btn btn-toolbar"
-	    }, /*#__PURE__*/React.createElement("button", {
-	      className: "btn btn-primary",
+	    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("center", null, /*#__PURE__*/React.createElement("button", {
+	      className: "btn btn-default",
 	      onClick: this.handleClickSave
 	    }, "Save"), /*#__PURE__*/React.createElement("button", {
 	      className: "btn btn-default",
 	      onClick: this.handleClickCancel
-	    }, "Cancel"))));
+	    }, "Cancel")));
 	  },
 	  render: function render() {
 	    var partToShow;
@@ -33106,88 +33198,13 @@
 	    }
 
 	    return /*#__PURE__*/React.createElement("div", {
-	      className: "card-profile"
+	      className: "card-profile-skills"
 	    }, /*#__PURE__*/React.createElement("div", {
 	      className: "card-body"
-	    }, partToShow, /*#__PURE__*/React.createElement("hr", null)));
+	    }, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), partToShow, /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null)));
 	  }
 	});
 	module.exports = Skills;
-
-/***/ }),
-/* 296 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-	function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-	function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-	function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-	function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-	function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-	function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-	var React = __webpack_require__(1);
-
-	var firebase = __webpack_require__(187);
-
-	var hashHistory = __webpack_require__(195).hashHistory;
-
-	var profilepict = /*#__PURE__*/function (_React$Component) {
-	  _inherits(profilepict, _React$Component);
-
-	  var _super = _createSuper(profilepict);
-
-	  function profilepict(props) {
-	    var _this;
-
-	    _classCallCheck(this, profilepict);
-
-	    _this = _super.call(this);
-	    _this.state = {
-	      pictUrl: null
-	    };
-	    return _this;
-	  }
-
-	  _createClass(profilepict, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      var _this2 = this;
-
-	      var storageRef = firebase.storage().ref();
-	      var pictRef = storageRef.child("images/".concat(this.props.pageID, "/image"));
-	      pictRef.getDownloadURL().then(function (url) {
-	        _this2.setState({
-	          pictUrl: url
-	        });
-	      });
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
-	        src: url,
-	        alt: "Pict Not Found!"
-	      }));
-	    }
-	  }]);
-
-	  return profilepict;
-	}(React.Component);
 
 /***/ }),
 /* 297 */

@@ -74,6 +74,7 @@ var Skills = React.createClass({
 		return(
 			<div>
 				<h4 className="profile-heading">Skills {editButton}</h4>
+				<br/>
 				<h4>{this.state.skills}</h4>
 			</div>
 		);
@@ -83,6 +84,7 @@ var Skills = React.createClass({
 		return(
 			<div>
 				<h4>Skills</h4>
+				<br/>
 				<br/>
 				<textarea className="form-control" rows="6" style={{width: '100%'}} ref="newSkills" defaultValue={this.state.skills}  placeholder="Git, Java, C,..."/>
 				<br/>
@@ -103,13 +105,13 @@ var Skills = React.createClass({
 		}
 
 		return (
-			<div className="card-profile-summary">
+			<div className="card-profile-skills">
 				<div className="card-body">
+				<br/>
+				<br/>
 					{partToShow}
-					<br/>
 				<br/>
 				<br/>
-					<hr/>
 				</div>
 			</div>
 
