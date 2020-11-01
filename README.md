@@ -49,7 +49,7 @@ Can attach social media handles
 [Features as User Stories](/docs/User_Stories.pdf)
 
 # Quick Demo
-
+Currently hosted on: https://my-portfolio-system.web.app/ <br />
 ![alt text](/readme_images/demo_gif.gif)
 
 ### Screenshots of main features
@@ -152,9 +152,6 @@ Create a firebase project <br />
 [Install the Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli) <br />
 Run the following command from the root of your local project directory: <br />
 firebase deploy --only hosting <br />
-
-Code depository: https://github.com/Dragonflies6779/IT-Project-2020 <br />
-Currently hosted on: https://my-portfolio-system.web.app/ <br />
 
 # Testing
 On the console run - "npm run test"
