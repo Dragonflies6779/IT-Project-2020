@@ -134,7 +134,7 @@ This contains the general routing and authentication of the website
 The Realtime Database and the Storage has a one to one relationship with the User and have the foreign key of the userID. Users in the realtime database describe the extra account details that are not stored in the user database.
 
 # Features
-[Features as User Stories](/docs/User Stories.pdf)
+[Features as User Stories](/docs/User_Stories.pdf)
 
 # Testing
 On the console run - "npm run test"
