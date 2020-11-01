@@ -27,6 +27,7 @@ Allows others to also view the others portfolios
       5. [Upload](#Upload)
       6. [User](#User)
       7. [Config](#Config)
+   * [Database Structure](#database-structure)
    * [Testing](#tesing)
    * [Languages](#Language)
    * [Authors](#Authors)
@@ -127,7 +128,7 @@ This contains the general routing and authentication of the website
 * A function that checks if authentication is required - require_auth.js
 
 # Database Structure
-![alt text](/readme_images/database_structure.png)
+![alt text](/readme_images/database_structure.png) <br />
 The Realtime Database and the Storage has a one to one relationship with the User and have the foreign key of the userID. Users in the realtime database describe the extra account details that are not stored in the user database.
 
 # Testing
