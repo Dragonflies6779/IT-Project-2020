@@ -18,6 +18,7 @@ button {
   letter-spacing: 1px;
   margin-bottom: 0.25em;
 }
+
 .btn:default {
  background-color:white;
  text-align: center;
