@@ -126,6 +126,9 @@ This contains the general routing and authentication of the website
 * Routing - route.js
 * A function that checks if authentication is required - require_auth.js
 
+# Database Structure
+![alt text](/readme_images/database_structure.png)
+The Realtime Database and the Storage has a one to one relationship with the User and have the foreign key of the userID. Users in the realtime database describe the extra account details that are not stored in the user database.
 
 # Testing
 On the console run - "npm run test"
