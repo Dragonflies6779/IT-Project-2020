@@ -144,3 +144,6 @@ Angela Nubary <br />
 Anthony Yuen <br />
 Chai Zhuo Lin (Edison) <br />
 Steven Alvin
+
+# Changelog
+[Changelog](/CHANGELOG.md) <br />
