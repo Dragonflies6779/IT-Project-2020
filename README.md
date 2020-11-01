@@ -29,6 +29,7 @@ Allows others to also view the others portfolios
       7. [Config](#Config)
    * [Database Structure](#database-structure)
    * [Languages](#Language)
+   * [System Requirements](#System-Requirements)
    * [Deployment Guidlines](#Deployment-Guidlines)
    * [Testing](#tesing)
    * [Authors](#Authors)
@@ -124,11 +125,26 @@ The Realtime Database and the Storage has a one to one relationship with the Use
 Javascript <br />
 HTML
 
+# System Requirements
+@testing-library/jest-dom: 5.11.4  
+@testing-library/react: 11.0.4    
+babel-cli: 6.26.0  
+babel-core: 6.26.3  
+boostrap: 2.0.0  
+firebase: 3.4.0  
+react: 15.3.1  
+react-bootstrap: 1.3.0  
+react-dom: 15.3.1  
+react-mailto: 0.4.0  
+react-router: 2.8.1  
+react-router-dom: 5.2.0  
+
+
 # Deployment Guidlines
-Firebase - required <br />
 https://firebase.google.com/docs/hosting/quickstart <br />
 
-To deploy to your site <br />
+#### To deploy to your site <br />
+
 [Sign into firebase](https://console.firebase.google.com/) <br />
 Create a firebase project <br />
 [Register the app with firebase](https://firebase.google.com/docs/web/setup) - for further information follow the link <br />
