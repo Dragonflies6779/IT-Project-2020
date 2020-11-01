@@ -9,6 +9,24 @@ My Portfolio System was developed by Adeline, Angela, Anthony, Steven and Edison
 A portfolio system that allows multiple users to upload and edit their portfolios <br />
 Allows others to also view the others portfolios
 
+# Table of Contents
+
+<!--ts-->
+   * [Introduction](#My-Portfolio-System-Website)
+   * [Table of contents](#table-of-contents)
+   * [Installation](#installation)
+   * [Usage](#usage)
+      * [STDIN](#stdin)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+      * [Auto insert and update TOC](#auto-insert-and-update-toc)
+      * [GitHub token](#github-token)
+   * [Tests](#tests)
+   * [Dependency](#dependency)
+<!--te-->
+
 # Core Functions
 Can search for others portfolio <br />
 Allows outside viewers to view others portfolios <br />
