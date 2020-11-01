@@ -17,7 +17,7 @@ Allows others to also view the others portfolios
    * [Core Functions](#Core-Functions)
       * [Features](#Features)
    * [Quick Demo](#Quick-Demo)
-      * [Gid](#Quick-Demo)
+      * [Gif](#Quick-Demo)
       * [Screenshots](#screenshots-of-main-features)
    * [Key Classes](#Key-classes)
       1. [Page](#page)
