@@ -28,6 +28,7 @@ Allows others to also view the others portfolios
       6. [User](#User)
       7. [Config](#Config)
    * [Database Structure](#database-structure)
+   * [Features](#Features)
    * [Testing](#tesing)
    * [Languages](#Language)
    * [Authors](#Authors)
@@ -131,6 +132,9 @@ This contains the general routing and authentication of the website
 # Database Structure
 ![alt text](/readme_images/database_structure.png) <br />
 The Realtime Database and the Storage has a one to one relationship with the User and have the foreign key of the userID. Users in the realtime database describe the extra account details that are not stored in the user database.
+
+# Features
+[Features as User Stories](/docs/Handover.pdf)
 
 # Testing
 On the console run - "npm run test"
