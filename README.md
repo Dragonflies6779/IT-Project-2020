@@ -16,6 +16,7 @@ Allows others to also view the others portfolios
    * [Table of contents](#table-of-contents)
    * [Core Functions](#Core-Functions)
    * [Quick Demo](#Quick-Demo)
+      * [Gid](#Quick-Demo)
       * [Screenshots](#screenshots-of-main-features)
    * [Deployment Guidlines](#Deployment-Guidlines)
    * [Testing](#tesing)
@@ -55,6 +56,68 @@ firebase deploy --only hosting <br />
 
 Code depository: https://github.com/Dragonflies6779/IT-Project-2020 <br />
 Currently hosted on: https://my-portfolio-system.web.app/ <br />
+
+# Key Classes
+
+The web application is split into different components into different folders
+Below are the folders and the description for each file:
+
+<!--ts-->
+  1. [Page](#page)
+  2. [profileInformation](#profileInformation)
+  3. [Session](#Session)
+  4. [Updateprofile](#updateProfile)
+  5. [Upload](#Upload)
+  6. [User](#User)
+  7. [Config](#Config)
+<!--te-->
+
+### Page
+This contains the components for the page:
+* The search bar frontend - search.js
+* The search bar function - searchfunc.js
+* The search results - results.js
+* Account information - account.js
+* The Homepage - home.js
+* General layout - layout.js
+
+### profileInformation
+This contains the components for each profile:
+* The component that allows for editing, adding and storing the education data - education.js
+* The component that allows for editing, adding and storing the experience data - experience.js
+* The component that allows for editing, adding and storing the interest data - interest.js 
+* The component that allows for editing, adding and storing the profile picture data - profilepict.js
+* The component that allows for editing, adding and storing the project data - project.js
+* The component that allows for editing, adding and storing the skills data - skills.js
+* The component that allows for editing, adding and storing the summary data - summary.js
+All these components are used within the profile.js file to create the overall profile page
+
+### Session
+This contains the components for account system
+* Login page - login.js
+* Signout function - signout.js
+
+### Updateprofile
+This contains the components for updating the general profile:
+* Editing Account Details - accountDetails.js
+* Changing password - changePassword.js
+* Changing the social media - socialMedia.js
+These components are used in the profile.js file
+
+### Upload
+There are 2 folders here 1 for image upload (upload) and the other for pdf uploading (uploadFile)
+* Uploading images - imagesUpload
+* Uploading pdf - pdfUpload
+
+### User
+This contains the signup page
+* Signup Page - signup.js
+
+### Config
+This contains the general routing and authentication of the website
+* Routing - route.js
+* A function that checks if authentication is required - require_auth.js
+
 
 # Testing
 On the console run - "npm run test"
