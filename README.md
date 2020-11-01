@@ -14,17 +14,13 @@ Allows others to also view the others portfolios
 <!--ts-->
    * [Introduction](#My-Portfolio-System-Website)
    * [Table of contents](#table-of-contents)
-   * [Installation](#installation)
-   * [Usage](#usage)
-      * [STDIN](#stdin)
-      * [Local files](#local-files)
-      * [Remote files](#remote-files)
-      * [Multiple files](#multiple-files)
-      * [Combo](#combo)
-      * [Auto insert and update TOC](#auto-insert-and-update-toc)
-      * [GitHub token](#github-token)
-   * [Tests](#tests)
-   * [Dependency](#dependency)
+   * [Core Functions](#Core-Functions)
+   * [Quick Demo](#Quick-Demo)
+      * [Screenshots](#screenshots-of-main-features)
+   * [Deployment Guidlines](#Deployment-Guidlines)
+   * [Testing](#tesing)
+   * [Languages](#Language)
+   * [Authors](#Authors)
 <!--te-->
 
 # Core Functions
