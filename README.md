@@ -31,6 +31,7 @@ Allows others to also view the others portfolios
    * [Testing](#tesing)
    * [Languages](#Language)
    * [Authors](#Authors)
+   * [Changelog](/CHANGELOG.md)
 <!--te-->
 
 # Core Functions
