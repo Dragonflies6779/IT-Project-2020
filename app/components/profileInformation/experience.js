@@ -166,7 +166,7 @@ var Experience = React.createClass({
 
 	addingExperience: function(){
 		return(
-			<div className="card-profile-summary">
+			<div className="card-profile-experience">
 				<div className="card-body d-flex flex-row">
 					<input type="text" ref="employer" className="form-control" placeholder="Company Name"/><br />
 					<input type="text" ref="position" className="form-control" placeholder="Position"/><br />
@@ -189,7 +189,7 @@ var Experience = React.createClass({
 		var indexedExperience = this.state.experiences[this.state.indexToEdit];
 
 		return(
-			<div className="card-profile-summary">
+			<div className="card-profile-experience">
 				<div className="card-body d-flex flex-row">
 					<input type="text" ref="employer" className="form-control" defaultValue={indexedExperience.employer} /><br />
 					<input type="text" ref="position" className="form-control" defaultValue={indexedExperience.position}/><br />
@@ -253,15 +253,15 @@ var Experience = React.createClass({
 
 		return (
 
-			<div className ="card-profile-summary">
+			<div className ="card-profile-experience">
 				<div className ="card-body">
+					<br/>
+					<br/>
 					{this.experienceHeading()}
 					<br/>
 					{show}
 					<br/>
 					<br/>
-					<br/>
-					<hr></hr>
 				</div>
 			</div>
 		)

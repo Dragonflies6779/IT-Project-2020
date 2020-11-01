@@ -2,6 +2,7 @@ var React = require('react');
 var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
+const ProfilePict = require('./profilepict.js');
 
 var Project = React.createClass({
 	getInitialState: function(){
@@ -174,8 +175,8 @@ var Project = React.createClass({
 
 	addingProject: function(){
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-projects">
+				<div className="card-body">
 					<input type="text" ref="name" className="form-control" placeholder="Project Name"/><br />
 					<input type="text" ref="url" className="form-control" placeholder="Project URL"/><br />
 					<div className="input-group">
@@ -199,10 +200,10 @@ var Project = React.createClass({
 		var indexedProject = this.state.projects[this.state.indexToEdit];
 
 		return(
-			<div className="card-profile-summary">
+			<div className="card-profile-projects">
 				<div className="card-body d-flex flex-row">
-					<div className="col-md-12">
-						<div className="col-md-8">
+					
+					
 							<input type="text" ref="name" className="form-control" defaultValue={indexedProject.name} /><br />
 							<input type="text" ref="url" className="form-control" defaultValue={indexedProject.url}/><br />
 							<div className="input-group">
@@ -219,8 +220,6 @@ var Project = React.createClass({
 									<button className="btn btn-link" onClick={this.handleRemoveExisting}>Remove this project</button>
 
 							</center><br/>
-						</div>
-					</div>
 				</div>
 			</div>
 		)
@@ -268,15 +267,15 @@ var Project = React.createClass({
 		}
 
 		return (
-			<div className="card-profile-summary">
+			<div className="card-profile-projects">
 				<div className="card-body d-flex flex-row">
+					<br/>
+					<br/>
 					{this.projectHeading()}
 					<br/>
 					{show}
 					<br/>
 					<br/>
-					<br/>
-					<hr></hr>
 					<br/>
 				</div>
 			</div>

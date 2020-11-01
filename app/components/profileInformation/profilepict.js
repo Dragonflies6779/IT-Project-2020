@@ -71,7 +71,7 @@ var profilepict = React.createClass({
         var showUpload;
 
         if(this.props.isCurrentUser){
-            showUpload = <label className="btn btn-file btn-link">
+            showUpload = <label className="btn file-btn-link">
                             <img src={this.state.userData.linkImg} className="img-circle" alt="" width="200" height="200" style={{objectFit: 'cover'}}/><br />
                             <input type="file" accept="image/*" onChange={this.handleUpload} style={{display: 'none'}} />
                         </label>

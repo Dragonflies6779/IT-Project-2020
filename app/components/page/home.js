@@ -58,7 +58,7 @@ var Home = React.createClass({
                                     <br></br>
                                     <Link to={"/users/" + this.state.user_id}> 
                                     {/* need to link this to portfolio editor */}
-                                        <a href="#" className="btn">Get Started</a>
+                                        <a href="#" className="btn btn-default">Get Started</a>
                                     </Link>
                                     {/* <p className="card-text">or</p> */}
                             {/* </div> */}

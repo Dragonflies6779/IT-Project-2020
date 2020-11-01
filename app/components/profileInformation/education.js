@@ -168,7 +168,7 @@ var Education = React.createClass({
 	addingEducation: function(){
 		return(
 			<div className="card-profile-summary">
-				<div className="card-body d-flex flex-row">
+				<div className="card-body">
 					<input type="text" ref="school" className="form-control" placeholder="School"/><br />
 					<input type="text" ref="degree" className="form-control" placeholder="Degree"/><br />
 					<input type="text" ref="major" className="form-control" placeholder="Field of Study"/><br />
@@ -193,8 +193,8 @@ var Education = React.createClass({
 		var indexedSchool = this.state.educations[this.state.indexToEdit];
 
 		return(
-			<div className="col-md-12">
-				<div className="col-md-8">
+			<div className="card-profile-education">
+				<div className="card-body">
 					<input type="text" ref="school" className="form-control" defaultValue={indexedSchool.school} /><br />
 					<input type="text" ref="degree" className="form-control" defaultValue={indexedSchool.degree}/><br />
 					<input type="text" ref="major" className="form-control" defaultValue={indexedSchool.major}/><br />
@@ -254,15 +254,15 @@ var Education = React.createClass({
 		}
 
 		return (
-			<div className ="card-profile-summary">
+			<div className ="card-profile-education">
 				<div className ="card-body">
+					<br />
+					<br />
 					{this.educationHeading()}
 					<br/>
 					{show}
 					<br />
 					<br />
-					<br />
-					<hr></hr>
 				</div>
 			</div>
 
