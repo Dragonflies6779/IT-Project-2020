@@ -49,12 +49,14 @@ Can attach social media handles
 [Features as User Stories](/docs/User_Stories.pdf)
 
 # Quick Demo
-Currently hosted on: https://my-portfolio-system.web.app/ <br />
+
 ![alt text](/readme_images/demo_gif.gif)
 
 ### Screenshots of main features
 
 ![alt text](/readme_images/eportfolio-page.jpg)
+
+Currently hosted on: https://my-portfolio-system.web.app/ <br />
 
 # Key Classes
 
