@@ -47,7 +47,7 @@ Can attach social media handles
 
 ![alt text](/readme_images/demo_gif.gif)
 
-# Screenshots of main features
+### Screenshots of main features
 
 ![alt text](/readme_images/eportfolio-page.jpg)
 
