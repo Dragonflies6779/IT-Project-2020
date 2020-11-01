@@ -15,10 +15,10 @@ Allows others to also view the others portfolios
    * [Introduction](#My-Portfolio-System-Website)
    * [Table of contents](#table-of-contents)
    * [Core Functions](#Core-Functions)
+      * [Features](#Features)
    * [Quick Demo](#Quick-Demo)
       * [Gid](#Quick-Demo)
       * [Screenshots](#screenshots-of-main-features)
-   * [Deployment Guidlines](#Deployment-Guidlines)
    * [Key Classes](#Key-classes)
       1. [Page](#page)
       2. [profileInformation](#profileInformation)
@@ -28,9 +28,9 @@ Allows others to also view the others portfolios
       6. [User](#User)
       7. [Config](#Config)
    * [Database Structure](#database-structure)
-   * [Features](#Features)
-   * [Testing](#tesing)
    * [Languages](#Language)
+   * [Deployment Guidlines](#Deployment-Guidlines)
+   * [Testing](#tesing)
    * [Authors](#Authors)
    * [Changelog](/CHANGELOG.md)
 <!--te-->
@@ -44,6 +44,9 @@ Allows the uploading of images <br />
 Allows the uploading and download of a resume (pdf format) <br />
 Can attach social media handles
 
+### Features
+[Features as User Stories](/docs/User_Stories.pdf)
+
 # Quick Demo
 
 ![alt text](/readme_images/demo_gif.gif)
@@ -51,22 +54,6 @@ Can attach social media handles
 ### Screenshots of main features
 
 ![alt text](/readme_images/eportfolio-page.jpg)
-
-# Deployment Guidlines
-Firebase - required <br />
-https://firebase.google.com/docs/hosting/quickstart <br />
-
-To deploy to your site <br />
-[Sign into firebase](https://console.firebase.google.com/) <br />
-Create a firebase project <br />
-[Register the app with firebase](https://firebase.google.com/docs/web/setup) - for further information follow the link <br />
-[Add storage capabilities to the app](https://firebase.google.com/docs/storage/android/start) <br />
-[Install the Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli) <br />
-Run the following command from the root of your local project directory: <br />
-firebase deploy --only hosting <br />
-
-Code depository: https://github.com/Dragonflies6779/IT-Project-2020 <br />
-Currently hosted on: https://my-portfolio-system.web.app/ <br />
 
 # Key Classes
 
@@ -133,15 +120,28 @@ This contains the general routing and authentication of the website
 ![alt text](/readme_images/database_structure.png) <br />
 The Realtime Database and the Storage has a one to one relationship with the User and have the foreign key of the userID. Users in the realtime database describe the extra account details that are not stored in the user database.
 
-# Features
-[Features as User Stories](/docs/User_Stories.pdf)
-
-# Testing
-On the console run - "npm run test"
-
 # Language
 Javascript <br />
 HTML
+
+# Deployment Guidlines
+Firebase - required <br />
+https://firebase.google.com/docs/hosting/quickstart <br />
+
+To deploy to your site <br />
+[Sign into firebase](https://console.firebase.google.com/) <br />
+Create a firebase project <br />
+[Register the app with firebase](https://firebase.google.com/docs/web/setup) - for further information follow the link <br />
+[Add storage capabilities to the app](https://firebase.google.com/docs/storage/android/start) <br />
+[Install the Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli) <br />
+Run the following command from the root of your local project directory: <br />
+firebase deploy --only hosting <br />
+
+Code depository: https://github.com/Dragonflies6779/IT-Project-2020 <br />
+Currently hosted on: https://my-portfolio-system.web.app/ <br />
+
+# Testing
+On the console run - "npm run test"
 
 # Authors
 Adeline Wijaya <br />
