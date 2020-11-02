@@ -4,6 +4,7 @@ var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 const ProfilePict = require('./profilepict.js');
 
+/* this component is for project section in the portfolio */
 var Project = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false, projects: [], id: this.props.pageID};

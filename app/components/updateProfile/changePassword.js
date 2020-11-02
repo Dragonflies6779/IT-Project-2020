@@ -4,7 +4,7 @@ const hashHistory = require('react-router').hashHistory;
 const passRegex = RegExp(
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,16}$/
 );
-
+/* this component handle change password logic */
 class changePassword extends React.Component{
     constructor(props){
         super();

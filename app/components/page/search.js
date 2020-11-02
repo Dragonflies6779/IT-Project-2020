@@ -6,6 +6,8 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+
+/* this component render the search bar*/
 var Search = React.createClass({
   handleSearch: function(e) {
       e.preventDefault();

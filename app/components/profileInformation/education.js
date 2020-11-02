@@ -3,6 +3,7 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+/* this component is for education section in the portfolio */
 var Education = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false, educations: [], id: this.props.pageID};
