@@ -3,6 +3,7 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+/* this component is for interest section in the portfolio */
 var Interests = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false};

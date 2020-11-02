@@ -2,6 +2,7 @@ const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
 
+/* this component handle the logic behind uploading profile picture */
 class imagesUpload extends React.Component{
   constructor(props) {
     super(props);

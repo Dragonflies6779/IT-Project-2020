@@ -19,7 +19,7 @@ const ProfilePict = require('./profilepict.js');
 
 
 // import '/style.css';
-
+/* this component is for profile section in the portfolio */
 var Profile = React.createClass({
 	getInitialState: function(){
 		return(

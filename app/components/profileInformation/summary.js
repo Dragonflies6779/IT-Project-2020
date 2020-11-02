@@ -7,6 +7,9 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+
+
+/* this component is for summary section in the portfolio */
 var Summary = React.createClass({
 	getInitialState: function(){
 		return{isCurrentUser: false, editing: false};

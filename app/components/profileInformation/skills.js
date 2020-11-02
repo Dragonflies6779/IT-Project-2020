@@ -3,6 +3,8 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+
+/* this component is for skill section in the portfolio */
 var Skills = React.createClass({
 	getInitialState: function(){
 		return {isCurrentUser: false, editing: false};

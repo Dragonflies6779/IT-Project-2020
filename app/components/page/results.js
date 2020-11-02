@@ -4,6 +4,8 @@ var firebase = require('firebase');
 var Link = require('react-router').Link;
 var hashHistory = require('react-router').hashHistory;
 
+
+/* this component is to render the result from search funtionality*/
 var Results = React.createClass({
 	getInitialState: function(){
 		return {users: [], prop_name: ""}

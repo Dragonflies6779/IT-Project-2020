@@ -8,6 +8,7 @@ const Account = require('../updateProfile/accountDetail.js');
 const Social = require('../updateProfile/socialMedia.js');
 const Password = require('../updateProfile/changePassword.js');
 
+/* this component render the home page or initial page when visiting the website*/
 var Home = React.createClass({
 
     getInitialState: function() {
