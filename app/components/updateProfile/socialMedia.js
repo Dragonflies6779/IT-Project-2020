@@ -3,6 +3,7 @@ const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
 const mailto = require('react-mailto');
 
+/* this component is for social media section in the portfolio */
 class socialMedia extends React.Component{
     constructor(props) {
         super();

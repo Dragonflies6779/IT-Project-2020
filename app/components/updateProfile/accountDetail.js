@@ -2,6 +2,8 @@ const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
 
+
+/* this component is to render account detail in settings */
 class accountDetail extends React.Component{
     constructor(props) {
         super();
