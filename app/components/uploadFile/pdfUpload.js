@@ -2,7 +2,7 @@ const React = require('react');
 const firebase = require('firebase');
 const hashHistory = require('react-router').hashHistory;
 
-
+/* this class is to add upload resume feature */
 class PdfUpload extends React.Component{
     constructor(props) {
         super();
@@ -18,6 +18,8 @@ class PdfUpload extends React.Component{
         this.handleUpload = this.handleUpload.bind(this);
         this.handleDownload = this.handleDownload.bind(this);
     }
+    // to handle the download button
+    // download the resume from storage file named resume_pdf/<user id>/resume
     handleDownload(event){
        
         // Create a reference to the file we want to download
@@ -39,13 +41,9 @@ class PdfUpload extends React.Component{
             });
             
         });
-        // } else {
-        //     // No user is signed in.
-        //     hashHistory.push("/login");
-        // }
         
     }
-
+    // to handle the change on input file
     handlechange(event){
         if (event.target.files[0]!=null){
             console.log(event.target.files[0]);
@@ -54,6 +52,9 @@ class PdfUpload extends React.Component{
             });
         }
     }
+
+    // to handle the upload button
+    // save the resume from storage file named resume_pdf/<user id>/resume
     handleUpload() {
         let storage = firebase.storage();
         console.log(this.state.file);
